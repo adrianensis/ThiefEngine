@@ -19,7 +19,7 @@ var test = function () {
 
         // texture.setData(imageSoldier);
 
-        material.setTexture(Loader.loadTexture("res/sand.png"));
+        material.setTexture(Loader.loadTexture("test/res/sand.png"));
 
         renderer.setMaterial(material);
         // renderer.setMesh(rect);
@@ -119,7 +119,7 @@ var test = function () {
         transform.setScale(new Vector2(2,2));
 
         // texture.setData(imageSand);
-        material.setTexture(Loader.loadTexture("res/snorlax.bmp"));
+        material.setTexture(Loader.loadTexture("test/res/snorlax.bmp"));
 
         material.setColor(Color.NONE);
 
@@ -185,7 +185,7 @@ var test = function () {
 
         var material = new Material();
         material.setColor(Color.NONE);
-        material.setTexture(Loader.loadTexture("res/pok-char.png"));
+        material.setTexture(Loader.loadTexture("test/res/pok-char.png"));
 
         renderer.setMaterial(material);
         // renderer.setMesh(rect);
@@ -247,7 +247,7 @@ var test = function () {
 
         // texture.setData(imageSoldier);
 
-        material.setTexture(Loader.loadTexture("res/soldier.png"));
+        material.setTexture(Loader.loadTexture("test/res/soldier.png"));
 
         renderer.setMaterial(material);
         // renderer.setMesh(rect);
@@ -283,7 +283,7 @@ var test = function () {
         var obj = new GameObject();
 
         var cube = new CubeMesh(1,1,1);
-        // var cube = Mesh.load("res/cube.obj");
+        // var cube = Mesh.load("test/res/cube.obj");
         var renderer = new MeshRenderer();
         var material = new Material();
         var transform = new Transform();
@@ -293,7 +293,7 @@ var test = function () {
 
         // var texture = new Texture();
 
-        material.setTexture(Loader.loadTexture("res/sand.png"));
+        material.setTexture(Loader.loadTexture("test/res/sand.png"));
         material.setColor(Color.NONE);
 
         // var logic = new CubeLogic();
@@ -321,7 +321,7 @@ var test = function () {
         var material = new Material();
         material.setColor(Color.NONE);
 
-        material.setTexture(Loader.loadTexture("res/orc.png"));
+        material.setTexture(Loader.loadTexture("test/res/orc.png"));
 
         renderer.setMaterial(material);
 
@@ -352,7 +352,7 @@ var test = function () {
         var material = new Material();
         material.setColor(Color.NONE);
 
-        material.setTexture(Loader.loadTexture("res/font.bmp"));
+        material.setTexture(Loader.loadTexture("test/res/font.bmp"));
 
         renderer.setMaterial(material);
         renderer.setAlphaColor(new Color(1,0,1,1));
@@ -388,7 +388,7 @@ var test = function () {
 
             var v = perlin.generate(i,j);
 
-            var tex = Loader.loadTexture("res/pokemonTiles.png");
+            var tex = Loader.loadTexture("test/res/pokemonTiles.png");
 
             var tileSizeX = 1/88;
             var tileSizeY = 1/69;
@@ -446,7 +446,7 @@ var test = function () {
      * NOTE: NEW FACADE
      */
 
-    // var snorlax = Thief.sprite.begin("res/snorlax.bmp", new Vector2(0,0), 2, true).
+    // var snorlax = Thief.sprite.begin("test/res/snorlax.bmp", new Vector2(0,0), 2, true).
     // setAlphaColor(new Color(1,0,1,1)).
     // end();
     //
@@ -455,7 +455,7 @@ var test = function () {
 
 
 
-    var player = Thief.sprite.begin("res/pok-char.png", new Vector2(0,0), 1, false). // create a basic sprite
+    var player = Thief.sprite.begin("test/res/pok-char.png", new Vector2(0,0), 1, false). // create a basic sprite
 
       addAnimation("up", 4, 1, 0, new Vector2(0,0), 6). // add UP animation
       addAnimation("down", 4, 1, 0, new Vector2(0,0.75), 6). // add DOWN animation
