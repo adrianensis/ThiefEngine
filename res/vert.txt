@@ -1,0 +1,15 @@
+uniform mat4 projectionMatrix;
+            uniform mat4 viewMatrix;
+            uniform mat4 transformationMatrix;
+
+            attribute vec4 position;
+            attribute vec2 a_texcoord;
+
+            varying vec2 v_texcoord;
+
+            void main() {
+              gl_Position = projectionMatrix*viewMatrix*transformationMatrix*position;
+
+              // Pass the texcoord to the fragment shader.
+              v_texcoord = a_texcoord;
+            }
