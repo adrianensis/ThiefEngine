@@ -19,7 +19,10 @@ CameraLogic.prototype.update = function (){
 
     var t = this.gameObject.getComponent(Transform);
 
-    t.setPosition(this.player.getComponent(Transform).position);
+    var newCamPos = this.player.getComponent(Transform).position.cpy();
+    newCamPos.z = t.getPosition().z;
+
+    t.setPosition(newCamPos);
 
     // DebugRenderer.setTransformationMatrix(Matrix4.identity());
     // DebugRenderer.drawLine(new Vector3(0,-20,0),new Vector3(0,20,0),Color.BLUE);

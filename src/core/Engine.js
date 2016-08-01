@@ -3,7 +3,7 @@ var Engine = function (){
     this.physicsEngine = null;
     this.scriptEngine = null;
     this.currentScene = null;
-    this.scenes = null;
+    this.scenes = {};
     this.input = new Input();
 };
 
@@ -21,16 +21,20 @@ Engine.prototype.getCurrentScene = function (){
 	return this.currentScene;
 };
 
-Engine.prototype.setCurrentScene = function (currentScene){
-	this.currentScene=currentScene;
+Engine.prototype.addScene = function (currentScene){
+	this.scenes[currentScene.getName()] = currentScene;
+};
+
+Engine.prototype.setCurrentScene = function (name){
+
+  if(this.currentScene !== null)
+    this.currentScene.setLoaded(false); // reset
+
+	this.currentScene=this.scenes[name];
 };
 
 Engine.prototype.getScenes = function (){
 	return this.scenes;
-};
-
-Engine.prototype.setScenes = function (scenes){
-	this.scenes=scenes;
 };
 
 Engine.prototype.init = function (){
@@ -46,11 +50,13 @@ Engine.prototype.loadScene = function(){
     this.renderEngine.addRenderers(renderers);
     this.renderEngine.setRenderContext(this.currentScene.getRenderContext());
 
-     var rigidBodies = this.currentScene.getRoot().getComponentsInChildren(RigidBody);
-     this.physicsEngine.setBodies(this.physicsEngine.getBodies().concat(rigidBodies));
+   var rigidBodies = this.currentScene.getRoot().getComponentsInChildren(RigidBody);
+   this.physicsEngine.setBodies(this.physicsEngine.getBodies().concat(rigidBodies));
 
     var logics = this.currentScene.getRoot().getComponentsInChildren(Script);
     this.scriptEngine.setScripts(this.scriptEngine.getScripts().concat(logics));
+
+    this.currentScene.setLoaded(true);
 };
 
 Engine.prototype.run = function () {
@@ -80,7 +86,7 @@ Engine.prototype.run = function () {
 
         gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
 
-        if(currentScene.hasNewObjects()){
+        if( ! currentScene.isLoaded()){
             engine.loadScene();
         }
 
@@ -92,7 +98,7 @@ Engine.prototype.run = function () {
 
 
 
-        if(engine.binded ){
+        if(engine.binded){
             scriptEngine.update();
             physicsEngine.update();
             renderEngine.update();

@@ -15,9 +15,8 @@ PhysicsEngine.prototype.getBodies = function (){
 };
 
 PhysicsEngine.prototype.setBodies = function (bodies){
-  this.bodies = bodies;
-  for (var i = 0; i < this.bodies.length; i++) {
-	   this.tree.addCollider(this.bodies[i].gameObject.getComponent(Collider));
+  for (var i = 0; i < bodies.length; i++) {
+    this.addBody(bodies[i]);
 	}
 };
 

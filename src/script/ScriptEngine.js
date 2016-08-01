@@ -7,7 +7,9 @@ ScriptEngine.prototype.getScripts = function (){
 };
 
 ScriptEngine.prototype.setScripts = function (scripts){
-	this.scripts = scripts;
+  for (var i = 0; i < scripts.length; i++) {
+    this.scripts.push(scripts[i]);
+	}
 };
 
 ScriptEngine.prototype.update = function (){
