@@ -14,7 +14,7 @@ var LineRenderer = function (shader,start,end,color, transformationMatrix){
 
     this.colors = this.color.vec.toArray().concat(this.color.vec.toArray());
 
-    this.elem = new Array(0);
+    this.elem = [];
     this.elem[0] = 0;
     this.elem[1] = 1;
 

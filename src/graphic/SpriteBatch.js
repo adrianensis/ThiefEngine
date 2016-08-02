@@ -1,10 +1,7 @@
 var SpriteBatch = function (material){
   this.material = material;
-
   this.renderers = {};
-
   this.renderContext = null;
-
   this.vboColor = 0;
 
 };
@@ -85,9 +82,9 @@ SpriteBatch.prototype.bind = function (){
   gl.enableVertexAttribArray(2);
   this.vboColor = gl.createBuffer();
   // gl.bindBuffer(gl.ARRAY_BUFFER, this.vboColor);
-  // var color = new Array(0);
+  // var color = [];
   // for (var i = 0; i < SpriteBatch.mesh.getVerticesData().length/4; i++) {
-  // 	color = color.concat(this.material.color.getData());
+  // 	color = color.concat(this.material.color.getVector().toArray(());
   // }
   // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(color), gl.STATIC_DRAW); // TODO DYNAMIC
   // gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 0, 0);
@@ -99,7 +96,7 @@ SpriteBatch.prototype.update = function (renderContext){
 
 	this.material.enable();
 
-  // var matrices = new Array(0);
+  // var matrices = [];
   // for (var renderer of this.renderers) {
   //     matrices.push(renderer.gameObject.getComponent(Transform).getMatrix().transpose());
   // }
@@ -127,20 +124,9 @@ SpriteBatch.prototype.render = function (){
   gl.enableVertexAttribArray(0);
 
   if(SpriteBatch.mesh.hasTexture())
-  gl.enableVertexAttribArray(1);
-
-
+    gl.enableVertexAttribArray(1);
 
   gl.enableVertexAttribArray(3);
-
-
-
-  // this.frustum.build(this.renderContext.getCamera());
-
-
-
-
-
 
   var cam = this.renderContext.getCamera();
 
@@ -148,31 +134,34 @@ SpriteBatch.prototype.render = function (){
 
     var renderer = this.renderers[key];
 
-    var test = cam.getFrustum().testSphere(renderer.getGameObject().getComponent(Transform).position, renderer.getRadius());
+    if(renderer.isEnabled()){
 
-    // console.log(renderer.getRadius());
-    // console.log(test);
+      var test = cam.getFrustum().testSphere(renderer.getGameObject().getComponent(Transform).position, renderer.getRadius());
 
-    if(test){
-      // if(this.renderContext.getCamera().contains(renderer)){
+      // console.log(renderer.getRadius());
+      // console.log(test);
 
-      gl.enableVertexAttribArray(2);
+      if(test){
 
-      gl.bindBuffer(gl.ARRAY_BUFFER, this.vboColor);
-    	var color = new Array(0);
-    	for (var i = 0; i < SpriteBatch.mesh.getVerticesData().length/4; i++) {
-    	   color = color.concat(renderer.getMaterial().getColor().getData());
-    	}
-    	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(color), gl.STATIC_DRAW);
-    	gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 0, 0);
 
-      this.material.getShader().addMatrix(renderer.gameObject.getComponent(Transform).getMatrix().transpose(), "transformationMatrix");
+        gl.enableVertexAttribArray(2);
 
-      renderer.updateMaterial(this.material);
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.vboColor);
+      	var color = [];
+      	for (var i = 0; i < SpriteBatch.mesh.getVerticesData().length/4; i++) {
+      	   color = color.concat(renderer.getMaterial().getColor().toArray());
+      	}
+      	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(color), gl.STATIC_DRAW);
+      	gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 0, 0);
 
-      gl.drawElements(gl.TRIANGLES, SpriteBatch.mesh.getNumFaces()*3, gl.UNSIGNED_SHORT, 0);
+        this.material.getShader().addMatrix(renderer.gameObject.getComponent(Transform).getMatrix().transpose(), "transformationMatrix");
 
-      this.material.reset();
+        renderer.updateMaterial(this.material);
+
+        gl.drawElements(gl.TRIANGLES, SpriteBatch.mesh.getNumFaces()*3, gl.UNSIGNED_SHORT, 0);
+
+        this.material.reset();
+      }
     }
   }
 

@@ -1,5 +1,7 @@
 var RenderEngine = function (){
 
+  this.color = new Color(0,0,0,1);
+
   var canvas = document.getElementById("glcanvas");
 
   var realToCSSPixels = window.devicePixelRatio || 1; // FOR HD RETINA SCREEN
@@ -54,7 +56,7 @@ var RenderEngine = function (){
     // gl.viewport(0, 0, canvas.width, canvas.height);
     //   gl.viewport(0, 0, 1, 1);
     gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);                      // Set clear color to black, fully opaque
+    gl.clearColor(this.color.r, this.color.g, this.color.b, this.color.a);                      // Set clear color to black, fully opaque
 
     gl.enable(gl.DEPTH_TEST);                               // Enable depth testing
     gl.depthFunc(gl.LEQUAL);                                // Near things obscure far things
@@ -62,9 +64,7 @@ var RenderEngine = function (){
     gl.cullFace(gl.BACK);
 
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-    // gl.enable(gl.BLEND);
-
-
+    gl.enable(gl.BLEND);
 
     //gl.enable(gl.TEXTURING);
     //gl.enable(gl.TEXTURE_2D);
@@ -72,15 +72,21 @@ var RenderEngine = function (){
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);      // Clear the color and the depth buffer.
   }
 
-    // this.renderers = new Array(0); // TODO: remove
-    this.textureBatches = {}
-    this.noTextureBatch = new SpriteBatch(new Material());
-    this.renderContext = null;
+    // this.renderers = []; // TODO: remove
+    this.clear();
     // this.noTextureIndex = 1;
 
     DebugRenderer.init();
 };
 
+RenderEngine.prototype.setClearColor = function (color){
+  this.color.r = color.r;
+  this.color.g = color.g;
+  this.color.b = color.b;
+  this.color.a = color.a;
+
+  gl.clearColor(this.color.r, this.color.g, this.color.b, this.color.a);
+};
 
 RenderEngine.prototype.addRenderers = function (renderers){
 
@@ -105,7 +111,11 @@ RenderEngine.prototype.addRenderers = function (renderers){
   }
 };
 
-
+RenderEngine.prototype.clear = function (){
+  this.textureBatches = {};
+  this.noTextureBatch = new SpriteBatch(new Material());
+  this.renderContext = null;
+};
 
 RenderEngine.prototype.getRenderContext = function (){
 	return this.renderContext;

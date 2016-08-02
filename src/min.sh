@@ -72,5 +72,5 @@ rm "thief.min.js" 2> /dev/null
 
 for i in $list
 do
-	cat $i >> "thief.min.js" 2> /dev/null
+	cat "src/$i" >> "thief.min.js" 2> /dev/null
 done

@@ -1,5 +1,5 @@
 var Animation = function () {
-    this.frames = new Array(0);
+    this.frames = [];
     this.currentFrame = 0;
     this.speed = 1;
     this.lastTime = 0;
@@ -27,13 +27,13 @@ Animation.prototype.getNextFrame = function () {
     // this.speed -> frame/second.
     // var time -> time of one frame.
 
-    var time = (1.0/(this.speed));
-    var tick = Time.now();
+    var time = (1.0/(this.speed)); // in seconds !
+    var now = Time.now(); // in seconds !
 
     // if delta time is greater than 'one frame time'
     // then -> change to the next frame.
-    if((tick-this.lastTime) >= time){
-        this.lastTime = tick;
+    if((now-this.lastTime) >= time){
+        this.lastTime = now;
         this.currentFrame = (this.currentFrame + 1)%this.frames.length;
     }
 

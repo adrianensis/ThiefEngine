@@ -1,8 +1,8 @@
 var GameObject = function (){
     BaseObject.call(this);
     this.parent = null;
-    this.children = new Array(0);
-    this.components = new Array(0);
+    this.children = [];
+    this.components = [];
     this.scene = null;
     this.static = false;
 };

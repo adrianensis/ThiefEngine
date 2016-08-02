@@ -5,14 +5,14 @@ var Script = function (){
 Script.prototype = new Component();
 Script.prototype.constructor = Script;
 
-Script.prototype.bind = function (){
+Script.prototype.start = function (){
 
 };
 
 Script.prototype.update = function (){
-    var children = this.getChildren();
+  var children = this.getChildren();
 	for (var i = 0; i < children.length; i++) {
-	children[i].update();
+	   children[i].update();
 	}
 };
 

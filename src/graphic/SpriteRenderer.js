@@ -1,28 +1,28 @@
 var SpriteRenderer = function (){
-    MeshRenderer.call(this);
+  MeshRenderer.call(this);
 
-    this.setMesh(new RectangleMesh());
+  this.setMesh(new RectangleMesh());
 
-    // Animations
-    this.animations = new Array(0);
-    this.animation = null;
+  // Animations
+  this.animations = [];
+  this.animation = null;
 
-    // texture region
-    this.regionPosition = new Vector2(0.0,0.0);
-    this.regionWidth = 1.0;
-    this.regionHeight = 1.0;
+  // texture region
+  this.regionPosition = new Vector2(0.0,0.0);
+  this.regionWidth = 1.0;
+  this.regionHeight = 1.0;
 
-    // alpha color
-    this.alphaColor = new Color(-1,-1,-1,-1);
+  // alpha color
+  this.alphaColor = new Color(-1,-1,-1,-1);
 };
 
 SpriteRenderer.prototype = new MeshRenderer();
 SpriteRenderer.prototype.constructor = SpriteRenderer;
 
 SpriteRenderer.prototype.setRegion = function (pos, width, height){
-    this.regionPosition = pos;
-    this.regionWidth = width;
-    this.regionHeight = height;
+  this.regionPosition = pos;
+  this.regionWidth = width;
+  this.regionHeight = height;
 };
 
 SpriteRenderer.prototype.getRegionPosition = function (){
@@ -59,7 +59,7 @@ SpriteRenderer.prototype.updateMaterial = function (material){
 
     var shader = material.getShader();
 
-    shader.addFloatVector(this.alphaColor.getData(),"alphacolor");
+    shader.addFloatVector(this.alphaColor.toArray(),"alphacolor");
 
     shader.addFloat(this.getRegionPosition().x, "regionX");
     shader.addFloat(this.getRegionPosition().y, "regionY");

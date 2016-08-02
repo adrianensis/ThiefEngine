@@ -84,7 +84,7 @@ MeshRenderer.prototype.getRadius = function () {
 // 	gl.enableVertexAttribArray(2);
 // 	this.vboColor = gl.createBuffer();
 // 	gl.bindBuffer(gl.ARRAY_BUFFER, this.vboColor);
-// 	var color = new Array(0);
+// 	var color = [];
 // 	for (var i = 0; i < this.mesh.getVerticesData().length/4; i++) {
 // 	color = color.concat(this.material.color);
 // 	}

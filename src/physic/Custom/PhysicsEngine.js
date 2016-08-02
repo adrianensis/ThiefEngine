@@ -1,9 +1,9 @@
 var PhysicsEngine = function (){
-  this.bodies = Array(0);
+  this.bodies = [];
 
   // TODO refactor
 
-  var canvas = document.getElementById("glcanvas");
+  // var canvas = document.getElementById("glcanvas");
   // alert("Width: "+canvas.width/64 + " Height: " + canvas.height/64);
   // this.tree = new QuadTree(canvas.width/64,canvas.height/64);
   this.tree = new QuadTree(100,100);
@@ -14,7 +14,7 @@ PhysicsEngine.prototype.getBodies = function (){
   return this.bodies;
 };
 
-PhysicsEngine.prototype.setBodies = function (bodies){
+PhysicsEngine.prototype.addBodies = function (bodies){
   for (var i = 0; i < bodies.length; i++) {
     this.addBody(bodies[i]);
 	}
@@ -23,6 +23,11 @@ PhysicsEngine.prototype.setBodies = function (bodies){
 PhysicsEngine.prototype.addBody = function (body){
   this.bodies.push(body);
   this.tree.addCollider(body.gameObject.getComponent(Collider));
+};
+
+PhysicsEngine.prototype.clear = function (){
+	this.bodies = [];
+  this.tree.clear();
 };
 
 PhysicsEngine.prototype.applyImpulse = function(body1, body2, vrel, normal){
@@ -34,7 +39,7 @@ PhysicsEngine.prototype.applyImpulse = function(body1, body2, vrel, normal){
   // (1/body1->fMass + 1/body2->fMass) );
   // body1->vVelocity += (j * vCollisionNormal) / body1->fMass;
   // body2->vVelocity -= (j * vCollisionNormal) / body2->fMass;
-}
+};
 
 PhysicsEngine.prototype.solveCollisions = function (contacts){
   for (var i = 0; i < contacts.length; i++) {

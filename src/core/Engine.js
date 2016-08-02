@@ -1,21 +1,16 @@
 var Engine = function (){
-    this.renderEngine = null;
-    this.physicsEngine = null;
-    this.scriptEngine = null;
-    this.currentScene = null;
-    this.scenes = {};
-    this.input = new Input();
+  this.renderEngine = null;
+  this.physicsEngine = null;
+  this.scriptEngine = null;
+  this.currentScene = null;
+  this.scenes = {};
+  this.input = new Input();
+
+  this.loaded = false;
+  this.physicsEnabled = true;
 };
 
 // TODO: Singleton
-
-Engine.prototype.getRenderengine = function (){
-	return this.renderEngine;
-};
-
-Engine.prototype.setRenderengine = function (renderEngine){
-	this.renderEngine=renderEngine;
-};
 
 Engine.prototype.getCurrentScene = function (){
 	return this.currentScene;
@@ -37,90 +32,122 @@ Engine.prototype.getScenes = function (){
 	return this.scenes;
 };
 
+Engine.prototype.setClearColor = function (color){
+  this.renderEngine.setClearColor(color);
+};
+
+Engine.prototype.enablePhysics = function (){
+  this.physicsEnabled = true;
+};
+
+Engine.prototype.disablePhysics = function (){
+  this.physicsEnabled = false;
+};
+
 Engine.prototype.init = function (){
 
-    this.renderEngine = new RenderEngine();
-    this.physicsEngine = new PhysicsEngine();
-    this.scriptEngine = new ScriptEngine();
+  this.renderEngine = new RenderEngine();
+  this.physicsEngine = new PhysicsEngine();
+  this.scriptEngine = new ScriptEngine();
+
+};
+
+Engine.prototype.uploadScene = function(){
+
+  var root = this.currentScene.getNewsRoot();
+
+  var renderers = root.getComponentsInChildren(MeshRenderer);
+  var rigidBodies = root.getComponentsInChildren(RigidBody);
+  var scripts = root.getComponentsInChildren(Script);
+
+  this.currentScene.setLoaded(true);
+  this.currentScene.flush();
+
+  this.renderEngine.addRenderers(renderers);
+  this.renderEngine.setRenderContext(this.currentScene.getRenderContext());
+
+  this.physicsEngine.addBodies(rigidBodies);
+
+  this.scriptEngine.addScripts(scripts);
 
 };
 
 Engine.prototype.loadScene = function(){
-    var renderers = this.currentScene.getRoot().getComponentsInChildren(MeshRenderer);
-    this.renderEngine.addRenderers(renderers);
-    this.renderEngine.setRenderContext(this.currentScene.getRenderContext());
 
-   var rigidBodies = this.currentScene.getRoot().getComponentsInChildren(RigidBody);
-   this.physicsEngine.setBodies(this.physicsEngine.getBodies().concat(rigidBodies));
+  this.renderEngine.clear();
+  this.physicsEngine.clear();
+  this.scriptEngine.clear();
 
-    var logics = this.currentScene.getRoot().getComponentsInChildren(Script);
-    this.scriptEngine.setScripts(this.scriptEngine.getScripts().concat(logics));
+  this.uploadScene();
 
-    this.currentScene.setLoaded(true);
 };
+
+
 
 Engine.prototype.run = function () {
 
-    // window.requestAnimFrame = (function(){
-    //   return  window.requestAnimationFrame       ||
-    //           window.webkitRequestAnimationFrame ||
-    //           window.mozRequestAnimationFrame    ||
-    //           function( callback ){
-    //             window.setTimeout(callback, 1000 / 30);
-    //           };
-    // })();
+  // window.requestAnimFrame = (function(){
+  //   return  window.requestAnimationFrame       ||
+  //           window.webkitRequestAnimationFrame ||
+  //           window.mozRequestAnimationFrame    ||
+  //           function( callback ){
+  //             window.setTimeout(callback, 1000 / 30);
+  //           };
+  // })();
 
 
-    var renderEngine = this.renderEngine;
-    var physicsEngine = this.physicsEngine;
-    var scriptEngine = this.scriptEngine;
-    var currentScene = this.currentScene;
+  var renderEngine = this.renderEngine;
+  var physicsEngine = this.physicsEngine;
+  var scriptEngine = this.scriptEngine;
+  var currentScene = this.currentScene;
 
-    var engine = this;
+  var engine = this;
 
-    var max = 0;
+  var max = 0;
 
-    this.binded = false;
+  // this.binded = false;
 
-    var main = function () {
+  var main = function () {
 
-        gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
 
-        if( ! currentScene.isLoaded()){
-            engine.loadScene();
-        }
+    if(! currentScene.isLoaded())
+      engine.loadScene();
 
-        if(Loader.isDone()){
-          engine.binded  = true;
-          renderEngine.bind();
-          Loader.reset();
-        }
+    if(currentScene.hasNewObjects())
+      engine.uploadScene();
+
+    if(Loader.isDone()){
+      engine.loaded = true;
+      renderEngine.bind();
+      Loader.reset();
+    }
+
+    if(engine.loaded){
+      scriptEngine.update();
+
+      if(engine.physicsEnabled)
+        physicsEngine.update();
+
+      renderEngine.update();
+      renderEngine.render();
+    }
+
+    Time.tick();
+  };
+
+  // var render = function () {
+  //     window.requestAnimFrame(render);
+  //     if(this.binded){
+  //         renderEngine.render();
+  //     }
+  // }
+
+  Time.init();
+
+  // render();
 
 
-
-        if(engine.binded){
-            scriptEngine.update();
-            physicsEngine.update();
-            renderEngine.update();
-            renderEngine.render();
-        }
-
-        Time.tick();
-
-    };
-
-    // var render = function () {
-    //     window.requestAnimFrame(render);
-    //     if(this.binded){
-    //         renderEngine.render();
-    //     }
-    // }
-
-    Time.init();
-
-    // render();
-
-
-    var ONE_FRAME_TIME = 1000.0 / 60.0 ;
-    setInterval( main, ONE_FRAME_TIME );
+  var ONE_FRAME_TIME = 1000.0 / 60.0 ;
+  setInterval( main, ONE_FRAME_TIME );
 };

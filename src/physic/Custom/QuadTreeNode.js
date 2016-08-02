@@ -8,7 +8,7 @@ var QuadTreeNode = function (leftTop, width, height, minWidth, minHeight, tree){
 
 	// console.log("NEW NODE: LT:" + this.LT.x + "," + this.LT.y + " w:" + this.width + " h:" + this.height);
 
-	this.colliders = new Array(0);
+	this.colliders = [];
 	this.children = new Array(4);
 
 	this.children[0] = null;
@@ -145,7 +145,7 @@ QuadTreeNode.prototype.update = function (){
 
 	// this.draw();
 
-	var exitColliders = new Array(0); // colliders which have left the node.
+	var exitColliders = []; // colliders which have left the node.
 
 	// If is leaf node.
 	if(this.isLeaf()){
@@ -227,7 +227,7 @@ QuadTreeNode.prototype.manageExits = function (exitColliders){
 	// If any collider has left the node
 	if(exitColliders.length > 0){
 
-		var remainingColliders = new Array(0);
+		var remainingColliders = [];
 
 		// for each collider
 		for (var i = 0; i < this.colliders.length; i++) {

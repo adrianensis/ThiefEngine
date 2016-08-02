@@ -27,25 +27,26 @@ Scene.prototype.isLoaded = function (){
 };
 
 Scene.prototype.getRoot = function (){
+  return this.root;
+};
+
+Scene.prototype.getNewsRoot = function (){
+	return this.newsRoot;
+};
+
+Scene.prototype.flush = function (){
   this.root.setChildren(this.root.getChildren().concat(this.newsRoot.getChildren()));
-  this.newsRoot.setChildren(new Array(0));
+  this.newsRoot.setChildren([]);
   this.newObjects = false;
-	return this.root;
 };
 
-Scene.prototype.setRoot = function (root){
-	this.root=root;
+Scene.prototype.hasNewObjects = function (){
+	return this.newObjects;
 };
-
-// Scene.prototype.hasNewObjects = function (){
-// 	return this.newObjects;
-// };
 
 Scene.prototype.addObject = function (obj){
   // console.log("ADD OBJECT: " + obj.getId());
-  // this.newObjects = true;
-
-  this.loaded = false;
+  this.newObjects = true;
 
   obj.setScene(this);
   this.newsRoot.addChild(obj);

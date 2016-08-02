@@ -30,7 +30,7 @@ CircleCollider.prototype.testPoint = function (vec) {
 
 CircleCollider.prototype.getCandidateVertices = function (otherCollider) {
 
-  var candidates = new Array(0);
+  var candidates = [];
 
   var center = this.getCenter();
 

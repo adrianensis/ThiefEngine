@@ -3,10 +3,10 @@ var Mesh = function (numVertices) {
     this.numVertices = numVertices;
     // var size = numVertices*4;
 
-    this.vertices = new Array(0);
-    this.normals = new Array(0);
-    this.faces = new Array(0);
-    this.texCoord = new Array(0);
+    this.vertices = [];
+    this.normals = [];
+    this.faces = [];
+    this.texCoord = [];
 
     this.vIndex = 0; // Vertices index
     this.nIndex = 0; // Normals index

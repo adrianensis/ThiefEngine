@@ -1,11 +1,17 @@
 var QuadTree = function (width,height){
-	this.root = new QuadTreeNode(new Vector2(-width/2,height/2), width, height, 2, 2, this);
+	this.width = width;
+	this.height = height;
+	this.root = new QuadTreeNode(new Vector2(-this.width/2,this.height/2), this.width, this.height, 2, 2, this);
 	this.status = Collider.STATUS_NONE;
-	this.contacts = new Array(0);
+	this.contacts = [];
 };
 
 QuadTree.prototype.addCollider = function (collider){
 	this.root.addCollider(collider);
+};
+
+QuadTree.prototype.clear = function (){
+	this.root = new QuadTreeNode(new Vector2(-this.width/2,this.height/2), this.width, this.height, 2, 2, this);
 };
 
 QuadTree.prototype.getStatus = function (){
@@ -30,6 +36,6 @@ QuadTree.prototype.update = function (){
 };
 
 QuadTree.prototype.clearContacts = function (){
-	this.contacts = new Array(0);
+	this.contacts = [];
 	this.status = Collider.STATUS_NONE;
 };

@@ -1,6 +1,7 @@
 var Component = function (){
     BaseObject.call(this);
     this.gameObject = null;
+    this.enabled = true;
 };
 
 Component.prototype = new BaseObject();
@@ -12,6 +13,14 @@ Component.prototype.getGameObject = function (){
 
 Component.prototype.setGameObject = function (gameObject){
 	this.gameObject=gameObject;
+};
+
+Component.prototype.setEnabled = function (bool){
+	this.enabled=bool;
+};
+
+Component.prototype.isEnabled = function (){
+	return this.enabled;
 };
 
 Component.prototype.getParent = function(){

@@ -10,6 +10,27 @@ Thief.init = function () {
   Thief.engine.init();
 };
 
+Thief.empty = function () {
+  var obj = new GameObject();
+
+  var transform = new Transform();
+  obj.addComponent(transform);
+
+  return obj;
+};
+
+Thief.setClearColor = function (color) {
+  Thief.engine.setClearColor(color);
+};
+
+Thief.enablePhysics = function () {
+  Thief.engine.enablePhysics();
+};
+
+Thief.disablePhysics = function () {
+  Thief.engine.disablePhysics();
+};
+
 Thief.run = function () {
   Thief.engine.run();
 };
@@ -34,15 +55,6 @@ Thief.createAndSetScene = function (name) {
 
 Thief.addGameObjectToScene = function (obj) {
   Thief.currentScene.addObject(obj);
-};
-
-Thief.empty = function () {
-  var obj = new GameObject();
-
-  var transform = new Transform();
-  obj.addComponent(transform);
-
-  return obj;
 };
 
 /**

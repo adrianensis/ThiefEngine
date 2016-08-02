@@ -173,7 +173,7 @@ Shader.prototype.addMatrix = function (matrix,name){
 Shader.prototype.addMatrixArray = function (matrixArray,name){
   matrixLocation = gl.getUniformLocation(this.programID, name);
 
-  var raw = new Array(0);
+  var raw = [];
   for (var m of matrixArray) {
       raw = raw.concat(matrix.getData());
   }

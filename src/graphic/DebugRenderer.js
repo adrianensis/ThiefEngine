@@ -4,14 +4,14 @@ var DebugRenderer = function (){
 DebugRenderer.shader = null;
 DebugRenderer.transformationMatrix = Matrix4.identity();
 
-DebugRenderer.list = new Array(0);
+DebugRenderer.list = [];
 
 DebugRenderer.getRenderers = function () {
     return DebugRenderer.list;
 };
 
 DebugRenderer.clear = function () {
-    DebugRenderer.list = new Array(0);
+    DebugRenderer.list = [];
 };
 
 DebugRenderer.init = function() {

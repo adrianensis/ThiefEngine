@@ -1,5 +1,10 @@
 var Color = function (r,g,b,a) {
-  this.vec = new Vector4(r,g,b,a);
+  // this.vec = new Vector4(r,g,b,a);
+
+  this.r = r;
+  this.g = g;
+  this.b = b;
+  this.a = a;
 };
 
 Color.NONE = new Color(0.0, 0.0, 0.0, 0.0);
@@ -16,55 +21,21 @@ Color.random = function () {
   return new Color(r,g,b,1.0);
 };
 
-Color.prototype.getData = function(){
-  return this.vec.toArray();
+Color.prototype.toArray = function(){
+  // return this.vec.toArray;
+  var array = new Array(4);
+  array[0] = this.r;
+  array[1] = this.g;
+  array[2] = this.b;
+  array[3] = this.a;
+  return array;
 };
 
 
 Color.prototype.equals = function(otherColor){
-  return this.vec.equals(otherColor.vec);
+  // return this.vec.equals(otherColor.vec);
+  return (this.r === vec.r) &&
+      (this.g === vec.g) &&
+      (this.b === vec.b) &&
+      (this.a === vec.a);
 };
-
-
-
-// Color.lastId = 0;
-// Color.pool = new Array(0);
-
-// Color.create = function (r,g,b,a) {
-//
-//     var newColor = new Color(Number((r).toFixed(2)),
-//                             Number((g).toFixed(2)),
-//                             Number((b).toFixed(2)),
-//                             Number((a).toFixed(2)));
-//
-//     var found = false;
-//     var foundColor = null;
-//     for (var i = 0; i < Color.pool.length && !found; i++) {
-//
-//         // console.log(Color.pool[i]);
-//         //     console.log(newColor);
-//
-//         if(Color.pool[i].equals(newColor)){
-//             found = true;
-//             foundColor = Color.pool[i];
-//         }
-//     }
-//
-//     if(!found){
-//
-//         newColor.id = Color.lastId;
-//         Color.lastId++;
-//
-//         Color.pool.push(newColor);
-//
-//         return newColor;
-//
-//     }else
-//         return foundColor;
-//
-//
-// };
-//
-// Color.prototype.getId = function(){
-//     return this.id;
-// };

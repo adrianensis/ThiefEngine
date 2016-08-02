@@ -8,7 +8,13 @@ PlayerLogic.prototype = new Script();
 PlayerLogic.prototype.constructor = PlayerLogic;
 
 
-PlayerLogic.prototype.bind = function () {
+PlayerLogic.prototype.start = function () {
+
+  // var w = 1/8;
+  // var h = 1/6;
+  // Thief.sprite.begin("test/res/digi/digi1.png", new Vector2(2,0.1), 0.5, true).
+  //   setTextureRegion(new Vector2((1/8),(1/6)),1/8,1/6).
+  // end();
 };
 
 PlayerLogic.prototype.update = function (){
@@ -21,6 +27,8 @@ PlayerLogic.prototype.update = function (){
 
 
     var body = this.gameObject.getComponent(RigidBody);
+
+    // console.log(this.gameObject.getComponent(Transform).position);
     // body.linear.x = 0;
     // body.linear.y = 0;
 
