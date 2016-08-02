@@ -5,15 +5,17 @@ var test = function () {
 
   Thief.setClearColor(new Color(152/256, 163/256, 108/256,1));
 
-  Thief.empty().addComponent(new DigiviceLogic());
+  var gameController = Thief.empty();
+  gameController.addComponent(new DigiviceLogic());
+  Thief.addGameObjectToScene(gameController);
 
-  Thief.sprite.begin("test/res/digi/map.png", new Vector2(0,0), 1, true).end();
-
-  var w = 1/8;
-  var h = 1/6;
-  Thief.sprite.begin("test/res/digi/digi1.png", new Vector2(0,0.1), 0.5, true).
-    setTextureRegion(new Vector2((1/8),(1/6)),1/8,1/6).
-  end();
+  // Thief.sprite.begin("test/res/digi/map.png", new Vector2(0,0), 1, true).end();
+  //
+  // var w = 1/8;
+  // var h = 1/6;
+  // Thief.sprite.begin("test/res/digi/digi1.png", new Vector2(0,0.1), 0.5, true).
+  //   setTextureRegion(new Vector2((1/8),(1/6)),1/8,1/6).
+  // end();
 
 
   // var player =

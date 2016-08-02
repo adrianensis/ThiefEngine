@@ -15,8 +15,12 @@ Component.prototype.setGameObject = function (gameObject){
 	this.gameObject=gameObject;
 };
 
-Component.prototype.setEnabled = function (bool){
-	this.enabled=bool;
+Component.prototype.enable = function (){
+	this.enabled=true;
+};
+
+Component.prototype.disable = function (){
+	this.enabled=false;
 };
 
 Component.prototype.isEnabled = function (){
