@@ -62,18 +62,18 @@ Thief.addGameObjectToScene = function (obj) {
  * Camera Builder
  * #######################################################################
  */
-Thief.camera = function () {
+Thief.cameraBuilder = function () {
   this.tmpObj = null;
   this.cam = null;
 };
 
-Thief.camera.begin = function () {
+Thief.cameraBuilder.begin = function () {
   this.tmpObj = Thief.empty();
 
   return this;
 };
 
-Thief.camera.setOrtho = function (w,h,far,near) {
+Thief.cameraBuilder.setOrtho = function (w,h,far,near) {
 
   // TODO: implement zoom into OrthoCamera class.
   this.cam = new OrthoCamera(-w,w,-h,h, far,near);
@@ -82,7 +82,7 @@ Thief.camera.setOrtho = function (w,h,far,near) {
   return this;
 };
 
-Thief.camera.setPerspective = function (far,near,aspect,fov) {
+Thief.cameraBuilder.setPerspective = function (far,near,aspect,fov) {
 
   this.cam = new PerspectiveCamera(far,near,aspect,fov);
   this.tmpObj.addComponent(this.cam);
@@ -90,19 +90,19 @@ Thief.camera.setPerspective = function (far,near,aspect,fov) {
   return this;
 };
 
-Thief.camera.setPosition = function (pos) {
+Thief.cameraBuilder.setPosition = function (pos) {
   this.tmpObj.getComponent(Transform).translate(pos);
 
   return this;
 };
 
-Thief.camera.addScript = function (script) {
+Thief.cameraBuilder.addScript = function (script) {
   this.tmpObj.addComponent(script);
 
   return this;
 };
 
-Thief.camera.end = function () {
+Thief.cameraBuilder.end = function () {
 
   var renderContext = new RenderContext();
 
@@ -122,12 +122,12 @@ Thief.camera.end = function () {
  * Sprite Builder
  * #######################################################################
  */
-Thief.sprite = function () {
+Thief.spriteBuilder = function () {
   this.tmpObj = null;
   this.tmpSize = 0;
 };
 
-Thief.sprite.begin = function (textureName, pos, size, isStatic) {
+Thief.spriteBuilder.begin = function (textureName, pos, size, isStatic) {
 
   this.tmpObj = Thief.empty();
   this.tmpSize = size;
@@ -155,83 +155,40 @@ Thief.sprite.begin = function (textureName, pos, size, isStatic) {
  * horizontalDir: -1 -> left, 1 -> right, 0 -> not move
  * verticalDir: -1 -> down, 1 -> up, 0 -> not move
  */
-Thief.sprite.addAnimation = function (name, frameCount, horizontal, reverse, startPosition, width, height, speed) {
+Thief.spriteBuilder.addAnimation = function (name, frameCount, horizontal, reverse, startPosition, width, height, speed) {
 
-  // TODO: check if coordinates are > 1 or < 0 !!!!!
-
-  var animation = new Animation();
-  animation.setSpeed(speed);
-
-  var horizontalDir = 0;
-  var verticalDir = 0;
-
-  if(horizontal)
-    horizontalDir = 1;
-  else
-    verticalDir = 1;
-
-  if(reverse){
-    horizontalDir *= -1;
-    verticalDir *= -1;
-  }
-
-  var start = 0;
-  var end = frameCount;
-  var delta = 1;
-
-  if(reverse){
-    start = frameCount-1;
-    end = 0;
-    delta = -1;
-  }
-
-  for (var i = start; i !== end; i+=delta) {
-
-    var pos = new Vector2(0,0);
-    pos.add(startPosition);
-
-    if(horizontalDir !== 0)
-      pos.x += i*width;
-
-    if(verticalDir !== 0)
-      pos.y += i*height;
-
-    var frame = new AnimationFrame();
-    frame.set(pos,width,height);
-    animation.addFrame(frame);
-
-  }
+  var animation = Animation.create(frameCount, horizontal, reverse, startPosition, width, height, speed);
 
   this.tmpObj.getComponent(SpriteRenderer).addAnimation(name,animation);
 
   return this;
 };
 
-Thief.sprite.setAnimation = function (name) {
+Thief.spriteBuilder.setAnimation = function (name) {
 
   this.tmpObj.getComponent(SpriteRenderer).setAnimation(name);
   return this;
 };
 
-Thief.sprite.setStatic = function (isStatic) {
+Thief.spriteBuilder.setStatic = function (isStatic) {
 
   this.tmpObj.setStatic(isStatic);
   return this;
 };
 
-Thief.sprite.setAlphaColor = function (color) {
+Thief.spriteBuilder.setAlphaColor = function (color) {
 
   this.tmpObj.getComponent(SpriteRenderer).setAlphaColor(color);
   return this;
 };
 
-Thief.sprite.setTextureRegion = function (texCoord, width, height) {
+Thief.spriteBuilder.setTextureRegion = function (texCoord, width, height) {
 
   this.tmpObj.getComponent(SpriteRenderer).setRegion(texCoord, width, height);
   return this;
 };
 
-Thief.sprite.setCollider = function (colliderClass) {
+Thief.spriteBuilder.setCollider = function (colliderClass) {
 
   var rigidBody = new RigidBody();
   var collider = null;
@@ -247,14 +204,14 @@ Thief.sprite.setCollider = function (colliderClass) {
   return this;
 };
 
-Thief.sprite.addScript = function (script) {
+Thief.spriteBuilder.addScript = function (script) {
 
   this.tmpObj.addComponent(script);
 
   return this;
 };
 
-Thief.sprite.end = function () {
+Thief.spriteBuilder.end = function () {
   // return this.tmpObj;
 
   Thief.addGameObjectToScene(this.tmpObj);

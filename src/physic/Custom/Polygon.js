@@ -5,7 +5,6 @@ var Polygon = function (width, height) {
 Polygon.prototype = new Collider2D();
 Polygon.prototype.constructor = Polygon;
 
-
 Polygon.prototype.testVertexVertex = function (vertices, otherCollider, contactList) {
 
   var result = Collider.STATUS_NONE;
@@ -112,7 +111,6 @@ Polygon.prototype.testVertexEdge = function (vertices, otherCollider, contactLis
       normal = closest.cpy().sub(vertex).nor();
 
     }else if(otherCollider instanceof Polygon){
-
 
       // vertex - edge
       for (var j = 0; j < edges.length && result !== Collider.STATUS_PENETRATION; j++) {

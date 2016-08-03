@@ -26,28 +26,28 @@ Thief.createAndSetScene("test");
   //         var borderY = 1/1104;
   //
   //         if(v > 0.2){
-  //             Thief.sprite.begin(tex, new Vector2(i/step,j/step), step/step, true).
+  //             Thief.spriteBuilder.begin(tex, new Vector2(i/step,j/step), step/step, true).
   //               setTextureRegion(new Vector2(tileSizeX*5 + borderX, borderY + 1-(tileSizeY*2)),tileSizeX-borderX,tileSizeY-borderY).
   //             end();
   //
   //
   //         }else if(v < 0.2 && v > 0){
   //             if(Math.random() > 0.98){
-  //                 Thief.sprite.begin(tex, new Vector2(i/step,j/step), step/step, true).
+  //                 Thief.spriteBuilder.begin(tex, new Vector2(i/step,j/step), step/step, true).
   //                   setTextureRegion(new Vector2(tileSizeX*0 + borderX, borderY + 1-(tileSizeY*29)),tileSizeX-borderX,tileSizeY-borderY).
   //                 end();
   //             }else{
-  //                 Thief.sprite.begin(tex, new Vector2(i/step,j/step), step/step, true).
+  //                 Thief.spriteBuilder.begin(tex, new Vector2(i/step,j/step), step/step, true).
   //                   setTextureRegion(new Vector2(tileSizeX*10 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY).
   //                 end();
   //             }
   //         }else{
   //             if(Math.random() > 0.8){
-  //                 Thief.sprite.begin(tex, new Vector2(i/step,j/step), step/step, true).
+  //                 Thief.spriteBuilder.begin(tex, new Vector2(i/step,j/step), step/step, true).
   //                   setTextureRegion(new Vector2(tileSizeX*4 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY).
   //                 end();
   //             }else{
-  //                 Thief.sprite.begin(tex, new Vector2(i/step,j/step), step/step, true).
+  //                 Thief.spriteBuilder.begin(tex, new Vector2(i/step,j/step), step/step, true).
   //                   setTextureRegion(new Vector2(tileSizeX + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY).
   //                 end();
   //             }
@@ -65,21 +65,21 @@ Thief.createAndSetScene("test");
    */
 
    // BITMAP FONTS
-  //  Thief.sprite.begin("test/res/font.bmp", new Vector2(3,0), 5, true).
+  //  Thief.spriteBuilder.begin("test/res/font.bmp", new Vector2(3,0), 5, true).
   //    setAlphaColor(new Color(1,0,1,1)).
   //  end();
   //
-  Thief.sprite.begin("test/res/snorlax.bmp", new Vector2(-3,0), 1, true).
+  Thief.spriteBuilder.begin("test/res/snorlax.bmp", new Vector2(-3,0), 1, true).
     setAlphaColor(new Color(1,0,1,1)).
   end();
 
-  // Thief.sprite.begin("test/res/digi/map.png", new Vector2(-3,2), 2, true).
+  // Thief.spriteBuilder.begin("test/res/digi/map.png", new Vector2(-3,2), 2, true).
     // setAlphaColor(new Color(1,0,1,1)).
   // end();
 
 
   var player =
-  Thief.sprite.begin("test/res/pok-char.png", new Vector2(0,0), 1, false). // create a basic sprite
+  Thief.spriteBuilder.begin("test/res/pok-char.png", new Vector2(0,0), 1, false). // create a basic sprite
     addAnimation("up", 4, true, false, new Vector2(0,0), 1/4, 1/4, 6). // add UP animation
     addAnimation("down", 4, true, false, new Vector2(0,0.75), 1/4, 1/4, 6). // add DOWN animation
     addAnimation("left", 4, true, false, new Vector2(0,0.5), 1/4, 1/4, 6). // add LEFT animation
@@ -88,12 +88,12 @@ Thief.createAndSetScene("test");
     setCollider(AABBCollider). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
   end();
-  //
-  // Thief.sprite.begin("test/res/soldier.png", new Vector2(0,2), 1, true). // create a basic sprite
-  //   addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
-  //   setAnimation("right"). // set the default animation
-  //   setCollider(AABBCollider). // set a Box Collider
-  // end();
+
+  Thief.spriteBuilder.begin("test/res/soldier.png", new Vector2(0,2), 1, true). // create a basic sprite
+    addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
+    setAnimation("right"). // set the default animation
+    setCollider(AABBCollider). // set a Box Collider
+  end();
 
 
   // var canvas = document.getElementById("glcanvas");
@@ -107,7 +107,7 @@ Thief.createAndSetScene("test");
   var w = 1*aspect;
   var h = 1;
 
-  Thief.camera.begin().
+  Thief.cameraBuilder.begin().
     setPosition(new Vector3(0,0,15)).
     setOrtho(w*zoom,h*zoom, -100,100).
     addScript(new CameraLogic(player)).

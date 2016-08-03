@@ -148,6 +148,6 @@ Engine.prototype.run = function () {
   // render();
 
 
-  var ONE_FRAME_TIME = 1000.0 / 60.0 ;
+  var ONE_FRAME_TIME = 1000.0 / 30.0 ;
   setInterval( main, ONE_FRAME_TIME );
 };

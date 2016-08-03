@@ -46,7 +46,7 @@ DigiviceLogic.prototype.slideScreens = function (direction) {
 DigiviceLogic.prototype.start = function () {
 
   for (var i = 0; i < this.screenNames.length; i++) {
-    var screen = Thief.sprite.begin("test/res/digi/"+ this.screenNames[i] +".png", new Vector2(i,0), 1, true).end();
+    var screen = Thief.spriteBuilder.begin("test/res/digi/"+ this.screenNames[i] +".png", new Vector2(i,0), 1, true).end();
     screen.getComponent(SpriteRenderer).disable();
     this.screens.push(screen);
   }
@@ -57,7 +57,7 @@ DigiviceLogic.prototype.start = function () {
   //   this.digimons[i] = [];
   //   for (var j = 0; j < this.MAX_EVOLUTIONS; j++) {
   //
-  //     var digimon = Thief.sprite.begin("test/res/digi/digi1.png", new Vector2(0,0.1), 0.5, true).
+  //     var digimon = Thief.spriteBuilder.begin("test/res/digi/digi1.png", new Vector2(0,0.1), 0.5, true).
   //       setTextureRegion(new Vector2(i*w,j*h),w,h).
   //     end();
   //
@@ -67,7 +67,7 @@ DigiviceLogic.prototype.start = function () {
   //   }
   // }
 
-  this.player = Thief.sprite.begin("test/res/digi/digi1.png", new Vector2(0,0.1), 0.5, true).
+  this.player = Thief.spriteBuilder.begin("test/res/digi/digi1.png", new Vector2(0,0.1), 0.5, true).
     setTextureRegion(new Vector2(this.currentDigimon*this.w,this.currentEvolution*this.h),this.w,this.h).
   end();
 
@@ -84,14 +84,14 @@ DigiviceLogic.prototype.update = function (){
 
     if (Input.getKey() === 37) {
       // LEFT
-      // this.slideScreens(-1);
-      this.currentDigimon--;
+      this.slideScreens(-1);
+      // this.currentDigimon--;
 
 
     }else if (Input.getKey() === 39) {
       // RIGHT
-      // this.slideScreens(1);
-      this.currentDigimon++;
+      this.slideScreens(1);
+      // this.currentDigimon++;
 
 
     }else if (Input.getKey() === 38) {
