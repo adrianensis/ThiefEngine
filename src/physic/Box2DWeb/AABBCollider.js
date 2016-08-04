@@ -4,8 +4,8 @@ var AABBCollider = function (width, height) {
     this.height = height;
 
 
-    // this.bodyDef.position.x = this.gameObject.getComponent(Transform).position.x;
-    // this.bodyDef.position.y = this.gameObject.getComponent(Transform).position.y;
+    // this.bodyDef.position.x = this.gameObject.getTransform().position.x;
+    // this.bodyDef.position.y = this.gameObject.getTransform().position.y;
 };
 
 AABBCollider.prototype = new Collider();
@@ -32,7 +32,7 @@ AABBCollider.prototype.adapt = function(fixDef){
 // }
 //
 // AABBCollider.prototype.getVertices = function () {
-//     var center = this.gameObject.getComponent(Transform).position;
+//     var center = this.gameObject.getTransform().position;
 //
 // 	this.LT = new Vector2(center.x-(this.width/2),center.y+(this.height/2));
 // 	var LT = this.LT; // LEFT TOP VERTEX

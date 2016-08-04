@@ -51,7 +51,7 @@ Scene.prototype.addObject = function (obj){
   this.newObjects = true;
 
   obj.setScene(this);
-  obj.getComponent(Transform).generateMatrix();
+  obj.getTransform().generateMatrix();
   this.newsRoot.addChild(obj);
 };
 

@@ -31,7 +31,7 @@ Frustum.prototype.testSphere = function (center, radius){
 
 Frustum.prototype.build = function (){
 
-	var t = this.camera.getGameObject().getComponent(Transform);
+	var t = this.camera.getGameObject().getTransform();
 
 	if(t.isDirty()){
 

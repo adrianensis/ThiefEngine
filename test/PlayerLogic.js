@@ -21,14 +21,14 @@ PlayerLogic.prototype.update = function (){
 
 
 
-    // console.log(this.gameObject.getComponent(Transform).position);
+    // console.log(this.gameObject.getTransform().position);
 
-    // this.gameObject.getComponent(Transform).rotate(new Vector3(0.5,0.5,0.0));
+    // this.gameObject.getTransform().rotate(new Vector3(0.5,0.5,0.0));
 
 
     var body = this.gameObject.getComponent(RigidBody);
 
-    // console.log(this.gameObject.getComponent(Transform).position);
+    // console.log(this.gameObject.getTransform().position);
     // body.linear.x = 0;
     // body.linear.y = 0;
 
@@ -45,9 +45,9 @@ PlayerLogic.prototype.update = function (){
     if (Input.getKey() === 37) {
         // LEFT
             this.direction = -1;
-            // this.gameObject.getComponent(Transform).rotate(new Vector2(10,0));
+            // this.gameObject.getTransform().rotate(new Vector2(10,0));
 
-            // this.gameObject.getComponent(Transform).translate(new Vector2(-this.v*Time.deltaTime(),0));
+            // this.gameObject.getTransform().translate(new Vector2(-this.v*Time.deltaTime(),0));
             //
             //
               body.linear.x = -this.v;
@@ -63,7 +63,7 @@ PlayerLogic.prototype.update = function (){
         // RIGHT
             this.direction = 1;
 
-            // this.gameObject.getComponent(Transform).translate(new Vector2(this.v*Time.deltaTime(),0));
+            // this.gameObject.getTransform().translate(new Vector2(this.v*Time.deltaTime(),0));
 
             body.linear.x = this.v;
             body.linear.y = 0;
@@ -78,7 +78,7 @@ PlayerLogic.prototype.update = function (){
    }else if (Input.getKey() === 38) {
         // UP
 
-            // this.gameObject.getComponent(Transform).translate(new Vector2(0,this.v*Time.deltaTime()));
+            // this.gameObject.getTransform().translate(new Vector2(0,this.v*Time.deltaTime()));
 
             body.linear.y = this.v;
             body.linear.x = 0;
@@ -91,7 +91,7 @@ PlayerLogic.prototype.update = function (){
     }else if (Input.getKey() === 40) {
         // DOWN
 
-            // this.gameObject.getComponent(Transform).translate(new Vector2(0,-this.v*Time.deltaTime()));
+            // this.gameObject.getTransform().translate(new Vector2(0,-this.v*Time.deltaTime()));
 
             body.linear.y = -this.v;
             body.linear.x = 0;

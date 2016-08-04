@@ -12,31 +12,31 @@ Collider.prototype = new Component();
 Collider.prototype.constructor = Collider;
 
 Collider.prototype.getVertices = function () {
-
+	throw new Error("Abstract method!");
 };
 
 Collider.prototype.getFaces = function () {
-
+	throw new Error("Abstract method!");
 };
 
 Collider.prototype.getEdges = function () {
-
+	throw new Error("Abstract method!");
 };
 
 Collider.prototype.getBoundingBox = function () {
-
+	throw new Error("Abstract method!");
 };
 
 Collider.prototype.getRadius = function () {
-
+	throw new Error("Abstract method!");
 };
 
 Collider.prototype.getCenter = function () {
-	return this.gameObject.getComponent(Transform).position;
+	return this.gameObject.getTransform().position;
 };
 
 Collider.prototype.getNormals = function() {
-
+	throw new Error("Abstract method!");
 };
 
 Collider.prototype.getRelativeVelocity = function(otherCollider) {
@@ -49,11 +49,11 @@ Collider.prototype.getRelativeVelocity = function(otherCollider) {
 
 
 Collider.prototype.testPoint = function (vec) {
-
+	throw new Error("Abstract method!");
 };
 
 Collider.prototype.getCandidateVertices = function (otherCollider) {
-
+	throw new Error("Abstract method!");
 };
 
 // Collider.prototype.getCandidatesEdgePlane = function (otherCollider) {
@@ -61,18 +61,18 @@ Collider.prototype.getCandidateVertices = function (otherCollider) {
 // };
 
 Collider.prototype.checkCollisionRadius = function (otherCollider) {
-	var centerA = this.gameObject.getComponent(Transform).position;
-	var centerB = otherCollider.gameObject.getComponent(Transform).position;
+	var centerA = this.gameObject.getTransform().position;
+	var centerB = otherCollider.gameObject.getTransform().position;
 
 	return GeometryUtil.testSphereSphere(centerA,centerB,this.getRadius(),otherCollider.getRadius());
 };
 
 Collider.prototype.testVertexVertex = function (vertices, otherCollider, contactList) {
-
+	throw new Error("Abstract method!");
 };
 
 Collider.prototype.testVertexEdge = function (vertices, otherCollider, contactList) {
-
+	throw new Error("Abstract method!");
 };
 
 Collider.prototype.checkCollisionOrPenetration = function (vertex, maxDistance, normal, otherCollider, contactList) {

@@ -98,12 +98,12 @@ SpriteBatch.prototype.update = function (renderContext){
 
   // var matrices = [];
   // for (var renderer of this.renderers) {
-  //     matrices.push(renderer.gameObject.getComponent(Transform).getMatrix().transpose());
+  //     matrices.push(renderer.gameObject.getTransform().getMatrix().transpose());
   // }
   //
   // this.material.getShader().addMatrixArray(matrices, "transformationMatrix");
   //
-	// // this.material.getShader().addMatrix(this.gameObject.getComponent(Transform).getMatrix().transpose(), "transformationMatrix");
+	// // this.material.getShader().addMatrix(this.gameObject.getTransform().getMatrix().transpose(), "transformationMatrix");
 	this.material.getShader().addMatrix(this.renderContext.getCamera().getProjectionMatrix().transpose(), "projectionMatrix");
 	this.material.getShader().addMatrix(this.renderContext.getCamera().getViewMatrix().transpose(), "viewMatrix");
 
@@ -136,7 +136,7 @@ SpriteBatch.prototype.render = function (){
 
     if(renderer.isEnabled()){
 
-      var test = cam.getFrustum().testSphere(renderer.getGameObject().getComponent(Transform).position, renderer.getRadius());
+      var test = cam.getFrustum().testSphere(renderer.getGameObject().getTransform().position, renderer.getRadius());
 
       // console.log(renderer.getRadius());
       // console.log(test);
@@ -154,7 +154,7 @@ SpriteBatch.prototype.render = function (){
       	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(color), gl.STATIC_DRAW);
       	gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 0, 0);
 
-        this.material.getShader().addMatrix(renderer.gameObject.getComponent(Transform).getMatrix().transpose(), "transformationMatrix");
+        this.material.getShader().addMatrix(renderer.gameObject.getTransform().getMatrix().transpose(), "transformationMatrix");
 
         renderer.updateMaterial(this.material);
 

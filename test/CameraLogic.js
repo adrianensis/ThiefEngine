@@ -17,9 +17,9 @@ CameraLogic.prototype.update = function (){
 
     // console.log(Input.getCursorPosition());
 
-    var t = this.gameObject.getComponent(Transform);
+    var t = this.gameObject.getTransform();
 
-    var newCamPos = this.player.getComponent(Transform).position.cpy();
+    var newCamPos = this.player.getTransform().position.cpy();
     newCamPos.z = t.getPosition().z;
 
     t.setPosition(newCamPos);

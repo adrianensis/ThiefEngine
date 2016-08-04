@@ -13,7 +13,7 @@ Collider2D.prototype = new Collider();
 Collider2D.prototype.constructor = Collider2D;
 
 Collider2D.prototype.getBoundingBox = function () {
-	var t = this.gameObject.getComponent(Transform);
+	var t = this.gameObject.getTransform();
 
   if(t.isDirty()){
     var center = this.getCenter();

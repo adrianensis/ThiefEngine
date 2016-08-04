@@ -205,7 +205,7 @@ DigiviceLogic.prototype.slideScreens = function (direction) {
   if(newScreen >= 0 && newScreen < (this.MAX_SCREENS)){
 
     // for (var i = 0; i < this.screenNames.length; i++) {
-    //   this.screens[i].getComponent(Transform).translate(new Vector2(-direction,0,0));
+    //   this.screens[i].getTransform().translate(new Vector2(-direction,0,0));
     // }
 
     this.screens[this.currentScreen].getComponent(SpriteRenderer).disable();
@@ -291,7 +291,7 @@ DigiviceLogic.prototype.update = function (){
         this.writeDistance();
       }
 
-      this.maps[this.currentMap].getComponent(Transform).translate(new Vector2(0.1,0));
+      this.maps[this.currentMap].getTransform().translate(new Vector2(0.1,0));
 
     }
 

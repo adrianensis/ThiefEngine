@@ -19,7 +19,7 @@ GameLogic.prototype.update = function (){
       if(this.moves > 0){
         this.moves--;
         this.t0 = Date.now();
-        this.gameObject.getComponent(Transform).translate(new Vector2(3.1,0));
+        this.gameObject.getTransform().translate(new Vector2(3.1,0));
       }
 
     }
@@ -29,7 +29,7 @@ GameLogic.prototype.update = function (){
       if(this.moves < this.MAX_MOVES){
         this.moves++;
         this.t0 = Date.now();
-        this.gameObject.getComponent(Transform).translate(new Vector2(-3.1,0));
+        this.gameObject.getTransform().translate(new Vector2(-3.1,0));
       }
       
     }

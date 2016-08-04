@@ -15,12 +15,12 @@ OrthoCamera.prototype.constructor = OrthoCamera;
 
 // OrthoCamera.prototype.contains = function (renderer){
 //
-// 	var rendererPos = renderer.getGameObject().getComponent(Transform).position;
+// 	var rendererPos = renderer.getGameObject().getTransform().position;
 //
 // 	var width = this.right*2;
 // 	var height = this.top*2;
 //
-// 	var center = this.gameObject.getComponent(Transform).position.cpy();
+// 	var center = this.gameObject.getTransform().position.cpy();
 // 	center.z = 0;
 //
 // 	var LT = new Vector3(center.x-(width/2),center.y+(height/2), center.z); // LEFT TOP VERTEX

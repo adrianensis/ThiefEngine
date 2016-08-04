@@ -11,5 +11,5 @@ ZombieLogic.prototype.bind = function () {
 };
 
 ZombieLogic.prototype.update = function (){
-    this.gameObject.getComponent(Transform).translate(new Vector2(this.v*Time.deltaTime(),0));
+    this.gameObject.getTransform().translate(new Vector2(this.v*Time.deltaTime(),0));
 };

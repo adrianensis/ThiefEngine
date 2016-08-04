@@ -53,7 +53,7 @@ var PhysicsEngine = function (){
         // var y = contact.GetFixtureA().GetBody().GetPosition().y;
         //
         // var i =contact.GetFixtureA().GetBody().GetUserData();
-        // this.bodies[i].gameObject.getComponent(Transform).setPosition(new Vector3(x,y,0));
+        // this.bodies[i].gameObject.getTransform().setPosition(new Vector3(x,y,0));
 
     }
 
@@ -68,8 +68,8 @@ PhysicsEngine.prototype.setBodies = function (bodies){
     this.bodies = bodies;
     for (var i = 0; i < this.bodies.length; i++) {
       this.bodies[i].adapt();
-      this.bodies[i].bodyDef.position.x = this.bodies[i].gameObject.getComponent(Transform).position.x;
-      this.bodies[i].bodyDef.position.y = this.bodies[i].gameObject.getComponent(Transform).position.y;
+      this.bodies[i].bodyDef.position.x = this.bodies[i].gameObject.getTransform().position.x;
+      this.bodies[i].bodyDef.position.y = this.bodies[i].gameObject.getTransform().position.y;
       var fixture = this.world.CreateBody(this.bodies[i].bodyDef).CreateFixture(this.bodies[i].fixDef);
       // fixture.GetBody().SetUserData("hello");
       this.bodies[i].fixture = fixture;
@@ -95,9 +95,9 @@ PhysicsEngine.prototype.update = function (){
    //          console.log(this.bodies[j].gameObject.getComponent(AABBCollider).id)
    //
    //
-   //             //this.bodies[i].gameObject.getComponent(Transform).restoreLastPosition();
+   //             //this.bodies[i].gameObject.getTransform().restoreLastPosition();
    //
-   //             this.bodies[j].gameObject.getComponent(Transform).restoreLastPosition();
+   //             this.bodies[j].gameObject.getTransform().restoreLastPosition();
    //             console.log("HIT");
    //         }
    //     }
@@ -110,8 +110,8 @@ PhysicsEngine.prototype.update = function (){
   // for (var i = 0; i < this.bodies.length; i++) {
   //
   //     this.bodies[i].fixture.GetBody().SetPosition(new b2Vec2(
-  //     this.bodies[i].gameObject.getComponent(Transform).position.x,
-  //   this.bodies[i].gameObject.getComponent(Transform).position.y));
+  //     this.bodies[i].gameObject.getTransform().position.x,
+  //   this.bodies[i].gameObject.getTransform().position.y));
   // }
 
   this.world.Step(
@@ -126,12 +126,12 @@ PhysicsEngine.prototype.update = function (){
       var x = this.bodies[i].fixture.GetBody().GetPosition().x;
       var y = this.bodies[i].fixture.GetBody().GetPosition().y;
       // console.log("V: "+v.x + " " +v.y);
-      // this.bodies[i].gameObject.getComponent(Transform).setPosition(new Vector3(x,y,0));
+      // this.bodies[i].gameObject.getTransform().setPosition(new Vector3(x,y,0));
       // if(this.bodies[i].isOnCollision())
-        this.bodies[i].gameObject.getComponent(Transform).setPosition(new Vector2(x,y));
+        this.bodies[i].gameObject.getTransform().setPosition(new Vector2(x,y));
       // else
-        // this.bodies[i].gameObject.getComponent(Transform).translate(new Vector2(v.x/30,v.y/30));
-      // console.log(this.bodies[i].gameObject.getComponent(Transform).position);
+        // this.bodies[i].gameObject.getTransform().translate(new Vector2(v.x/30,v.y/30));
+      // console.log(this.bodies[i].gameObject.getTransform().position);
     }
   }
 

@@ -63,6 +63,7 @@ script/ScriptEngine.js
 random/Random.js
 random/PerlinNoise.js
 
+builder/GameObjectBuilder.js
 Thief/Thief.js
 "
 

@@ -36,6 +36,6 @@ RigidBody.prototype.restoreState = function () {
 };
 
 RigidBody.prototype.simulate = function (time) {
-	var t = this.gameObject.getComponent(Transform);
+	var t = this.gameObject.getTransform();
 	t.translate(this.linear.cpy().mulScl(time));
 };

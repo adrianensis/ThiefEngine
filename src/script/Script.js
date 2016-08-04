@@ -6,7 +6,7 @@ Script.prototype = new Component();
 Script.prototype.constructor = Script;
 
 Script.prototype.start = function (){
-
+  throw new Error("Abstract method!");
 };
 
 Script.prototype.update = function (){

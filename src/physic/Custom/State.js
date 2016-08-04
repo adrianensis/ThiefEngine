@@ -1,6 +1,6 @@
 var State = function (body){
-  this.position = body.gameObject.getComponent(Transform).position.cpy();
-  this.rotation = body.gameObject.getComponent(Transform).rotation.cpy();
+  this.position = body.gameObject.getTransform().position.cpy();
+  this.rotation = body.gameObject.getTransform().rotation.cpy();
   this.static = body.static;
 	this.linear = body.linear.cpy();
 	this.angular = body.angular.cpy();
@@ -9,8 +9,8 @@ var State = function (body){
 };
 
 State.prototype.restore = function (body) {
-  body.gameObject.getComponent(Transform).setPosition(this.position.cpy());
-  body.gameObject.getComponent(Transform).setRotation(this.rotation.cpy());
+  body.gameObject.getTransform().setPosition(this.position.cpy());
+  body.gameObject.getTransform().setRotation(this.rotation.cpy());
   body.static = this.static;
 	body.linear = this.linear.cpy();
 	body.angular = this.angular.cpy();

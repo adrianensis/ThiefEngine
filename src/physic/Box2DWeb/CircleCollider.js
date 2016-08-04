@@ -7,14 +7,14 @@ CircleCollider.prototype = new Collider();
 CircleCollider.prototype.constructor = CircleCollider;
 
 CircleCollider.prototype.isInCircle = function(center, radius){
-    // return (Vector4.dst(center,this.gameObject.getComponent(Transform).position), )
+    // return (Vector4.dst(center,this.gameObject.getTransform().position), )
 }
 
 CircleCollider.prototype.contains = function (vec) {
     // console.log(this.LT.x() + " " + this.LT.y());
     // console.log(vec.x() + " " + vec.y());
 
-    var distance = Vector4.dst(vec, this.gameObject.getComponent(Transform).position);
+    var distance = Vector4.dst(vec, this.gameObject.getTransform().position);
 
 	return (distance < radius);
 };

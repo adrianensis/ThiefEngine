@@ -91,7 +91,7 @@ Thief.cameraBuilder.setPerspective = function (far,near,aspect,fov) {
 };
 
 Thief.cameraBuilder.setPosition = function (pos) {
-  this.tmpObj.getComponent(Transform).translate(pos);
+  this.tmpObj.getTransform().translate(pos);
 
   return this;
 };
@@ -140,7 +140,7 @@ Thief.spriteBuilder.begin = function (textureName, pos, size, isStatic) {
 
   this.tmpObj.addComponent(renderer);
 
-  var transform = this.tmpObj.getComponent(Transform);
+  var transform = this.tmpObj.getTransform();
 
   transform.translate(pos);
   transform.setScale(new Vector2(size,size));

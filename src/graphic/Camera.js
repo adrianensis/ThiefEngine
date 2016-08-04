@@ -23,7 +23,7 @@ Camera.prototype.getProjectionMatrix = function (){
 
 Camera.prototype.getViewMatrix = function (){
 
-	var t = this.gameObject.getComponent(Transform);
+	var t = this.gameObject.getTransform();
 
 	if(t.isDirty()){
 		this.viewMatrix = new Matrix4(

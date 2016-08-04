@@ -6,10 +6,15 @@ var GameObject = function (){
     this.scene = null;
     this.static = false;
 
+    this.transform = null;
 };
 
 GameObject.prototype = new BaseObject();
 GameObject.prototype.constructor = GameObject;
+
+GameObject.prototype.getTransform = function (){
+	return this.transform;
+};
 
 GameObject.prototype.getParent = function (){
 	return this.parent;
@@ -51,10 +56,6 @@ GameObject.prototype.getComponents = function (){
 	return this.components;
 };
 
-GameObject.prototype.setComponents = function (components){
-	this.components=components;
-};
-
 GameObject.prototype.enable = function (){
 	for (var component of this.components) {
     component.enable();
@@ -77,8 +78,19 @@ GameObject.prototype.getChild = function (){
 };
 
 GameObject.prototype.addComponent = function (component){
-    component.setGameObject(this);
-    this.components.push(component);
+
+
+    if( (component instanceof Transform) && (this.transform === null)){
+
+      this.transform = component;
+
+      component.setGameObject(this);
+      this.components.push(component);
+    }else {
+      component.setGameObject(this);
+      this.components.push(component);
+    }
+
 };
 
 GameObject.prototype.getAllComponents = function (componentClass){

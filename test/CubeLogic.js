@@ -21,17 +21,17 @@ CubeLogic.prototype.update = function (){
 
 //   if (Input.getKey() === 37) {
 //
-//     this.gameObject.getComponent(Transform).rotate(new Vector3(0.0,-this.delta,0.0));
+//     this.gameObject.getTransform().rotate(new Vector3(0.0,-this.delta,0.0));
 //
 //   }else if (Input.getKey() === 39) {
 //
-//     this.gameObject.getComponent(Transform).rotate(new Vector3(0.0,this.delta,0.0));
+//     this.gameObject.getTransform().rotate(new Vector3(0.0,this.delta,0.0));
 // }else if (Input.getKey() === 38) {
 //
-//     this.gameObject.getComponent(Transform).rotate(new Vector3(-this.delta,0.0,0.0));
+//     this.gameObject.getTransform().rotate(new Vector3(-this.delta,0.0,0.0));
 // }else if (Input.getKey() === 40) {
 //
-//     this.gameObject.getComponent(Transform).rotate(new Vector3(this.delta,0.0,0.0));
+//     this.gameObject.getTransform().rotate(new Vector3(this.delta,0.0,0.0));
 //   }
 
 };

@@ -39,7 +39,7 @@ DebugRenderer.update = function (renderContext) {
 
 	// TODO fail --> this.gameObject.getScene().getCamera();
 
-	// if(this.gameObject.getComponent(Transform).hasChanged()){
+	// if(this.gameObject.getTransform().hasChanged()){
 	//
 	// }
 
