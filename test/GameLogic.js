@@ -11,6 +11,10 @@ var GameLogic = function () {
 GameLogic.prototype = new Script();
 GameLogic.prototype.constructor = GameLogic;
 
+GameLogic.prototype.start = function () {
+
+}
+
 GameLogic.prototype.update = function (){
   if((Date.now() - this.t0)/1000 > 0.2){
 
@@ -31,7 +35,7 @@ GameLogic.prototype.update = function (){
         this.t0 = Date.now();
         this.gameObject.getTransform().translate(new Vector2(-3.1,0));
       }
-      
+
     }
 
   }

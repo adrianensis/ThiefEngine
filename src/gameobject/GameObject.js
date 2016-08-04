@@ -69,8 +69,8 @@ GameObject.prototype.disable = function (){
 };
 
 GameObject.prototype.addChild = function (child){
-    child.setParent(this);
-    this.children.push(child);
+  child.setParent(this);
+  this.children.push(child);
 };
 
 GameObject.prototype.getChild = function (){
@@ -79,17 +79,16 @@ GameObject.prototype.getChild = function (){
 
 GameObject.prototype.addComponent = function (component){
 
+  if( (component instanceof Transform) && (this.transform === null)){
 
-    if( (component instanceof Transform) && (this.transform === null)){
+    this.transform = component;
 
-      this.transform = component;
-
-      component.setGameObject(this);
-      this.components.push(component);
-    }else {
-      component.setGameObject(this);
-      this.components.push(component);
-    }
+    component.setGameObject(this);
+    this.components.push(component);
+  }else {
+    component.setGameObject(this);
+    this.components.push(component);
+  }
 
 };
 

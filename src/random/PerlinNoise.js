@@ -7,38 +7,37 @@ var PerlinNoise = function(n,seed){
 
     function shuffle(array, randomGenerator) {
 
-        var currentIndex = array.length;
-        var aux;
-        var randomIndex;
+      var currentIndex = array.length;
+      var aux;
+      var randomIndex;
 
-        while (currentIndex !== 0) {
+      while (currentIndex !== 0) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(randomGenerator.seededRandom() * currentIndex);
+        currentIndex -= 1; // lenght--
 
-            // Pick a remaining element...
-            randomIndex = Math.floor(randomGenerator.seededRandom() * currentIndex);
-            currentIndex -= 1; // lenght--
+        // swap
+        aux = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = aux;
+      }
 
-            // swap
-            aux = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = aux;
-        }
-
-        return array;
+      return array;
     }
 
     for ( var i=0; i<this.n; i++ )
     {
-        this.gradients[ i ] = new Vector2(0,0);
-        // this.gradients[ i ].x = Math.random() * 2.0 - 1.0;
-        // this.gradients[ i ].y = Math.random() * 2.0 - 1.0;
-        this.gradients[ i ].x = this.random.seededRandom() * 2.0 - 1.0;
-        this.gradients[ i ].y = this.random.seededRandom() * 2.0 - 1.0;
+      this.gradients[ i ] = new Vector2(0,0);
+      // this.gradients[ i ].x = Math.random() * 2.0 - 1.0;
+      // this.gradients[ i ].y = Math.random() * 2.0 - 1.0;
+      this.gradients[ i ].x = this.random.seededRandom() * 2.0 - 1.0;
+      this.gradients[ i ].y = this.random.seededRandom() * 2.0 - 1.0;
 
-        var lengthSq = this.gradients[ i ].x * this.gradients[ i ].x + this.gradients[ i ].y * this.gradients[ i ].y;
-        var length = Math.sqrt( lengthSq );
+      var lengthSq = this.gradients[ i ].x * this.gradients[ i ].x + this.gradients[ i ].y * this.gradients[ i ].y;
+      var length = Math.sqrt( lengthSq );
 
-        this.gradients[ i ].x /= length;
-        this.gradients[ i ].y /= length;
+      this.gradients[ i ].x /= length;
+      this.gradients[ i ].y /= length;
     }
 
 

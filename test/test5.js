@@ -3,58 +3,59 @@ var test = function () {
 Thief.init();
 Thief.createAndSetScene("test");
 
+var spriteBuilder = new SpriteBuilder();
+
  /*
   * PERLIN NOISE
   */
 
-  // var perlin = new PerlinNoise(10,11);
-  //
-  //
-  // var resolution = 5;
-  // var step = 0.1;
-  //
-  // for ( var i=-resolution; i<resolution; i+=step ) {
-  //     for ( var j=-resolution; j<resolution; j+=step ) {
-  //
-  //         var v = perlin.generate(i,j);
-  //
-  //         var tex = "test/res/pokemonTiles.png";
-  //
-  //         var tileSizeX = 1/88;
-  //         var tileSizeY = 1/69;
-  //         var borderX = 1/1408;
-  //         var borderY = 1/1104;
-  //
-  //         if(v > 0.2){
-  //             Thief.spriteBuilder.begin(tex, new Vector2(i/step,j/step), step/step, true).
-  //               setTextureRegion(new Vector2(tileSizeX*5 + borderX, borderY + 1-(tileSizeY*2)),tileSizeX-borderX,tileSizeY-borderY).
-  //             end();
-  //
-  //
-  //         }else if(v < 0.2 && v > 0){
-  //             if(Math.random() > 0.98){
-  //                 Thief.spriteBuilder.begin(tex, new Vector2(i/step,j/step), step/step, true).
-  //                   setTextureRegion(new Vector2(tileSizeX*0 + borderX, borderY + 1-(tileSizeY*29)),tileSizeX-borderX,tileSizeY-borderY).
-  //                 end();
-  //             }else{
-  //                 Thief.spriteBuilder.begin(tex, new Vector2(i/step,j/step), step/step, true).
-  //                   setTextureRegion(new Vector2(tileSizeX*10 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY).
-  //                 end();
-  //             }
-  //         }else{
-  //             if(Math.random() > 0.8){
-  //                 Thief.spriteBuilder.begin(tex, new Vector2(i/step,j/step), step/step, true).
-  //                   setTextureRegion(new Vector2(tileSizeX*4 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY).
-  //                 end();
-  //             }else{
-  //                 Thief.spriteBuilder.begin(tex, new Vector2(i/step,j/step), step/step, true).
-  //                   setTextureRegion(new Vector2(tileSizeX + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY).
-  //                 end();
-  //             }
-  //         }
-  //
-  //     }
-  // }
+  var perlin = new PerlinNoise(10,11);
+
+
+  var resolution = 5;
+  var step = 0.1;
+
+  for ( var i=-resolution; i<resolution; i+=step ) {
+      for ( var j=-resolution; j<resolution; j+=step ) {
+
+          var v = perlin.generate(i,j);
+
+          var tex = "test/res/pokemonTiles.png";
+
+          var tileSizeX = 1/88;
+          var tileSizeY = 1/69;
+          var borderX = 1/1408;
+          var borderY = 1/1104;
+
+          var pos = new Vector2(i/step,j/step);
+          var size = step/step;
+
+          spriteBuilder.begin(tex).
+            setPosition(pos).
+            setSize(size).
+            setStatic(true);
+
+          if(v > 0.2){
+              spriteBuilder.setTextureRegion(new Vector2(tileSizeX*5 + borderX, borderY + 1-(tileSizeY*2)),tileSizeX-borderX,tileSizeY-borderY);
+
+          }else if(v < 0.2 && v > 0){
+              if(Math.random() > 0.98){
+                  spriteBuilder.setTextureRegion(new Vector2(tileSizeX*0 + borderX, borderY + 1-(tileSizeY*29)),tileSizeX-borderX,tileSizeY-borderY);
+              }else{
+                  spriteBuilder.setTextureRegion(new Vector2(tileSizeX*10 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
+              }
+          }else{
+              if(Math.random() > 0.8){
+                  spriteBuilder.setTextureRegion(new Vector2(tileSizeX*4 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
+              }else{
+                  spriteBuilder.setTextureRegion(new Vector2(tileSizeX + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
+              }
+          }
+
+          Thief.addGameObjectToScene(spriteBuilder.end());
+
+      }
+  }
 
   /*
   * END PERLIN NOISE
@@ -64,37 +65,59 @@ Thief.createAndSetScene("test");
    * NOTE: NEW FACADE
    */
 
+
+
    // BITMAP FONTS
-  //  Thief.spriteBuilder.begin("test/res/font.bmp", new Vector2(3,0), 5, true).
-  //    setAlphaColor(new Color(1,0,1,1)).
-  //  end();
-  //
-  Thief.spriteBuilder.begin("test/res/snorlax.bmp", new Vector2(-3,0), 1, true).
+  var font =
+  spriteBuilder.begin("test/res/font.bmp").
+    setPosition(new Vector2(3,0)).
+    setSize(6).
+    setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
   end();
 
-  // Thief.spriteBuilder.begin("test/res/digi/map.png", new Vector2(-3,2), 2, true).
-    // setAlphaColor(new Color(1,0,1,1)).
-  // end();
+  Thief.addGameObjectToScene(font);
+
+  var snorlax =
+  spriteBuilder.begin("test/res/snorlax.bmp").
+    setPosition(new Vector2(-2,0)).
+    setSize(1).
+    setStatic(true).
+    setAlphaColor(new Color(1,0,1,1)).
+  end();
+
+  Thief.addGameObjectToScene(snorlax);
 
 
   var player =
-  Thief.spriteBuilder.begin("test/res/pok-char.png", new Vector2(0,0), 1, false). // create a basic sprite
+  spriteBuilder.begin("test/res/pok-char.png"). // create a basic sprite
+    setPosition(new Vector2(0,0)).
+    setSize(1).
+    setStatic(false).
     addAnimation("up", 4, true, false, new Vector2(0,0), 1/4, 1/4, 6). // add UP animation
     addAnimation("down", 4, true, false, new Vector2(0,0.75), 1/4, 1/4, 6). // add DOWN animation
     addAnimation("left", 4, true, false, new Vector2(0,0.5), 1/4, 1/4, 6). // add LEFT animation
     addAnimation("right", 4, true, false, new Vector2(0,0.25), 1/4, 1/4, 6). // add RIGHT animation
     setAnimation("down"). // set the default animation
-    setCollider(AABBCollider). // set a Box Collider
+    setRigidBody(). // set physics properties
+    setCollider(new AABBCollider(1,1)). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
   end();
 
-  Thief.spriteBuilder.begin("test/res/soldier.png", new Vector2(0,2), 1, true). // create a basic sprite
+  Thief.addGameObjectToScene(player);
+
+  var soilder =
+  spriteBuilder.begin("test/res/soldier.png"). // create a basic sprite
+    setPosition(new Vector2(0,2)).
+    setSize(1).
+    setStatic(true).
     addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
     setAnimation("right"). // set the default animation
-    setCollider(AABBCollider). // set a Box Collider
+    setRigidBody(). // set physics properties
+    setCollider(new AABBCollider(1,1)). // set a Box Collider
   end();
 
+  Thief.addGameObjectToScene(soilder);
 
   // var canvas = document.getElementById("glcanvas");
 	// // alert("Width: "+canvas.width + " Height: " + canvas.height);
@@ -107,11 +130,16 @@ Thief.createAndSetScene("test");
   var w = 1*aspect;
   var h = 1;
 
-  Thief.cameraBuilder.begin().
+  var camBuilder = new CameraBuilder();
+
+  var cam =
+  camBuilder.begin().
     setPosition(new Vector3(0,0,15)).
     setOrtho(w*zoom,h*zoom, -100,100).
     addScript(new CameraLogic(player)).
   end();
+
+  Thief.setCamera(cam);
 
   Thief.run();
 

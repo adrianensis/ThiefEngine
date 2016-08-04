@@ -64,6 +64,8 @@ random/Random.js
 random/PerlinNoise.js
 
 builder/GameObjectBuilder.js
+builder/SpriteBuilder.js
+builder/CameraBuilder.js
 Thief/Thief.js
 "
 

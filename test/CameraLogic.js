@@ -8,7 +8,7 @@ CameraLogic.prototype = new Script();
 CameraLogic.prototype.constructor = CameraLogic;
 
 
-CameraLogic.prototype.bind = function () {
+CameraLogic.prototype.start = function () {
 
 };
 

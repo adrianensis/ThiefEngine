@@ -77,6 +77,25 @@ GameObjectBuilder.prototype.setTextureRegion = function (texCoord, width, height
   return this;
 };
 
+/**
+ * horizontalDir: -1 -> left, 1 -> right, 0 -> not move
+ * verticalDir: -1 -> down, 1 -> up, 0 -> not move
+ */
+GameObjectBuilder.prototype.addAnimation = function (name, frameCount, horizontal, reverse, startPosition, width, height, speed) {
+
+  var animation = Animation.create(frameCount, horizontal, reverse, startPosition, width, height, speed);
+
+  this.tmpObj.getComponent(MeshRenderer).addAnimation(name,animation);
+
+  return this;
+};
+
+GameObjectBuilder.prototype.setAnimation = function (name) {
+
+  this.tmpObj.getComponent(MeshRenderer).setAnimation(name);
+  return this;
+};
+
 GameObjectBuilder.prototype.addScript = function (script) {
   this.tmpObj.addComponent(script);
   return this;
