@@ -14,6 +14,7 @@ var Transform = function (){
 	this.target = this.forward.cpy();
 
 	this.dirty = true;
+	this.matrixCreated = false;
 };
 
 Transform.prototype = new Component();
@@ -27,36 +28,36 @@ Transform.prototype.isDirty = function () {
 	return this.dirty;
 };
 
+Transform.prototype.generateMatrix = function (){
+	// MATRIX
+	this.matrix = Matrix4.scale(this.scale);
+	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(this.rotation.x, 0, 0)));
+	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, this.rotation.y, 0)));
+	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
+	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.translation(this.position));
+
+	var parent = this.getParent();
+
+	if(parent !== null)
+		this.matrix = Matrix4.mulMM(this.matrix,parent.getMatrix());
+
+		this.matrixCreated = true;
+};
+
 Transform.prototype.getMatrix = function (){
 
-	if(this.dirty){
+	if(! this.matrixCreated)
+		this.generateMatrix();
 
-		// console.log("dirty");
+	if(! this.isStatic()){
+		if(this.dirty){
+			this.generateMatrix();
 
-		// if( ! this.matrixStaticGenerated ){
-
-		// UP, RIGHT, FORWARD
-
-		// MATRIX
-		this.matrix = Matrix4.scale(this.scale);
-		this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(this.rotation.x, 0, 0)));
-		this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, this.rotation.y, 0)));
-		this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
-		this.matrix = Matrix4.mulMM(this.matrix, Matrix4.translation(this.position));
-
-		var parent = this.getParent();
-
-		if(parent !== null)
-			this.matrix = Matrix4.mulMM(this.matrix,parent.getMatrix());
-
-		// if(this.isStatic())
-		// 	this.matrixStaticGenerated = true;
-		// else
-		// 	this.matrixStaticGenerated = false;
-		// }
+			this.dirty = false;
+		}
 	}
 
-	this.dirty = false;
+
 
 	// DebugRenderer.setTransformationMatrix(this.matrix);
     // DebugRenderer.drawLine(this.position,this.position.cpy().add(this.right).mulScl(-20),Color.GREEN);

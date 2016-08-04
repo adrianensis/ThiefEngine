@@ -132,6 +132,8 @@ Thief.spriteBuilder.begin = function (textureName, pos, size, isStatic) {
   this.tmpObj = Thief.empty();
   this.tmpSize = size;
 
+  this.tmpObj.setStatic(isStatic);
+
   var renderer = new SpriteRenderer();
 
   var material = new Material();

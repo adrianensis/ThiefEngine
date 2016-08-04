@@ -11,6 +11,8 @@ var Scene = function (name){
   this.newObjects = false;
   this.loaded = false;
 
+  this.trash = [];
+
 };
 
 
@@ -49,7 +51,21 @@ Scene.prototype.addObject = function (obj){
   this.newObjects = true;
 
   obj.setScene(this);
+  obj.getComponent(Transform).generateMatrix();
   this.newsRoot.addChild(obj);
+};
+
+Scene.prototype.deleteObject = function (obj){
+  this.trash.push(obj);
+};
+
+Scene.prototype.cleanTrash = function (obj){
+
+  for (var i = 0; i < this.trash.length; i++) {
+    // TODO remove deleted objects
+  }
+
+  this.trash = [];
 };
 
 Scene.prototype.getRenderContext = function (){

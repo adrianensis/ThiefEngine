@@ -5,6 +5,7 @@ var GameObject = function (){
     this.components = [];
     this.scene = null;
     this.static = false;
+
 };
 
 GameObject.prototype = new BaseObject();
@@ -52,6 +53,18 @@ GameObject.prototype.getComponents = function (){
 
 GameObject.prototype.setComponents = function (components){
 	this.components=components;
+};
+
+GameObject.prototype.enable = function (){
+	for (var component of this.components) {
+    component.enable();
+  }
+};
+
+GameObject.prototype.disable = function (){
+  for (var component of this.components) {
+    component.disable();
+  }
 };
 
 GameObject.prototype.addChild = function (child){
@@ -112,4 +125,9 @@ GameObject.prototype.getComponentsInChildren = function (componentClass){
     }
 
     return componentList;
+};
+
+GameObject.prototype.delete = function (){
+  this.disable();
+	this.scene.deleteObject(this);
 };
