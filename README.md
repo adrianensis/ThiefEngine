@@ -12,7 +12,7 @@
 
 >This is not my first game engine and will not be the last ;). Currently, this is my fourth attempt to create a modest, tiny and lightweight game engine. (I lied, none of the game engine on Earth are tiny). I have tried with C++, Java, Python and now it's the turn of JS.
 
->The good thing is that I have learned about powerful, complex and weird stuff like Game Engine Architecture, Graphics Engine Architecture, how read huge programming books, Physics Engine Architecture, Collision Detection Algorithms and much more.
+>The good thing is that I have learned about powerful, complex and weird stuff like Game Engine Architecture, Graphics Engine Architecture, how read huge programming books, Physics Engine Architecture, Collision Detection Algorithms, Scripting and much more.
 
 >I highly recommend it if you want to really learn about video games internals/game engine programming.
 
@@ -25,9 +25,14 @@
 
 * Component-Entity-System based
 * Custom 2D render engine
+* Texture Loader
 * SpriteSheet animation
 * Textures Atlas support
 * Custom 2D physics/collisions engine
+* AABB and Circle colliders
+* Simple Scripting Engine
+* Seedable Random function
+* Perlin Noise generator
 
 ## Test
 
