@@ -1,7 +1,7 @@
 # Thief Engine : 2D Game Engine, written in Javascript and WebGL.
 
 <!-- ![logo](thief-logo.png) -->
-<img src ="thief-logo.png" width="580px" />
+<img src ="thief-logo.png" width="640px" />
 
 
 ## About this project
