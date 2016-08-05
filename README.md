@@ -14,10 +14,11 @@
 
 >The good thing is that I have learned about powerful, complex and weird stuff like Game Engine Architecture, Graphics Engine Architecture, how read huge programming books, Physics Engine Architecture, Collision Detection Algorithms and much more.
 
->I highly recommend it if you want to really learn about video games internals/game engine programming
+>I highly recommend it if you want to really learn about video games internals/game engine programming.
 
 >Well... maybe if you want to learn about algebra, arithmetic, trigonometry, numerical integration/differentiation, vector operations, affine transformations, geometry and physics too.<br>¯\\\_(ツ)_/¯
 
+>Why did I name it 'Thief Engine'? ¯\\\_(ツ)_/¯
 
 
 ## Features
