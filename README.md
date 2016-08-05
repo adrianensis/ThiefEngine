@@ -10,7 +10,9 @@
 
 >The goal of this project is to serve as Portfolio, proving that I really have certain game programming related knowledge.
 
->This is not my first game engine and will not be the last ;). Currently, this is my fourth attempt to create a modest, tiny and lightweigh game engine. (I lied, none of the game engine on Earth are tiny). I have tried with C++, Java, Python and now it's the turn of JS.
+
+
+>This is not my first game engine and will not be the last ;). Currently, this is my fourth attempt to create a modest, tiny and lightweight game engine. (I lied, none of the game engine on Earth are tiny). I have tried with C++, Java, Python and now it's the turn of JS.
 
 >The good thing is that I have learned about powerful, complex and weird stuff like Game Engine Architecture, Graphics Engine Architecture, how read huge programming books, Physics Engine Architecture, Collision Detection Algorithms and much more.
 
@@ -18,7 +20,9 @@
 
 >Well... maybe if you want to learn about algebra, arithmetic, trigonometry, numerical integration/differentiation, vector operations, affine transformations, geometry and physics too.<br>¯\\\_(ツ)_/¯
 
->Why did I name it 'Thief Engine'? ¯\\\_(ツ)_/¯
+
+
+>Why did I name it 'Thief Engine'?<br>¯\\\_(ツ)_/¯
 
 
 ## Features
