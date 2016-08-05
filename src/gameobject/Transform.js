@@ -46,6 +46,7 @@ Transform.prototype.generateMatrix = function (){
 
 Transform.prototype.getMatrix = function (){
 
+	// The matrix must be generated, even for the static objects.
 	if(! this.matrixCreated)
 		this.generateMatrix();
 

@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# THIS SCRIPT MINIMIZES THE JAVASCRIPT FILES INTO
+# ONLY ONE .js FILE.
+
 list="
 geom/Vector4.js
 geom/Vector3.js

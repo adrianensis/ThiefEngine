@@ -20,7 +20,7 @@ var spriteBuilder = new SpriteBuilder();
 
           var v = perlin.generate(i,j);
 
-          var tex = "test/res/pokemonTiles.png";
+          var tex = "res/pokemonTiles.png";
 
           var tileSizeX = 1/88;
           var tileSizeY = 1/69;
@@ -69,7 +69,7 @@ var spriteBuilder = new SpriteBuilder();
 
    // BITMAP FONTS
   var font =
-  spriteBuilder.begin("test/res/font.bmp").
+  spriteBuilder.begin("res/font.bmp").
     setPosition(new Vector2(3,0)).
     setSize(6).
     setStatic(true).
@@ -79,7 +79,7 @@ var spriteBuilder = new SpriteBuilder();
   Thief.addGameObjectToScene(font);
 
   var snorlax =
-  spriteBuilder.begin("test/res/snorlax.bmp").
+  spriteBuilder.begin("res/snorlax.bmp").
     setPosition(new Vector2(-2,0)).
     setSize(1).
     setStatic(true).
@@ -90,8 +90,9 @@ var spriteBuilder = new SpriteBuilder();
 
 
   var player =
-  spriteBuilder.begin("test/res/pok-char.png"). // create a basic sprite
+  spriteBuilder.begin("res/pok-char.png"). // create a basic sprite
     setPosition(new Vector2(0,0)).
+    // setRotation(new Vector3(0,0,90)).
     setSize(1).
     setStatic(false).
     addAnimation("up", 4, true, false, new Vector2(0,0), 1/4, 1/4, 6). // add UP animation
@@ -107,7 +108,7 @@ var spriteBuilder = new SpriteBuilder();
   Thief.addGameObjectToScene(player);
 
   var soilder =
-  spriteBuilder.begin("test/res/soldier.png"). // create a basic sprite
+  spriteBuilder.begin("res/soldier.png"). // create a basic sprite
     setPosition(new Vector2(0,2)).
     setSize(1).
     setStatic(true).
@@ -119,14 +120,14 @@ var spriteBuilder = new SpriteBuilder();
 
   Thief.addGameObjectToScene(soilder);
 
-  // var canvas = document.getElementById("glcanvas");
-	// // alert("Width: "+canvas.width + " Height: " + canvas.height);
-  //
-  // var screenW = (canvas.width/2) /70;
-  // var screenH = (canvas.height/2) /70;
+  var canvas = document.getElementById("glcanvas");
+	// alert("Width: "+canvas.width + " Height: " + canvas.height);
 
-  var zoom = 3;
-  var aspect = (16/9);
+  var screenW = canvas.width;
+  var screenH = canvas.height;
+
+  var zoom = 4;
+  var aspect = (screenW/screenH);
   var w = 1*aspect;
   var h = 1;
 

@@ -84,7 +84,7 @@ DigiviceLogic.prototype.displayWord = function (word,pos,size) {
 
         if(c < 15){
           // for (var i = 0; i < 15; i++) {
-            var char = Thief.spriteBuilder.begin("test/res/digi/font.png", letterPos, size, true).
+            var char = Thief.spriteBuilder.begin("res/digi/font.png", letterPos, size, true).
               setTextureRegion(new Vector2(1*this.wFont+c*this.wFont,9*this.hFont),this.wFont,this.hFont).
             end();
 
@@ -96,7 +96,7 @@ DigiviceLogic.prototype.displayWord = function (word,pos,size) {
           // }
         }else{
           // for (var i = 0; i < 11; i++) {
-            var char = Thief.spriteBuilder.begin("test/res/digi/font.png", letterPos, size, true).
+            var char = Thief.spriteBuilder.begin("res/digi/font.png", letterPos, size, true).
               setTextureRegion(new Vector2(0*this.wFont+(c-15)*this.wFont,8*this.hFont),this.wFont,this.hFont).
             end();
 
@@ -111,7 +111,7 @@ DigiviceLogic.prototype.displayWord = function (word,pos,size) {
         c -= "0".charCodeAt(0);
 
         // for (var i = 0; i < 10; i++) {
-          var number = Thief.spriteBuilder.begin("test/res/digi/font.png", letterPos, size, true).
+          var number = Thief.spriteBuilder.begin("res/digi/font.png", letterPos, size, true).
             setTextureRegion(new Vector2(0*this.wFont+c*this.wFont,12*this.hFont),this.wFont,this.hFont).
           end();
 
@@ -223,7 +223,7 @@ DigiviceLogic.prototype.start = function () {
 
   // SCREENS
   for (var i = 0; i < this.MAX_SCREENS; i++) {
-    var screen = Thief.spriteBuilder.begin("test/res/digi/"+ this.screenNames[i] +".png", new Vector2(0,0), 2, true).end();
+    var screen = Thief.spriteBuilder.begin("res/digi/"+ this.screenNames[i] +".png", new Vector2(0,0), 2, true).end();
     screen.getComponent(SpriteRenderer).disable();
     this.screens.push(screen);
   }
@@ -233,7 +233,7 @@ DigiviceLogic.prototype.start = function () {
   // MAP
   for (var i = 0; i < this.MAX_MAPS/2; i++) {
     for (var j = 0; j < this.MAX_MAPS/2; j++) {
-      this.maps[j+(i*2)] = Thief.spriteBuilder.begin("test/res/digi/map1.png", new Vector2(0,0.3), 1, true).
+      this.maps[j+(i*2)] = Thief.spriteBuilder.begin("res/digi/map1.png", new Vector2(0,0.3), 1, true).
         setTextureRegion(new Vector2(this.wMap*i,this.hMap*j),this.wMap,this.hMap).
       end();
 
@@ -242,13 +242,13 @@ DigiviceLogic.prototype.start = function () {
   }
 
   //MEDICAL
-  this.heartIcon = Thief.spriteBuilder.begin("test/res/digi/heart.png", new Vector2(0,0.3), 1, true).end();
+  this.heartIcon = Thief.spriteBuilder.begin("res/digi/heart.png", new Vector2(0,0.3), 1, true).end();
   this.heartIcon.getComponent(SpriteRenderer).disable();
 
   // this.maps[this.currentMap].getComponent(SpriteRenderer).enable();
 
   // SPRITE
-  this.digimon = Thief.spriteBuilder.begin("test/res/digi/digi1.png", new Vector2(0.2,0), 0.7, true).
+  this.digimon = Thief.spriteBuilder.begin("res/digi/digi1.png", new Vector2(0.2,0), 0.7, true).
     setTextureRegion(new Vector2(this.currentDigimon*this.w,(this.MAX_EVOLUTIONS-this.currentEvolution)*this.h),this.w,this.h).
   end();
 
