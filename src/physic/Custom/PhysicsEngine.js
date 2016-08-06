@@ -76,7 +76,7 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
 
     var vrn = vrel.dot(normal);
 
-    // Do not resolve if velocities are separating
+    // Do not resolve if bodies are separating
     if(vrn < 0){
 
       // Calculate restitution
