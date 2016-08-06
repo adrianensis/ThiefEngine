@@ -154,6 +154,7 @@ SpriteBatch.prototype.render = function (){
       	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(color), gl.STATIC_DRAW);
       	gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 0, 0);
 
+        renderer.gameObject.getTransform().generateMatrix();
         this.material.getShader().addMatrix(renderer.gameObject.getTransform().getMatrix().transpose(), "transformationMatrix");
 
         renderer.updateMaterial(this.material);

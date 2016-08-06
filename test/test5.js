@@ -52,7 +52,7 @@ var spriteBuilder = new SpriteBuilder();
               }
           }
 
-          Thief.addGameObjectToScene(spriteBuilder.end());
+          // Thief.addGameObjectToScene(spriteBuilder.end());
 
       }
   }
@@ -76,7 +76,7 @@ var spriteBuilder = new SpriteBuilder();
     setAlphaColor(new Color(1,0,1,1)).
   end();
 
-  Thief.addGameObjectToScene(font);
+  // Thief.addGameObjectToScene(font);
 
   var snorlax =
   spriteBuilder.begin("res/snorlax.bmp").
@@ -105,20 +105,23 @@ var spriteBuilder = new SpriteBuilder();
     addScript(new PlayerLogic()). // add a Logic Script
   end();
 
-  Thief.addGameObjectToScene(player);
+
 
   var soilder =
   spriteBuilder.begin("res/soldier.png"). // create a basic sprite
     setPosition(new Vector2(0,2)).
     setSize(1).
-    setStatic(true).
+    setStatic(false).
     addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
     setAnimation("right"). // set the default animation
-    setRigidBody(). // set physics properties
-    setCollider(new AABBCollider(1,1)). // set a Box Collider
+    // setRigidBody(). // set physics properties
+    // setCollider(new AABBCollider(1,1)). // set a Box Collider
   end();
 
-  Thief.addGameObjectToScene(soilder);
+  player.addChild(soilder);
+
+  Thief.addGameObjectToScene(player);
+  // Thief.addGameObjectToScene(soilder);
 
   var canvas = document.getElementById("glcanvas");
 	// alert("Width: "+canvas.width + " Height: " + canvas.height);
@@ -126,7 +129,7 @@ var spriteBuilder = new SpriteBuilder();
   var screenW = canvas.width;
   var screenH = canvas.height;
 
-  var zoom = 4;
+  var zoom = 6;
   var aspect = (screenW/screenH);
   var w = 1*aspect;
   var h = 1;

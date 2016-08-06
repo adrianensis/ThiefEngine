@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: Vector2.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,31 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: Vector2.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+* @class
+* @extends {Vector3}
+* @classdesc Represents a 2-dimensional vector.
+* @param {float} x The x component.
+* @param {float} y The y component.
+*/
+var Vector2 = function (x,y){
+    Vector3.call(this,x,y,0);
+};
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+Vector2.prototype = new Vector3();
+Vector2.prototype.constructor = Vector2;
+</code></pre>
+        </article>
+    </section>
 
 
 

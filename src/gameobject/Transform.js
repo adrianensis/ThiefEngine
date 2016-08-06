@@ -9,12 +9,12 @@ var Transform = function (){
 	this.forward = new Vector3(0,0,1);
 
   this.matrix = Matrix4.identity();
+  // this.parentMatrix = Matrix4.identity();
 	// this.matrixStaticGenerated = false;
 
 	this.target = this.forward.cpy();
 
 	this.dirty = true;
-	this.matrixCreated = false;
 };
 
 Transform.prototype = new Component();
@@ -28,37 +28,64 @@ Transform.prototype.isDirty = function () {
 	return this.dirty;
 };
 
-Transform.prototype.generateMatrix = function (){
-	// MATRIX
+// Transform.prototype.setParentMatrix = function (parentMatrix) {
+// 	this.parentMatrix = parentMatrix;
+// };
+
+Transform.prototype.generateLocalSpaceMatrix = function (){
 	this.matrix = Matrix4.scale(this.scale);
 	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(this.rotation.x, 0, 0)));
 	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, this.rotation.y, 0)));
 	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
 	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.translation(this.position));
 
+};
+
+Transform.prototype.initMatrix = function (){
+
+	this.generateLocalSpaceMatrix();
+
 	var parent = this.getParent();
 
 	if(parent !== null)
 		this.matrix = Matrix4.mulMM(this.matrix,parent.getMatrix());
 
-		this.matrixCreated = true;
+	var children = this.getChildren();
+
+	for (c of children){
+		c.initMatrix();
+	}
 };
 
+
 Transform.prototype.getMatrix = function (){
+	return this.matrix;
+};
 
-	// The matrix must be generated, even for the static objects.
-	if(! this.matrixCreated)
-		this.generateMatrix();
+Transform.prototype.generateMatrix = function (){
 
+	// If this transform is not static
 	if(! this.isStatic()){
-		if(this.dirty){
-			this.generateMatrix();
 
-			this.dirty = false;
-		}
+		var parent = this.getParent();
+
+		// If this transform has parent -> generate local + parent matrix
+		if(parent !== null && parent.isDirty()){
+			this.generateLocalSpaceMatrix();
+			this.matrix = Matrix4.mulMM(this.matrix,parent.getMatrix());
+
+		// Else, generate only local matrix
+		}else if(this.dirty)
+			this.generateLocalSpaceMatrix();
+
 	}
 
+	// update children
+	for (c of this.getChildren()){
+		c.generateMatrix();
+	}
 
+	this.dirty = false; // clear dirty flag
 
 	// DebugRenderer.setTransformationMatrix(this.matrix);
     // DebugRenderer.drawLine(this.position,this.position.cpy().add(this.right).mulScl(-20),Color.GREEN);
@@ -66,8 +93,9 @@ Transform.prototype.getMatrix = function (){
     // DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(0,0,0.5),Color.RED);
 	// DebugRenderer.setTransformationMatrix(null);
 
-	return this.matrix;
+
 };
+
 
 Transform.prototype.setMatrix = function(matrix){
 	this.matrix = matrix;
