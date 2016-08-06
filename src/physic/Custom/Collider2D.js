@@ -29,9 +29,10 @@ Collider2D.prototype.getBoundingBox = function () {
 
 Collider2D.prototype.generateContacts = function (vertices, otherCollider, contactList) {
 
+
 	var resultVertexVertex = this.testVertexVertex(vertices, otherCollider, contactList);
 
-	// var resultVertexEdge = Collider.STATUS_NONE;
+	var resultVertexEdge = Collider.STATUS_NONE;
 
 	// if penetration/collision has been detected in vertex-vertex phase, we don't need to check vertex-edge.
 	// if(resultVertexVertex !== Collider.STATUS_PENETRATION){

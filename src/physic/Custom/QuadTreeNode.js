@@ -76,7 +76,7 @@ QuadTreeNode.prototype.testPartialCollider = function (collider){
 };
 
 QuadTreeNode.prototype.childNodeTestPartialCollider = function (i, collider){
-	
+
 	var vertices = collider.getBoundingBox();
 
 	var collision = false;
@@ -109,7 +109,7 @@ QuadTreeNode.prototype.addCollider = function (collider){
 
 			var isPartiallyInChildren = this.childNodeTestPartialCollider(i,collider);
 
-			if( ( ! collider.gameObject.getComponent(RigidBody).isStatic()) || isPartiallyInChildren){
+			if( ( ! collider.isStatic()) || isPartiallyInChildren){
 
 				if(isPartiallyInChildren){
 
@@ -125,7 +125,7 @@ QuadTreeNode.prototype.addCollider = function (collider){
 
 	}else{
 
-		if ( ( ! collider.gameObject.getComponent(RigidBody).isStatic()) || this.testPartialCollider(collider)) {
+		if ( ( ! collider.isStatic()) || this.testPartialCollider(collider)) {
 
 			var found = false;
 
@@ -219,7 +219,7 @@ QuadTreeNode.prototype.updateChildren = function() {
 QuadTreeNode.prototype.checkExit = function (collider){
 	// CHECK if collider is out of this node.
 	// only dynamic objects can escape from their nodes !!!
-	return ( ! collider.gameObject.getComponent(RigidBody).isStatic() && ! this.testCompleteCollider(collider));
+	return ( ! collider.isStatic() && ! this.testCompleteCollider(collider));
 };
 
 QuadTreeNode.prototype.manageExits = function (exitColliders){

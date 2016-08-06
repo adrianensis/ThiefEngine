@@ -76,7 +76,7 @@ var spriteBuilder = new SpriteBuilder();
     setAlphaColor(new Color(1,0,1,1)).
   end();
 
-  // Thief.addGameObjectToScene(font);
+
 
   var snorlax =
   spriteBuilder.begin("res/snorlax.bmp").
@@ -88,7 +88,7 @@ var spriteBuilder = new SpriteBuilder();
     setCollider(new AABBCollider(1,1)). // set a Box Collider
   end();
 
-  Thief.addGameObjectToScene(snorlax);
+
 
 
   var player =
@@ -111,7 +111,7 @@ var spriteBuilder = new SpriteBuilder();
 
   var soilder =
   spriteBuilder.begin("res/soldier.png"). // create a basic sprite
-    setPosition(new Vector2(0,2)).
+    setPosition(new Vector2(2,0)).
     setSize(1).
     setStatic(false).
     addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
@@ -124,6 +124,9 @@ var spriteBuilder = new SpriteBuilder();
 
   Thief.addGameObjectToScene(player);
   Thief.addGameObjectToScene(soilder);
+  Thief.addGameObjectToScene(snorlax);
+  // Thief.addGameObjectToScene(font);
+
 
   var canvas = document.getElementById("glcanvas");
 	// alert("Width: "+canvas.width + " Height: " + canvas.height);

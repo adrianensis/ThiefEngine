@@ -11,6 +11,10 @@ Collider.depthEpsilon = 0.01;
 Collider.prototype = new Component();
 Collider.prototype.constructor = Collider;
 
+Collider.prototype.isStatic = function () {
+	return this.gameObject.isStatic();
+};
+
 Collider.prototype.getVertices = function () {
 	throw new Error("Abstract method!");
 };
@@ -85,7 +89,7 @@ Collider.prototype.checkCollisionOrPenetration = function (vertex, maxDistance, 
 
 	var vrn = vrel.dot(normal);
 
-	if(vrn < 0.0){ 
+	if(vrn < 0.0){
 		if(maxDistance < -eps){ // penetration
 			// if(vrn < 0.0){
 				// console.log("VERTEX-VERTEX PENETRATION " + maxDistance);

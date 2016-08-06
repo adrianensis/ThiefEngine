@@ -30,18 +30,51 @@ PhysicsEngine.prototype.clear = function (){
   this.tree.clear();
 };
 
-PhysicsEngine.prototype.applyImpulse = function(body1, body2, vrel, normal){
+PhysicsEngine.prototype.applyImpulse = function(bodyA, bodyB, vrel, normal){
 
-  // var fCr = 0;
-  //
-  // var j = (-(1+fCr) * (vRelativeVelocity*vCollisionNormal)) /
-  // ( (vCollisionNormal*vCollisionNormal) *
-  // (1/body1->fMass + 1/body2->fMass) );
-  // body1->vVelocity += (j * vCollisionNormal) / body1->fMass;
-  // body2->vVelocity -= (j * vCollisionNormal) / body2->fMass;
+  var invMass = 1/1;
+
+  var vrn = vrel.dot(normal);
+
+
+
+  // Do not resolve if bodies are separating
+  if(vrn < 0){
+
+
+
+    // Calculate restitution
+    var e = 2.5;
+
+    // Calculate impulse scalar
+    var j = -(1.0 + e) * vrn;
+    j /= invMass + invMass;
+
+    // Apply impulse
+    var impulse = normal.cpy().mulScl(j);
+    // console.log("impulse");
+    // console.log(impulse);
+
+    if( ! bodyA.isStatic()){
+      bodyA.linear.add(impulse.cpy().mulScl(invMass));
+      // console.log("A " + bodyA.getId());
+      // console.log(bodyA.linear);
+    }
+
+    if( ! bodyB.isStatic()){
+      bodyB.linear.sub(impulse.cpy().mulScl(invMass));
+      // console.log("B " + bodyB.getId());
+      // console.log(bodyB.linear);
+    }
+
+
+  }
 };
 
 PhysicsEngine.prototype.solveCollisions = function (contacts){
+
+  var solved = {}; // colliders
+
   for (var i = 0; i < contacts.length; i++) {
 
     var normal = contacts[i].normal;
@@ -49,53 +82,32 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
     var a = contacts[i].a;
     var b = contacts[i].b;
 
+    if(solved[a.getId()] === undefined){
+      solved[a.getId()] = {};
+      solved[a.getId()][b.getId()] = false;
+    }
 
-    var bodyA = a.gameObject.getComponent(RigidBody);
-    var bodyB = b.gameObject.getComponent(RigidBody);
+    if(solved[b.getId()] === undefined){
+      solved[b.getId()] = {};
+      solved[b.getId()][a.getId()] = false;
+    }
 
+    if( ! solved[a.getId()][b.getId()] && ! solved[b.getId()][a.getId()]){
+      var bodyA = a.gameObject.getComponent(RigidBody);
+      var bodyB = b.gameObject.getComponent(RigidBody);
 
-    bodyA.setOnCollision(true);
-    bodyB.setOnCollision(true);
+      bodyA.setOnCollision(true);
+      bodyB.setOnCollision(true);
 
-    //
-    // a.gameObject.getComponent(RigidBody).linear.x *=0;
-    // b.gameObject.getComponent(RigidBody).linear.x *=0;
-    // a.gameObject.getComponent(RigidBody).linear.y *=0;
-    // b.gameObject.getComponent(RigidBody).linear.y *=0;
-    // a.gameObject.getComponent(RigidBody).linear.z *=0;
-    // b.gameObject.getComponent(RigidBody).linear.z *=0;
+      this.applyImpulse(bodyA,bodyB,vrel,normal);
 
-    // linearA.x *=0;
-    // linearB.x *=0;
-    // linearA.y *=0;
-    // linearB.y *=0;
-    // linearA.z *=0;
-    // linearB.z *=0;
+      solved[a.getId()][b.getId()] = true;
+      solved[b.getId()][a.getId()] = true;
 
-
-
-    var vrn = vrel.dot(normal);
-
-    // Do not resolve if bodies are separating
-    if(vrn < 0){
-
-      // Calculate restitution
-      var e = 0;
-
-      // Calculate impulse scalar
-      var j = -(1.0 + e) * vrn;
-      j /= (1/10) + (1/10);
-
-      // Apply impulse
-      var impulse = normal.cpy().mulScl(j);
-
-      if( ! bodyA.isStatic())
-        bodyA.linear.add(impulse.cpy().mulScl((1/10)));
-
-      if( ! bodyB.isStatic())
-        bodyB.linear.sub(impulse.cpy().mulScl((1/10)));
     }
   }
+
+  // console.log(solved);
 };
 
 PhysicsEngine.prototype.update = function (){
