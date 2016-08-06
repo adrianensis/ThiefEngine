@@ -49,18 +49,21 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
     var a = contacts[i].a;
     var b = contacts[i].b;
 
-    a.gameObject.getComponent(RigidBody).setOnCollision(true);
-    b.gameObject.getComponent(RigidBody).setOnCollision(true);
 
-    var linearA = a.gameObject.getComponent(RigidBody).linear;
-    var linearB = b.gameObject.getComponent(RigidBody).linear;
+    var bodyA = a.gameObject.getComponent(RigidBody);
+    var bodyB = b.gameObject.getComponent(RigidBody);
 
-    a.gameObject.getComponent(RigidBody).linear.x *=0;
-    b.gameObject.getComponent(RigidBody).linear.x *=0;
-    a.gameObject.getComponent(RigidBody).linear.y *=0;
-    b.gameObject.getComponent(RigidBody).linear.y *=0;
-    a.gameObject.getComponent(RigidBody).linear.z *=0;
-    b.gameObject.getComponent(RigidBody).linear.z *=0;
+
+    bodyA.setOnCollision(true);
+    bodyB.setOnCollision(true);
+
+    //
+    // a.gameObject.getComponent(RigidBody).linear.x *=0;
+    // b.gameObject.getComponent(RigidBody).linear.x *=0;
+    // a.gameObject.getComponent(RigidBody).linear.y *=0;
+    // b.gameObject.getComponent(RigidBody).linear.y *=0;
+    // a.gameObject.getComponent(RigidBody).linear.z *=0;
+    // b.gameObject.getComponent(RigidBody).linear.z *=0;
 
     // linearA.x *=0;
     // linearB.x *=0;
@@ -69,20 +72,32 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
     // linearA.z *=0;
     // linearB.z *=0;
 
-    // a.gameObject.getComponent(RigidBody).linear = a.gameObject.getComponent(RigidBody).linear.mul(normal);
-    // b.gameObject.getComponent(RigidBody).linear = b.gameObject.getComponent(RigidBody).linear.mul(normal);
 
-    var j = vrel.dot(normal)*(-(1+0))/
-    ((1/1 + 1/1));
 
-    // console.log(j);
+    var contactVel = vrel.dot(normal);
 
-	   // calculate the new velocities after impact:
-    // if(!a.gameObject.getComponent(RigidBody).isStatic())
-    //     a.gameObject.getComponent(RigidBody).linear = linearA.add(normal.mulScl(j).divScl(1));
-    //
-    // if(!b.gameObject.getComponent(RigidBody).isStatic())
-	   //    b.gameObject.getComponent(RigidBody).linear = linearB.sub(normal.mulScl(j).divScl(1));
+    // Do not resolve if velocities are separating
+    if(contactVel < 0){
+
+      // Calculate restitution
+      // real e = std::min(A->m_material.restitution, B->m_material.restitution);
+      var e = 0;
+
+      // Calculate impulse scalar
+      var j = -(1.0 + e) * contactVel;
+      j /= (1/10) + (1/10);
+
+      // Apply impulse
+      var impulse = normal.cpy().mulScl(j);
+      // A->m_velocity -= A->m_massdata.inv_mass * impulse;
+      // B->m_velocity += B->m_massdata.inv_mass * impulse;
+
+      if( ! bodyA.isStatic())
+        bodyA.linear.add(impulse.cpy().mulScl((1/10)));
+
+      if( ! bodyB.isStatic())
+        bodyB.linear.sub(impulse.cpy().mulScl((1/10)));
+    }
   }
 };
 

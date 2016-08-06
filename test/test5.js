@@ -84,6 +84,8 @@ var spriteBuilder = new SpriteBuilder();
     setSize(1).
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
+    setRigidBody(). // set physics properties
+    setCollider(new AABBCollider(1,1)). // set a Box Collider
   end();
 
   Thief.addGameObjectToScene(snorlax);
@@ -114,14 +116,14 @@ var spriteBuilder = new SpriteBuilder();
     setStatic(false).
     addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
     setAnimation("right"). // set the default animation
-    // setRigidBody(). // set physics properties
-    // setCollider(new AABBCollider(1,1)). // set a Box Collider
+    setRigidBody(). // set physics properties
+    setCollider(new AABBCollider(1,1)). // set a Box Collider
   end();
 
-  player.addChild(soilder);
+  // player.addChild(soilder);
 
   Thief.addGameObjectToScene(player);
-  // Thief.addGameObjectToScene(soilder);
+  Thief.addGameObjectToScene(soilder);
 
   var canvas = document.getElementById("glcanvas");
 	// alert("Width: "+canvas.width + " Height: " + canvas.height);

@@ -102,8 +102,8 @@ PlayerLogic.prototype.update = function (){
             this.gameObject.getComponent(SpriteRenderer).setAnimation("down");
 
     }else{
-        body.linear.y = 0;
-        body.linear.x = 0;
+        // body.linear.y = 0;
+        // body.linear.x = 0;
     }
 
 };

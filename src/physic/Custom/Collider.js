@@ -83,30 +83,32 @@ Collider.prototype.checkCollisionOrPenetration = function (vertex, maxDistance, 
 
 	var vrel = this.getRelativeVelocity(otherCollider);
 
-	var vrn = normal.dot(vrel);
+	var vrn = vrel.dot(normal);
 
-	if(maxDistance < -eps){ // penetration
-		if(vrn < 0.0){
-			// console.log("VERTEX-VERTEX PENETRATION " + maxDistance);
-			// hasInterpenetration = true;
+	if(vrn < 0.0){ 
+		if(maxDistance < -eps){ // penetration
+			// if(vrn < 0.0){
+				// console.log("VERTEX-VERTEX PENETRATION " + maxDistance);
+				// hasInterpenetration = true;
 
-			result = Collider.STATUS_PENETRATION;
-		}
+				result = Collider.STATUS_PENETRATION;
+			// }
 
-	}else if(maxDistance < eps){ // collision
+		}else if(maxDistance < eps){ // collision
 
-		if(vrn < 0.0){
+			// if(vrn < 0.0){
 
-			// counter++;
-			//
-			// if(counter < 2){
+				// counter++;
+				//
+				// if(counter < 2){
 
-			// console.log("VERTEX-VERTEX COLLISION ");
-			contactList.push(new Contact(this, otherCollider, vertex, normal, vrel));
-			result = Collider.STATUS_COLLISION;
-			// hasInterpenetration = true;
-			// }else{
-			// 	hasInterpenetration = false;
+				// console.log("VERTEX-VERTEX COLLISION ");
+				contactList.push(new Contact(this, otherCollider, vertex, normal, vrel));
+				result = Collider.STATUS_COLLISION;
+				// hasInterpenetration = true;
+				// }else{
+				// 	hasInterpenetration = false;
+				// }
 			// }
 		}
 	}
