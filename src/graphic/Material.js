@@ -6,21 +6,31 @@ var Material = function (){
 
 };
 
+//----------------------------------------------------------------------
+
 Material.prototype.getTexture = function (){
 	 return this.texture;
 };
+
+//----------------------------------------------------------------------
 
 Material.prototype.setTexture = function (texture){
 	 this.texture=texture;
 };
 
+//----------------------------------------------------------------------
+
 Material.prototype.getShader = function (){
 	 return this.shader;
 };
 
+//----------------------------------------------------------------------
+
 Material.prototype.setShader = function (shader){
 	 this.shader=shader;
 };
+
+//----------------------------------------------------------------------
 
 Material.prototype.setColor = function (color){
 	 this.color = color;
@@ -29,6 +39,8 @@ Material.prototype.setColor = function (color){
 Material.prototype.getColor = function (){
 	 return this.color;
 };
+
+//----------------------------------------------------------------------
 
 
 Material.prototype.enable = function (){
@@ -53,12 +65,16 @@ Material.prototype.enable = function (){
 
 };
 
+//----------------------------------------------------------------------
+
 Material.prototype.disable = function (){
 
     gl.bindTexture(gl.TEXTURE_2D, null);
 
     this.shader.disable();
 };
+
+//----------------------------------------------------------------------
 
 Material.prototype.reset = function (){
     this.shader.addFloat(0.0, "animationX");
@@ -71,6 +87,8 @@ Material.prototype.reset = function (){
     this.shader.addFloat(1.0, "regionWidth");
     this.shader.addFloat(1.0, "regionHeight");
 };
+
+//----------------------------------------------------------------------
 
 Material.prototype.bind = function (){
     // TODO: If non texture use shader for plain color
@@ -117,3 +135,5 @@ Material.prototype.bind = function (){
 
     }
 };
+
+//----------------------------------------------------------------------

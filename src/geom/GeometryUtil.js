@@ -2,19 +2,27 @@ var GeometryUtil = function () {
 
 };
 
+//----------------------------------------------------------------------
+
 GeometryUtil.testRectanglePoint = function(leftTopVertex,width,height,point){
 	return (leftTopVertex.x <= point.x && leftTopVertex.y >= point.y &&
 	leftTopVertex.x + width >= point.x && leftTopVertex.y - height <= point.y);
 };
+
+//----------------------------------------------------------------------
 
 GeometryUtil.testSphereSphere = function(centerA, centerB, radiusA, radiusB){
 	var distance = centerA.dst(centerB);
 	return (distance <= radiusA+radiusB);
 };
 
+//----------------------------------------------------------------------
+
 GeometryUtil.midPoint = function(a,b){
 	return new Vector3((a.x+b.x)/2.0, (a.y+b.y)/2.0, (a.z+b.z)/2.0 );
 };
+
+//----------------------------------------------------------------------
 
 GeometryUtil.closestPointInSegment = function (p,a,b){
 
@@ -49,6 +57,8 @@ GeometryUtil.closestPointInSegment = function (p,a,b){
 	return closest;
 };
 
+//----------------------------------------------------------------------
+
 GeometryUtil.sqDistanceToSegment = function (p,a,b){
 
 	var closest = GeometryUtil.closestPointInSegment(p,a,b);
@@ -60,9 +70,13 @@ GeometryUtil.sqDistanceToSegment = function (p,a,b){
 
 };
 
+//----------------------------------------------------------------------
+
 GeometryUtil.distanceToSegment = function (p,a,b){
 	return Math.sqrt(GeometryUtil.sqDistanceToSegment(p,a,b));
 };
+
+//----------------------------------------------------------------------
 
 GeometryUtil.closestPointInCircle = function (p,center,radius){
 	var pToCenter = p.cpy().sub(center);

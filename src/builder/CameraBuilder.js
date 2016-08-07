@@ -5,6 +5,8 @@ var CameraBuilder = function (){
 CameraBuilder.prototype = new GameObjectBuilder();
 CameraBuilder.prototype.constructor = CameraBuilder;
 
+//----------------------------------------------------------------------
+
 CameraBuilder.prototype.setOrtho = function (w,h,far,near) {
 
   // TODO: implement zoom into OrthoCamera class.
@@ -14,6 +16,8 @@ CameraBuilder.prototype.setOrtho = function (w,h,far,near) {
   return this;
 };
 
+//----------------------------------------------------------------------
+
 CameraBuilder.prototype.setPerspective = function (far,near,aspect,fov) {
 
   this.cam = new PerspectiveCamera(far,near,aspect,fov);
@@ -21,3 +25,5 @@ CameraBuilder.prototype.setPerspective = function (far,near,aspect,fov) {
 
   return this;
 };
+
+//----------------------------------------------------------------------

@@ -26,6 +26,8 @@ var QuadTreeNode = function (leftTop, width, height, minWidth, minHeight, tree){
 	this.enabledChildren = 0;
 };
 
+//----------------------------------------------------------------------
+
 QuadTreeNode.prototype.draw = function() {
 	DebugRenderer.setTransformationMatrix(Matrix4.identity());
 
@@ -37,14 +39,20 @@ QuadTreeNode.prototype.draw = function() {
 	DebugRenderer.setTransformationMatrix(null);
 };
 
+//----------------------------------------------------------------------
+
 
 QuadTreeNode.prototype.isLeaf = function() {
 	return this.enabledChildren === 0;
 };
 
+//----------------------------------------------------------------------
+
 QuadTreeNode.prototype.getCollidersCount = function() {
 	return this.colliders.length;
 };
+
+//----------------------------------------------------------------------
 
 QuadTreeNode.prototype.testCompleteCollider = function (collider){
 
@@ -62,6 +70,8 @@ QuadTreeNode.prototype.testCompleteCollider = function (collider){
 
 };
 
+//----------------------------------------------------------------------
+
 QuadTreeNode.prototype.testPartialCollider = function (collider){
 
 	var vertices = collider.getBoundingBox();
@@ -74,6 +84,8 @@ QuadTreeNode.prototype.testPartialCollider = function (collider){
 
 	return collision;
 };
+
+//----------------------------------------------------------------------
 
 QuadTreeNode.prototype.childNodeTestPartialCollider = function (i, collider){
 
@@ -89,14 +101,20 @@ QuadTreeNode.prototype.childNodeTestPartialCollider = function (i, collider){
 	return collision;
 };
 
+//----------------------------------------------------------------------
+
 QuadTreeNode.prototype.createChildNode = function (i){
 	this.enabledChildren++;
 	return new QuadTreeNode(this.LTArray[i], this.width/2, this.height/2, this.minWidth, this.minHeight, this.tree);
 };
 
+//----------------------------------------------------------------------
+
 QuadTreeNode.prototype.isDivisible = function (){
  	return (this.width/2 >= this.minWidth) && (this.height/2 >= this.minHeight);
 };
+
+//----------------------------------------------------------------------
 
 QuadTreeNode.prototype.addCollider = function (collider){
 
@@ -140,6 +158,8 @@ QuadTreeNode.prototype.addCollider = function (collider){
 		}
 	}
 };
+
+//----------------------------------------------------------------------
 
 QuadTreeNode.prototype.update = function (){
 
@@ -197,6 +217,8 @@ QuadTreeNode.prototype.update = function (){
 	}
 };
 
+//----------------------------------------------------------------------
+
 QuadTreeNode.prototype.updateChildren = function() {
 	//console.log("CHECK");
 	// for (var i = 0; i < this.children.length; i++)
@@ -216,11 +238,15 @@ QuadTreeNode.prototype.updateChildren = function() {
 	}
 };
 
+//----------------------------------------------------------------------
+
 QuadTreeNode.prototype.checkExit = function (collider){
 	// CHECK if collider is out of this node.
 	// only dynamic objects can escape from their nodes !!!
 	return ( ! collider.isStatic() && ! this.testCompleteCollider(collider));
 };
+
+//----------------------------------------------------------------------
 
 QuadTreeNode.prototype.manageExits = function (exitColliders){
 
@@ -254,3 +280,5 @@ QuadTreeNode.prototype.manageExits = function (exitColliders){
 		}
 	}
 };
+
+//----------------------------------------------------------------------

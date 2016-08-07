@@ -6,6 +6,8 @@ var Animation = function () {
 
 };
 
+//----------------------------------------------------------------------
+
 Animation.create = function (frameCount, horizontal, reverse, startPosition, width, height, speed) {
 
     // TODO: check if coordinates are > 1 or < 0 !!!!!
@@ -56,21 +58,31 @@ Animation.create = function (frameCount, horizontal, reverse, startPosition, wid
     return animation;
 };
 
+//----------------------------------------------------------------------
+
 Animation.prototype.setSpeed = function (speed) {
     this.speed = speed;
 };
+
+//----------------------------------------------------------------------
 
 Animation.prototype.addFrame = function (frame) {
     this.frames.push(frame);
 };
 
+//----------------------------------------------------------------------
+
 Animation.prototype.getNumberOfFrames = function () {
     return this.frames.length;
 };
 
+//----------------------------------------------------------------------
+
 Animation.prototype.getCurrentFrameNumber = function () {
     return this.currentFrame;
 };
+
+//----------------------------------------------------------------------
 
 Animation.prototype.getNextFrame = function () {
 
@@ -89,3 +101,5 @@ Animation.prototype.getNextFrame = function () {
 
     return this.frames[this.currentFrame];
 };
+
+//----------------------------------------------------------------------

@@ -9,6 +9,8 @@ var Frustum = function (camera){
 	this.VPmatrix = Matrix4.identity();
 };
 
+//----------------------------------------------------------------------
+
 Frustum.prototype.testSphere = function (center, radius){
 	// console.log("TEST SPHERE");
 	for (var i = 0; i < this.planes.length; i++) {
@@ -28,6 +30,8 @@ Frustum.prototype.testSphere = function (center, radius){
 
 	return true;
 };
+
+//----------------------------------------------------------------------
 
 Frustum.prototype.build = function (){
 
@@ -195,3 +199,5 @@ Frustum.prototype.build = function (){
 	    }
 		}
 };
+
+//----------------------------------------------------------------------

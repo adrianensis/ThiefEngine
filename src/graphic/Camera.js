@@ -9,17 +9,25 @@ var Camera = function (matrix){
 Camera.prototype = new Component();
 Camera.prototype.constructor = Camera;
 
+//----------------------------------------------------------------------
+
 Camera.prototype.getFrustum = function (){
 	return this.frustum;
 };
+
+//----------------------------------------------------------------------
 
 Camera.prototype.setProjection = function (projectionMatrix){
     this.projectionMatrix = projectionMatrix;
 };
 
+//----------------------------------------------------------------------
+
 Camera.prototype.getProjectionMatrix = function (){
     return this.projectionMatrix;
 };
+
+//----------------------------------------------------------------------
 
 Camera.prototype.getViewMatrix = function (){
 
@@ -40,3 +48,5 @@ Camera.prototype.getViewMatrix = function (){
 
 	return this.viewMatrix;
 };
+
+//----------------------------------------------------------------------

@@ -20,13 +20,19 @@ var Transform = function (){
 Transform.prototype = new Component();
 Transform.prototype.constructor = Transform;
 
+//----------------------------------------------------------------------
+
 Transform.prototype.isStatic = function () {
 	return this.gameObject.isStatic();
 };
 
+//----------------------------------------------------------------------
+
 Transform.prototype.isDirty = function () {
 	return this.dirty;
 };
+
+//----------------------------------------------------------------------
 
 // Transform.prototype.setParentMatrix = function (parentMatrix) {
 // 	this.parentMatrix = parentMatrix;
@@ -40,6 +46,8 @@ Transform.prototype.generateLocalSpaceMatrix = function (){
 	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.translation(this.position));
 
 };
+
+//----------------------------------------------------------------------
 
 Transform.prototype.initMatrix = function (){
 
@@ -58,9 +66,13 @@ Transform.prototype.initMatrix = function (){
 };
 
 
+//----------------------------------------------------------------------
+
 Transform.prototype.getMatrix = function (){
 	return this.matrix;
 };
+
+//----------------------------------------------------------------------
 
 Transform.prototype.generateMatrix = function (){
 
@@ -97,11 +109,15 @@ Transform.prototype.generateMatrix = function (){
 };
 
 
+//----------------------------------------------------------------------
+
 Transform.prototype.setMatrix = function(matrix){
 	this.matrix = matrix;
 
 	this.dirty = true;
 };
+
+//----------------------------------------------------------------------
 
 Transform.prototype.setPosition = function (vec){
 
@@ -116,6 +132,8 @@ Transform.prototype.setPosition = function (vec){
 	}
 };
 
+//----------------------------------------------------------------------
+
 Transform.prototype.setRotation = function (vec){
 
 	if( ! this.rotation.equals(vec)){
@@ -128,6 +146,8 @@ Transform.prototype.setRotation = function (vec){
 		this.rotation.set(vec);
 	}
 };
+
+//----------------------------------------------------------------------
 
 Transform.prototype.setScale = function (vec){
 
@@ -142,17 +162,25 @@ Transform.prototype.setScale = function (vec){
 	}
 };
 
+//----------------------------------------------------------------------
+
 Transform.prototype.getPosition = function (){
 	return this.position;
 };
+
+//----------------------------------------------------------------------
 
 Transform.prototype.getRotation = function (){
 	return this.rotation;
 };
 
+//----------------------------------------------------------------------
+
 Transform.prototype.getScale = function (){
 	return this.scale;
 };
+
+//----------------------------------------------------------------------
 
 
 Transform.prototype.translate = function (vec){
@@ -168,6 +196,8 @@ Transform.prototype.translate = function (vec){
 	}
 };
 
+//----------------------------------------------------------------------
+
 Transform.prototype.rotate = function (vec){
 
 	if(vec.len() > 0){
@@ -181,6 +211,8 @@ Transform.prototype.rotate = function (vec){
 	}
 };
 
+//----------------------------------------------------------------------
+
 Transform.prototype.setScale = function (vec){
 
 	if(vec.len() > 0){
@@ -193,6 +225,8 @@ Transform.prototype.setScale = function (vec){
 		this.dirty = true;
 	}
 };
+
+//----------------------------------------------------------------------
 
 Transform.prototype.lookAt = function (vec){
 
@@ -213,3 +247,5 @@ Transform.prototype.lookAt = function (vec){
 
 
 };
+
+//----------------------------------------------------------------------

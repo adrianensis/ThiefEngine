@@ -10,6 +10,4 @@ var PerspectiveCamera = function (near, far, aspect, fov){
 PerspectiveCamera.prototype = new Camera();
 PerspectiveCamera.prototype.constructor = PerspectiveCamera;
 
-// PerspectiveCamera.prototype.contains = function (renderer){
-// 	return true;
-// }
+//----------------------------------------------------------------------

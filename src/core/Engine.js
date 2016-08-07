@@ -10,15 +10,21 @@ var Engine = function (){
   this.physicsEnabled = true;
 };
 
+//----------------------------------------------------------------------
+
 // TODO: Singleton
 
 Engine.prototype.getCurrentScene = function (){
 	return this.currentScene;
 };
 
+//----------------------------------------------------------------------
+
 Engine.prototype.addScene = function (currentScene){
 	this.scenes[currentScene.getName()] = currentScene;
 };
+
+//----------------------------------------------------------------------
 
 Engine.prototype.setCurrentScene = function (name){
 
@@ -28,21 +34,31 @@ Engine.prototype.setCurrentScene = function (name){
 	this.currentScene=this.scenes[name];
 };
 
+//----------------------------------------------------------------------
+
 Engine.prototype.getScenes = function (){
 	return this.scenes;
 };
+
+//----------------------------------------------------------------------
 
 Engine.prototype.setClearColor = function (color){
   this.renderEngine.setClearColor(color);
 };
 
+//----------------------------------------------------------------------
+
 Engine.prototype.enablePhysics = function (){
   this.physicsEnabled = true;
 };
 
+//----------------------------------------------------------------------
+
 Engine.prototype.disablePhysics = function (){
   this.physicsEnabled = false;
 };
+
+//----------------------------------------------------------------------
 
 Engine.prototype.init = function (){
 
@@ -51,6 +67,8 @@ Engine.prototype.init = function (){
   this.scriptEngine = new ScriptEngine();
 
 };
+
+//----------------------------------------------------------------------
 
 Engine.prototype.uploadScene = function(){
 
@@ -72,6 +90,8 @@ Engine.prototype.uploadScene = function(){
 
 };
 
+//----------------------------------------------------------------------
+
 Engine.prototype.loadScene = function(){
 
   this.renderEngine.clear();
@@ -81,6 +101,8 @@ Engine.prototype.loadScene = function(){
   this.uploadScene();
 
 };
+
+//----------------------------------------------------------------------
 
 
 
@@ -151,3 +173,5 @@ Engine.prototype.run = function () {
   var ONE_FRAME_TIME = 1000.0 / 30.0 ;
   setInterval( main, ONE_FRAME_TIME );
 };
+
+//----------------------------------------------------------------------

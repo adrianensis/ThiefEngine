@@ -12,6 +12,8 @@ var Collider2D = function (width,height) {
 Collider2D.prototype = new Collider();
 Collider2D.prototype.constructor = Collider2D;
 
+//----------------------------------------------------------------------
+
 Collider2D.prototype.getBoundingBox = function () {
 	var t = this.gameObject.getTransform();
 
@@ -26,6 +28,8 @@ Collider2D.prototype.getBoundingBox = function () {
 
   return [this.LT, this.LB, this.RB, this.RT];
 };
+
+//----------------------------------------------------------------------
 
 Collider2D.prototype.generateContacts = function (vertices, otherCollider, contactList) {
 
@@ -59,3 +63,5 @@ Collider2D.prototype.generateContacts = function (vertices, otherCollider, conta
 	// console.log("none");
   return Collider.STATUS_NONE;
 };
+
+//----------------------------------------------------------------------

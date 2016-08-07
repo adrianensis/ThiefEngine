@@ -6,13 +6,19 @@ DebugRenderer.transformationMatrix = Matrix4.identity();
 
 DebugRenderer.list = [];
 
+//----------------------------------------------------------------------
+
 DebugRenderer.getRenderers = function () {
     return DebugRenderer.list;
 };
 
+//----------------------------------------------------------------------
+
 DebugRenderer.clear = function () {
     DebugRenderer.list = [];
 };
+
+//----------------------------------------------------------------------
 
 DebugRenderer.init = function() {
     DebugRenderer.shader = Shader.create('debug');
@@ -20,12 +26,16 @@ DebugRenderer.init = function() {
     DebugRenderer.shader.compile();
 };
 
+//----------------------------------------------------------------------
+
 DebugRenderer.setTransformationMatrix = function (matrix) {
     if(matrix === null)
         DebugRenderer.transformationMatrix = Matrix4.identity();
     else
         DebugRenderer.transformationMatrix = matrix;
-}
+};
+
+//----------------------------------------------------------------------
 
 DebugRenderer.update = function (renderContext) {
 	DebugRenderer.shader.enable();
@@ -51,7 +61,11 @@ DebugRenderer.update = function (renderContext) {
 
 };
 
+//----------------------------------------------------------------------
+
 DebugRenderer.drawLine = function (start,end,color){
 
     DebugRenderer.list.push(new LineRenderer(DebugRenderer.shader,start,end,color,this.transformationMatrix));
 };
+
+//----------------------------------------------------------------------

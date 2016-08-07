@@ -16,11 +16,15 @@ SpriteBatch.vao = 0;
 
 SpriteBatch.binded = false;
 
+//----------------------------------------------------------------------
+
 SpriteBatch.prototype.add = function (renderer){
 
   if( ! (renderer.getId() in this.renderers))
     this.renderers[renderer.getId()] = renderer;
 };
+
+//----------------------------------------------------------------------
 
 SpriteBatch.prototype.bind = function (){
 
@@ -91,6 +95,8 @@ SpriteBatch.prototype.bind = function (){
 
 };
 
+//----------------------------------------------------------------------
+
 SpriteBatch.prototype.update = function (renderContext){
   this.renderContext = renderContext;
 
@@ -114,6 +120,8 @@ SpriteBatch.prototype.update = function (renderContext){
 	// 	children[i].update(renderContext);
 	// }
 };
+
+//----------------------------------------------------------------------
 
 SpriteBatch.prototype.render = function (){
 
@@ -177,3 +185,5 @@ SpriteBatch.prototype.render = function (){
 
 	this.material.disable();
 };
+
+//----------------------------------------------------------------------

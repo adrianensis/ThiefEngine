@@ -26,6 +26,8 @@ var LineRenderer = function (shader,start,end,color, transformationMatrix){
   	this.vao = 0;
 };
 
+//----------------------------------------------------------------------
+
 LineRenderer.prototype.bind = function () {
 
     this.vao = vao_ext.createVertexArrayOES();
@@ -57,6 +59,8 @@ LineRenderer.prototype.bind = function () {
     vao_ext.bindVertexArrayOES(null);
 };
 
+//----------------------------------------------------------------------
+
 
 LineRenderer.prototype.render = function () {
     this.shader.enable();
@@ -76,3 +80,5 @@ LineRenderer.prototype.render = function () {
   	gl.disableVertexAttribArray(1);
 
 };
+
+//----------------------------------------------------------------------

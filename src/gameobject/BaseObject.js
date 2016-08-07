@@ -5,6 +5,10 @@ var BaseObject = function (){
 
 BaseObject.lastId = 0;
 
+//----------------------------------------------------------------------
+
 BaseObject.prototype.getId = function (){
 	return this.id;
 };
+
+//----------------------------------------------------------------------

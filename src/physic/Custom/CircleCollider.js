@@ -7,26 +7,38 @@ CircleCollider.prototype = new Collider2D();
 CircleCollider.prototype.constructor = CircleCollider;
 
 
+//----------------------------------------------------------------------
+
 CircleCollider.prototype.getVertices = function () {
   return [];
 };
+
+//----------------------------------------------------------------------
 
 CircleCollider.prototype.getEdges = function () {
   return [];
 };
 
+//----------------------------------------------------------------------
+
 CircleCollider.prototype.getRadius = function () {
   return this.radius;
 };
+
+//----------------------------------------------------------------------
 
 CircleCollider.prototype.getNormals = function() {
   return [];
 };
 
+//----------------------------------------------------------------------
+
 CircleCollider.prototype.testPoint = function (vec) {
   var distance = vec.dst(this.getCenter());
 	return (distance <= this.radius);
 };
+
+//----------------------------------------------------------------------
 
 CircleCollider.prototype.getCandidateVertices = function (otherCollider) {
 
@@ -79,6 +91,8 @@ CircleCollider.prototype.getCandidateVertices = function (otherCollider) {
 
   return candidates; // here there is only one vertex.
 };
+
+//----------------------------------------------------------------------
 
 CircleCollider.prototype.testVertexVertex = function (vertices, otherCollider, contactList) {
 
@@ -157,6 +171,10 @@ CircleCollider.prototype.testVertexVertex = function (vertices, otherCollider, c
   return result;
 };
 
+//----------------------------------------------------------------------
+
 CircleCollider.prototype.testVertexEdge = function (vertices, otherCollider, contactList) {
   return Collider.STATUS_NONE;
 };
+
+//----------------------------------------------------------------------

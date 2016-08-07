@@ -1,22 +1,6 @@
 var Loader = function (){
 
 };
-//
-// Loader.serverAddress = null;
-//
-// Loader.loadTextFile = function (name){
-//     var req = new XMLHttpRequest();
-//     req.open("GET", Loader.serverAddress.concat(name) , false);
-//
-//     // req.onreadystatechange = function() {
-//     //     if (req.readyState == 4) {
-//     //         console.log(req.responseText);
-//     //     }
-//     // }
-//     req.send();
-//
-//     return req.responseText;
-// };
 
 Loader.images = {};
 Loader.textures = {};
@@ -31,6 +15,8 @@ Loader.hasImageRequests = false;
 // TODO: Loader.LoadTextFile(path) ==> The text file will be included
 // within a div element like this ==> <div id=path> plain text </div>
 
+//----------------------------------------------------------------------
+
 Loader.isDone = function(){
 
     if( ! Loader.hasImageRequests)
@@ -39,9 +25,13 @@ Loader.isDone = function(){
     return Loader.done;
 };
 
+//----------------------------------------------------------------------
+
 Loader.reset = function(){
   Loader.done = false;
 };
+
+//----------------------------------------------------------------------
 
 Loader.loadImageFile = function (path){
 
@@ -71,6 +61,8 @@ Loader.loadImageFile = function (path){
 
 };
 
+//----------------------------------------------------------------------
+
 Loader.loadTexture = function (path) {
     if( ! (path in Loader.textures)){
         var img = Loader.loadImageFile(path);
@@ -82,14 +74,4 @@ Loader.loadTexture = function (path) {
     return Loader.textures[path];
 };
 
-// Loader.loadMaterial = function (path) {
-//     if( ! (path in Loader.materials)){
-//         var texture = Loader.loadTexture(path);
-//
-//         var material = new Material();
-//         material.setTexture(texture);
-//         Loader.materials[path] = material;
-//     }
-//
-//     return Loader.materials[path];
-// };
+//----------------------------------------------------------------------

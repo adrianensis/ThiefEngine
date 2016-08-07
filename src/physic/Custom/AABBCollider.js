@@ -1,19 +1,17 @@
 var AABBCollider = function (width, height) {
   Polygon.call(this, width, height);
-  // this.width = width;
-  // this.height = height;
-  // this.LT = null;
-  // this.LB = null;
-  // this.RB = null;
-  // this.RT = null;
 };
 
 AABBCollider.prototype = new Polygon();
 AABBCollider.prototype.constructor = AABBCollider;
 
+//----------------------------------------------------------------------
+
 AABBCollider.prototype.getVertices = function () {
   return this.getBoundingBox();
 };
+
+//----------------------------------------------------------------------
 
 AABBCollider.prototype.getEdges = function () {
 
@@ -30,10 +28,14 @@ AABBCollider.prototype.getEdges = function () {
   return edges;
 };
 
+//----------------------------------------------------------------------
+
 AABBCollider.prototype.getRadius = function () {
 	// diagonal
   return Math.sqrt(( this.width * this.width ) + (  this.height * this.height )) / 2.0;
 };
+
+//----------------------------------------------------------------------
 
 AABBCollider.prototype.getNormals = function () {
   var normals = [];
@@ -54,6 +56,8 @@ AABBCollider.prototype.getNormals = function () {
   return normals;
 };
 
+//----------------------------------------------------------------------
+
 AABBCollider.prototype.testPoint = function (vec) {
 
   if(this.LT === null){
@@ -64,6 +68,10 @@ AABBCollider.prototype.testPoint = function (vec) {
 	return GeometryUtil.testRectanglePoint(this.LT, this.width, this.height, vec);
 };
 
+//----------------------------------------------------------------------
+
 AABBCollider.prototype.getCandidateVertices = function (otherCollider, contactList) {
   return this.getVertices();
 };
+
+//----------------------------------------------------------------------

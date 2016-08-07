@@ -8,6 +8,8 @@ var State = function (body){
 	this.onCollision = body.onCollision;
 };
 
+//----------------------------------------------------------------------
+
 State.prototype.restore = function (body) {
   body.gameObject.getTransform().setPosition(this.position.cpy());
   body.gameObject.getTransform().setRotation(this.rotation.cpy());
@@ -17,3 +19,5 @@ State.prototype.restore = function (body) {
 	body.mass = this.mass;
 	body.onCollision = this.onCollision;
 };
+
+//----------------------------------------------------------------------

@@ -5,19 +5,27 @@ var Matrix4 = function (row0,row1,row2,row3){
     this.set(row0, row1, row2, row3);
 };
 
+//----------------------------------------------------------------------
+
 // Method definition goes here.
 Matrix4.prototype.getData = function (){
 	return this.data;
 };
+
+//----------------------------------------------------------------------
 
 // Method definition goes here.
 Matrix4.prototype.setData = function (data){
 	this.data=data;
 };
 
+//----------------------------------------------------------------------
+
 Matrix4.prototype.get = function (row,col){
 	return this.data[col+(4*row)];
 };
+
+//----------------------------------------------------------------------
 
 // Method definition goes here.
 Matrix4.prototype.set = function (row0,row1,row2,row3){
@@ -31,6 +39,8 @@ Matrix4.prototype.set = function (row0,row1,row2,row3){
         for (var col = 0; col < 4; col++)
             this.data[col+(4*row)] = rows[row][col];
 };
+
+//----------------------------------------------------------------------
 
 Matrix4.prototype.transpose = function () {
 
@@ -71,6 +81,8 @@ Matrix4.prototype.transpose = function () {
     return this.transposed;
 };
 
+//----------------------------------------------------------------------
+
 // Method definition goes here.
 Matrix4.mulMM = function (M1,M2){
 
@@ -96,6 +108,8 @@ Matrix4.mulMM = function (M1,M2){
 
     return result;
 };
+
+//----------------------------------------------------------------------
 
 // Method definition goes here.
 Matrix4.mulMV = function (M,v){
@@ -123,6 +137,8 @@ Matrix4.mulMV = function (M,v){
 
 };
 
+//----------------------------------------------------------------------
+
 Matrix4.zeros = function(){
     return new Matrix4(
         new Vector4(0.0,0.0,0.0,0.0),
@@ -130,6 +146,8 @@ Matrix4.zeros = function(){
         new Vector4(0.0,0.0,0.0,0.0),
         new Vector4(0.0,0.0,0.0,0.0));
 };
+
+//----------------------------------------------------------------------
 
 Matrix4.identity = function(){
     return new Matrix4(
@@ -139,6 +157,8 @@ Matrix4.identity = function(){
         new Vector4(0,0,0,1));
 };
 
+//----------------------------------------------------------------------
+
 Matrix4.translation = function(vec){
     return new Matrix4(
         new Vector4(1,0,0,vec.x),
@@ -146,6 +166,8 @@ Matrix4.translation = function(vec){
         new Vector4(0,0,1,vec.z),
         new Vector4(0,0,0,1));
 };
+
+//----------------------------------------------------------------------
 
 // where vec is axis of rotation (e.g. 0 1 0)
 Matrix4.rotation = function(vec){
@@ -177,6 +199,8 @@ Matrix4.rotation = function(vec){
     return result;
 };
 
+//----------------------------------------------------------------------
+
 // x,y,z are scalign factors
 Matrix4.scale = function(vec){
     return new Matrix4(
@@ -186,6 +210,8 @@ Matrix4.scale = function(vec){
         new Vector4(0,0,0,1));
 };
 
+//----------------------------------------------------------------------
+
 Matrix4.ortho = function(left, right, bottom, top, near, far){
     return new Matrix4(
         new Vector4(2.0/(right-left),0.0,0.0,-((right+left)/(right-left))),
@@ -193,6 +219,8 @@ Matrix4.ortho = function(left, right, bottom, top, near, far){
         new Vector4(0.0,0.0,(-2.0/(far-near)),-((far+near)/(far-near))),
         new Vector4(0.0,0.0,0.0,1.0));
 };
+
+//----------------------------------------------------------------------
 
 Matrix4.perspective = function(near, far, aspect, fov){
 
@@ -207,6 +235,8 @@ Matrix4.perspective = function(near, far, aspect, fov){
         new Vector4(0,0,((far+near)/(far-near)),0),
         new Vector4(0,0,-1,0));
 };
+
+//----------------------------------------------------------------------
 
 // Up probably is (0,1,0) or (0,-1,0) for upside-down
 // Matrix4.camera = function(camPos, camTarget, camUp){

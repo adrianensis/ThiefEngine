@@ -5,6 +5,8 @@ var Polygon = function (width, height) {
 Polygon.prototype = new Collider2D();
 Polygon.prototype.constructor = Polygon;
 
+//----------------------------------------------------------------------
+
 Polygon.prototype.testVertexVertex = function (vertices, otherCollider, contactList) {
 
   var result = Collider.STATUS_NONE;
@@ -68,6 +70,8 @@ Polygon.prototype.testVertexVertex = function (vertices, otherCollider, contactL
 
   return result;
 };
+
+//----------------------------------------------------------------------
 
 Polygon.prototype.testVertexEdge = function (vertices, otherCollider, contactList) {
 
@@ -143,3 +147,5 @@ Polygon.prototype.testVertexEdge = function (vertices, otherCollider, contactLis
 
   return result;
 };
+
+//----------------------------------------------------------------------

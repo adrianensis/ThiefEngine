@@ -28,3 +28,5 @@ var RectangleMesh = function () {
 
 RectangleMesh.prototype = new Mesh();
 RectangleMesh.prototype.constructor = RectangleMesh;
+
+//----------------------------------------------------------------------

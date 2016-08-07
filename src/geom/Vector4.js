@@ -13,6 +13,8 @@ var Vector4 = function (x,y,z,w){
     this.w = w;
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Returns an array representation of the vector.
 * @returns {Array} An array representation of the vector
@@ -25,6 +27,8 @@ Vector4.prototype.toArray = function (){
     array[3] = this.w;
     return array;
 };
+
+//----------------------------------------------------------------------
 
 /**
 * Sets the vector from an array.
@@ -40,6 +44,8 @@ Vector4.prototype.fromArray = function (array){
     return this;
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Sets the vector from another vector.
 * @param {Vector4} vec The original vector.
@@ -54,6 +60,8 @@ Vector4.prototype.set = function (vec){
     return this;
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Return a copy of this vector.
 * @returns {Vector4} The copy of this vector.
@@ -61,6 +69,8 @@ Vector4.prototype.set = function (vec){
 Vector4.prototype.cpy = function (){
     return new Vector4(this.x, this.y, this.z, this.w);
 };
+
+//----------------------------------------------------------------------
 
 /**
 * Return the length of this vector.
@@ -74,6 +84,8 @@ Vector4.prototype.len = function (){
     return Math.sqrt((x*x) + (y*y) + (z*z));
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Return the maximum value in this vector.
 * @returns {float} The maximum value in this vector.
@@ -85,6 +97,9 @@ Vector4.prototype.max = function (){
 
     return Math.max(x , Math.max(y , z));
 };
+
+//----------------------------------------------------------------------
+
 /**
 * Divide this vector by a scalar.
 * @returns {Vector4} this.
@@ -96,6 +111,8 @@ Vector4.prototype.min = function (){
 
     return Math.min(x , Math.min(y , z));
 };
+
+//----------------------------------------------------------------------
 
 /**
 * Add a vector to this vector.
@@ -110,6 +127,8 @@ Vector4.prototype.add = function (vec){
     return this;
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Subtract a vector to this vector.
 * @returns {Vector4} this.
@@ -122,6 +141,8 @@ Vector4.prototype.sub = function (vec){
 
     return this;
 };
+
+//----------------------------------------------------------------------
 
 /**
 * Add a scalar to all the components of this vector.
@@ -136,6 +157,8 @@ Vector4.prototype.addScl = function (v){
     return this;
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Subtract a scalar to all the components of this vector.
 * @returns {Vector4} this.
@@ -148,6 +171,8 @@ Vector4.prototype.subScl = function (v){
 
     return this;
 };
+
+//----------------------------------------------------------------------
 
 /**
 * Multiply this vector by other vector.
@@ -162,6 +187,8 @@ Vector4.prototype.mul = function (vec){
     return this;
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Multiply this vector by a scalar.
 * @returns {Vector4} this.
@@ -174,6 +201,8 @@ Vector4.prototype.mulScl = function (value){
 
     return this;
 };
+
+//----------------------------------------------------------------------
 
 /**
 * Divide this vector by other vector.
@@ -188,6 +217,8 @@ Vector4.prototype.div = function (vec){
     return this;
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Divide this vector by a scalar.
 * @returns {Vector4} this.
@@ -200,6 +231,8 @@ Vector4.prototype.divScl = function (value){
 
     return this;
 };
+
+//----------------------------------------------------------------------
 
 /**
 * Return the dot product between this vector and other vector.
@@ -217,6 +250,8 @@ Vector4.prototype.dot = function (vec){
 
   return x1*x2 + y1*y2 + z1*z2;
 };
+
+//----------------------------------------------------------------------
 
 /**
 * Calculates the cross product between this vector and other vector.
@@ -241,6 +276,8 @@ Vector4.prototype.cross = function (vec){
   return this;
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Returns the angle in degrees relative to other vector.
 * @param {Vector4} vec The other vector.
@@ -256,6 +293,8 @@ Vector4.prototype.ang = function (vec){
 
     return Math.acos(cos);
 };
+
+//----------------------------------------------------------------------
 
 /**
 * Normalize this vector.
@@ -275,6 +314,8 @@ Vector4.prototype.nor = function (){
     return this;
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Returns the distance between this vector and other vector.
 * @param {Vector4} vec The other vector.
@@ -289,6 +330,8 @@ Vector4.prototype.dst = function (vec){
     return Math.sqrt( (deltaX*deltaX) + (deltaY*deltaY) + (deltaZ*deltaZ) );
 };
 
+//----------------------------------------------------------------------
+
 /**
 * Test if this vector is equal to the other vector.
 * @param {Vector4} vec The other vector.
@@ -299,6 +342,8 @@ Vector4.prototype.equals = function(vec){
         (this.y === vec.y) &&
         (this.z === vec.z);
 };
+
+//----------------------------------------------------------------------
 
 /**
 * Test if this vector is equal to the other vector, whit an epsilon error.
@@ -315,3 +360,5 @@ Vector4.prototype.epsilonEquals = function(vec,epsilon){
     else
         return false;
 };
+
+//----------------------------------------------------------------------

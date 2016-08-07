@@ -12,37 +12,55 @@ var GameObject = function (){
 GameObject.prototype = new BaseObject();
 GameObject.prototype.constructor = GameObject;
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.getTransform = function (){
 	return this.transform;
 };
+
+//----------------------------------------------------------------------
 
 GameObject.prototype.getParent = function (){
 	return this.parent;
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.setParent = function (parent){
 	this.parent=parent;
 };
+
+//----------------------------------------------------------------------
 
 GameObject.prototype.setStatic = function (bool){
 	this.static = bool;
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.isStatic = function (parent){
 	return this.static;
 };
+
+//----------------------------------------------------------------------
 
 GameObject.prototype.getScene = function (){
 	return this.scene;
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.setScene = function (scene){
 	this.scene=scene;
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.getChildren = function (){
 	return this.children;
 };
+
+//----------------------------------------------------------------------
 
 GameObject.prototype.setChildren = function (children){
     for (var child of children) {
@@ -52,9 +70,13 @@ GameObject.prototype.setChildren = function (children){
 	this.children=children;
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.getComponents = function (){
 	return this.components;
 };
+
+//----------------------------------------------------------------------
 
 GameObject.prototype.enable = function (){
 	for (var component of this.components) {
@@ -62,20 +84,28 @@ GameObject.prototype.enable = function (){
   }
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.disable = function (){
   for (var component of this.components) {
     component.disable();
   }
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.addChild = function (child){
   child.setParent(this);
   this.children.push(child);
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.getChild = function (){
 
 };
+
+//----------------------------------------------------------------------
 
 GameObject.prototype.addComponent = function (component){
 
@@ -91,6 +121,8 @@ GameObject.prototype.addComponent = function (component){
   }
 
 };
+
+//----------------------------------------------------------------------
 
 GameObject.prototype.getAllComponents = function (componentClass){
 
@@ -116,6 +148,8 @@ GameObject.prototype.getAllComponents = function (componentClass){
 
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.getComponent = function (componentClass){
 
     for (var component of this.components) {
@@ -128,6 +162,8 @@ GameObject.prototype.getComponent = function (componentClass){
     return null;
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.getComponentsInChildren = function (componentClass){
     var componentList = [];
 
@@ -138,7 +174,11 @@ GameObject.prototype.getComponentsInChildren = function (componentClass){
     return componentList;
 };
 
+//----------------------------------------------------------------------
+
 GameObject.prototype.delete = function (){
   this.disable();
 	this.scene.deleteObject(this);
 };
+
+//----------------------------------------------------------------------

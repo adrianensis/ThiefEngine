@@ -10,9 +10,13 @@ var PhysicsEngine = function (){
 
 };
 
+//----------------------------------------------------------------------
+
 PhysicsEngine.prototype.getBodies = function (){
   return this.bodies;
 };
+
+//----------------------------------------------------------------------
 
 PhysicsEngine.prototype.addBodies = function (bodies){
   for (var i = 0; i < bodies.length; i++) {
@@ -20,15 +24,21 @@ PhysicsEngine.prototype.addBodies = function (bodies){
 	}
 };
 
+//----------------------------------------------------------------------
+
 PhysicsEngine.prototype.addBody = function (body){
   this.bodies.push(body);
   this.tree.addCollider(body.gameObject.getComponent(Collider));
 };
 
+//----------------------------------------------------------------------
+
 PhysicsEngine.prototype.clear = function (){
 	this.bodies = [];
   this.tree.clear();
 };
+
+//----------------------------------------------------------------------
 
 PhysicsEngine.prototype.applyImpulse = function(bodyA, bodyB, vrel, normal){
 
@@ -71,6 +81,8 @@ PhysicsEngine.prototype.applyImpulse = function(bodyA, bodyB, vrel, normal){
   }
 };
 
+//----------------------------------------------------------------------
+
 PhysicsEngine.prototype.solveCollisions = function (contacts){
 
   var solved = {}; // colliders
@@ -109,6 +121,8 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
 
   // console.log(solved);
 };
+
+//----------------------------------------------------------------------
 
 PhysicsEngine.prototype.update = function (){
 
@@ -185,3 +199,5 @@ PhysicsEngine.prototype.update = function (){
    //  	}
   // }
 };
+
+//----------------------------------------------------------------------

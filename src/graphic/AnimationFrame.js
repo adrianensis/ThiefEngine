@@ -4,20 +4,30 @@ var AnimationFrame = function () {
     this.height = 1.0;
 };
 
+//----------------------------------------------------------------------
+
 AnimationFrame.prototype.set = function (position, width, height) {
     this.position = position
     this.width = width;
     this.height = height;
-}
+};
+
+//----------------------------------------------------------------------
 
 AnimationFrame.prototype.getPosition = function (){
 	return this.position;
 };
 
+//----------------------------------------------------------------------
+
 AnimationFrame.prototype.getWidth = function (){
 	return this.width;
 };
 
+//----------------------------------------------------------------------
+
 AnimationFrame.prototype.getHeight = function (){
 	return this.height;
 };
+
+//----------------------------------------------------------------------

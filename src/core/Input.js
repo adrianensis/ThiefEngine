@@ -74,19 +74,25 @@ Input.button = -1;
 
 Input.cursorPos = new Vector2(0,0);
 
+//----------------------------------------------------------------------
+
 Input.getKey = function (){
 	return Input.key;
 };
+
+//----------------------------------------------------------------------
 
 Input.getButton = function (){
 	return Input.button;
 };
 
+//----------------------------------------------------------------------
+
 Input.getCursorPosition = function (){
-
-
 
 	return Input.cursorPos;
 };
+
+//----------------------------------------------------------------------
 
 // TODO: Implement input stack, implement key codes, char?

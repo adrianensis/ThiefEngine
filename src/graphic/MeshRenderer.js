@@ -15,21 +15,31 @@ var MeshRenderer = function (){
 MeshRenderer.prototype = new Component();
 MeshRenderer.prototype.constructor = MeshRenderer;
 
+//----------------------------------------------------------------------
+
 MeshRenderer.prototype.getMesh = function (){
 	return this.mesh;
 };
+
+//----------------------------------------------------------------------
 
 MeshRenderer.prototype.setMesh = function (mesh){
 	this.mesh=mesh;
 };
 
+//----------------------------------------------------------------------
+
 MeshRenderer.prototype.getMaterial = function (){
 	return this.material;
 };
 
+//----------------------------------------------------------------------
+
 MeshRenderer.prototype.setMaterial = function (material){
 	this.material=material;
 };
+
+//----------------------------------------------------------------------
 
 MeshRenderer.prototype.getRadius = function () {
 
@@ -45,13 +55,19 @@ MeshRenderer.prototype.getRadius = function () {
 	return Math.sqrt(( width * width ) + (  height * height ) + (  depth * depth )) / 2.0;
 };
 
+//----------------------------------------------------------------------
+
 MeshRenderer.prototype.getAlphaColor = function (){
 	return this.alphaColor;
 };
 
+//----------------------------------------------------------------------
+
 MeshRenderer.prototype.setAlphaColor = function (color){
 	this.alphaColor = color;
 };
+
+//----------------------------------------------------------------------
 
 MeshRenderer.prototype.setRegion = function (pos, width, height){
   this.regionPosition = pos;
@@ -59,17 +75,25 @@ MeshRenderer.prototype.setRegion = function (pos, width, height){
   this.regionHeight = height;
 };
 
+//----------------------------------------------------------------------
+
 MeshRenderer.prototype.getRegionPosition = function (){
 	return this.regionPosition;
 };
+
+//----------------------------------------------------------------------
 
 MeshRenderer.prototype.getRegionWidth = function (){
 	return this.regionWidth;
 };
 
+//----------------------------------------------------------------------
+
 MeshRenderer.prototype.getRegionHeight = function (){
 	return this.regionHeight;
 };
+
+//----------------------------------------------------------------------
 
 MeshRenderer.prototype.updateMaterial = function (material){
   if(material.getTexture() !== null){
@@ -96,3 +120,5 @@ MeshRenderer.prototype.updateMaterial = function (material){
 
   }
 };
+
+//----------------------------------------------------------------------

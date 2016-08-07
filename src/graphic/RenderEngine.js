@@ -79,6 +79,8 @@ var RenderEngine = function (){
     DebugRenderer.init();
 };
 
+//----------------------------------------------------------------------
+
 RenderEngine.prototype.setClearColor = function (color){
   this.color.r = color.r;
   this.color.g = color.g;
@@ -87,6 +89,8 @@ RenderEngine.prototype.setClearColor = function (color){
 
   gl.clearColor(this.color.r, this.color.g, this.color.b, this.color.a);
 };
+
+//----------------------------------------------------------------------
 
 RenderEngine.prototype.addRenderers = function (renderers){
 
@@ -111,19 +115,27 @@ RenderEngine.prototype.addRenderers = function (renderers){
   }
 };
 
+//----------------------------------------------------------------------
+
 RenderEngine.prototype.clear = function (){
   this.textureBatches = {};
   this.noTextureBatch = new SpriteBatch(new Material());
   this.renderContext = null;
 };
 
+//----------------------------------------------------------------------
+
 RenderEngine.prototype.getRenderContext = function (){
 	return this.renderContext;
 };
 
+//----------------------------------------------------------------------
+
 RenderEngine.prototype.setRenderContext = function (renderContext){
 	this.renderContext=renderContext;
 };
+
+//----------------------------------------------------------------------
 
 RenderEngine.prototype.update = function (){
 
@@ -143,6 +155,8 @@ RenderEngine.prototype.update = function (){
 
 };
 
+//----------------------------------------------------------------------
+
 RenderEngine.prototype.bind = function (){
 
   // for (var renderer of this.renderers){
@@ -157,6 +171,8 @@ RenderEngine.prototype.bind = function (){
 
   this.noTextureBatch.bind();
 };
+
+//----------------------------------------------------------------------
 
 RenderEngine.prototype.render = function (){
 
@@ -185,3 +201,5 @@ RenderEngine.prototype.render = function (){
   DebugRenderer.clear();
 
 };
+
+//----------------------------------------------------------------------

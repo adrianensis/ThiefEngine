@@ -5,9 +5,13 @@ var Script = function (){
 Script.prototype = new Component();
 Script.prototype.constructor = Script;
 
+//----------------------------------------------------------------------
+
 Script.prototype.start = function (){
   throw new Error("Abstract method!");
 };
+
+//----------------------------------------------------------------------
 
 Script.prototype.update = function (){
   var children = this.getChildren();
@@ -18,3 +22,5 @@ Script.prototype.update = function (){
 
 
 // ... onCollision, onDestroy, etc.
+
+//----------------------------------------------------------------------

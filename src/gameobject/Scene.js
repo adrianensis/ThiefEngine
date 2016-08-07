@@ -16,25 +16,37 @@ var Scene = function (name){
 };
 
 
+//----------------------------------------------------------------------
+
 Scene.prototype.getName = function (){
 	return this.name;
 };
+
+//----------------------------------------------------------------------
 
 Scene.prototype.setLoaded = function (bool){
 	this.loaded=bool;
 };
 
+//----------------------------------------------------------------------
+
 Scene.prototype.isLoaded = function (){
 	return this.loaded;
 };
+
+//----------------------------------------------------------------------
 
 Scene.prototype.getRoot = function (){
   return this.root;
 };
 
+//----------------------------------------------------------------------
+
 Scene.prototype.getNewsRoot = function (){
 	return this.newsRoot;
 };
+
+//----------------------------------------------------------------------
 
 Scene.prototype.flush = function (){
   this.root.setChildren(this.root.getChildren().concat(this.newsRoot.getChildren()));
@@ -42,9 +54,13 @@ Scene.prototype.flush = function (){
   this.newObjects = false;
 };
 
+//----------------------------------------------------------------------
+
 Scene.prototype.hasNewObjects = function (){
 	return this.newObjects;
 };
+
+//----------------------------------------------------------------------
 
 Scene.prototype.addObject = function (obj){
   // console.log("ADD OBJECT: " + obj.getId());
@@ -55,9 +71,13 @@ Scene.prototype.addObject = function (obj){
   this.newsRoot.addChild(obj);
 };
 
+//----------------------------------------------------------------------
+
 Scene.prototype.deleteObject = function (obj){
   this.trash.push(obj);
 };
+
+//----------------------------------------------------------------------
 
 Scene.prototype.cleanTrash = function (obj){
 
@@ -68,18 +88,28 @@ Scene.prototype.cleanTrash = function (obj){
   this.trash = [];
 };
 
+//----------------------------------------------------------------------
+
 Scene.prototype.getRenderContext = function (){
 	return this.renderContext;
 };
+
+//----------------------------------------------------------------------
 
 Scene.prototype.setRenderContext = function (renderContext){
 	this.renderContext=renderContext;
 };
 
+//----------------------------------------------------------------------
+
 Scene.prototype.getCamera = function (){
 	return this.camera;
 };
 
+//----------------------------------------------------------------------
+
 Scene.prototype.setCamera = function (camera){
 	this.camera=camera;
 };
+
+//----------------------------------------------------------------------

@@ -12,6 +12,8 @@ Color.RED = new Color(1.0, 0.0, 0.0, 1.0);
 Color.GREEN = new Color(0.0, 1.0, 0.0, 1.0);
 Color.BLUE = new Color(0.0, 0.0, 1.0, 1.0);
 
+//----------------------------------------------------------------------
+
 Color.random = function () {
   var r = Math.random();
   var g = Math.random();
@@ -20,6 +22,8 @@ Color.random = function () {
 
   return new Color(r,g,b,1.0);
 };
+
+//----------------------------------------------------------------------
 
 Color.prototype.toArray = function(){
   // return this.vec.toArray;
@@ -32,6 +36,8 @@ Color.prototype.toArray = function(){
 };
 
 
+//----------------------------------------------------------------------
+
 Color.prototype.equals = function(otherColor){
   // return this.vec.equals(otherColor.vec);
   return (this.r === vec.r) &&
@@ -39,3 +45,5 @@ Color.prototype.equals = function(otherColor){
       (this.b === vec.b) &&
       (this.a === vec.a);
 };
+
+//----------------------------------------------------------------------

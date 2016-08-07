@@ -12,3 +12,5 @@ var Vector3 = function (x,y,z){
 
 Vector3.prototype = new Vector4();
 Vector3.prototype.constructor = Vector3;
+
+//----------------------------------------------------------------------

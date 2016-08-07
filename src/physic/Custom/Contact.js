@@ -6,3 +6,5 @@ var Contact = function (a,b,p, normal, relativeVelocity){
   this.normal = normal; // From B to A
   this.relativeVelocity = relativeVelocity;
 };
+
+//----------------------------------------------------------------------

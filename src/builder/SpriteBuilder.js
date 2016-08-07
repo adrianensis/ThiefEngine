@@ -5,6 +5,8 @@ var SpriteBuilder = function (){
 SpriteBuilder.prototype = new GameObjectBuilder();
 SpriteBuilder.prototype.constructor = SpriteBuilder;
 
+//----------------------------------------------------------------------
+
 SpriteBuilder.prototype.begin = function (textureName) {
   GameObjectBuilder.prototype.begin.call(this);
 
@@ -18,7 +20,11 @@ SpriteBuilder.prototype.begin = function (textureName) {
   return this;
 };
 
+//----------------------------------------------------------------------
+
 SpriteBuilder.prototype.setSize = function (size) {
   this.setScale(new Vector2(size,size));
   return this;
 };
+
+//----------------------------------------------------------------------

@@ -5,6 +5,10 @@ var Shader = function (){
     this.compiled = false;
 };
 
+Shader.defaultShader = null;
+Shader.debugShader = null;
+
+
 // SHADERS
 
 Shader.vs =
@@ -102,25 +106,37 @@ Shader.fsDebug=
 "    gl_FragColor = vColor;"+
 "}";
 
+//----------------------------------------------------------------------
+
 Shader.prototype.isCompiled = function (){
 	return this.compiled;
 };
+
+//----------------------------------------------------------------------
 
 Shader.prototype.getProgramid = function (){
 	return this.programID;
 };
 
+//----------------------------------------------------------------------
+
 Shader.prototype.setProgramid = function (programID){
 	this.programID=programID;
 };
+
+//----------------------------------------------------------------------
 
 Shader.prototype.getVertshaderid = function (){
 	return this.vertShaderID;
 };
 
+//----------------------------------------------------------------------
+
 Shader.prototype.setVertshaderid = function (vertShaderID){
 	this.vertShaderID=vertShaderID;
 };
+
+//----------------------------------------------------------------------
 
 Shader.prototype.getFragshaderid = function (){
 	return this.fragShaderID;
@@ -129,6 +145,8 @@ Shader.prototype.getFragshaderid = function (){
 Shader.prototype.setFragshaderid = function (fragShaderID){
 	this.fragShaderID=fragShaderID;
 };
+
+//----------------------------------------------------------------------
 
 // Method definition goes here.
 Shader.prototype.addVertexShader = function (sourceText){
@@ -139,6 +157,8 @@ Shader.prototype.addVertexShader = function (sourceText){
   this.vertShaderID = shaderID;
 };
 
+//----------------------------------------------------------------------
+
 // Method definition goes here.
 Shader.prototype.addFragmentShader = function (sourceText){
 
@@ -147,6 +167,8 @@ Shader.prototype.addFragmentShader = function (sourceText){
 
   this.fragShaderID = shaderID;
 };
+
+//----------------------------------------------------------------------
 
 Shader.prototype.addSource = function (type,name){
   var src = document.getElementById(name).text;
@@ -160,15 +182,21 @@ Shader.prototype.addSource = function (type,name){
       this.fragShaderID = shaderID;
 };
 
+//----------------------------------------------------------------------
+
 Shader.prototype.addAttribute = function (location,name){
-gl.bindAttribLocation(this. programID, location, name);
+  gl.bindAttribLocation(this. programID, location, name);
 };
+
+//----------------------------------------------------------------------
 
 // Method definition goes here.
 Shader.prototype.addMatrix = function (matrix,name){
   matrixLocation = gl.getUniformLocation(this.programID, name);
   gl.uniformMatrix4fv(matrixLocation, false, new Float32Array(matrix.getData()));
 };
+
+//----------------------------------------------------------------------
 
 Shader.prototype.addMatrixArray = function (matrixArray,name){
   matrixLocation = gl.getUniformLocation(this.programID, name);
@@ -181,20 +209,28 @@ Shader.prototype.addMatrixArray = function (matrixArray,name){
   gl.uniformMatrix4fv(matrixLocation, false, new Float32Array(raw));
 };
 
+//----------------------------------------------------------------------
+
 Shader.prototype.addInt = function (value, name){
   valueLocation = gl.getUniformLocation(this.programID, name);
   gl.uniform1i(valueLocation, value);
 };
+
+//----------------------------------------------------------------------
 
 Shader.prototype.addFloat = function (value, name){
   valueLocation = gl.getUniformLocation(this.programID, name);
   gl.uniform1f(valueLocation, value);
 };
 
+//----------------------------------------------------------------------
+
 Shader.prototype.addFloatVector = function (value, name){
   valueLocation = gl.getUniformLocation(this.programID, name);
   gl.uniform4fv(valueLocation, new Float32Array(value));
 };
+
+//----------------------------------------------------------------------
 
 Shader.prototype.compile = function (){
   if( ! this.isCompiled()){
@@ -220,16 +256,19 @@ Shader.prototype.compile = function (){
   }
 };
 
+//----------------------------------------------------------------------
+
 Shader.prototype.enable = function (){
   gl.useProgram(this.programID);
 };
+
+//----------------------------------------------------------------------
 
 Shader.prototype.disable = function (){
   gl.useProgram(null);
 };
 
-Shader.defaultPrototype = null;
-Shader.debugPrototype = null;
+//----------------------------------------------------------------------
 
 Shader.create = function(typeStr){
 
@@ -237,37 +276,39 @@ Shader.create = function(typeStr){
 
   if(typeStr === 'default'){
 
-    if(Shader.defaultPrototype === null){
+    if(Shader.defaultShader === null){
 
-      Shader.defaultPrototype = new Shader();
+      Shader.defaultShader = new Shader();
 
-      Shader.defaultPrototype.addVertexShader(Shader.vs);
-      Shader.defaultPrototype.addFragmentShader(Shader.fs);
-      Shader.defaultPrototype.addAttribute(0, "position");
+      Shader.defaultShader.addVertexShader(Shader.vs);
+      Shader.defaultShader.addFragmentShader(Shader.fs);
+      Shader.defaultShader.addAttribute(0, "position");
 
       //REMEMBER: IF A ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
-      Shader.defaultPrototype.addAttribute(2, "color");
-      Shader.defaultPrototype.addAttribute(1, "texcoord");
+      Shader.defaultShader.addAttribute(2, "color");
+      Shader.defaultShader.addAttribute(1, "texcoord");
     }
 
-    shader = Shader.defaultPrototype;
+    shader = Shader.defaultShader;
 
   }else if(typeStr === 'debug'){
 
-    if(Shader.debugPrototype === null){
+    if(Shader.debugShader === null){
 
-      Shader.debugPrototype = new Shader();
+      Shader.debugShader = new Shader();
 
-      Shader.debugPrototype.addVertexShader(Shader.vsDebug);
-      Shader.debugPrototype.addFragmentShader(Shader.fsDebug);
-      Shader.debugPrototype.addAttribute(0, "position");
+      Shader.debugShader.addVertexShader(Shader.vsDebug);
+      Shader.debugShader.addFragmentShader(Shader.fsDebug);
+      Shader.debugShader.addAttribute(0, "position");
 
       //REMEMBER: IF A ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
-      Shader.debugPrototype.addAttribute(1, "color");
+      Shader.debugShader.addAttribute(1, "color");
     }
 
-    shader = Shader.debugPrototype;
+    shader = Shader.debugShader;
   }
 
   return shader;
 };
+
+//----------------------------------------------------------------------

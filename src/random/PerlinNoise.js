@@ -51,6 +51,8 @@ var PerlinNoise = function(n,seed){
 
 };
 
+//----------------------------------------------------------------------
+
 //  new Noise2D( indicies, gradients, gradients[ 0 ] );
 
 PerlinNoise.prototype.getGradient = function( point )
@@ -62,6 +64,8 @@ PerlinNoise.prototype.getGradient = function( point )
 
     return this.gradients[ index ];
 };
+
+//----------------------------------------------------------------------
 
 PerlinNoise.prototype.generate = function( x, y )
 {
@@ -108,3 +112,5 @@ PerlinNoise.prototype.generate = function( x, y )
 
     return ( 1 - yParam ) * abContrib + yParam * dcContrib;
 };
+
+//----------------------------------------------------------------------
