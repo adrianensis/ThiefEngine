@@ -9,48 +9,61 @@ var spriteBuilder = new SpriteBuilder();
   * PERLIN NOISE
   */
 
-  var perlin = new PerlinNoise(10,11);
+  var perlin = new PerlinNoise(25,10);
 
-
-  var resolution = 5;
+  var resolution = 50;
   var step = 0.1;
 
-  for ( var i=-resolution; i<resolution; i+=step ) {
-      for ( var j=-resolution; j<resolution; j+=step ) {
+  var random = new Random(5);
+
+  for ( var i=0; i<resolution; i++ ) {
+      for ( var j=0; j<resolution; j++ ) {
 
           var v = perlin.generate(i,j);
 
-          var tex = "res/pokemonTiles.png";
-
           var tileSizeX = 1/88;
           var tileSizeY = 1/69;
-          var borderX = 1/1408;
-          var borderY = 1/1104;
+          var borderX = 1/1408; // 1408 is the image width
+          var borderY = 1/1104; // 1104 is the image height
 
-          var pos = new Vector2(i/step,j/step);
-          var size = step/step;
+          var pos = new Vector2(i*step,j*step);
+          var size = step;
+
+          var tex = "res/pokemonTiles.png";
+          // var tex = null;
 
           spriteBuilder.begin(tex).
             setPosition(pos).
             setSize(size).
             setStatic(true);
 
-          if(v > 0.2){
-              spriteBuilder.setTextureRegion(new Vector2(tileSizeX*5 + borderX, borderY + 1-(tileSizeY*2)),tileSizeX-borderX,tileSizeY-borderY);
+          // v *= 10;
+          // console.log(v);
 
-          }else if(v < 0.2 && v > 0){
-              if(Math.random() > 0.98){
-                  spriteBuilder.setTextureRegion(new Vector2(tileSizeX*0 + borderX, borderY + 1-(tileSizeY*29)),tileSizeX-borderX,tileSizeY-borderY);
-              }else{
-                  spriteBuilder.setTextureRegion(new Vector2(tileSizeX*10 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
-              }
+          // if(v < 0)
+          //   v *=-1;
+
+          var color = new Color(v,v,v,1);
+
+          if(v > 0.1){
+            // spriteBuilder.setColor(color);
+              spriteBuilder.setTextureRegion(new Vector2(tileSizeX*0 + borderX, borderY + 1-(tileSizeY*29)),tileSizeX-borderX,tileSizeY-borderY);
+
           }else{
-              if(Math.random() > 0.8){
-                  spriteBuilder.setTextureRegion(new Vector2(tileSizeX*4 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
-              }else{
-                  spriteBuilder.setTextureRegion(new Vector2(tileSizeX + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
-              }
-          }
+            // spriteBuilder.setColor(color);
+              // if(random.seededRandom() > 0.98){
+                spriteBuilder.setTextureRegion(new Vector2(tileSizeX*5 + borderX, borderY + 1-(tileSizeY*2)),tileSizeX-borderX,tileSizeY-borderY);
+              // }else{
+                  // spriteBuilder.setTextureRegion(new Vector2(tileSizeX*10 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
+              // }
+            }
+          // else{
+              // if(random.seededRandom() > 0.8){
+                  // spriteBuilder.setTextureRegion(new Vector2(tileSizeX*4 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
+              // }else{
+                  // spriteBuilder.setTextureRegion(new Vector2(tileSizeX + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
+              // }
+          // }
 
           // Thief.addGameObjectToScene(spriteBuilder.end());
 

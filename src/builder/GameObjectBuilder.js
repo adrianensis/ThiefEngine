@@ -93,6 +93,13 @@ GameObjectBuilder.prototype.setMaterial = function (material) {
 
 //----------------------------------------------------------------------
 
+GameObjectBuilder.prototype.setColor = function (color) {
+  this.tmpObj.getComponent(MeshRenderer).getMaterial().setColor(color);
+  return this;
+};
+
+//----------------------------------------------------------------------
+
 GameObjectBuilder.prototype.setAlphaColor = function (color) {
   this.tmpObj.getComponent(MeshRenderer).setAlphaColor(color);
   return this;

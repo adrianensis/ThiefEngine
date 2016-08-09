@@ -13,7 +13,8 @@ SpriteBuilder.prototype.begin = function (textureName) {
   this.setRenderer(new SpriteRenderer());
 
   var material = new Material();
-  material.setTexture(Loader.loadTexture(textureName));
+  if(textureName !== null && textureName !== "")
+    material.setTexture(Loader.loadTexture(textureName));
 
   this.setMaterial(material);
 

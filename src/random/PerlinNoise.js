@@ -2,9 +2,13 @@ var PerlinNoise = function(n,seed){
 
     this.random = new Random(seed);
     this.n = n;
+    // this.posOffset = posOffset.cpy();
 
     this.gradients = new Array(this.n);
 
+    // -------------------------------
+
+    // Shuffle function
     function shuffle(array, randomGenerator) {
 
       var currentIndex = array.length;
@@ -25,11 +29,12 @@ var PerlinNoise = function(n,seed){
       return array;
     }
 
-    for ( var i=0; i<this.n; i++ )
-    {
+    // -------------------------------
+
+    // Gradients array
+    for ( var i=0; i<this.n; i++) {
       this.gradients[ i ] = new Vector2(0,0);
-      // this.gradients[ i ].x = Math.random() * 2.0 - 1.0;
-      // this.gradients[ i ].y = Math.random() * 2.0 - 1.0;
+
       this.gradients[ i ].x = this.random.seededRandom() * 2.0 - 1.0;
       this.gradients[ i ].y = this.random.seededRandom() * 2.0 - 1.0;
 
@@ -40,23 +45,22 @@ var PerlinNoise = function(n,seed){
       this.gradients[ i ].y /= length;
     }
 
+    // -------------------------------
 
+    // Permutations array
     this.permutation = new Array(this.n);
 
-    for (var i = 0; i < this.n; i++) {
+    for (var i = 0; i < this.n; i++)
         this.permutation.push(i);
-    }
 
     this.permutation = shuffle(this.permutation, this.random);
 
+    // -------------------------------
 };
 
 //----------------------------------------------------------------------
 
-//  new Noise2D( indicies, gradients, gradients[ 0 ] );
-
-PerlinNoise.prototype.getGradient = function( point )
-{
+PerlinNoise.prototype.getGradient = function( point ){
     // TODO: use & or mod % ????
 
     var index = point.y  & (this.n - 1);
@@ -67,50 +71,62 @@ PerlinNoise.prototype.getGradient = function( point )
 
 //----------------------------------------------------------------------
 
-PerlinNoise.prototype.generate = function( x, y )
-{
-    // x += posOffset.x;
-    // y += posOffset.y;
+PerlinNoise.prototype.lerp = function(a0, a1, w) {
+     return (1.0 - w)*a0 + w*a1;
+};
 
-    xCoord = Math.floor( x );
-    yCoord = Math.floor( y );
+//----------------------------------------------------------------------
 
+// Computes the dot product of the distance and gradient vectors.
+PerlinNoise.prototype.dotGridGradient = function(ix, iy, x, y) {
 
+  // Compute the distance vector
+  var offset = new Vector2(x - ix, y - iy);
 
-    var a = new Vector2( xCoord, yCoord );
-    var b = new Vector2( xCoord + 1, yCoord );
-    var c = new Vector2( xCoord + 1, yCoord + 1 );
-    var d = new Vector2( xCoord, yCoord + 1 );
+  var grad = this.getGradient(new Vector2(ix,iy));
 
-    var aGrad = this.getGradient( a );
-    var bGrad = this.getGradient( b );
-    var cGrad = this.getGradient( c );
-    var dGrad = this.getGradient( d );
+  // Compute the dot-product
+  return grad.dot(offset);
+};
 
-    var xOffset = x - xCoord;
-    var yOffset = y - yCoord;
+//----------------------------------------------------------------------
 
-    var aOffset = new Vector2( xOffset, yOffset );
-    var bOffset = new Vector2( xOffset - 1, yOffset );
-    var cOffset = new Vector2( xOffset - 1, yOffset - 1 );
-    var dOffset = new Vector2( xOffset, yOffset - 1 );
+PerlinNoise.prototype.generate = function(x, y){
 
-    var aContrib = aGrad.dot( aOffset );
-    var bContrib = bGrad.dot( bOffset );
-    var cContrib = cGrad.dot( cOffset );
-    var dContrib = dGrad.dot( dOffset );
+  x += this.random.seededRandom(); // in [0,1] range
+  y += this.random.seededRandom(); // in [0,1] range
 
-    var xOffsetSq = xOffset * xOffset;
-    var yOffsetSq = yOffset * yOffset;
+  var xCoord = Math.floor(x);
+  var yCoord = Math.floor(y);
 
-    var xParam = 3 * xOffsetSq - 2 * xOffsetSq * xOffset;
-    var yParam = 3 * yOffsetSq - 2 * yOffsetSq * yOffset;
+  // Determine grid cell coordinates
+  var x0 = (xCoord > 0.0 ? xCoord : xCoord - 1);
+  var x1 = x0 + 1;
+  var y0 = (yCoord > 0.0 ? yCoord : yCoord - 1);
+  var y1 = y0 + 1;
 
-    var abContrib = ( 1 - xParam ) * aContrib + xParam * bContrib;
-    var dcContrib = ( 1 - xParam ) * dContrib + xParam * cContrib;
+  // Determine interpolation weights
+  // Could also use higher order polynomial/s-curve here
+  var sx = xCoord - x0;
+  var sy = yCoord - y0;
 
+  // Interpolate between grid point gradients
+  var n0, n1, ix0, ix1, value;
 
-    return ( 1 - yParam ) * abContrib + yParam * dcContrib;
+  n0 = this.dotGridGradient(x0, y0, x, y);
+  n1 = this.dotGridGradient(x1, y0, x, y);
+  ix0 = this.lerp(n0, n1, sx);
+  n0 = this.dotGridGradient(x0, y1, x, y);
+  n1 = this.dotGridGradient(x1, y1, x, y);
+  ix1 = this.lerp(n0, n1, sx);
+
+  // console.log(ix0);
+  // console.log(ix1);
+  value = this.lerp(ix0, ix1, sy);
+
+  // console.log(value);
+
+  return value;
 };
 
 //----------------------------------------------------------------------

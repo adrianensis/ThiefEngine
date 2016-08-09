@@ -36,6 +36,8 @@ Material.prototype.setColor = function (color){
 	 this.color = color;
 };
 
+//----------------------------------------------------------------------
+
 Material.prototype.getColor = function (){
 	 return this.color;
 };
