@@ -71,8 +71,8 @@ PerlinNoise.prototype.getGradient = function( point ){
 
 //----------------------------------------------------------------------
 
-PerlinNoise.prototype.lerp = function(a0, a1, w) {
-     return (1.0 - w)*a0 + w*a1;
+PerlinNoise.prototype.lerp = function(a, b, t) {
+     return (1.0 - t)*a + t*b;
 };
 
 //----------------------------------------------------------------------

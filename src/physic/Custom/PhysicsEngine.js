@@ -54,7 +54,8 @@ PhysicsEngine.prototype.applyImpulse = function(bodyA, bodyB, vrel, normal){
 
 
     // Calculate restitution
-    var e = 2.5;
+    // var e = 2.5;
+    var e = 0;
 
     // Calculate impulse scalar
     var j = -(1.0 + e) * vrn;

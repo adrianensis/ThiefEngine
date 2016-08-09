@@ -52,12 +52,12 @@ CircleCollider.prototype.getCandidateVertices = function (otherCollider) {
 
     var radiusVector = otherCenterToCenter.cpy().nor().mulScl(this.getRadius());
 
-    // var closestPointInCircle = vertexToCenter.cpy().sub(radiusVector);
+    // var closestPointInSphere = vertexToCenter.cpy().sub(radiusVector);
 
-    var closestPointInCircle = this.getCenter().cpy().add(radiusVector);
+    var closestPointInSphere = this.getCenter().cpy().add(radiusVector);
 
     // closest point in circle to the other circle
-    candidates.push(closestPointInCircle);
+    candidates.push(closestPointInSphere);
 
 
   }else if(otherCollider instanceof Polygon){
@@ -81,10 +81,10 @@ CircleCollider.prototype.getCandidateVertices = function (otherCollider) {
       }
     }
 
-    var closestPointInCircle = GeometryUtil.closestPointInCircle(closest,center,this.getRadius());
+    var closestPointInSphere = GeometryUtil.closestPointInSphere(closest,center,this.getRadius());
 
     // closest point in circle to the edge
-    candidates.push(closestPointInCircle);
+    candidates.push(closestPointInSphere);
   }
 
 
@@ -116,7 +116,7 @@ CircleCollider.prototype.testVertexVertex = function (vertices, otherCollider, c
 
     if(otherCollider instanceof CircleCollider){
 
-      var closest = GeometryUtil.closestPointInCircle(vertex,otherCollider.getCenter(),otherCollider.getRadius());
+      var closest = GeometryUtil.closestPointInSphere(vertex,otherCollider.getCenter(),otherCollider.getRadius());
 
       var d = vertex.dst(closest);
       d *= interior; // negative if interior

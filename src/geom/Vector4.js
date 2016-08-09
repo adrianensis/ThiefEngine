@@ -1,10 +1,10 @@
 /**
 * @class
 * @classdesc Represents a 4-dimensional vector.
-* @param {float} x The x component.
-* @param {float} y The y component.
-* @param {float} z The z component.
-* @param {float} w The w component.
+* @param {Number} x The x component.
+* @param {Number} y The y component.
+* @param {Number} z The z component.
+* @param {Number} w The w component.
 */
 var Vector4 = function (x,y,z,w){
     this.x = x;
@@ -17,7 +17,7 @@ var Vector4 = function (x,y,z,w){
 
 /**
 * Returns an array representation of the vector.
-* @returns {Array} An array representation of the vector
+* @returns {Array} An array representation of the vector.
 */
 Vector4.prototype.toArray = function (){
     var array = new Array(4);
@@ -74,7 +74,7 @@ Vector4.prototype.cpy = function (){
 
 /**
 * Return the length of this vector.
-* @returns {float} The length of this vector.
+* @returns {Number} The length of this vector.
 */
 Vector4.prototype.len = function (){
     var x = this.x;
@@ -88,7 +88,7 @@ Vector4.prototype.len = function (){
 
 /**
 * Return the maximum value in this vector.
-* @returns {float} The maximum value in this vector.
+* @returns {Number} The maximum value in this vector.
 */
 Vector4.prototype.max = function (){
     var x = this.x;
@@ -237,7 +237,7 @@ Vector4.prototype.divScl = function (value){
 /**
 * Return the dot product between this vector and other vector.
 * @param {Vector4} vec The other vector.
-* @returns {float} The dot product between this vector and other vector..
+* @returns {Number} The dot product between this vector and other vector..
 */
 Vector4.prototype.dot = function (vec){
   var x1 = this.x;
@@ -281,7 +281,7 @@ Vector4.prototype.cross = function (vec){
 /**
 * Returns the angle in degrees relative to other vector.
 * @param {Vector4} vec The other vector.
-* @returns {float} The angle in degrees relative to other vector.
+* @returns {Number} The angle in degrees relative to other vector.
 */
 Vector4.prototype.ang = function (vec){
     var dot = this.dot(vec);
@@ -319,7 +319,7 @@ Vector4.prototype.nor = function (){
 /**
 * Returns the distance between this vector and other vector.
 * @param {Vector4} vec The other vector.
-* @returns {float} The distance between this vector and other vector.
+* @returns {Number} The distance between this vector and other vector.
 */
 Vector4.prototype.dst = function (vec){
 
@@ -348,7 +348,7 @@ Vector4.prototype.equals = function(vec){
 /**
 * Test if this vector is equal to the other vector, whit an epsilon error.
 * @param {Vector4} vec The other vector.
-* @param {float} epsilon The error.
+* @param {Number} epsilon The error.
 * @returns {boolean} this True if this vector is equal to the other vector, whit an epsilon error.
 */
 Vector4.prototype.epsilonEquals = function(vec,epsilon){

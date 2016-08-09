@@ -100,7 +100,7 @@ Polygon.prototype.testVertexEdge = function (vertices, otherCollider, contactLis
 
     if(otherCollider instanceof CircleCollider){
 
-      var closest = GeometryUtil.closestPointInCircle(vertex,otherCollider.getCenter(),otherCollider.getRadius());
+      var closest = GeometryUtil.closestPointInSphere(vertex,otherCollider.getCenter(),otherCollider.getRadius());
 
       var d = vertex.dst(closest);
       d *= interior; // negative if interior
