@@ -1,12 +1,13 @@
 var Collider = function () {
 	Component.call(this);
+	this.status = 0;
 };
 
 Collider.STATUS_NONE = 0;
 Collider.STATUS_PENETRATION = 1;
 Collider.STATUS_COLLISION = 2;
 
-Collider.depthEpsilon = 0.01;
+Collider.depthEpsilon = 0.02;
 
 Collider.prototype = new Component();
 Collider.prototype.constructor = Collider;
@@ -15,6 +16,18 @@ Collider.prototype.constructor = Collider;
 
 Collider.prototype.isStatic = function () {
 	return this.gameObject.isStatic();
+};
+
+//----------------------------------------------------------------------
+
+Collider.prototype.getStatus = function () {
+	return this.status;
+};
+
+//----------------------------------------------------------------------
+
+Collider.prototype.setStatus = function (status) {
+	this.status = status;
 };
 
 //----------------------------------------------------------------------
@@ -122,6 +135,9 @@ Collider.prototype.checkCollisionOrPenetration = function (vertex, maxDistance, 
 				// hasInterpenetration = true;
 
 				result = Collider.STATUS_PENETRATION;
+
+				this.setStatus(Collider.STATUS_PENETRATION);
+				otherCollider.setStatus(Collider.STATUS_PENETRATION);
 			// }
 
 		}else if(maxDistance < eps){ // collision
@@ -135,6 +151,8 @@ Collider.prototype.checkCollisionOrPenetration = function (vertex, maxDistance, 
 				// console.log("VERTEX-VERTEX COLLISION ");
 				contactList.push(new Contact(this, otherCollider, vertex, normal, vrel));
 				result = Collider.STATUS_COLLISION;
+				this.setStatus(Collider.STATUS_COLLISION);
+				otherCollider.setStatus(Collider.STATUS_COLLISION);
 				// hasInterpenetration = true;
 				// }else{
 				// 	hasInterpenetration = false;

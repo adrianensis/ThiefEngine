@@ -125,11 +125,14 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
 
 //----------------------------------------------------------------------
 
-PhysicsEngine.prototype.update = function (){
+PhysicsEngine.prototype.simulate = function (deltaTime){
 
   var currentTime = 0;
-  var targetTime = Time.deltaTime();
-  var deltaTime = Time.deltaTime();
+  // var deltaTime = Time.deltaTime();
+  // var targetTime = Time.deltaTime();
+  // var deltaTime = 1/30;
+  var targetTime = deltaTime;
+  var tol = 0.01;
   // var penetration = false;
   var tryAgain = true;
 
@@ -142,16 +145,25 @@ PhysicsEngine.prototype.update = function (){
 
   var it = 0;
   var maxIt = 10;
+  var first = true;
 
   while ( tryAgain && (currentTime < deltaTime)) {
+  // while ( tryAgain && deltaTime > tol) {
 
       tryAgain = false;
 
       // Integrate
       for (var i = 0; i < this.bodies.length; i++) {
-        this.bodies[i].restoreState();
-        this.bodies[i].simulate(targetTime - currentTime);
+        // Integrate the first time
+        // OR
+        // only re-integrate the penetration cases
+        if(first || this.bodies[i].gameObject.getComponent(Collider).getStatus() === Collider.STATUS_PENETRATION){
+          this.bodies[i].restoreState();
+          this.bodies[i].simulate(targetTime - currentTime);
+        }
     	}
+
+      first = false;
 
       // check collisions
       this.tree.update();
@@ -159,12 +171,14 @@ PhysicsEngine.prototype.update = function (){
 
       if(status == Collider.STATUS_PENETRATION){
 
+        // deltaTime -= deltaTime/2;
+        //
+        // console.log(deltaTime);
+
           if(it < maxIt)
               targetTime = (currentTime + targetTime)/2.0;
           else
               targetTime -= (deltaTime)/2.0; // HACK NEW
-
-          // penetration = true;
 
           // if(targetTime > tol)
               tryAgain = true;
@@ -188,6 +202,8 @@ PhysicsEngine.prototype.update = function (){
       it++;
   }
 
+  // console.log(it);
+
   // if(it == maxIt){
   //     console.log(it);
   //     console.log(this.tree.getStatus());
@@ -199,6 +215,29 @@ PhysicsEngine.prototype.update = function (){
           // this.bodies[i].restoreState();
    //  	}
   // }
+};
+
+//----------------------------------------------------------------------
+
+PhysicsEngine.prototype.update = function (){
+  // var deltaTime = Time.deltaTime();
+
+  var time = 1/30;
+  var timeStep = (1/30)/10;
+  var dt;
+  var lastTime = 0;
+
+  // Euler integration subdivision
+  while (lastTime < time){
+
+    dt = time - lastTime;
+
+    if(dt > timeStep)
+      dt = timeStep;
+
+    this.simulate(dt);
+    lastTime += dt;
+  }
 };
 
 //----------------------------------------------------------------------
