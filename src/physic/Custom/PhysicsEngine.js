@@ -92,8 +92,8 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
 
     var normal = contacts[i].normal;
     var vrel = contacts[i].relativeVelocity;
-    var a = contacts[i].a;
-    var b = contacts[i].b;
+    var a = contacts[i].colliderA;
+    var b = contacts[i].colliderB;
 
     if(solved[a.getId()] === undefined){
       solved[a.getId()] = {};
@@ -130,7 +130,7 @@ PhysicsEngine.prototype.update = function (){
   var currentTime = 0;
   var targetTime = Time.deltaTime();
   var deltaTime = Time.deltaTime();
-  var penetration = false;
+  // var penetration = false;
   var tryAgain = true;
 
   // var dTime = Time.deltaTime();
@@ -164,7 +164,7 @@ PhysicsEngine.prototype.update = function (){
           else
               targetTime -= (deltaTime)/2.0; // HACK NEW
 
-          penetration = true;
+          // penetration = true;
 
           // if(targetTime > tol)
               tryAgain = true;

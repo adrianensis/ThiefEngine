@@ -3,6 +3,9 @@
 <!-- ![logo](thief-logo.png) -->
 <img src ="thief-logo.png" width="640px" />
 
+## Status
+
+:construction: Working on it :construction: :goberserk:
 
 ## About this project
 

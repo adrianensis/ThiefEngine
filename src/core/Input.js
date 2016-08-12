@@ -5,8 +5,8 @@ var Input = function (){
         Input.key = event.keyCode;
 
         // this allow reload page with F5
-        if(event.keyCode !== 116)
-            event.preventDefault();
+        // if(event.keyCode !== 116)
+        //     event.preventDefault();
 
     };
 
@@ -14,7 +14,7 @@ var Input = function (){
 
         Input.key = -1;
 
-        event.preventDefault();
+        // event.preventDefault();
 
     };
 
@@ -30,7 +30,7 @@ var Input = function (){
         Input.cursorPos.y += canvas.height/2;
 
 
-        event.preventDefault();
+        // event.preventDefault();
 
     };
 
@@ -40,7 +40,7 @@ var Input = function (){
         // Input.cursorPos.y = event.clientY;
         Input.button = event.button;
 
-        event.preventDefault();
+        // event.preventDefault();
 
     };
 
@@ -50,7 +50,7 @@ var Input = function (){
         // Input.cursorPos.y = event.clientY;
         Input.button = -1;
 
-        event.preventDefault();
+        // event.preventDefault();
 
     };
 
