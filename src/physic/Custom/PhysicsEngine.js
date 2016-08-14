@@ -176,12 +176,11 @@ PhysicsEngine.prototype.simulate = function (deltaTime){
         // console.log(deltaTime);
 
           if(it < maxIt)
-              targetTime = (currentTime + targetTime)/2.0;
+            targetTime = (currentTime + targetTime)/2.0;
           else
-              targetTime -= (deltaTime)/2.0; // HACK NEW
+            targetTime -= (deltaTime)/2.0; // HACK NEW
 
-          // if(targetTime > tol)
-              tryAgain = true;
+          tryAgain = true;
 
           // console.log("penetration");
 
@@ -193,9 +192,6 @@ PhysicsEngine.prototype.simulate = function (deltaTime){
 
           this.solveCollisions(this.tree.getContacts());
       }
-      // else{
-      //     console.log(i+" none");
-      // }
 
       this.tree.clearContacts();
 
@@ -203,18 +199,6 @@ PhysicsEngine.prototype.simulate = function (deltaTime){
   }
 
   // console.log(it);
-
-  // if(it == maxIt){
-  //     console.log(it);
-  //     console.log(this.tree.getStatus());
-  // }
-
-
-  // if( ! penetration){
-      // for (var i = 0; i < this.bodies.length; i++) {
-          // this.bodies[i].restoreState();
-   //  	}
-  // }
 };
 
 //----------------------------------------------------------------------
@@ -223,7 +207,7 @@ PhysicsEngine.prototype.update = function (){
   // var deltaTime = Time.deltaTime();
 
   var time = 1/30;
-  var timeStep = (1/30)/10;
+  var timeStep = (1/30)/5;
   var dt;
   var lastTime = 0;
 
