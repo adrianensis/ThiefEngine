@@ -104,14 +104,14 @@ SpriteBatch.prototype.update = function (renderContext){
 
   // var matrices = [];
   // for (var renderer of this.renderers) {
-  //     matrices.push(renderer.gameObject.getTransform().getMatrix().transpose());
+  //     matrices.push(renderer.gameObject.getTransform().getMatrix());
   // }
   //
   // this.material.getShader().addMatrixArray(matrices, "transformationMatrix");
   //
-	// // this.material.getShader().addMatrix(this.gameObject.getTransform().getMatrix().transpose(), "transformationMatrix");
-	this.material.getShader().addMatrix(this.renderContext.getCamera().getProjectionMatrix().transpose(), "projectionMatrix");
-	this.material.getShader().addMatrix(this.renderContext.getCamera().getViewMatrix().transpose(), "viewMatrix");
+	// // this.material.getShader().addMatrix(this.gameObject.getTransform().getMatrix(), "transformationMatrix");
+	this.material.getShader().addMatrix(this.renderContext.getCamera().getProjectionMatrix(), "projectionMatrix");
+	this.material.getShader().addMatrix(this.renderContext.getCamera().getViewMatrix(), "viewMatrix");
 
 	this.material.disable();
 
@@ -163,7 +163,7 @@ SpriteBatch.prototype.render = function (){
       	gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 0, 0);
 
         renderer.gameObject.getTransform().generateMatrix();
-        this.material.getShader().addMatrix(renderer.gameObject.getTransform().getMatrix().transpose(), "transformationMatrix");
+        this.material.getShader().addMatrix(renderer.gameObject.getTransform().getMatrix(), "transformationMatrix");
 
         renderer.updateMaterial(this.material);
 

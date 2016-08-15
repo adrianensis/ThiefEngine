@@ -70,6 +70,10 @@ Matrix4.prototype.get = function (row,col){
 	return this.data[row+(4*col)];
 };
 
+Matrix4.prototype.get2 = function (row,col){
+	return this.data[col+(4*row)];
+};
+
 //----------------------------------------------------------------------
 
 /**
@@ -112,16 +116,12 @@ Matrix4.prototype.setRows = function (row0,row1,row2,row3){
 Matrix4.prototype.transpose = function () {
 
     if(this.transposed === null){
-        var transposedData = new Array(16);
-
-        for (var col = 0; col < 4; col++)
-            for (var row = 0; row < 4; row++)
-                transposedData[row+(4*col)] = this.get(row,col); //= rows[row][col];
-
-        // this.data = t;
 
         this.transposed = Matrix4.zeros();
-        this.transposed.setData(transposedData);
+
+        for (var row = 0; row < 4; row++)
+          for (var col = 0; col < 4; col++)
+                this.transposed.set(col,row,this.get(row,col));
     }
 
     return this.transposed;
