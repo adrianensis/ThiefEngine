@@ -122,6 +122,7 @@ var spriteBuilder = new SpriteBuilder();
 
 
 
+
   var soilder =
   spriteBuilder.begin("res/soldier.png"). // create a basic sprite
     setPosition(new Vector2(2,0)).
