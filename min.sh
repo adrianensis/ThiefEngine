@@ -10,48 +10,48 @@ geom/Vector2.js
 geom/Matrix4.js
 geom/GeometryUtil.js
 
-graphic/Color.js
-graphic/Texture.js
-graphic/RenderContext.js
-graphic/Shader.js
-graphic/Material.js
-graphic/Animation.js
-graphic/AnimationFrame.js
-graphic/Mesh.js
-graphic/RectangleMesh.js
-graphic/CubeMesh.js
-graphic/SpriteBatch.js
-graphic/RenderEngine.js
-graphic/DebugRenderer.js
+graphics/Color.js
+graphics/Texture.js
+graphics/RenderContext.js
+graphics/Shader.js
+graphics/Material.js
+graphics/Animation.js
+graphics/AnimationFrame.js
+graphics/Mesh.js
+graphics/RectangleMesh.js
+graphics/CubeMesh.js
+graphics/SpriteBatch.js
+graphics/RenderEngine.js
+graphics/DebugRenderer.js
 
 gameobject/BaseObject.js
 gameobject/GameObject.js
 gameobject/Component.js
 
-physic/Custom/QuadTreeNode.js
-physic/Custom/QuadTree.js
-physic/Custom/PhysicsEngine.js
-physic/Custom/State.js
-physic/Custom/RigidBody.js
-physic/Custom/Contact.js
-physic/Custom/Collider.js
-physic/Custom/Collider2D.js
-physic/Custom/Polygon.js
-physic/Custom/AABBCollider.js
-physic/Custom/CircleCollider.js
+physics/QuadTreeNode.js
+physics/QuadTree.js
+physics/PhysicsEngine.js
+physics/State.js
+physics/RigidBody.js
+physics/Contact.js
+physics/Collider.js
+physics/Collider2D.js
+physics/Polygon.js
+physics/AABBCollider.js
+physics/CircleCollider.js
 
 
 
 gameobject/Scene.js
 gameobject/Transform.js
 
-graphic/MeshRenderer.js
-graphic/LineRenderer.js
-graphic/SpriteRenderer.js
-graphic/Frustum.js
-graphic/Camera.js
-graphic/OrthoCamera.js
-graphic/PerspectiveCamera.js
+graphics/MeshRenderer.js
+graphics/LineRenderer.js
+graphics/SpriteRenderer.js
+graphics/Frustum.js
+graphics/Camera.js
+graphics/OrthoCamera.js
+graphics/PerspectiveCamera.js
 
 core/Time.js
 core/Engine.js
@@ -72,7 +72,7 @@ builder/CameraBuilder.js
 Thief/Thief.js
 "
 
-#list="core geom graphic physic gameobject script" #../test/test5.js"
+#list="core geom graphics physics gameobject script" #../test/test5.js"
 
 rm "thief.min.js" 2> /dev/null
 
