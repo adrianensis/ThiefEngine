@@ -30,7 +30,7 @@
     
         <h2>Matrix4</h2>
         
-            <div class="class-description">Represents a row-major 4x4 matrix.</div>
+            <div class="class-description">Represents a 4x4 matrix.</div>
         
     
 </header>
@@ -265,7 +265,7 @@
 
 
 <div class="description">
-    Returns element of the matrix.
+    Returns an element of the matrix.
 </div>
 
 
@@ -381,7 +381,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line65">line 65</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line69">line 69</a>
     </li></ul></dd>
     
 
@@ -485,7 +485,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line43">line 43</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -538,7 +538,315 @@
 
     
 
-    <h4 class="name" id="set"><span class="type-signature"></span>set<span class="signature">(row0, row1, row2, row3)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="set"><span class="type-signature"></span>set<span class="signature">(row, col, value)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Sets an element of the matrix.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>row</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The row.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>col</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The col.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The value of the element.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line81">line 81</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setData"><span class="type-signature"></span>setData<span class="signature">(data)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Sets the internal data array.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data array.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line57">line 57</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setRows"><span class="type-signature"></span>setRows<span class="signature">(row0, row1, row2, row3)</span><span class="type-signature"></span></h4>
 
     
 
@@ -707,138 +1015,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line78">line 78</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setData"><span class="type-signature"></span>setData<span class="signature">(data)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Sets the internal data array.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The data array.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line53">line 53</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line94">line 94</a>
     </li></ul></dd>
     
 
@@ -920,7 +1097,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line96">line 96</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -1024,7 +1201,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line200">line 200</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line213">line 213</a>
     </li></ul></dd>
     
 
@@ -1200,7 +1377,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line122">line 122</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line138">line 138</a>
     </li></ul></dd>
     
 
@@ -1376,7 +1553,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line155">line 155</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line169">line 169</a>
     </li></ul></dd>
     
 
@@ -1644,7 +1821,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line287">line 287</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line300">line 300</a>
     </li></ul></dd>
     
 
@@ -1866,7 +2043,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line305">line 305</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line318">line 318</a>
     </li></ul></dd>
     
 
@@ -2020,7 +2197,7 @@ only one component must have a non-zero value. The other two must be zero.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line231">line 231</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line244">line 244</a>
     </li></ul></dd>
     
 
@@ -2173,7 +2350,7 @@ only one component must have a non-zero value. The other two must be zero.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line267">line 267</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line280">line 280</a>
     </li></ul></dd>
     
 
@@ -2326,7 +2503,7 @@ only one component must have a non-zero value. The other two must be zero.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line215">line 215</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line228">line 228</a>
     </li></ul></dd>
     
 
@@ -2430,7 +2607,7 @@ only one component must have a non-zero value. The other two must be zero.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line186">line 186</a>
+        <a href="Matrix4.js.html">Matrix4.js</a>, <a href="Matrix4.js.html#line199">line 199</a>
     </li></ul></dd>
     
 
@@ -2500,7 +2677,7 @@ only one component must have a non-zero value. The other two must be zero.
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 11 2016 01:53:31 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Aug 15 2016 17:48:06 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>
