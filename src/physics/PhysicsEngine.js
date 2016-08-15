@@ -178,7 +178,7 @@ PhysicsEngine.prototype.simulate = function (deltaTime){
           if(it < maxIt)
             targetTime = (currentTime + targetTime)/2.0;
           else
-            targetTime -= (deltaTime)/2.0; // HACK NEW
+            targetTime -= (deltaTime); // HACK NEW
 
           tryAgain = true;
 

@@ -116,7 +116,7 @@ var spriteBuilder = new SpriteBuilder();
     addAnimation("right", 4, true, false, new Vector2(0,0.25), 1/4, 1/4, 6). // add RIGHT animation
     setAnimation("down"). // set the default animation
     setRigidBody(). // set physics properties
-    setCollider(new AABBCollider(0.7,0.7)). // set a Box Collider
+    setCollider(new AABBCollider(1,1)). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
   end();
 
