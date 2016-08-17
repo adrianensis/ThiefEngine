@@ -174,10 +174,10 @@ PhysicsEngine.prototype.simulate = function (dt){
 
       if(status === Collider.STATUS_PENETRATION){
 
-          if(targetTime < tol)
+          // if(targetTime < tol)
             targetTime = (currentTime + targetTime)/2.0;
-          else
-            targetTime -= (deltaTime)*2; // HACK NEW
+          // else
+            // targetTime -= (deltaTime)*2; // HACK NEW
 
             // if(body.gameObject.getComponent(Collider).getId() === 7532)
               // console.log(targetTime +" "+ (targetTime - currentTime));
