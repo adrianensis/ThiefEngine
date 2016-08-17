@@ -1,9 +1,41 @@
 var Polygon = function (width, height) {
   Collider2D.call(this, width, height);
+
+  this.vertices = [];
+  this.edges = [];
+  this.normals = [];
 };
 
 Polygon.prototype = new Collider2D();
 Polygon.prototype.constructor = Polygon;
+
+//----------------------------------------------------------------------
+
+Polygon.prototype.getEdges = function () {
+
+  var t = this.gameObject.getTransform();
+
+  if(t.isDirty()){
+
+    var vertices = this.getVertices();
+    this.edges = [];
+
+    for (var i = 0; i < vertices.length; i++) {
+    	a = vertices[i];
+    	b = vertices[(i+1)%4];
+
+      this.edges.push([a,b]);
+    }
+  }
+
+  return this.edges;
+};
+
+//----------------------------------------------------------------------
+
+Polygon.prototype.getCandidateVertices = function (otherCollider) {
+  return this.getVertices();
+};
 
 //----------------------------------------------------------------------
 
@@ -22,6 +54,8 @@ Polygon.prototype.testVertexVertex = function (vertices, otherCollider, contactL
 	// var double = new Array(2);
 
 	var center = this.getCenter().cpy();
+
+  // var it = 0;
 
   // for all vertices
   for (var i = 0; i < vertices.length && !foundVertexVertex; i++) {
@@ -49,13 +83,14 @@ Polygon.prototype.testVertexVertex = function (vertices, otherCollider, contactL
 			// if(Math.abs(d) <= Math.abs(eps)){
           if(d <= eps){
 
-						foundVertexVertex = true;
-
             // max
             if(d > maxDistance){
 
-                maxDistance = d;
-								normal = center.sub(otherCollider.getCenter()).nor();
+              foundVertexVertex = true;
+              // it++;
+
+              maxDistance = d;
+							normal = center.sub(otherCollider.getCenter()).nor();
 
             }
           }
@@ -63,10 +98,12 @@ Polygon.prototype.testVertexVertex = function (vertices, otherCollider, contactL
     }
 
 		if(foundVertexVertex){
-      result = this.checkCollisionOrPenetration(vertex, maxDistance, normal, otherCollider, contactList);
+      result = this.checkCollisionOrPenetration(vertex, eps, maxDistance, normal, otherCollider, contactList);
     }
 
 	}
+
+  // console.log(this.getId() + " "+it);
 
   return result;
 };
@@ -82,10 +119,19 @@ Polygon.prototype.testVertexEdge = function (vertices, otherCollider, contactLis
   var edges = otherCollider.getEdges(); // otherCollider's edges
   var normals = otherCollider.getNormals(); // the normals of this collider
 
+  var midPointFlag = false;
+
 
   for (var i = 0; i < vertices.length && result !== Collider.STATUS_PENETRATION; i++) {
 
-    var vertex = vertices[i];
+    var vertex = null;
+
+    if(midPointFlag)
+      vertex = GeometryUtil.midPoint(vertices[i],vertices[(i+1)%vertices.length]);
+    else
+      vertex = vertices[i];
+
+    midPointFlag = !midPointFlag;
 
     var normal = null; // the collision normal
 
@@ -141,7 +187,7 @@ Polygon.prototype.testVertexEdge = function (vertices, otherCollider, contactLis
     }
 
     if(foundVertexEdge){
-      result = this.checkCollisionOrPenetration(vertex, maxDistance, normal, otherCollider, contactList);
+      result = this.checkCollisionOrPenetration(vertex, eps, maxDistance, normal, otherCollider, contactList);
     }
   }
 

@@ -1,6 +1,6 @@
 var Collider = function () {
 	Component.call(this);
-	this.status = 0;
+	this.status = Collider.STATUS_NONE;
 };
 
 Collider.STATUS_NONE = 0;
@@ -118,46 +118,35 @@ Collider.prototype.testVertexEdge = function (vertices, otherCollider, contactLi
 
 //----------------------------------------------------------------------
 
-Collider.prototype.checkCollisionOrPenetration = function (vertex, maxDistance, normal, otherCollider, contactList) {
+Collider.prototype.checkCollisionOrPenetration = function (vertex, eps, maxDistance, normal, otherCollider, contactList) {
 
 	var result = Collider.STATUS_NONE;
-
-	var eps = Collider.depthEpsilon;
+	//
+	// var eps = Collider.depthEpsilon;
 
 	var vrel = this.getRelativeVelocity(otherCollider);
 
 	var vrn = vrel.dot(normal);
 
-	if(vrn < 0.0){
-		if(maxDistance < -eps){ // penetration
-			// if(vrn < 0.0){
-				// console.log("VERTEX-VERTEX PENETRATION " + maxDistance);
-				// hasInterpenetration = true;
+	if(!this.isStatic() && vrn <= 0){
+
+		// penetration
+		if(maxDistance < -eps){
 
 				result = Collider.STATUS_PENETRATION;
 
 				this.setStatus(Collider.STATUS_PENETRATION);
 				otherCollider.setStatus(Collider.STATUS_PENETRATION);
-			// }
 
-		}else if(maxDistance < eps){ // collision
 
-			// if(vrn < 0.0){
-
-				// counter++;
-				//
-				// if(counter < 2){
+		// collision
+		}else if(maxDistance < eps){
 
 				// console.log("VERTEX-VERTEX COLLISION ");
 				contactList.push(new Contact(this, otherCollider, vertex, normal, vrel));
 				result = Collider.STATUS_COLLISION;
 				this.setStatus(Collider.STATUS_COLLISION);
 				otherCollider.setStatus(Collider.STATUS_COLLISION);
-				// hasInterpenetration = true;
-				// }else{
-				// 	hasInterpenetration = false;
-				// }
-			// }
 		}
 	}
 

@@ -28,7 +28,10 @@ PhysicsEngine.prototype.addBodies = function (bodies){
 
 PhysicsEngine.prototype.addBody = function (body){
   this.bodies.push(body);
-  this.tree.addCollider(body.gameObject.getComponent(Collider));
+
+  var collider = body.gameObject.getComponent(Collider);
+  if(collider !== null)
+    this.tree.addCollider(collider);
 };
 
 //----------------------------------------------------------------------
@@ -68,14 +71,16 @@ PhysicsEngine.prototype.applyImpulse = function(bodyA, bodyB, vrel, normal){
 
     if( ! bodyA.isStatic()){
       bodyA.linear.add(impulse.cpy().mulScl(invMass));
-      // console.log("A " + bodyA.getId());
-      // console.log(bodyA.linear);
+      // console.log(bodyA.linear.len());
+      // if(bodyA.linear.len() < 0.1)
+      //   bodyA.linear = new Vector3(0,0,0);
     }
 
     if( ! bodyB.isStatic()){
       bodyB.linear.sub(impulse.cpy().mulScl(invMass));
-      // console.log("B " + bodyB.getId());
-      // console.log(bodyB.linear);
+      // console.log(bodyB.linear.len());
+      // if(bodyB.linear.len() < 0.1)
+      //   bodyB.linear = new Vector3(0,0,0);
     }
 
 
@@ -114,8 +119,8 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
 
       this.applyImpulse(bodyA,bodyB,vrel,normal);
 
-      solved[a.getId()][b.getId()] = true;
-      solved[b.getId()][a.getId()] = true;
+      // solved[a.getId()][b.getId()] = true;
+      // solved[b.getId()][a.getId()] = true;
 
     }
   }
@@ -125,41 +130,39 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
 
 //----------------------------------------------------------------------
 
-PhysicsEngine.prototype.simulate = function (deltaTime){
+PhysicsEngine.prototype.simulate = function (dt){
 
+  var deltaTime = dt;
   var currentTime = 0;
-  // var deltaTime = Time.deltaTime();
-  // var targetTime = Time.deltaTime();
-  // var deltaTime = 1/30;
   var targetTime = deltaTime;
-  var tol = 0.01;
-  // var penetration = false;
+  var tol = 0.001;
   var tryAgain = true;
-
-  // var dTime = Time.deltaTime();
-  // var tol = 0.00001;
 
   for (var i = 0; i < this.bodies.length; i++) {
       this.bodies[i].saveState();
   }
 
   var it = 0;
-  var maxIt = 10;
+  var maxIt = 50;
   var first = true;
 
-  while ( tryAgain && (currentTime < deltaTime)) {
-  // while ( tryAgain && deltaTime > tol) {
+  while (tryAgain && (currentTime < deltaTime)) {
 
       tryAgain = false;
 
       // Integrate
       for (var i = 0; i < this.bodies.length; i++) {
+
+        var body = this.bodies[i];
+
+        var inPenetration = body.gameObject.getComponent(Collider) !== null && body.gameObject.getComponent(Collider).getStatus() === Collider.STATUS_PENETRATION;
+
         // Integrate the first time
         // OR
         // only re-integrate the penetration cases
-        if(first || this.bodies[i].gameObject.getComponent(Collider).getStatus() === Collider.STATUS_PENETRATION){
-          this.bodies[i].restoreState();
-          this.bodies[i].simulate(targetTime - currentTime);
+        if(first || (inPenetration && ! body.isStatic())){
+          body.restoreState();
+          body.simulate(targetTime - currentTime);
         }
     	}
 
@@ -169,22 +172,21 @@ PhysicsEngine.prototype.simulate = function (deltaTime){
       this.tree.update();
       var status = this.tree.getStatus();
 
-      if(status == Collider.STATUS_PENETRATION){
+      if(status === Collider.STATUS_PENETRATION){
 
-        // deltaTime -= deltaTime/2;
-        //
-        // console.log(deltaTime);
-
-          if(it < maxIt)
+          if(targetTime < tol)
             targetTime = (currentTime + targetTime)/2.0;
           else
-            targetTime -= (deltaTime); // HACK NEW
+            targetTime -= (deltaTime)*2; // HACK NEW
+
+            // if(body.gameObject.getComponent(Collider).getId() === 7532)
+              // console.log(targetTime +" "+ (targetTime - currentTime));
 
           tryAgain = true;
 
           // console.log("penetration");
 
-      }else if (status == Collider.STATUS_COLLISION) {
+      }else if (status === Collider.STATUS_COLLISION){
           currentTime = targetTime;
           targetTime = deltaTime;
 
@@ -198,16 +200,14 @@ PhysicsEngine.prototype.simulate = function (deltaTime){
       it++;
   }
 
-  // console.log(it);
 };
 
 //----------------------------------------------------------------------
 
 PhysicsEngine.prototype.update = function (){
-  // var deltaTime = Time.deltaTime();
 
-  var time = 1/30;
-  var timeStep = (1/30)/5;
+  var time = 1/60;
+  var timeStep = time/10;
   var dt;
   var lastTime = 0;
 

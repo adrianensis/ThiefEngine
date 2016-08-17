@@ -93,7 +93,7 @@ var spriteBuilder = new SpriteBuilder();
 
   var snorlax =
   spriteBuilder.begin("res/snorlax.bmp").
-    setPosition(new Vector2(-2,0)).
+    setPosition(new Vector2(0,-1.51)).
     setSize(1).
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
@@ -102,11 +102,9 @@ var spriteBuilder = new SpriteBuilder();
   end();
 
 
-
-
   var player =
   spriteBuilder.begin("res/pok-char.png"). // create a basic sprite
-    setPosition(new Vector2(0,0)).
+    setPosition(new Vector2(0.03,0)).
     // setRotation(new Vector3(0,0,90)).
     setSize(1).
     setStatic(false).
@@ -117,15 +115,14 @@ var spriteBuilder = new SpriteBuilder();
     setAnimation("down"). // set the default animation
     setRigidBody(). // set physics properties
     setCollider(new AABBCollider(1,1)). // set a Box Collider
+    // setCollider(new CircleCollider(0.5)). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
   end();
 
 
-
-
-  var soilder =
-  spriteBuilder.begin("res/soldier.png"). // create a basic sprite
-    setPosition(new Vector2(2,0)).
+var createSoilder = function(x,y){
+  return spriteBuilder.begin("res/soldier.png"). // create a basic sprite
+    setPosition(new Vector2(x,y)).
     setSize(1).
     setStatic(false).
     addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
@@ -133,11 +130,15 @@ var spriteBuilder = new SpriteBuilder();
     setRigidBody(). // set physics properties
     setCollider(new AABBCollider(1,1)). // set a Box Collider
   end();
+};
 
   // player.addChild(soilder);
 
+  // Thief.addGameObjectToScene(createSoilder(2,-1));
   Thief.addGameObjectToScene(player);
-  Thief.addGameObjectToScene(soilder);
+  // Thief.addGameObjectToScene(createSoilder(3.1,0.3));
+  // Thief.addGameObjectToScene(createSoilder(4.2,0.2));
+  // Thief.addGameObjectToScene(createSoilder(5.3,0.1));
   Thief.addGameObjectToScene(snorlax);
   // Thief.addGameObjectToScene(font);
 
@@ -148,7 +149,7 @@ var spriteBuilder = new SpriteBuilder();
   var screenW = canvas.width;
   var screenH = canvas.height;
 
-  var zoom = 6;
+  var zoom = 3;
   var aspect = (screenW/screenH);
   var w = 1*aspect;
   var h = 1;

@@ -33,16 +33,29 @@ Collider2D.prototype.getBoundingBox = function () {
 
 Collider2D.prototype.generateContacts = function (vertices, otherCollider, contactList) {
 
-
+	// var resultVertexVertex = Collider.STATUS_NONE;
 	var resultVertexVertex = this.testVertexVertex(vertices, otherCollider, contactList);
+
 
 	var resultVertexEdge = Collider.STATUS_NONE;
 
 	// if penetration/collision has been detected in vertex-vertex phase, we don't need to check vertex-edge.
-	// if(resultVertexVertex !== Collider.STATUS_PENETRATION){
+
+	// console.log("vertex");
+	// console.log(resultVertexVertex);
+
 	if(resultVertexVertex === Collider.STATUS_NONE){
 		resultVertexEdge = this.testVertexEdge(vertices, otherCollider, contactList);
+		// if(this.getId() === 7532 && resultVertexEdge !== Collider.STATUS_NONE)
+		// 	console.log("vertex edge " + resultVertexEdge);
 	}
+	// else if(this.getId() === 7532)
+	// 	console.log("vertex vertex " + resultVertexVertex);
+
+	// console.log("edge");
+	// console.log(resultVertexEdge);
+
+	// console.log("###################");
 
 	// if one test has detected something.
 	if(resultVertexVertex !== Collider.STATUS_NONE || resultVertexEdge !== Collider.STATUS_NONE){
@@ -51,10 +64,12 @@ Collider2D.prototype.generateContacts = function (vertices, otherCollider, conta
 		var hasCollision = resultVertexVertex === Collider.STATUS_COLLISION || resultVertexEdge === Collider.STATUS_COLLISION;
 
 		if(hasInterpenetration){
-			// console.log("PENETRATION");
+			// if(this.getId() === 7532 )
+			// 	console.log("PENETRATION " + this.getId() + " " + this.getCenter().y);
 			return Collider.STATUS_PENETRATION;
 		}else if(hasCollision){
-			// console.log("COLLISION");
+			// if(this.getId() === 7532 )
+			// 	console.log("COLLISION " + this.getId() + " " + this.getCenter().y);
 			return Collider.STATUS_COLLISION;
 		}
 	}

@@ -162,7 +162,7 @@ CircleCollider.prototype.testVertexVertex = function (vertices, otherCollider, c
     }
 
     if(foundVertexEdge){
-      result = this.checkCollisionOrPenetration(vertex, maxDistance, normal, otherCollider, contactList);
+      result = this.checkCollisionOrPenetration(vertex, eps, maxDistance, normal, otherCollider, contactList);
     }
 
 

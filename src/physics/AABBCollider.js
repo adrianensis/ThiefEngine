@@ -8,25 +8,12 @@ AABBCollider.prototype.constructor = AABBCollider;
 //----------------------------------------------------------------------
 
 AABBCollider.prototype.getVertices = function () {
-  return this.getBoundingBox();
+  return this.getBoundingBox(); // here I don't return this.vertices, instead I return the boundig box
 };
 
 //----------------------------------------------------------------------
 
-AABBCollider.prototype.getEdges = function () {
 
-  var vertices = this.getVertices();
-  var edges = [];
-
-  for (var i = 0; i < vertices.length; i++) {
-  	a = vertices[i];
-  	b = vertices[(i+1)%4];
-
-    edges.push([a,b]);
-  }
-
-  return edges;
-};
 
 //----------------------------------------------------------------------
 
@@ -70,8 +57,5 @@ AABBCollider.prototype.testPoint = function (vec) {
 
 //----------------------------------------------------------------------
 
-AABBCollider.prototype.getCandidateVertices = function (otherCollider, contactList) {
-  return this.getVertices();
-};
 
 //----------------------------------------------------------------------

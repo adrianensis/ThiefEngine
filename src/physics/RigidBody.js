@@ -24,6 +24,13 @@ RigidBody.prototype.isStatic = function () {
 
 //----------------------------------------------------------------------
 
+RigidBody.prototype.isQuiet = function (error) {
+	return this.linear.len() === 0 || this.linear.len() < error;
+};
+
+//----------------------------------------------------------------------
+
+
 RigidBody.prototype.setOnCollision = function (bool) {
 	this.onCollision = bool;
 };
@@ -50,6 +57,11 @@ RigidBody.prototype.restoreState = function () {
 //----------------------------------------------------------------------
 
 RigidBody.prototype.simulate = function (time) {
+
+	// var v = this.linear.len();
+	// if(v === 0 || v < 0.01)
+	// 	this.linear = new Vector3(0,0,0);
+
 	var t = this.gameObject.getTransform();
 	t.translate(this.linear.cpy().mulScl(time));
 };

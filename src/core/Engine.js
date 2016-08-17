@@ -70,7 +70,7 @@ Engine.prototype.init = function (){
 
 //----------------------------------------------------------------------
 
-Engine.prototype.uploadScene = function(){
+Engine.prototype.updateScene = function(){
 
   var root = this.currentScene.getNewsRoot();
 
@@ -98,7 +98,7 @@ Engine.prototype.loadScene = function(){
   this.physicsEngine.clear();
   this.scriptEngine.clear();
 
-  this.uploadScene();
+  this.updateScene();
 
 };
 
@@ -137,7 +137,7 @@ Engine.prototype.run = function () {
       engine.loadScene();
 
     if(currentScene.hasNewObjects())
-      engine.uploadScene();
+      engine.updateScene();
 
     if(Loader.isDone()){
       engine.loaded = true;
