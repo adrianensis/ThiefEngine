@@ -7,7 +7,7 @@ Collider.STATUS_NONE = 0;
 Collider.STATUS_PENETRATION = 1;
 Collider.STATUS_COLLISION = 2;
 
-Collider.depthEpsilon = 0.02;
+Collider.depthEpsilon = 0.01;
 
 Collider.prototype = new Component();
 Collider.prototype.constructor = Collider;
@@ -148,6 +148,33 @@ Collider.prototype.checkCollisionOrPenetration = function (vertex, eps, maxDista
 				this.setStatus(Collider.STATUS_COLLISION);
 				otherCollider.setStatus(Collider.STATUS_COLLISION);
 		}
+	}
+
+	return result;
+
+};
+
+//----------------------------------------------------------------------
+
+Collider.prototype.checkCollision = function (vertex, eps, maxDistance, normal, otherCollider, contactList) {
+
+	var result = Collider.STATUS_NONE;
+	//
+	// var eps = Collider.depthEpsilon;
+
+	var vrel = this.getRelativeVelocity(otherCollider);
+
+	var vrn = vrel.dot(normal);
+
+	if(!this.isStatic() && vrn <= 0){
+
+
+				// console.log("VERTEX-VERTEX COLLISION ");
+				contactList.push(new Contact(this, otherCollider, vertex, normal, vrel));
+				result = Collider.STATUS_COLLISION;
+				this.setStatus(Collider.STATUS_COLLISION);
+				otherCollider.setStatus(Collider.STATUS_COLLISION);
+
 	}
 
 	return result;

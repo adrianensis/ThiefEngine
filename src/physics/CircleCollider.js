@@ -95,7 +95,12 @@ CircleCollider.prototype.getCandidateVertices = function (otherCollider) {
 //----------------------------------------------------------------------
 
 CircleCollider.prototype.testVertexVertex = function (vertices, otherCollider, contactList) {
+  return Collider.STATUS_NONE;
+};
 
+//----------------------------------------------------------------------
+
+CircleCollider.prototype.testVertexEdge = function (vertices, otherCollider, contactList) {
   var result = Collider.STATUS_NONE;
 
   var eps = Collider.depthEpsilon; // Error
@@ -169,12 +174,6 @@ CircleCollider.prototype.testVertexVertex = function (vertices, otherCollider, c
   }
 
   return result;
-};
-
-//----------------------------------------------------------------------
-
-CircleCollider.prototype.testVertexEdge = function (vertices, otherCollider, contactList) {
-  return Collider.STATUS_NONE;
 };
 
 //----------------------------------------------------------------------

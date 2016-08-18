@@ -17,14 +17,14 @@ Collider2D.prototype.constructor = Collider2D;
 Collider2D.prototype.getBoundingBox = function () {
 	var t = this.gameObject.getTransform();
 
-  if(t.isDirty()){
+  // if(t.isDirty()){
     var center = this.getCenter();
 
   	this.LT = new Vector3(center.x-(this.width/2),center.y+(this.height/2), center.z); // LEFT TOP VERTEX
   	this.LB = new Vector3(this.LT.x, this.LT.y - this.height, center.z); // LEFT BOTTOM
   	this.RB = new Vector3(this.LT.x + this.width, this.LT.y - this.height, center.z); // RIGHT BOTTOM
   	this.RT = new Vector3(this.LT.x + this.width, this.LT.y, center.z); // RIGHT TOP
-  }
+  // }
 
   return [this.LT, this.LB, this.RB, this.RT];
 };
@@ -33,9 +33,8 @@ Collider2D.prototype.getBoundingBox = function () {
 
 Collider2D.prototype.generateContacts = function (vertices, otherCollider, contactList) {
 
-	// var resultVertexVertex = Collider.STATUS_NONE;
-	var resultVertexVertex = this.testVertexVertex(vertices, otherCollider, contactList);
-
+	var resultVertexVertex = Collider.STATUS_NONE;
+	// var resultVertexVertex = this.testVertexVertex(vertices, otherCollider, contactList);
 
 	var resultVertexEdge = Collider.STATUS_NONE;
 
@@ -44,11 +43,11 @@ Collider2D.prototype.generateContacts = function (vertices, otherCollider, conta
 	// console.log("vertex");
 	// console.log(resultVertexVertex);
 
-	if(resultVertexVertex === Collider.STATUS_NONE){
+	// if(resultVertexVertex === Collider.STATUS_NONE){
 		resultVertexEdge = this.testVertexEdge(vertices, otherCollider, contactList);
 		// if(this.getId() === 7532 && resultVertexEdge !== Collider.STATUS_NONE)
 		// 	console.log("vertex edge " + resultVertexEdge);
-	}
+	// }
 	// else if(this.getId() === 7532)
 	// 	console.log("vertex vertex " + resultVertexVertex);
 

@@ -119,8 +119,8 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
 
       this.applyImpulse(bodyA,bodyB,vrel,normal);
 
-      // solved[a.getId()][b.getId()] = true;
-      // solved[b.getId()][a.getId()] = true;
+      solved[a.getId()][b.getId()] = true;
+      solved[b.getId()][a.getId()] = true;
 
     }
   }
@@ -142,8 +142,8 @@ PhysicsEngine.prototype.simulate = function (dt){
       this.bodies[i].saveState();
   }
 
-  var it = 0;
-  var maxIt = 50;
+  // var it = 0;
+  // var maxIt = 50;
   var first = true;
 
   while (tryAgain && (currentTime < deltaTime)) {
@@ -160,7 +160,7 @@ PhysicsEngine.prototype.simulate = function (dt){
         // Integrate the first time
         // OR
         // only re-integrate the penetration cases
-        if(first || (inPenetration && ! body.isStatic())){
+        if(first || (inPenetration)){
           body.restoreState();
           body.simulate(targetTime - currentTime);
         }
@@ -197,7 +197,7 @@ PhysicsEngine.prototype.simulate = function (dt){
 
       this.tree.clearContacts();
 
-      it++;
+      // it++;
   }
 
 };

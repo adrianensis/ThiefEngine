@@ -93,7 +93,7 @@ var spriteBuilder = new SpriteBuilder();
 
   var snorlax =
   spriteBuilder.begin("res/snorlax.bmp").
-    setPosition(new Vector2(0,-1.51)).
+    setPosition(new Vector2(0,-2)).
     setSize(1).
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
@@ -104,7 +104,7 @@ var spriteBuilder = new SpriteBuilder();
 
   var player =
   spriteBuilder.begin("res/pok-char.png"). // create a basic sprite
-    setPosition(new Vector2(0.03,0)).
+    setPosition(new Vector2(0,0)).
     // setRotation(new Vector3(0,0,90)).
     setSize(1).
     setStatic(false).
@@ -134,11 +134,12 @@ var createSoilder = function(x,y){
 
   // player.addChild(soilder);
 
-  // Thief.addGameObjectToScene(createSoilder(2,-1));
+  Thief.addGameObjectToScene(createSoilder(2,-1.5));
+
   Thief.addGameObjectToScene(player);
-  // Thief.addGameObjectToScene(createSoilder(3.1,0.3));
-  // Thief.addGameObjectToScene(createSoilder(4.2,0.2));
-  // Thief.addGameObjectToScene(createSoilder(5.3,0.1));
+  Thief.addGameObjectToScene(createSoilder(3.1,0.3));
+  Thief.addGameObjectToScene(createSoilder(4.2,0.2));
+  Thief.addGameObjectToScene(createSoilder(5.3,0.1));
   Thief.addGameObjectToScene(snorlax);
   // Thief.addGameObjectToScene(font);
 
@@ -149,7 +150,7 @@ var createSoilder = function(x,y){
   var screenW = canvas.width;
   var screenH = canvas.height;
 
-  var zoom = 3;
+  var zoom = 5;
   var aspect = (screenW/screenH);
   var w = 1*aspect;
   var h = 1;
