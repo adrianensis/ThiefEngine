@@ -5,6 +5,7 @@ var RigidBody = function (){
 	this.mass = 0;
 	this.onCollision = false;
 	this.savedState = null;
+	this.status = Collider.STATUS_NONE;
 };
 
 RigidBody.prototype = new Component();
@@ -24,9 +25,17 @@ RigidBody.prototype.isStatic = function () {
 
 //----------------------------------------------------------------------
 
-RigidBody.prototype.isQuiet = function (error) {
-	return this.linear.len() === 0 || this.linear.len() < error;
+RigidBody.prototype.getStatus = function () {
+	return this.status;
 };
+
+//----------------------------------------------------------------------
+
+RigidBody.prototype.setStatus = function (status) {
+	this.status = status;
+};
+
+//----------------------------------------------------------------------
 
 //----------------------------------------------------------------------
 

@@ -203,6 +203,9 @@ QuadTreeNode.prototype.update = function (){
 							// console.log(this.tree.getStatus());
 							if(this.tree.getStatus() !== Collider.STATUS_PENETRATION && status!== Collider.STATUS_NONE)
 								this.tree.setStatus(status);
+
+						}else{
+							this.colliders[i].checkExitCollision(this.colliders[j]);
 						}
 					}
 				}

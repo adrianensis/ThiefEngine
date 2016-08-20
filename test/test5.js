@@ -121,6 +121,11 @@ var spriteBuilder = new SpriteBuilder();
 
 
 var createSoilder = function(x,y){
+
+  var collider = new AABBCollider(1,1);
+
+  // console.log(collider.getId());
+
   return spriteBuilder.begin("res/soldier.png"). // create a basic sprite
     setPosition(new Vector2(x,y)).
     setSize(1).
@@ -128,7 +133,7 @@ var createSoilder = function(x,y){
     addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
     setAnimation("right"). // set the default animation
     setRigidBody(). // set physics properties
-    setCollider(new AABBCollider(1,1)). // set a Box Collider
+    setCollider(collider). // set a Box Collider
   end();
 };
 

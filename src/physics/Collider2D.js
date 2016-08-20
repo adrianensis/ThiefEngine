@@ -69,6 +69,7 @@ Collider2D.prototype.generateContacts = function (vertices, otherCollider, conta
 		}else if(hasCollision){
 			// if(this.getId() === 7532 )
 			// 	console.log("COLLISION " + this.getId() + " " + this.getCenter().y);
+
 			return Collider.STATUS_COLLISION;
 		}
 	}

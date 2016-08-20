@@ -91,7 +91,7 @@ PhysicsEngine.prototype.applyImpulse = function(bodyA, bodyB, vrel, normal){
 
 PhysicsEngine.prototype.solveCollisions = function (contacts){
 
-  var solved = {}; // colliders
+  var solved = {}; // boolean matrix
 
   for (var i = 0; i < contacts.length; i++) {
 
@@ -114,9 +114,6 @@ PhysicsEngine.prototype.solveCollisions = function (contacts){
       var bodyA = a.gameObject.getComponent(RigidBody);
       var bodyB = b.gameObject.getComponent(RigidBody);
 
-      bodyA.setOnCollision(true);
-      bodyB.setOnCollision(true);
-
       this.applyImpulse(bodyA,bodyB,vrel,normal);
 
       solved[a.getId()][b.getId()] = true;
@@ -134,19 +131,19 @@ PhysicsEngine.prototype.simulate = function (dt){
 
   var deltaTime = dt;
   var currentTime = 0;
-  var targetTime = deltaTime;
   var tol = 0.001;
+  var targetTime = deltaTime;
   var tryAgain = true;
 
   for (var i = 0; i < this.bodies.length; i++) {
       this.bodies[i].saveState();
   }
 
-  // var it = 0;
-  // var maxIt = 50;
+  var it = 0;
+  var maxIt = 30;
   var first = true;
 
-  while (tryAgain && (currentTime < deltaTime)) {
+  while (tryAgain  && (currentTime < deltaTime)) {
 
       tryAgain = false;
 
@@ -155,14 +152,16 @@ PhysicsEngine.prototype.simulate = function (dt){
 
         var body = this.bodies[i];
 
-        var inPenetration = body.gameObject.getComponent(Collider) !== null && body.gameObject.getComponent(Collider).getStatus() === Collider.STATUS_PENETRATION;
+        var inPenetration = body.getStatus() === Collider.STATUS_PENETRATION;
 
         // Integrate the first time
         // OR
         // only re-integrate the penetration cases
         if(first || (inPenetration)){
-          body.restoreState();
-          body.simulate(targetTime - currentTime);
+          if(!body.isStatic()){
+            body.restoreState();
+            body.simulate(targetTime - currentTime);
+          }
         }
     	}
 
@@ -174,10 +173,10 @@ PhysicsEngine.prototype.simulate = function (dt){
 
       if(status === Collider.STATUS_PENETRATION){
 
-          // if(targetTime < tol)
+          if(targetTime < tol)
             targetTime = (currentTime + targetTime)/2.0;
-          // else
-            // targetTime -= (deltaTime)*2; // HACK NEW
+          else
+            targetTime -= (deltaTime)*2; // HACK NEW
 
             // if(body.gameObject.getComponent(Collider).getId() === 7532)
               // console.log(targetTime +" "+ (targetTime - currentTime));
@@ -197,8 +196,10 @@ PhysicsEngine.prototype.simulate = function (dt){
 
       this.tree.clearContacts();
 
-      // it++;
+      it++;
   }
+
+  // console.log(it);
 
 };
 
@@ -206,7 +207,7 @@ PhysicsEngine.prototype.simulate = function (dt){
 
 PhysicsEngine.prototype.update = function (){
 
-  var time = 1/60;
+  var time = 1/30;
   var timeStep = time/10;
   var dt;
   var lastTime = 0;
