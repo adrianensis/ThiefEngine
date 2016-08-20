@@ -131,7 +131,7 @@ PhysicsEngine.prototype.simulate = function (dt){
 
   var deltaTime = dt;
   var currentTime = 0;
-  var tol = 0.001;
+  var tol = 0.0001;
   var targetTime = deltaTime;
   var tryAgain = true;
 
