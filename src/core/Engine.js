@@ -54,6 +54,12 @@ Engine.prototype.enablePhysics = function (){
 
 //----------------------------------------------------------------------
 
+Engine.prototype.setGravity = function (gravity){
+  this.physicsEngine.setGravity(gravity);
+};
+
+//----------------------------------------------------------------------
+
 Engine.prototype.disablePhysics = function (){
   this.physicsEnabled = false;
 };
@@ -153,6 +159,8 @@ Engine.prototype.run = function () {
 
       renderEngine.update();
       renderEngine.render();
+
+      currentScene.cleanTrash();
     }
 
     Time.tick();

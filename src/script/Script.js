@@ -20,7 +20,22 @@ Script.prototype.update = function (){
 	}
 };
 
+//----------------------------------------------------------------------
 
-// ... onCollision, onDestroy, etc.
+Script.prototype.onEnterCollision = function (otherGameObject, contact){
+  throw new Error("Abstract method!");
+};
+
+//----------------------------------------------------------------------
+
+Script.prototype.onExitCollision = function (otherGameObject, contact){
+  throw new Error("Abstract method!");
+};
+
+//----------------------------------------------------------------------
+
+Script.prototype.onDestroy = function (){
+  throw new Error("Abstract method!");
+};
 
 //----------------------------------------------------------------------

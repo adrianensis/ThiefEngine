@@ -2,6 +2,7 @@ var Component = function (){
     BaseObject.call(this);
     this.gameObject = null;
     this.enabled = true;
+    this.destroyed = false;
 };
 
 Component.prototype = new BaseObject();
@@ -59,6 +60,19 @@ Component.prototype.getChild = function (){
 
 Component.prototype.getChildren = function (){
     return this.gameObject.getComponentsInChildren(this.constructor);
+};
+
+//----------------------------------------------------------------------
+
+Component.prototype.destroy = function (){
+  // this.gameObject = null;
+  this.destroyed = true;
+};
+
+//----------------------------------------------------------------------
+
+Component.prototype.isDestroyed = function (){
+	return this.destroyed;
 };
 
 //----------------------------------------------------------------------

@@ -7,6 +7,7 @@ var PlayerLogic = function () {
 PlayerLogic.prototype = new Script();
 PlayerLogic.prototype.constructor = PlayerLogic;
 
+//----------------------------------------------------------------------
 
 PlayerLogic.prototype.start = function () {
 
@@ -16,6 +17,8 @@ PlayerLogic.prototype.start = function () {
   //   setTextureRegion(new Vector2((1/8),(1/6)),1/8,1/6).
   // end();
 };
+
+//----------------------------------------------------------------------
 
 PlayerLogic.prototype.update = function (){
 
@@ -108,3 +111,25 @@ PlayerLogic.prototype.update = function (){
     }
 
 };
+
+//----------------------------------------------------------------------
+
+PlayerLogic.prototype.onEnterCollision = function (otherGameObject, contact){
+  console.log("onEnterCollision");
+
+  // otherGameObject.destroy();
+};
+
+//----------------------------------------------------------------------
+
+PlayerLogic.prototype.onExitCollision = function (otherGameObject, contact){
+  console.log("onExitCollision");
+};
+
+//----------------------------------------------------------------------
+
+PlayerLogic.prototype.onDestroy = function (){
+  console.log("onDestroy");
+};
+
+//----------------------------------------------------------------------

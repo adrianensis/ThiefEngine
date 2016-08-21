@@ -31,6 +31,12 @@ Thief.setClearColor = function (color) {
 
 //----------------------------------------------------------------------
 
+Thief.setGravity = function (gravity) {
+  Thief.engine.setGravity(gravity);
+};
+
+//----------------------------------------------------------------------
+
 Thief.enablePhysics = function () {
   Thief.engine.enablePhysics();
 };

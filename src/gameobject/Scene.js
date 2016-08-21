@@ -83,6 +83,14 @@ Scene.prototype.cleanTrash = function (obj){
 
   for (var i = 0; i < this.trash.length; i++) {
     // TODO remove deleted objects
+
+    var gameObject = this.trash[i];
+
+    var script = gameObject.getComponent(Script);
+
+    if(script !== null){
+      script.onDestroy();
+    }
   }
 
   this.trash = [];

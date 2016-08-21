@@ -12,6 +12,8 @@ var RigidBody = function (){
 	this.fixture = null;
 
 	this.body = null;
+
+	this.world = null;
 };
 
 RigidBody.prototype = new Component();
@@ -20,6 +22,9 @@ RigidBody.prototype.constructor = RigidBody;
 //----------------------------------------------------------------------
 
 RigidBody.prototype.adapt = function (world) {
+
+	this.world = world;
+
 	this.gameObject.getComponent(Collider).adapt(this.fixDef);
 
 	if(this.isStatic())
@@ -30,7 +35,7 @@ RigidBody.prototype.adapt = function (world) {
   this.bodyDef.position.x = this.gameObject.getTransform().position.x;
   this.bodyDef.position.y = this.gameObject.getTransform().position.y;
 
-	this.body = world.CreateBody(this.bodyDef);
+	this.body = this.world.CreateBody(this.bodyDef);
 	this.body.SetUserData(this.gameObject);
 
   this.fixture = this.body.CreateFixture(this.fixDef);
@@ -56,6 +61,20 @@ RigidBody.prototype.isStatic = function () {
 };
 
 //----------------------------------------------------------------------
+
+// RigidBody.prototype.destroy = function (){
+//
+//
+// 	Component.prototype.destroy.call(this);
+// 	this.world.DestroyBody(this.body);
+//
+// 	this.world.DestroyBody(this.body);
+// 	for (var fixture in this.body.GetFixtureList())
+// 		this.body.DestroyFixture(fixture);
+//
+// 		this.body = null;
+// 		this.fixture = null;
+// };
 
 
 // RigidBody.prototype.setDensity = function (density) {

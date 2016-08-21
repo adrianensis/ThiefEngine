@@ -176,9 +176,30 @@ GameObject.prototype.getComponentsInChildren = function (componentClass){
 
 //----------------------------------------------------------------------
 
-GameObject.prototype.delete = function (){
+GameObject.prototype.destroyChildren = function (){
+  for (var child of this.children)
+    child.destroy();
+
+};
+
+//----------------------------------------------------------------------
+
+GameObject.prototype.destroyAllComponents = function (){
+  for (var component of this.components)
+    component.destroy();
+};
+
+
+//----------------------------------------------------------------------
+
+GameObject.prototype.destroy = function (){
+  // this.setParent(null);
   this.disable();
 	this.scene.deleteObject(this);
+  this.destroyAllComponents();
+  this.destroyChildren();
+  // this.children = null;
+  // this.components = null;
 };
 
 //----------------------------------------------------------------------

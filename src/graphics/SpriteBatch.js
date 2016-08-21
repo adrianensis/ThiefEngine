@@ -142,7 +142,7 @@ SpriteBatch.prototype.render = function (){
 
     var renderer = this.renderers[key];
 
-    if(renderer.isEnabled()){
+    if(renderer.isEnabled() && !renderer.isDestroyed()){
 
       var test = cam.getFrustum().testSphere(renderer.getGameObject().getTransform().position, renderer.getRadius());
 

@@ -94,11 +94,12 @@ var spriteBuilder = new SpriteBuilder();
   var snorlax =
   spriteBuilder.begin("res/snorlax.bmp").
     setPosition(new Vector2(0,-2)).
-    setSize(1).
+    // setSize(1).
+    setScale(new Vector2(5,1)).
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
     setRigidBody(). // set physics properties
-    setCollider(new AABBCollider(1,1)). // set a Box Collider
+    setCollider(new AABBCollider(5,1, false)). // set a Box Collider
   end();
 
 
@@ -114,7 +115,7 @@ var spriteBuilder = new SpriteBuilder();
     addAnimation("right", 4, true, false, new Vector2(0,0.25), 1/4, 1/4, 6). // add RIGHT animation
     setAnimation("down"). // set the default animation
     setRigidBody(). // set physics properties
-    setCollider(new AABBCollider(1,1)). // set a Box Collider
+    setCollider(new AABBCollider(1,1, false)). // set a Box Collider
     // setCollider(new CircleCollider(0.5)). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
   end();
@@ -122,7 +123,7 @@ var spriteBuilder = new SpriteBuilder();
 
 var createSoilder = function(x,y){
 
-  var collider = new AABBCollider(1,1);
+  var collider = new AABBCollider(1,1, false);
 
   // console.log(collider.getId());
 
@@ -170,6 +171,8 @@ var createSoilder = function(x,y){
   end();
 
   Thief.setCamera(cam);
+
+  // Thief.setGravity(new Vector2(0,-5));
 
   Thief.run();
 
