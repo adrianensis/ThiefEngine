@@ -31,7 +31,7 @@ RigidBody.prototype.adapt = function (world) {
   this.bodyDef.position.y = this.gameObject.getTransform().position.y;
 
 	this.body = world.CreateBody(this.bodyDef);
-
+	this.body.SetUserData(this.gameObject);
 
   this.fixture = this.body.CreateFixture(this.fixDef);
 

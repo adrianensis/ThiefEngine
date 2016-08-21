@@ -26,33 +26,15 @@ var PhysicsEngine = function (){
         console.log("ENTER");
         // console.log(contact.GetFixtureA().GetBody().GetUserData().position);
 
+        var gameObjectA = contact.GetFixtureA().GetBody().GetUserData();
+
+        console.log(gameObjectA.getComponent(Script));
+
     }
 
     listener.EndContact = function(contact) {
         // console.log(contact.GetFixtureA().GetBody().GetUserData());
         console.log("EXIT");
-    }
-
-    listener.PostSolve = function(contact, impulse) {
-        // if (contact.GetFixtureA().GetBody().GetUserData() == 'ball' || contact.GetFixtureB().GetBody().GetUserData() == 'ball') {
-        //     var impulse = impulse.normalImpulses[0];
-        //     if (impulse < 0.2) return; //threshold ignore small impacts
-        //     world.ball.impulse = impulse > 0.6 ? 0.5 : impulse;
-        //     console.log(world.ball.impulse);
-        // }
-
-        //contact.GetFixtureA().GetBody().SetPosition(new b2Vec2(0,0));
-
-        // var x = contact.GetFixtureA().GetBody().GetPosition().x;
-        // var y = contact.GetFixtureA().GetBody().GetPosition().y;
-        //
-        // var i =contact.GetFixtureA().GetBody().GetUserData();
-        // this.bodies[i].gameObject.getTransform().setPosition(new Vector3(x,y,0));
-
-    }
-
-    listener.PreSolve = function(contact, oldManifold) {
-        // PreSolve
     }
 
     this.world.SetContactListener(listener);
