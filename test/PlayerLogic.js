@@ -1,6 +1,6 @@
 var PlayerLogic = function () {
     Script.call(this);
-    this.v = 3;
+    this.v = 5;
 
 };
 
@@ -27,6 +27,7 @@ PlayerLogic.prototype.update = function (){
 
 
     var body = this.gameObject.getComponent(RigidBody);
+    var linear = body.getBox2dBody().GetLinearVelocity();
 
     // console.log(this.gameObject.getTransform().position);
     // body.linear.x = 0;
@@ -50,8 +51,8 @@ PlayerLogic.prototype.update = function (){
             // this.gameObject.getTransform().translate(new Vector2(-this.v*Time.deltaTime(),0));
             //
             //
-              body.linear.x = -this.v;
-              body.linear.y = 0;
+              linear.x = -this.v;
+              linear.y = 0;
 
             // body.SetLinearVelocity(vel);
 
@@ -65,8 +66,8 @@ PlayerLogic.prototype.update = function (){
 
             // this.gameObject.getTransform().translate(new Vector2(this.v*Time.deltaTime(),0));
 
-            body.linear.x = this.v;
-            body.linear.y = 0;
+            linear.x = this.v;
+            linear.y = 0;
 
         //   body.SetLinearVelocity(vel);
 
@@ -80,8 +81,8 @@ PlayerLogic.prototype.update = function (){
 
             // this.gameObject.getTransform().translate(new Vector2(0,this.v*Time.deltaTime()));
 
-            body.linear.y = this.v;
-            body.linear.x = 0;
+            linear.y = this.v;
+            linear.x = 0;
 
         //   body.SetLinearVelocity(vel);
           // this.gameObject.getComponent(RigidBody).linearVelocity = new Vector2(0,10);
@@ -93,8 +94,8 @@ PlayerLogic.prototype.update = function (){
 
             // this.gameObject.getTransform().translate(new Vector2(0,-this.v*Time.deltaTime()));
 
-            body.linear.y = -this.v;
-            body.linear.x = 0;
+            linear.y = -this.v;
+            linear.x = 0;
 
         //   body.SetLinearVelocity(vel);
 
