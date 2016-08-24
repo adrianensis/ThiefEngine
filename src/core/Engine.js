@@ -164,6 +164,10 @@ Engine.prototype.run = function () {
     }
 
     Time.tick();
+
+    console.log(Time.deltaTime());
+    console.log(1/30);
+    console.log("##########################");
   };
 
   // var render = function () {
