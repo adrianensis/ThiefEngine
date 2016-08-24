@@ -66,7 +66,7 @@ PhysicsEngine.prototype.simulate = function (dt){
   }
 
   var it = 0;
-  var maxIt = 10;
+  var maxIt = 20;
   var first = true;
   var status = Collider.STATUS_NONE;
 
