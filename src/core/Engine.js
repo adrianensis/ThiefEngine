@@ -123,19 +123,19 @@ Engine.prototype.loadScene = function(){
 
 Engine.prototype.run = function () {
 
+  window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame       ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            function( callback ){
+              window.setTimeout(callback, (1/this.fps)*1000);
+            };
+  })();
   // window.requestAnimFrame = (function(){
-  //   return  window.requestAnimationFrame       ||
-  //           window.webkitRequestAnimationFrame ||
-  //           window.mozRequestAnimationFrame    ||
-  //           function( callback ){
+  //   return  function( callback ){
   //             window.setTimeout(callback, (1/this.fps)*1000);
   //           };
   // })();
-  window.requestAnimFrame = (function(){
-    return  function( callback ){
-              window.setTimeout(callback, (1/30)*1000);
-            };
-  })();
 
 
   var renderEngine = this.renderEngine;
@@ -144,7 +144,7 @@ Engine.prototype.run = function () {
   var currentScene = this.currentScene;
 
   var engine = this;
-  var physicsDeltaTime = 1/60;
+  var physicsDeltaTime = (1/this.fps)/2;
   var accumulator = 0;
   var currentTime = 0;
 
@@ -153,8 +153,7 @@ Engine.prototype.run = function () {
 
     Time.tick();
 
-    // var newTime = Date.now();
-    // var frameTime = newTime - currentTime;
+    // console.log(Time.deltaTime());
 
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
 
@@ -182,8 +181,10 @@ Engine.prototype.run = function () {
       // {
       //     accumulator -= physicsDeltaTime;
           scriptEngine.update();
-          if(engine.physicsEnabled)
+          if(engine.physicsEnabled){
             physicsEngine.update(physicsDeltaTime);
+            // physicsEngine.update(physicsDeltaTime);
+          }
       // }
 
 
@@ -193,15 +194,8 @@ Engine.prototype.run = function () {
 
       currentScene.cleanTrash();
 
-      currentTime = newTime;
+      // currentTime = newTime;
     }
-
-
-
-
-    // console.log(Time.deltaTime() > 1/30);
-    // console.log(1/30);
-    // console.log("##########################");
 
     window.requestAnimFrame(main);
   };
