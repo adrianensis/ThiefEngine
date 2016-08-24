@@ -169,7 +169,7 @@ ContactManager.prototype.solve = function (list, isCollision) {
       }else{
         // ContactManager.applyImpulse(bodyA,bodyB,vrel,normal, 0.5 + 1*Collider.depthEpsilon/Math.abs(depth));
         if(depth < Collider.depthEpsilon){
-          var force = 1000;
+          var force = 1000*Math.abs(depth);
           bodyA.applyForce(normal.cpy().mulScl(force));
           bodyB.applyForce(normal.cpy().mulScl(-force));
 
