@@ -1,4 +1,7 @@
 var Engine = function (){
+
+  this.fps = 30;
+
   this.renderEngine = null;
   this.physicsEngine = null;
   this.scriptEngine = null;
@@ -66,6 +69,12 @@ Engine.prototype.disablePhysics = function (){
 
 //----------------------------------------------------------------------
 
+Engine.prototype.setFPS = function (fps){
+  this.fps = fps;
+};
+
+//----------------------------------------------------------------------
+
 Engine.prototype.init = function (){
 
   this.renderEngine = new RenderEngine();
@@ -119,9 +128,14 @@ Engine.prototype.run = function () {
   //           window.webkitRequestAnimationFrame ||
   //           window.mozRequestAnimationFrame    ||
   //           function( callback ){
-  //             window.setTimeout(callback, 1000 / 30);
+  //             window.setTimeout(callback, (1/this.fps)*1000);
   //           };
   // })();
+  window.requestAnimFrame = (function(){
+    return  function( callback ){
+              window.setTimeout(callback, (1/30)*1000);
+            };
+  })();
 
 
   var renderEngine = this.renderEngine;
@@ -130,12 +144,17 @@ Engine.prototype.run = function () {
   var currentScene = this.currentScene;
 
   var engine = this;
+  var physicsDeltaTime = 1/60;
+  var accumulator = 0;
+  var currentTime = 0;
 
-  var max = 0;
-
-  // this.binded = false;
 
   var main = function () {
+
+    Time.tick();
+
+    // var newTime = Date.now();
+    // var frameTime = newTime - currentTime;
 
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
 
@@ -152,38 +171,59 @@ Engine.prototype.run = function () {
     }
 
     if(engine.loaded){
-      scriptEngine.update();
 
-      if(engine.physicsEnabled)
-        physicsEngine.update();
+
+      // if(frameTime > 0.25){ frameTime = 0.25; }
+      //   currentTime = newTime;
+      //
+      // accumulator += frameTime;
+      //
+      // while(accumulator >= physicsDeltaTime)
+      // {
+      //     accumulator -= physicsDeltaTime;
+          scriptEngine.update();
+          if(engine.physicsEnabled)
+            physicsEngine.update(physicsDeltaTime);
+      // }
+
+
 
       renderEngine.update();
       renderEngine.render();
 
       currentScene.cleanTrash();
+
+      currentTime = newTime;
     }
 
-    Time.tick();
 
-    console.log(Time.deltaTime());
-    console.log(1/30);
-    console.log("##########################");
+
+
+    // console.log(Time.deltaTime() > 1/30);
+    // console.log(1/30);
+    // console.log("##########################");
+
+    window.requestAnimFrame(main);
   };
 
-  // var render = function () {
-  //     window.requestAnimFrame(render);
-  //     if(this.binded){
-  //         renderEngine.render();
-  //     }
-  // }
+
 
   Time.init();
 
-  // render();
+
+  // var main2 = function () {
+  //     window.requestAnimFrame(main);
+  //     main2();
+  // };
+
+  // main2();
 
 
-  var ONE_FRAME_TIME = (1/30)*1000 ;
-  setInterval( main, ONE_FRAME_TIME );
+  window.requestAnimFrame(main);
+
+
+  var ONE_FRAME_TIME = (1/this.fps)*1000 ;
+  // setInterval( main, ONE_FRAME_TIME );
 };
 
 //----------------------------------------------------------------------

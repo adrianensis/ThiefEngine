@@ -140,9 +140,8 @@ PhysicsEngine.prototype.simulate = function (dt){
 
 //----------------------------------------------------------------------
 
-PhysicsEngine.prototype.update = function (){
+PhysicsEngine.prototype.update = function (time){
 
-  var time = 1/60;
   var timeStep = time/10;
   var dt;
   var lastTime = 0;
