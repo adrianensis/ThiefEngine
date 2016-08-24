@@ -178,7 +178,7 @@ Engine.prototype.run = function () {
   // render();
 
 
-  var ONE_FRAME_TIME = 1000.0 / 30.0 ;
+  var ONE_FRAME_TIME = (1/30)*1000 ;
   setInterval( main, ONE_FRAME_TIME );
 };
 

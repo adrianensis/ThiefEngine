@@ -70,10 +70,6 @@ Matrix4.prototype.get = function (row,col){
 	return this.data[row+(4*col)];
 };
 
-Matrix4.prototype.get2 = function (row,col){
-	return this.data[col+(4*row)];
-};
-
 //----------------------------------------------------------------------
 
 /**
@@ -140,18 +136,12 @@ Matrix4.mulMM = function (M1,M2){
     // The result matrix
     var result = this.zeros();
 
-    var resultTempValue=0;
-
     for (var i = 0; i < 4; i++) {
         for (var j = 0; j < 4; j++) {
             for (var k = 0; k < 4; k++){
-                // resultTempValue += M1.data[i+(4*k)] * M2.data[k+(4*j)];
-                // resultTempValue += M1.data[k+(4*i)] * M2.data[j+(4*k)];
                 result.set(i,j,result.get(i,j) + M1.get(i,k) * M2.get(k,j));
             }
 
-            // result.data[i+j*4]=resultTempValue;
-            resultTempValue=0;
         }
     }
 
@@ -170,8 +160,6 @@ Matrix4.mulMV = function (M,v){
 
     var vec = v.toArray();
 
-    // console.log(vec);
-
     // The result vector
     var result = new Array(4);
 
@@ -183,8 +171,6 @@ Matrix4.mulMV = function (M,v){
 
     var vectorResult = new Vector4(0,0,0,0);
     vectorResult.fromArray(result);
-
-    // console.log(result);
 
     return vectorResult;
 
@@ -198,10 +184,10 @@ Matrix4.mulMV = function (M,v){
 */
 Matrix4.zeros = function(){
     return new Matrix4(
-        new Vector4(0.0,0.0,0.0,0.0),
-        new Vector4(0.0,0.0,0.0,0.0),
-        new Vector4(0.0,0.0,0.0,0.0),
-        new Vector4(0.0,0.0,0.0,0.0));
+        new Vector4(0,0,0,0),
+        new Vector4(0,0,0,0),
+        new Vector4(0,0,0,0),
+        new Vector4(0,0,0,0));
 };
 
 //----------------------------------------------------------------------

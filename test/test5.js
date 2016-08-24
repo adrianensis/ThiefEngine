@@ -95,11 +95,11 @@ var spriteBuilder = new SpriteBuilder();
   spriteBuilder.begin("res/snorlax.bmp").
     setPosition(new Vector2(0,-2)).
     // setSize(1).
-    setScale(new Vector2(5,1)).
+    setScale(new Vector2(1,1)).
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
     setRigidBody(). // set physics properties
-    setCollider(new AABBCollider(5,1, false)). // set a Box Collider
+    setCollider(new AABBCollider(1,1, false)). // set a Box Collider
   end();
 
 

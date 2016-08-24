@@ -27,11 +27,11 @@
 ## Features
 
 * Component-Entity-System based
-* Custom 2D render engine
+* Custom 2D Render engine
 * Texture Loader
 * SpriteSheet animation
 * Textures Atlas support
-* Box2D for Web
+* Custom 2D Physics/Collisions engine
 * AABB and Circle colliders
 * Simple Scripting Engine
 * Seedable Random function

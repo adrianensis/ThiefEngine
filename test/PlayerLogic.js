@@ -30,7 +30,8 @@ PlayerLogic.prototype.update = function (){
 
 
     var body = this.gameObject.getComponent(RigidBody);
-    var linear = body.getBox2dBody().GetLinearVelocity();
+    // var linear = body.getBox2dBody().GetLinearVelocity();
+    var linear = body.linear;
 
     // console.log(this.gameObject.getTransform().position);
     // body.linear.x = 0;
