@@ -4,6 +4,8 @@ var ContactManager = function (){
   this.penetrationsList = [];
   this.collisionsMap = [];
   this.penetrationsMap = [];
+
+  // this.notSolvedPenetrations = [];
 };
 
 ContactManager.add = function(map, list, colliderA, colliderB, contactPoint, normal, relativeVelocity, depth) {
@@ -110,7 +112,7 @@ ContactManager.applyImpulse = function(bodyA, bodyB, vrel, normal, restitution){
 
     // Calculate restitution
     // var e = 2.5;
-    var e = restitution;
+    var e = restitution; // min( A.restitution, B.restitution)
 
     // Calculate impulse scalar
     var j = -(1.0 + e) * vrn;
@@ -120,11 +122,11 @@ ContactManager.applyImpulse = function(bodyA, bodyB, vrel, normal, restitution){
     var impulse = normal.cpy().mulScl(j);
 
     if( ! bodyA.isStatic()){
-      bodyA.linear.add(impulse.cpy().mulScl(invMass));
+      bodyA.applyImpulse(impulse);
     }
 
     if( ! bodyB.isStatic()){
-      bodyB.linear.sub(impulse.cpy().mulScl(invMass));
+      bodyB.applyImpulse(impulse.mulScl(-1));
     }
 
 
@@ -133,7 +135,7 @@ ContactManager.applyImpulse = function(bodyA, bodyB, vrel, normal, restitution){
 
 //----------------------------------------------------------------------
 
-ContactManager.solve = function (list, isCollision) {
+ContactManager.prototype.solve = function (list, isCollision) {
   // var solved = {}; // boolean matrix
 
   for (var i = 0; i < list.length; i++) {
@@ -161,14 +163,21 @@ ContactManager.solve = function (list, isCollision) {
       var bodyA = a.gameObject.getComponent(RigidBody);
       var bodyB = b.gameObject.getComponent(RigidBody);
 
-      if(isCollision)
+      if(isCollision){
         ContactManager.applyImpulse(bodyA,bodyB,vrel,normal, 0);
-      else
-        ContactManager.applyImpulse(bodyA,bodyB,vrel,normal, 1 + 1.1*Collider.depthEpsilon/Math.abs(depth));
-
-      // FIXME not useful
-      if(isCollision)
         collision.setSolved(true);
+      }else{
+        // ContactManager.applyImpulse(bodyA,bodyB,vrel,normal, 0.5 + 1*Collider.depthEpsilon/Math.abs(depth));
+        if(depth < Collider.depthEpsilon){
+          var force = 1000;
+          bodyA.applyForce(normal.cpy().mulScl(force));
+          bodyB.applyForce(normal.cpy().mulScl(-force));
+
+          // this.notSolvedPenetrations.push(collision);
+        }else
+          collision.setSolved(true);
+
+      }
 
     }
   }
@@ -178,14 +187,14 @@ ContactManager.solve = function (list, isCollision) {
 //----------------------------------------------------------------------
 
 ContactManager.prototype.solveCollisions = function () {
-  ContactManager.solve(this.collisionsList, true);
+  this.solve(this.collisionsList, true);
   this.clearCollisions();
 };
 
 //----------------------------------------------------------------------
 
 ContactManager.prototype.solvePenetrations = function () {
-  ContactManager.solve(this.penetrationsList, false);
+  this.solve(this.penetrationsList, false);
   // this.clearPenetrations();
 };
 
@@ -199,6 +208,7 @@ ContactManager.prototype.clearCollisions = function () {
 //----------------------------------------------------------------------
 
 ContactManager.prototype.clearPenetrations = function () {
+  // this.penetrationsList = this.notSolvedPenetrations.slice(); // NOTE: slice == copy
   this.penetrationsList = [];
   this.penetrationsMap = [];
 };

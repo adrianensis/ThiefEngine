@@ -66,7 +66,7 @@ PhysicsEngine.prototype.simulate = function (dt){
   }
 
   var it = 0;
-  var maxIt = 20;
+  var maxIt = 10;
   var first = true;
   var status = Collider.STATUS_NONE;
 
@@ -87,12 +87,13 @@ PhysicsEngine.prototype.simulate = function (dt){
         if(first || (hasPenetration)){
           if(!body.isStatic()){
             body.restoreState();
-            body.simulate(targetTime - currentTime);
+            body.integrate(targetTime - currentTime);
           }
         }
     	}
 
       first = false;
+      this.contactManager.clearPenetrations();
 
       // check collisions
       this.tree.update(this.contactManager);
@@ -100,12 +101,13 @@ PhysicsEngine.prototype.simulate = function (dt){
 
       if(status === Collider.STATUS_PENETRATION){
 
-          // if(it < maxIt)
-          //   targetTime = (currentTime + targetTime)/2.0;
+          if(it < maxIt)
+            targetTime = (currentTime + targetTime)/2;
           // else
           //   targetTime = -(deltaTime);
 
-          // tryAgain = true;
+          if(targetTime > 0.001)
+            tryAgain = true;
 
           // console.log("penetration");
 
@@ -131,9 +133,6 @@ PhysicsEngine.prototype.simulate = function (dt){
 
       it++;
   }
-
-
-
   // console.log(it);
 
 };

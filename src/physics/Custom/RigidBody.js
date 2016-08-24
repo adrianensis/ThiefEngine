@@ -1,8 +1,9 @@
 var RigidBody = function (){
 	Component.call(this);
 	this.linear = new Vector3(0,0,0);
+	this.forceAccumulator = new Vector3(0,0,0);
 	this.angular = new Vector3(0,0,0);
-	this.mass = 0;
+	this.mass = 1;
 	this.onCollision = false;
 	this.savedState = null;
 	this.status = Collider.STATUS_NONE;
@@ -10,6 +11,36 @@ var RigidBody = function (){
 
 RigidBody.prototype = new Component();
 RigidBody.prototype.constructor = RigidBody;
+
+//----------------------------------------------------------------------
+
+RigidBody.prototype.setMass = function (mass) {
+	this.mass = mass;
+};
+
+//----------------------------------------------------------------------
+
+RigidBody.prototype.getForceAccumulator = function () {
+	return this.forceAccumulator;
+};
+
+//----------------------------------------------------------------------
+
+RigidBody.prototype.setForceAccumulator = function (vec) {
+	this.forceAccumulator.set(vec);
+};
+
+//----------------------------------------------------------------------
+
+RigidBody.prototype.applyForce = function (vec) {
+	this.forceAccumulator.add(vec);
+};
+
+//----------------------------------------------------------------------
+
+RigidBody.prototype.applyImpulse = function (vec) {
+	this.linear.add(vec.cpy().mulScl(1/this.mass));
+};
 
 //----------------------------------------------------------------------
 
@@ -63,14 +94,20 @@ RigidBody.prototype.restoreState = function () {
 
 //----------------------------------------------------------------------
 
-RigidBody.prototype.simulate = function (time) {
-
-	// var v = this.linear.len();
-	// if(v === 0 || v < 0.01)
-	// 	this.linear = new Vector3(0,0,0);
+RigidBody.prototype.integrate = function (dt) {
 
 	var t = this.gameObject.getTransform();
-	t.translate(this.linear.cpy().mulScl(time));
+
+	// Symplectic Euler
+
+	// v += (1/m * F) * dt
+	this.linear.add(this.forceAccumulator.cpy().mulScl(1/this.mass).mulScl(dt));
+
+	// x += v * dt
+	t.translate(this.linear.cpy().mulScl(dt));
+
+	// clear forces
+	this.forceAccumulator = new Vector3(0,0,0);
 };
 
 //----------------------------------------------------------------------
