@@ -1,6 +1,6 @@
 var PlayerLogic = function () {
     Script.call(this);
-    this.v = 5;
+    this.v = 2;
 
 };
 

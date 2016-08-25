@@ -66,7 +66,7 @@ PhysicsEngine.prototype.simulate = function (dt){
   }
 
   var it = 0;
-  var maxIt = 10;
+  var maxIt = 5;
   var first = true;
   var status = Collider.STATUS_NONE;
 
@@ -106,7 +106,7 @@ PhysicsEngine.prototype.simulate = function (dt){
           // else
           //   targetTime = -(deltaTime);
 
-          if(targetTime > 0.0001)
+          if(targetTime > 0.001)
             tryAgain = true;
 
           // console.log("penetration");
