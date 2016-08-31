@@ -7,7 +7,7 @@ var Contact = function (colliderA, colliderB, contactPoint, normal, relativeVelo
   this.relativeVelocity = relativeVelocity;
   this.depth = depth;
   this.solved = false;
-  this.alive = true;
+  this.alive = 0;
 };
 
 //----------------------------------------------------------------------
@@ -21,13 +21,13 @@ Contact.prototype.update = function (contactPoint, normal, relativeVelocity, dep
 
 //----------------------------------------------------------------------
 
-Contact.prototype.setAlive = function (bool) {
-  this.alive = bool;
+Contact.prototype.addAlive = function () {
+  this.alive++;
 };
 
 //----------------------------------------------------------------------
 
-Contact.prototype.isAlive = function () {
+Contact.prototype.getAlive = function () {
   return this.alive;
 };
 

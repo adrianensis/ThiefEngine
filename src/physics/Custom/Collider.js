@@ -20,7 +20,7 @@ Collider.prototype.onEnterCollision = function (contact) {
 
 	// if(!this.onCollisionFlag){
 		// this.onCollisionFlag = true;
-		console.log("on enter");
+		// console.log("on enter");
 	// }
 };
 

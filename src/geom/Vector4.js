@@ -291,6 +291,9 @@ Vector4.prototype.ang = function (vec){
 
     var cos = (dot/(len1*len2));
 
+    if(len1*len2 === 0)
+      return 0;
+
     return Math.acos(cos);
 };
 

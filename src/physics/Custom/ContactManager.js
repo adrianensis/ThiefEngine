@@ -3,7 +3,6 @@ var ContactManager = function (){
   this.list = [];
   this.tmpList = [];
   this.map = [];
-  this.alive = 0;
 };
 
 ContactManager.prototype.addContact = function(colliderA, colliderB, contactPoint, normal, relativeVelocity, depth) {
@@ -45,7 +44,6 @@ ContactManager.prototype.addContact = function(colliderA, colliderB, contactPoin
     // console.log(" a:"+colliderA.getId() + " b:" + colliderB.getId() + " p:(" + contactPoint.x + "," + contactPoint.y  + ") \n" + " norm:(" + normal.x + "," + normal.y  + ") \n" + " vrel:(" + relativeVelocity.x + "," + relativeVelocity.y  + ") \n" + depth);
 
     // console.log(depth);
-    contact.setAlive(true);
     colliderA.onCollision(contact);
     colliderB.onCollision(contact);
 
@@ -115,7 +113,6 @@ ContactManager.prototype.testAndRemove = function (colliderA,colliderB,eps) {
   var b = colliderB;
 
   if( ! a.testEpsilon(b,eps) && ! b.testEpsilon(a,eps)){
-    this.alive = 0;
     this.remove(a,b);
   }
 };
@@ -189,7 +186,7 @@ ContactManager.prototype.solve = function () {
       // console.log(it);
 
 
-      contact.setAlive(false);
+      // contact.setAlive(false);
       // if(this.find(a,b) !== undefined){
       this.tmpList.push(contact);
       // }
@@ -205,38 +202,31 @@ ContactManager.prototype.solve = function () {
       if(depth < -Collider.depthEpsilon){
         // console.log("penetration");
 
-          this.alive++;
-          var force = Math.abs(depth)*this.alive*50;
+          contact.addAlive();
+          var alive = contact.getAlive();
+
+          // var force = Math.abs(depth)*alive*50;
+          var force = Math.abs(depth)*alive*100 + vrel.len()*100;
           // var force = 10000*Math.abs(depth)*(1/this.alive);
 
-          // console.log(force);
+          // console.log(vrel.len());
+          // if(bodyA.linear.ang(vrel) === 0)
+            // bodyA.linear.mulScl(Math.abs(depth));
 
-          // bodyA.linear = new Vector3(0,0,0);
-          // bodyB.linear = new Vector3(0,0,0);
-          bodyA.linear.mulScl(Math.abs(depth));
-          bodyB.linear.mulScl(Math.abs(depth));
+          // if(bodyB.linear.ang(vrel) === 0)
+            // bodyB.linear.mulScl(Math.abs(depth));
+
+          bodyA.linear = new Vector3(0,0,0);
+          bodyB.linear = new Vector3(0,0,0);
           // bodyA.linear.mulScl( Math.abs(depth)*1/this.alive);
           // bodyB.linear.mulScl( Math.abs(depth)*1/this.alive);
 
           bodyA.applyForce(normal.cpy().mulScl(force));
           bodyB.applyForce(normal.cpy().mulScl(-force));
 
-          ContactManager.applyImpulse(bodyA,bodyB,vrel,normal,0);
+          // ContactManager.applyImpulse(bodyA,bodyB,vrel,normal,0);
 
-          var accum = bodyA.getForceAccumulator().len();
-            // console.log(accum);
-          // if(force > 3333)
-            // console.log(force);
-          //   console.log(vrel.len());
-          // console.log(contactPoint.x + " " + contactPoint.y);
-
-          // if(this.find(a,b) !== undefined){
-            // contact.setAlive(true);
-          // }
-          // this.remove(a,b);
-
-
-          // console.log(this.alive);
+          // console.log(alive);
 
       }else{
         ContactManager.applyImpulse(bodyA,bodyB,vrel,normal,0);
