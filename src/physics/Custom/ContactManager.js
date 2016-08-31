@@ -159,9 +159,7 @@ ContactManager.applyImpulse = function(bodyA, bodyB, vrel, normal, restitution){
 
 ContactManager.prototype.solve = function () {
 
-    // console.log(this.list.length);
-
-  // var it = 0;
+  // console.log(this.list.length);
 
   for (var i = 0; i < this.list.length; i++) {
 
@@ -174,34 +172,18 @@ ContactManager.prototype.solve = function () {
     var depth = contact.depth;
     var contactPoint = contact.contactPoint;
 
-    // console.log(contact.isAlive());
-    // console.log(a.getId() + " " + b.getId());
-
-
-
     if(this.find(a,b) !== undefined /*&& contact.isAlive()*/){
 
-      // it++;
-      //
-      // console.log(it);
-
-
-      // contact.setAlive(false);
-      // if(this.find(a,b) !== undefined){
       this.tmpList.push(contact);
-      // }
+
 
 
 
       var bodyA = a.gameObject.getComponent(RigidBody);
       var bodyB = b.gameObject.getComponent(RigidBody);
 
-      // if(depth === 0)
-      //   console.log(depth);
-
       if(depth < -Collider.depthEpsilon){
-        // console.log("penetration");
-
+    
           contact.addAlive();
           var alive = contact.getAlive();
 
