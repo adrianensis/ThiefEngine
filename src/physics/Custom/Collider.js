@@ -1,7 +1,7 @@
 var Collider = function () {
 	Component.call(this);
 
-	// this.collisions = {};
+	this.onCollisionFlag = false;
 };
 
 Collider.STATUS_NONE = 0;
@@ -16,7 +16,12 @@ Collider.prototype.constructor = Collider;
 //----------------------------------------------------------------------
 
 Collider.prototype.onEnterCollision = function (contact) {
-	// console.log("on enter");
+
+
+	// if(!this.onCollisionFlag){
+		// this.onCollisionFlag = true;
+		console.log("on enter");
+	// }
 };
 
 //----------------------------------------------------------------------
@@ -28,51 +33,9 @@ Collider.prototype.onCollision = function (contact) {
 //----------------------------------------------------------------------
 
 Collider.prototype.onExitCollision = function (contact) {
-	// console.log("on exit");
+	// console.log("on exit ");
+	this.onCollisionFlag = false;
 };
-
-//----------------------------------------------------------------------
-
-// Collider.prototype.checkExitCollision = function (otherCollider) {
-//
-// 	var contact = this.findRegisteredCollision(otherCollider);
-//
-// 	if(contact !== undefined){
-// 		this.removeCollision(otherCollider);
-// 		this.onExitCollision(contact);
-// 	}
-// };
-
-
-//----------------------------------------------------------------------
-
-// Collider.prototype.registerCollision = function (otherCollider, contact) {
-// 	if(this.collisions[otherCollider.getId()] === undefined){
-// 		this.onEnterCollision(contact);
-// 		// otherCollider.onEnterCollision(contact);
-// 	}else{
-// 		this.onCollision(contact);
-// 		// otherCollider.onCollision(contact);
-// 	}
-//
-// 	this.collisions[otherCollider.getId()] = contact;
-//
-//
-//
-// };
-
-//----------------------------------------------------------------------
-
-// Collider.prototype.removeCollision = function (otherCollider) {
-// 	// console.log("remove " + otherCollider.getId());
-// 	delete this.collisions[otherCollider.getId()];
-// };
-
-//----------------------------------------------------------------------
-
-// Collider.prototype.findRegisteredCollision = function (otherCollider) {
-// 	return this.collisions[otherCollider.getId()];
-// };
 
 //----------------------------------------------------------------------
 
@@ -183,12 +146,13 @@ Collider.prototype.checkCollisionOrPenetration = function (vertex, eps, maxDista
 		// penetration
 		if(maxDistance < -eps && vrn <= 0){
 
-				var contact = contactManager.addPenetration(this, otherCollider, vertex, normal, vrel, maxDistance);
+				// var contact = contactManager.addPenetration(this, otherCollider, vertex, normal, vrel, maxDistance);
+				var contact = contactManager.addContact(this, otherCollider, vertex, normal, vrel, maxDistance);
 
 				result = Collider.STATUS_PENETRATION;
 
-				this.gameObject.getComponent(RigidBody).setStatus(Collider.STATUS_PENETRATION);
-				otherCollider.gameObject.getComponent(RigidBody).setStatus(Collider.STATUS_PENETRATION);
+				this.gameObject.getComponent(RigidBody).setStatus(result);
+				otherCollider.gameObject.getComponent(RigidBody).setStatus(result);
 
 
 		// collision
@@ -197,27 +161,22 @@ Collider.prototype.checkCollisionOrPenetration = function (vertex, eps, maxDista
 				// if(){
 					// console.log("VERTEX-VERTEX COLLISION ");
 
-					var contact = contactManager.addCollision(this, otherCollider, vertex, normal, vrel, maxDistance);
+					var contact = contactManager.addContact(this, otherCollider, vertex, normal, vrel, maxDistance);
 					result = Collider.STATUS_COLLISION;
 
 					var thisBody = this.gameObject.getComponent(RigidBody);
-					// var otherBody = otherCollider.gameObject.getComponent(RigidBody);
+					var otherBody = otherCollider.gameObject.getComponent(RigidBody);
 
 					thisBody.setStatus(result);
-					// otherBody.setStatus(result);
+					otherBody.setStatus(result);
 
 					// thisBody.setOnCollision(contact);
 					// otherBody.setOnCollision(contact);
 
 					// this.registerCollision(otherCollider,contact);
 					// otherCollider.registerCollision(this,contact);
-				// }
-		}
-		// else{
-		// 	this.checkExitCollision(otherCollider);
-		// }
-	// }
-
+			// }
+	}
 
 
 	return result;

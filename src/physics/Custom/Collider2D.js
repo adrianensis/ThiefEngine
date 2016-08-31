@@ -31,10 +31,55 @@ Collider2D.prototype.getBoundingBox = function () {
 
 //----------------------------------------------------------------------
 
+Collider2D.prototype.testCircle = function (otherCollider, eps) {
+	throw new Error("Abstract method!");
+};
+
+//----------------------------------------------------------------------
+
+Collider2D.prototype.testRectangle = function (otherCollider, eps) {
+	throw new Error("Abstract method!");
+};
+
+//----------------------------------------------------------------------
+
+Collider2D.prototype.test = function (otherCollider) {
+
+	var result = false;
+
+	if(otherCollider instanceof AABBCollider)
+		result = this.testRectangle(otherCollider,0);
+	else if(otherCollider instanceof CircleCollider)
+		result = this.testCircle(otherCollider,0);
+	else
+		throw new Error("It's not a Collider type!");
+
+	return result;
+};
+
+//----------------------------------------------------------------------
+
+
+Collider2D.prototype.testEpsilon = function (otherCollider,eps) {
+
+	var result = false;
+
+	if(otherCollider instanceof AABBCollider)
+		result = this.testRectangle(otherCollider,eps);
+	else if(otherCollider instanceof CircleCollider)
+		result = this.testCircle(otherCollider,eps);
+	else
+		throw new Error("It's not a Collider type!");
+
+	return result;
+};
+
+//----------------------------------------------------------------------
+
 Collider2D.prototype.generateContacts = function (vertices, otherCollider, contactManager) {
 
-	var resultVertexVertex = Collider.STATUS_NONE;
-	// var resultVertexVertex = this.testVertexVertex(vertices, otherCollider, contactManager);
+	// var resultVertexVertex = Collider.STATUS_NONE;
+	var resultVertexVertex = this.testVertexVertex(vertices, otherCollider, contactManager);
 
 	var resultVertexEdge = Collider.STATUS_NONE;
 

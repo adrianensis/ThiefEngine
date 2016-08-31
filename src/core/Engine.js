@@ -216,7 +216,7 @@ Engine.prototype.run = function () {
   window.requestAnimFrame(main);
 
 
-  var ONE_FRAME_TIME = (1/this.fps)*1000 ;
+  // var ONE_FRAME_TIME = (1/this.fps)*1000 ;
   // setInterval( main, ONE_FRAME_TIME );
 };
 

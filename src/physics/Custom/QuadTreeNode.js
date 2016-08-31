@@ -61,7 +61,7 @@ QuadTreeNode.prototype.testCompleteCollider = function (collider){
 	var collision = true;
 
 	for (var v = 0; (v < vertices.length); v++) {
-		collision = collision && GeometryUtil.testRectanglePoint(this.LT,this.width,this.height,vertices[v]);
+		collision = collision && GeometryUtil.testRectanglePoint(this.LT,this.width,this.height,vertices[v],0);
 	}
 
 	return collision;
@@ -79,7 +79,7 @@ QuadTreeNode.prototype.testPartialCollider = function (collider){
 	var collision = false;
 
 	for (var v = 0; (v < vertices.length) && ! collision; v++) {
-		collision = collision  || GeometryUtil.testRectanglePoint(this.LT,this.width,this.height,vertices[v]);
+		collision = collision  || GeometryUtil.testRectanglePoint(this.LT,this.width,this.height,vertices[v],0);
 	}
 
 	return collision;
@@ -95,7 +95,7 @@ QuadTreeNode.prototype.childNodeTestPartialCollider = function (i, collider){
 
 	// For each collider vertex
 	for (var v = 0; (v < vertices.length) && ! collision; v++) {
-		collision = collision  || GeometryUtil.testRectanglePoint(this.LTArray[i],this.width/2,this.height/2,vertices[v]);
+		collision = collision  || GeometryUtil.testRectanglePoint(this.LTArray[i],this.width/2,this.height/2,vertices[v],0);
 	}
 
 	return collision;
@@ -202,12 +202,15 @@ QuadTreeNode.prototype.update = function (contactManager){
 							// this.tree.addContacts(contacts);
 
 							// console.log(this.tree.getStatus());
-							if(this.tree.getStatus() !== Collider.STATUS_PENETRATION && status!== Collider.STATUS_NONE)
+							if(this.tree.getStatus() !== Collider.STATUS_PENETRATION && status !== Collider.STATUS_NONE)
 								this.tree.setStatus(status);
+
+							// if(status === Collider.STATUS_NONE)
+							// 	contactManager.remove(this.colliders[i],this.colliders[j]);
 
 						}
 						// else{
-						// 	this.colliders[i].checkExitCollision(this.colliders[j]);
+						// 	contactManager.remove(this.colliders[i],this.colliders[j]);
 						// }
 					}
 				}

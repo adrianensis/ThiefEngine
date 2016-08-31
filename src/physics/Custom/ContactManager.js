@@ -1,100 +1,106 @@
 // Class definition goes here.
 var ContactManager = function (){
-  this.collisionsList = [];
-  this.penetrationsList = [];
-  this.collisionsMap = [];
-  this.penetrationsMap = [];
-
-  // this.notSolvedPenetrations = [];
+  this.list = [];
+  this.tmpList = [];
+  this.map = [];
+  this.alive = 0;
 };
 
-ContactManager.add = function(map, list, colliderA, colliderB, contactPoint, normal, relativeVelocity, depth) {
+ContactManager.prototype.addContact = function(colliderA, colliderB, contactPoint, normal, relativeVelocity, depth) {
   var a = colliderA;
   var b = colliderB;
 
-  var contact = new Contact(colliderA, colliderB, contactPoint, normal, relativeVelocity, depth);
-  // list.push(contact);
+  var contact = this.find(colliderA,colliderB);
 
-  if(map[a.getId()] === undefined)
-    map[a.getId()] = [];
+  // console.log(a.getId() + " " + b.getId() + " " + depth);
 
-  if(map[b.getId()] === undefined)
-    map[b.getId()] = [];
+  // If contact not exists
+  if(contact === undefined){
 
-  if(map[a.getId()][b.getId()] === undefined && map[b.getId()][a.getId()] === undefined){
+    contact = new Contact(colliderA, colliderB, contactPoint, normal, relativeVelocity, depth);
+    this.list.push(contact);
+
+    // console.log(" a:"+colliderA.getId() + " b:" + colliderB.getId() + " p:(" + contactPoint.x + "," + contactPoint.y  + ") \n" + " norm:(" + normal.x + "," + normal.y  + ") \n" + " vrel:(" + relativeVelocity.x + "," + relativeVelocity.y  + ") \n" + depth);
+
+    // console.log(relativeVelocity.len());
+
     colliderA.onEnterCollision(contact);
     colliderB.onEnterCollision(contact);
-    list.push(contact);
-  }else{
+
+    if(this.map[a.getId()] === undefined)
+      this.map[a.getId()] = [];
+
+    if(this.map[b.getId()] === undefined)
+      this.map[b.getId()] = [];
+
+    if(this.map[b.getId()][a.getId()] !== undefined)
+      this.map[b.getId()][a.getId()] = contact;
+    else
+      this.map[a.getId()][b.getId()] = contact;
+
+  }else{ // If contact exists then update
+
+    // console.log("update");
+
+    // console.log(" a:"+colliderA.getId() + " b:" + colliderB.getId() + " p:(" + contactPoint.x + "," + contactPoint.y  + ") \n" + " norm:(" + normal.x + "," + normal.y  + ") \n" + " vrel:(" + relativeVelocity.x + "," + relativeVelocity.y  + ") \n" + depth);
+
+    // console.log(depth);
+    contact.setAlive(true);
     colliderA.onCollision(contact);
     colliderB.onCollision(contact);
+
+    if(contact.colliderA.getId() === a.getId() && contact.colliderB.getId() === b.getId())
+      contact.update(contactPoint, normal, relativeVelocity, depth);
+
   }
 
-  if(map[b.getId()][a.getId()] !== undefined)
-    map[b.getId()][a.getId()] = contact;
-  else
-    map[a.getId()][b.getId()] = contact;
+
 
   return contact;
 };
 
 //----------------------------------------------------------------------
 
-ContactManager.prototype.addCollision = function (colliderA, colliderB, contactPoint, normal, relativeVelocity, depth) {
-  return ContactManager.add(this.collisionsMap, this.collisionsList, colliderA, colliderB, contactPoint, normal, relativeVelocity, depth);
+ContactManager.prototype.remove = function (colliderA,colliderB) {
+
+  var a = colliderA;
+  var b = colliderB;
+
+  var contact = this.find(a,b);
+
+  if(contact !== undefined){
+
+    a.onExitCollision(contact);
+    b.onExitCollision(contact);
+
+    if(this.map[a.getId()] !== undefined && this.map[a.getId()][b.getId()] !== undefined){
+      delete this.map[a.getId()][b.getId()];
+    }
+
+    if(this.map[b.getId()] !== undefined && this.map[b.getId()][a.getId()] !== undefined){
+      delete this.map[b.getId()][a.getId()];
+    }
+  }
+
+
+    // console.log("remove");
+
+
+
 };
 
 //----------------------------------------------------------------------
 
-ContactManager.prototype.addPenetration = function (colliderA, colliderB, contactPoint, normal, relativeVelocity, depth) {
-  return ContactManager.add(this.penetrationsMap, this.penetrationsList, colliderA, colliderB, contactPoint, normal, relativeVelocity, depth);
-};
-
-//----------------------------------------------------------------------
-
-ContactManager.prototype.getCollisions = function () {
-  return this.collisionsList;
-};
-
-//----------------------------------------------------------------------
-
-ContactManager.prototype.getPenetrations = function () {
-  return this.penetrationsList;
-};
-
-//----------------------------------------------------------------------
-
-ContactManager.prototype.checkExitCollision = function (colliderA, colliderB) {
-
-	var contact = this.findRegisteredCollision(colliderA,colliderB);
-
-	if(contact !== undefined){
-		this.removeCollision(colliderA,colliderB);
-		colliderA.onExitCollision(contact);
-		colliderB.onExitCollision(contact);
-	}
-};
-
-
-//----------------------------------------------------------------------
-
-ContactManager.prototype.removeCollision = function (colliderA,colliderB) {
-	delete this.collisionsMap[colliderA.getId()][colliderB.getId()];
-	delete this.collisionsMap[colliderB.getId()][colliderA.getId()];
-};
-
-//----------------------------------------------------------------------
-
-ContactManager.find = function (colliderA,colliderB, map) {
+ContactManager.prototype.find = function (colliderA,colliderB) {
 
   var ab = undefined;
   var ba = undefined;
 
-  if(map[colliderA.getId()] !== undefined)
-    ab = map[colliderA.getId()][colliderB.getId()];
+  if(this.map[colliderA.getId()] !== undefined)
+    ab = this.map[colliderA.getId()][colliderB.getId()];
 
-  if(map[colliderB.getId()] !== undefined)
-	 ba = map[colliderB.getId()][colliderA.getId()];
+  if(this.map[colliderB.getId()] !== undefined)
+	 ba = this.map[colliderB.getId()][colliderA.getId()];
 
   if(ab !== undefined)
     return ab;
@@ -104,14 +110,14 @@ ContactManager.find = function (colliderA,colliderB, map) {
 
 //----------------------------------------------------------------------
 
-ContactManager.prototype.findRegisteredCollision = function (colliderA,colliderB) {
-  return ContactManager.find(colliderA, colliderB, this.collisionsMap);
-};
+ContactManager.prototype.testAndRemove = function (colliderA,colliderB,eps) {
+  var a = colliderA;
+  var b = colliderB;
 
-//----------------------------------------------------------------------
-
-ContactManager.prototype.findRegisteredPenetration = function (colliderA,colliderB) {
-  return ContactManager.find(colliderA, colliderB, this.penetrationsMap);
+  if( ! a.testEpsilon(b,eps) && ! b.testEpsilon(a,eps)){
+    this.alive = 0;
+    this.remove(a,b);
+  }
 };
 
 //----------------------------------------------------------------------
@@ -154,84 +160,97 @@ ContactManager.applyImpulse = function(bodyA, bodyB, vrel, normal, restitution){
 
 //----------------------------------------------------------------------
 
-ContactManager.prototype.solve = function (list, isCollision) {
-  // var solved = {}; // boolean matrix
+ContactManager.prototype.solve = function () {
 
-  for (var i = 0; i < list.length; i++) {
+    // console.log(this.list.length);
+
+  // var it = 0;
+
+  for (var i = 0; i < this.list.length; i++) {
+
+    var contact = this.list[i];
+
+    var a = contact.colliderA;
+    var b = contact.colliderB;
+    var normal = contact.normal;
+    var vrel = contact.relativeVelocity;
+    var depth = contact.depth;
+    var contactPoint = contact.contactPoint;
+
+    // console.log(contact.isAlive());
+    // console.log(a.getId() + " " + b.getId());
 
 
 
-    var normal = list[i].normal;
-    var vrel = list[i].relativeVelocity;
-    var a = list[i].colliderA;
-    var b = list[i].colliderB;
-    var depth = list[i].depth;
+    if(this.find(a,b) !== undefined /*&& contact.isAlive()*/){
 
-    var contact = list[i];
-    // var contact = this.findRegisteredPenetration(a,b);
+      // it++;
+      //
+      // console.log(it);
 
-    if(!contact.isSolved()){
+
+      contact.setAlive(false);
+      // if(this.find(a,b) !== undefined){
+      this.tmpList.push(contact);
+      // }
+
+
+
       var bodyA = a.gameObject.getComponent(RigidBody);
       var bodyB = b.gameObject.getComponent(RigidBody);
 
-      if(isCollision){
-        ContactManager.applyImpulse(bodyA,bodyB,vrel,normal, 0);
-        contact.setSolved(true);
-      }else{
-        // ContactManager.applyImpulse(bodyA,bodyB,vrel,normal, 0.5 + 1*Collider.depthEpsilon/Math.abs(depth));
-        // if(depth < Collider.depthEpsilon){
-          var force = 10000*Math.abs(depth)*Math.abs(vrel.len());
+      // if(depth === 0)
+      //   console.log(depth);
+
+      if(depth < -Collider.depthEpsilon){
+        // console.log("penetration");
+
+          this.alive++;
+          var force = Math.abs(depth)*this.alive*50;
+          // var force = 10000*Math.abs(depth)*(1/this.alive);
+
           // console.log(force);
 
-          // var e = Collider.depthEpsilon;
-          // if(depth > -5*e ){
-          //   force = 1000*Math.abs(depth);
-          // }
+          // bodyA.linear = new Vector3(0,0,0);
+          // bodyB.linear = new Vector3(0,0,0);
+          bodyA.linear.mulScl(Math.abs(depth));
+          bodyB.linear.mulScl(Math.abs(depth));
+          // bodyA.linear.mulScl( Math.abs(depth)*1/this.alive);
+          // bodyB.linear.mulScl( Math.abs(depth)*1/this.alive);
 
-          // var force = 100;
-
-
-          // console.log(depth < Collider.depthEpsilon);
           bodyA.applyForce(normal.cpy().mulScl(force));
           bodyB.applyForce(normal.cpy().mulScl(-force));
 
-        // }else
-        //   contact.setSolved(true);
+          var accum = bodyA.getForceAccumulator().len();
+            // console.log(accum);
+          // if(force > 3333)
+            // console.log(force);
+          //   console.log(vrel.len());
+          // console.log(contactPoint.x + " " + contactPoint.y);
+
+          // if(this.find(a,b) !== undefined){
+            // contact.setAlive(true);
+          // }
+          // this.remove(a,b);
+
+
+          // console.log(this.alive);
+
+      }else{
+        ContactManager.applyImpulse(bodyA,bodyB,vrel,normal,0);
+        // console.log("collision");
 
       }
 
     }
+
+    this.testAndRemove(a,b,Collider.depthEpsilon);
+
   }
-};
 
-
-//----------------------------------------------------------------------
-
-ContactManager.prototype.solveCollisions = function () {
-  this.solve(this.collisionsList, true);
-  this.clearCollisions();
-};
-
-//----------------------------------------------------------------------
-
-ContactManager.prototype.solvePenetrations = function () {
-  this.solve(this.penetrationsList, false);
-  // this.clearPenetrations();
-};
-
-//----------------------------------------------------------------------
-
-ContactManager.prototype.clearCollisions = function () {
-  this.collisionsList = [];
-  this.collisionsMap = [];
-};
-
-//----------------------------------------------------------------------
-
-ContactManager.prototype.clearPenetrations = function () {
-  // this.penetrationsList = this.notSolvedPenetrations.slice(); // NOTE: slice == copy
-  this.penetrationsList = [];
-  this.penetrationsMap = [];
+  this.list = this.tmpList; // copy
+  this.tmpList = [];
+  // this.list = [];
 };
 
 //----------------------------------------------------------------------

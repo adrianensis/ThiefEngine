@@ -93,7 +93,7 @@ PhysicsEngine.prototype.simulate = function (dt){
     	}
 
       first = false;
-      this.contactManager.clearPenetrations();
+      // this.contactManager.clearPenetrations();
 
       // check collisions
       this.tree.update(this.contactManager);
@@ -121,15 +121,17 @@ PhysicsEngine.prototype.simulate = function (dt){
           // console.log("collision");
 
           // this.solveCollisions(this.tree.getContacts(),false);
-          this.contactManager.solveCollisions();
+          // this.contactManager.solveCollisions();
       }
 
       // this.contactManager.solvePenetrations();
       // this.contactManager.clearContacts();
       // this.tree.clearContacts();
 
-      this.contactManager.solvePenetrations();
-      this.contactManager.clearPenetrations();
+      // this.contactManager.solvePenetrations();
+      this.contactManager.solve();
+
+      // this.contactManager.clearPenetrations();
 
       it++;
   }

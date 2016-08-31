@@ -7,12 +7,34 @@ var Contact = function (colliderA, colliderB, contactPoint, normal, relativeVelo
   this.relativeVelocity = relativeVelocity;
   this.depth = depth;
   this.solved = false;
+  this.alive = true;
 };
 
 //----------------------------------------------------------------------
 
-Contact.prototype.setSolved = function () {
-  this.solved = true;
+Contact.prototype.update = function (contactPoint, normal, relativeVelocity, depth) {
+  this.contactPoint = contactPoint;
+  this.normal = normal; // From B to A
+  this.relativeVelocity = relativeVelocity;
+  this.depth = depth;
+};
+
+//----------------------------------------------------------------------
+
+Contact.prototype.setAlive = function (bool) {
+  this.alive = bool;
+};
+
+//----------------------------------------------------------------------
+
+Contact.prototype.isAlive = function () {
+  return this.alive;
+};
+
+//----------------------------------------------------------------------
+
+Contact.prototype.setSolved = function (bool) {
+  this.solved = bool;
 };
 
 //----------------------------------------------------------------------

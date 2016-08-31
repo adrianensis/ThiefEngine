@@ -16,13 +16,12 @@ var GeometryUtil = function () {
 * @param {Number} point The point.
 * @returns {Boolean} True if the rectangle contains the point.
 */
-GeometryUtil.testRectanglePoint = function(leftTopVertex,width,height,point){
-	return (leftTopVertex.x <= point.x && leftTopVertex.y >= point.y &&
-	leftTopVertex.x + width >= point.x && leftTopVertex.y - height <= point.y);
+GeometryUtil.testRectanglePoint = function(leftTopVertex,width,height,point, eps){
+	return (leftTopVertex.x-eps < point.x && leftTopVertex.y+eps > point.y &&
+	leftTopVertex.x + width +eps > point.x && leftTopVertex.y - height -eps < point.y);
 };
 
 //----------------------------------------------------------------------
-
 /**
 * Returns if the spheres are colliding.
 * @param {Vector4} centerA The center of the A sphere.
@@ -33,7 +32,7 @@ GeometryUtil.testRectanglePoint = function(leftTopVertex,width,height,point){
 */
 GeometryUtil.testSphereSphere = function(centerA, centerB, radiusA, radiusB){
 	var distance = centerA.dst(centerB);
-	return (distance <= radiusA+radiusB);
+	return (distance < radiusA+radiusB);
 };
 
 //----------------------------------------------------------------------

@@ -47,12 +47,37 @@ AABBCollider.prototype.getNormals = function () {
 
 AABBCollider.prototype.testPoint = function (vec) {
 
+  this.getBoundingBox();
+
   if(this.LT === null){
     var center = this.getCenter();
   	this.LT = new Vector3(center.x-(this.width/2),center.y+(this.height/2), center.z);
   }
 
-	return GeometryUtil.testRectanglePoint(this.LT, this.width, this.height, vec);
+	return GeometryUtil.testRectanglePoint(this.LT, this.width, this.height, vec,0);
+};
+
+//----------------------------------------------------------------------
+
+AABBCollider.prototype.testCircle = function (otherCollider,eps) {
+	throw new Error("Abstract method!");
+};
+
+//----------------------------------------------------------------------
+
+AABBCollider.prototype.testRectangle = function (otherCollider,eps) {
+
+  this.getBoundingBox();
+
+	var vertices = otherCollider.getVertices();
+
+  var result = false;
+  for (var i = 0; i < vertices.length && !result; i++) {
+    result = result || GeometryUtil.testRectanglePoint(this.LT, this.width, this.height, vertices[i],eps);
+  }
+
+  // console.log(result);
+  return result;
 };
 
 //----------------------------------------------------------------------
