@@ -148,6 +148,8 @@ var createSoilder = function(x,y){
   Thief.addGameObjectToScene(createSoilder(3.1,-1.3));
   Thief.addGameObjectToScene(createSoilder(4.2,-1.2));
   Thief.addGameObjectToScene(createSoilder(5.3,-1.1));
+  Thief.addGameObjectToScene(createSoilder(6.4,-1.1));
+  Thief.addGameObjectToScene(createSoilder(7.5,-1.1));
   Thief.addGameObjectToScene(snorlax);
   // Thief.addGameObjectToScene(font);
 
