@@ -221,6 +221,8 @@ ContactManager.prototype.solve = function () {
           bodyA.applyForce(normal.cpy().mulScl(force));
           bodyB.applyForce(normal.cpy().mulScl(-force));
 
+          ContactManager.applyImpulse(bodyA,bodyB,vrel,normal,0);
+
           var accum = bodyA.getForceAccumulator().len();
             // console.log(accum);
           // if(force > 3333)
