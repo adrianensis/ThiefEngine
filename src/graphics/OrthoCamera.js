@@ -11,6 +11,11 @@ var OrthoCamera = function (left, right, bottom, top, near, far){
 };
 
 OrthoCamera.prototype = new Camera();
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 OrthoCamera.prototype.constructor = OrthoCamera;
 
 //----------------------------------------------------------------------

@@ -28,6 +28,11 @@ var LineRenderer = function (shader,start,end,color, transformationMatrix){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 LineRenderer.prototype.bind = function () {
 
     this.vao = vao_ext.createVertexArrayOES();
@@ -62,6 +67,11 @@ LineRenderer.prototype.bind = function () {
 //----------------------------------------------------------------------
 
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 LineRenderer.prototype.render = function () {
     this.shader.enable();
 

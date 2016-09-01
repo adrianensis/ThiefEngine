@@ -19,6 +19,11 @@ var Mesh = function (numVertices) {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.addVertex = function (vec) {
     this.vertices[this.vIndex] = vec.x; this.vIndex++;
     this.vertices[this.vIndex] = vec.y; this.vIndex++;
@@ -45,6 +50,11 @@ Mesh.prototype.addVertex = function (vec) {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.addNormal = function (vec) {
     this.normals[this.nIndex] = vec.x; this.nIndex++;
     this.normals[this.nIndex] = vec.y; this.nIndex++;
@@ -54,6 +64,11 @@ Mesh.prototype.addNormal = function (vec) {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.addFace = function (v1,v2,v3) {
     this.faces[this.fIndex] = v1; this.fIndex++;
     this.faces[this.fIndex] = v2; this.fIndex++;
@@ -62,6 +77,11 @@ Mesh.prototype.addFace = function (v1,v2,v3) {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.addTexCoord = function (u,v) {
     this.texCoord[this.txIndex] = u; this.txIndex++;
     this.texCoord[this.txIndex] = v; this.txIndex++;
@@ -71,6 +91,11 @@ Mesh.prototype.addTexCoord = function (u,v) {
 
 // TODO: getCenterVertex, getMostTopVertex, getMoreLeftVertex, getMoreRightVertex, getMoreBottomVertex
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.getVertex = function (index) {
     return new Vector4(this.vertices[(index*4)],this.vertices[(index*4)+1],
         this.vertices[(index*4)+2],this.vertices[(index*4)+3]);
@@ -78,6 +103,11 @@ Mesh.prototype.getVertex = function (index) {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.setVertex = function (index,vec) {
     this.vertices[(index*4)] = vec.x;
     this.vertices[(index*4)+1] = vec.y;
@@ -87,55 +117,100 @@ Mesh.prototype.setVertex = function (index,vec) {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.getNumVertices = function () {
     return this.vertices.length/4;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.getNumFaces = function () {
     return this.faces.length/3;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.getVerticesData = function () {
     return this.vertices;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.getNormalsData = function () {
     return this.normals;
 };
 
 //----------------------------------------------------------------------
 
-//Mesh.prototype.getColorData();
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.getFacesData = function () {
     return this.faces;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.getTexCoordData = function () {
     return this.texCoord;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.hasTexture = function () {
     return this.texCoord.length > 0;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.getMax = function () {
     return this.max.cpy();
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Mesh.prototype.print = function () {
     var str = "";
     for (var i = 0; i < (this.numVertices*4); i++) {

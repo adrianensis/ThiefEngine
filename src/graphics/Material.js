@@ -8,36 +8,66 @@ var Material = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Material.prototype.getTexture = function (){
 	 return this.texture;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Material.prototype.setTexture = function (texture){
 	 this.texture=texture;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Material.prototype.getShader = function (){
 	 return this.shader;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Material.prototype.setShader = function (shader){
 	 this.shader=shader;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Material.prototype.setColor = function (color){
 	 this.color = color;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Material.prototype.getColor = function (){
 	 return this.color;
 };
@@ -45,6 +75,11 @@ Material.prototype.getColor = function (){
 //----------------------------------------------------------------------
 
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Material.prototype.enable = function (){
   // TODO: If not texture then use color, ...
 
@@ -69,6 +104,11 @@ Material.prototype.enable = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Material.prototype.disable = function (){
 
     gl.bindTexture(gl.TEXTURE_2D, null);
@@ -78,6 +118,11 @@ Material.prototype.disable = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Material.prototype.reset = function (){
     this.shader.addFloat(0.0, "animationX");
     this.shader.addFloat(0.0, "animationY");
@@ -92,6 +137,11 @@ Material.prototype.reset = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Material.prototype.bind = function (){
     // TODO: If non texture use shader for plain color
 

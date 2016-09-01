@@ -60,30 +60,55 @@ Animation.create = function (frameCount, horizontal, reverse, startPosition, wid
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Animation.prototype.setSpeed = function (speed) {
     this.speed = speed;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Animation.prototype.addFrame = function (frame) {
     this.frames.push(frame);
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Animation.prototype.getNumberOfFrames = function () {
     return this.frames.length;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Animation.prototype.getCurrentFrameNumber = function () {
     return this.currentFrame;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Animation.prototype.getNextFrame = function () {
 
     // this.speed -> frame/second.

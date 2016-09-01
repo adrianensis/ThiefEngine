@@ -10,58 +10,108 @@ var GameObject = function (){
 };
 
 GameObject.prototype = new BaseObject();
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.constructor = GameObject;
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.getTransform = function (){
 	return this.transform;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.getParent = function (){
 	return this.parent;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.setParent = function (parent){
 	this.parent=parent;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.setStatic = function (bool){
 	this.static = bool;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.isStatic = function (parent){
 	return this.static;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.getScene = function (){
 	return this.scene;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.setScene = function (scene){
 	this.scene=scene;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.getChildren = function (){
 	return this.children;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.setChildren = function (children){
     for (var child of children) {
         child.setParent(this);
@@ -72,12 +122,22 @@ GameObject.prototype.setChildren = function (children){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.getComponents = function (){
 	return this.components;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.enable = function (){
 	for (var component of this.components) {
     component.enable();
@@ -86,6 +146,11 @@ GameObject.prototype.enable = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.disable = function (){
   for (var component of this.components) {
     component.disable();
@@ -94,6 +159,11 @@ GameObject.prototype.disable = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.addChild = function (child){
   child.setParent(this);
   this.children.push(child);
@@ -101,12 +171,22 @@ GameObject.prototype.addChild = function (child){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.getChild = function (){
 
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.addComponent = function (component){
 
   if( (component instanceof Transform) && (this.transform === null)){
@@ -124,6 +204,11 @@ GameObject.prototype.addComponent = function (component){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.getAllComponents = function (componentClass){
 
     var componentList = [];
@@ -150,6 +235,11 @@ GameObject.prototype.getAllComponents = function (componentClass){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.getComponent = function (componentClass){
 
     for (var component of this.components) {
@@ -164,6 +254,11 @@ GameObject.prototype.getComponent = function (componentClass){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.getComponentsInChildren = function (componentClass){
     var componentList = [];
 
@@ -176,6 +271,11 @@ GameObject.prototype.getComponentsInChildren = function (componentClass){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.destroyChildren = function (){
   for (var child of this.children)
     child.destroy();
@@ -184,6 +284,11 @@ GameObject.prototype.destroyChildren = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.destroyAllComponents = function (){
   for (var component of this.components)
     component.destroy();
@@ -192,6 +297,11 @@ GameObject.prototype.destroyAllComponents = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObject.prototype.destroy = function (){
   // this.setParent(null);
   this.disable();

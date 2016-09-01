@@ -18,6 +18,11 @@ SpriteBatch.binded = false;
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 SpriteBatch.prototype.add = function (renderer){
 
   if( ! (renderer.getId() in this.renderers))
@@ -26,6 +31,11 @@ SpriteBatch.prototype.add = function (renderer){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 SpriteBatch.prototype.bind = function (){
 
   this.material.bind();
@@ -97,6 +107,11 @@ SpriteBatch.prototype.bind = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 SpriteBatch.prototype.update = function (renderContext){
   this.renderContext = renderContext;
 
@@ -123,6 +138,11 @@ SpriteBatch.prototype.update = function (renderContext){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 SpriteBatch.prototype.render = function (){
 
   this.material.enable();

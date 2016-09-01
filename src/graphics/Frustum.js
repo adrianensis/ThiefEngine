@@ -11,6 +11,11 @@ var Frustum = function (camera){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Frustum.prototype.testSphere = function (center, radius){
 	// console.log("TEST SPHERE");
 	for (var i = 0; i < this.planes.length; i++) {
@@ -33,6 +38,11 @@ Frustum.prototype.testSphere = function (center, radius){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Frustum.prototype.build = function (){
 
 	var t = this.camera.getGameObject().getTransform();

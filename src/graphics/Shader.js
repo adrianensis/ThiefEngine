@@ -108,40 +108,75 @@ Shader.fsDebug=
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.isCompiled = function (){
 	return this.compiled;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.getProgramid = function (){
 	return this.programID;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.setProgramid = function (programID){
 	this.programID=programID;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.getVertshaderid = function (){
 	return this.vertShaderID;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.setVertshaderid = function (vertShaderID){
 	this.vertShaderID=vertShaderID;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.getFragshaderid = function (){
 	return this.fragShaderID;
 };
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.setFragshaderid = function (fragShaderID){
 	this.fragShaderID=fragShaderID;
 };
@@ -149,6 +184,11 @@ Shader.prototype.setFragshaderid = function (fragShaderID){
 //----------------------------------------------------------------------
 
 // Method definition goes here.
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.addVertexShader = function (sourceText){
 
   var shaderID = gl.createShader(gl.VERTEX_SHADER);
@@ -160,6 +200,11 @@ Shader.prototype.addVertexShader = function (sourceText){
 //----------------------------------------------------------------------
 
 // Method definition goes here.
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.addFragmentShader = function (sourceText){
 
   var shaderID = gl.createShader(gl.FRAGMENT_SHADER);
@@ -170,6 +215,11 @@ Shader.prototype.addFragmentShader = function (sourceText){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.addSource = function (type,name){
   var src = document.getElementById(name).text;
 
@@ -184,6 +234,11 @@ Shader.prototype.addSource = function (type,name){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.addAttribute = function (location,name){
   gl.bindAttribLocation(this. programID, location, name);
 };
@@ -191,6 +246,11 @@ Shader.prototype.addAttribute = function (location,name){
 //----------------------------------------------------------------------
 
 // Method definition goes here.
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.addMatrix = function (matrix,name){
   matrixLocation = gl.getUniformLocation(this.programID, name);
   gl.uniformMatrix4fv(matrixLocation, false, new Float32Array(matrix.getData()));
@@ -198,6 +258,11 @@ Shader.prototype.addMatrix = function (matrix,name){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.addMatrixArray = function (matrixArray,name){
   matrixLocation = gl.getUniformLocation(this.programID, name);
 
@@ -211,6 +276,11 @@ Shader.prototype.addMatrixArray = function (matrixArray,name){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.addInt = function (value, name){
   valueLocation = gl.getUniformLocation(this.programID, name);
   gl.uniform1i(valueLocation, value);
@@ -218,6 +288,11 @@ Shader.prototype.addInt = function (value, name){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.addFloat = function (value, name){
   valueLocation = gl.getUniformLocation(this.programID, name);
   gl.uniform1f(valueLocation, value);
@@ -225,6 +300,11 @@ Shader.prototype.addFloat = function (value, name){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.addFloatVector = function (value, name){
   valueLocation = gl.getUniformLocation(this.programID, name);
   gl.uniform4fv(valueLocation, new Float32Array(value));
@@ -232,6 +312,11 @@ Shader.prototype.addFloatVector = function (value, name){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.compile = function (){
   if( ! this.isCompiled()){
     gl.compileShader(this.fragShaderID);
@@ -258,12 +343,22 @@ Shader.prototype.compile = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.enable = function (){
   gl.useProgram(this.programID);
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Shader.prototype.disable = function (){
   gl.useProgram(null);
 };

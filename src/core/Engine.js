@@ -1,3 +1,9 @@
+
+/**
+* @class
+* @classdesc This class is the main application.
+* It holds all the scenes and objects.
+*/
 var Engine = function (){
 
   this.fps = 30;
@@ -17,18 +23,30 @@ var Engine = function (){
 
 // TODO: Singleton
 
+/**
+* Returns the current scene.
+* @returns {Scene} The current scene.
+*/
 Engine.prototype.getCurrentScene = function (){
 	return this.currentScene;
 };
 
 //----------------------------------------------------------------------
 
-Engine.prototype.addScene = function (currentScene){
-	this.scenes[currentScene.getName()] = currentScene;
+/**
+* Adds a new scene.
+* @param {Scene} scene The new scene.
+*/
+Engine.prototype.addScene = function (scene){
+	this.scenes[scene.getName()] = scene;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Sets the current scene as the scene named as 'name'.
+* @param {String} name The scene's name.
+*/
 Engine.prototype.setCurrentScene = function (name){
 
   if(this.currentScene !== null)
@@ -39,42 +57,67 @@ Engine.prototype.setCurrentScene = function (name){
 
 //----------------------------------------------------------------------
 
+/**
+* Returns the scenes.
+* @returns {Array} The scenes.
+*/
 Engine.prototype.getScenes = function (){
 	return this.scenes;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Sets the clear color. WebGL will use this value to repaint the screen.
+* @param {Color} color The color.
+*/
 Engine.prototype.setClearColor = function (color){
   this.renderEngine.setClearColor(color);
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Enables the physics engine,
+*/
 Engine.prototype.enablePhysics = function (){
   this.physicsEnabled = true;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Sets the gravity.
+* @param {Vector4} gravity The gravity.
+*/
 Engine.prototype.setGravity = function (gravity){
   this.physicsEngine.setGravity(gravity);
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Disables the physics engine,
+*/
 Engine.prototype.disablePhysics = function (){
   this.physicsEnabled = false;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Sets the fps.
+* @param {Number} fps The fps.
+*/
 Engine.prototype.setFPS = function (fps){
   this.fps = fps;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Starts the engine.
+*/
 Engine.prototype.init = function (){
 
   this.renderEngine = new RenderEngine();
@@ -85,6 +128,9 @@ Engine.prototype.init = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* Updates the current scene.
+*/
 Engine.prototype.updateScene = function(){
 
   var root = this.currentScene.getNewsRoot();
@@ -107,6 +153,9 @@ Engine.prototype.updateScene = function(){
 
 //----------------------------------------------------------------------
 
+/**
+* Loads the current scene.
+*/
 Engine.prototype.loadScene = function(){
 
   this.renderEngine.clear();
@@ -120,7 +169,9 @@ Engine.prototype.loadScene = function(){
 //----------------------------------------------------------------------
 
 
-
+/**
+* Runs the engine.
+*/
 Engine.prototype.run = function () {
 
   window.requestAnimFrame = (function(){

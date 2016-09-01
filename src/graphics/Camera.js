@@ -7,28 +7,53 @@ var Camera = function (matrix){
 };
 
 Camera.prototype = new Component();
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Camera.prototype.constructor = Camera;
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Camera.prototype.getFrustum = function (){
 	return this.frustum;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Camera.prototype.setProjection = function (projectionMatrix){
     this.projectionMatrix = projectionMatrix;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Camera.prototype.getProjectionMatrix = function (){
     return this.projectionMatrix;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Camera.prototype.getViewMatrix = function (){
 
 	var t = this.gameObject.getTransform();

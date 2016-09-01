@@ -18,36 +18,66 @@ var Scene = function (name){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.getName = function (){
 	return this.name;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.setLoaded = function (bool){
 	this.loaded=bool;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.isLoaded = function (){
 	return this.loaded;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.getRoot = function (){
   return this.root;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.getNewsRoot = function (){
 	return this.newsRoot;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.flush = function (){
   this.root.setChildren(this.root.getChildren().concat(this.newsRoot.getChildren()));
   this.newsRoot.setChildren([]);
@@ -56,12 +86,22 @@ Scene.prototype.flush = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.hasNewObjects = function (){
 	return this.newObjects;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.addObject = function (obj){
   // console.log("ADD OBJECT: " + obj.getId());
   this.newObjects = true;
@@ -73,12 +113,22 @@ Scene.prototype.addObject = function (obj){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.deleteObject = function (obj){
   this.trash.push(obj);
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.cleanTrash = function (obj){
 
   for (var i = 0; i < this.trash.length; i++) {
@@ -98,24 +148,44 @@ Scene.prototype.cleanTrash = function (obj){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.getRenderContext = function (){
 	return this.renderContext;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.setRenderContext = function (renderContext){
 	this.renderContext=renderContext;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.getCamera = function (){
 	return this.camera;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Scene.prototype.setCamera = function (camera){
 	this.camera=camera;
 };

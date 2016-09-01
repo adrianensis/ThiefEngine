@@ -1,3 +1,8 @@
+
+/**
+* @class
+* @classdesc This loader stores textures and avoid duplication of them.
+*/
 var Loader = function (){
 
 };
@@ -17,6 +22,10 @@ Loader.hasImageRequests = false;
 
 //----------------------------------------------------------------------
 
+/**
+* Returns if all loads have finished.
+* @returns {Boolean} If all loads have finished.
+*/
 Loader.isDone = function(){
 
     if( ! Loader.hasImageRequests)
@@ -27,12 +36,21 @@ Loader.isDone = function(){
 
 //----------------------------------------------------------------------
 
+/**
+* Resets the loader.
+*/
 Loader.reset = function(){
   Loader.done = false;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Loads the image in async mode.
+* NOTE: Do not worry about the 'async' word.
+* The engine will wait until all the images are loaded.
+* @param {String} path The path.
+*/
 Loader.loadImageFile = function (path){
 
     Loader.hasImageRequests = true;
@@ -63,6 +81,12 @@ Loader.loadImageFile = function (path){
 
 //----------------------------------------------------------------------
 
+/**
+* Loads the texture in async mode.
+* NOTE: Do not worry about the 'async' word.
+* The engine will wait until all the images are loaded.
+* @param {String} path The path.
+*/
 Loader.loadTexture = function (path) {
     if( ! (path in Loader.textures)){
         var img = Loader.loadImageFile(path);

@@ -6,6 +6,11 @@ var AnimationFrame = function () {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 AnimationFrame.prototype.set = function (position, width, height) {
     this.position = position
     this.width = width;
@@ -14,18 +19,33 @@ AnimationFrame.prototype.set = function (position, width, height) {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 AnimationFrame.prototype.getPosition = function (){
 	return this.position;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 AnimationFrame.prototype.getWidth = function (){
 	return this.width;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 AnimationFrame.prototype.getHeight = function (){
 	return this.height;
 };

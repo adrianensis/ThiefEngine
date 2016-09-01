@@ -3,12 +3,27 @@ var SpriteBuilder = function (){
 };
 
 SpriteBuilder.prototype = new GameObjectBuilder();
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 SpriteBuilder.prototype.constructor = SpriteBuilder;
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 SpriteBuilder.prototype.begin = function (textureName) {
-  GameObjectBuilder.prototype.begin.call(this);
+  /**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+GameObjectBuilder.prototype.begin.call(this);
 
   this.setRenderer(new SpriteRenderer());
 
@@ -23,6 +38,11 @@ SpriteBuilder.prototype.begin = function (textureName) {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 SpriteBuilder.prototype.setSize = function (size) {
   this.setScale(new Vector2(size,size));
   return this;

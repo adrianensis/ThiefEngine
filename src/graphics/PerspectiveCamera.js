@@ -8,6 +8,11 @@ var PerspectiveCamera = function (near, far, aspect, fov){
 };
 
 PerspectiveCamera.prototype = new Camera();
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 PerspectiveCamera.prototype.constructor = PerspectiveCamera;
 
 //----------------------------------------------------------------------

@@ -18,26 +18,42 @@ var Transform = function (){
 };
 
 Transform.prototype = new Component();
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.constructor = Transform;
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.isStatic = function () {
 	return this.gameObject.isStatic();
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.isDirty = function () {
 	return this.dirty;
 };
 
 //----------------------------------------------------------------------
 
-// Transform.prototype.setParentMatrix = function (parentMatrix) {
-// 	this.parentMatrix = parentMatrix;
-// };
-
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.generateLocalSpaceMatrix = function (){
 	this.matrix = Matrix4.scale(this.scale);
 	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(this.rotation.x, 0, 0)));
@@ -49,6 +65,11 @@ Transform.prototype.generateLocalSpaceMatrix = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.initMatrix = function (){
 
 	this.generateLocalSpaceMatrix();
@@ -68,12 +89,22 @@ Transform.prototype.initMatrix = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.getMatrix = function (){
 	return this.matrix;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.generateMatrix = function (){
 
 	// If this transform is not static
@@ -111,6 +142,11 @@ Transform.prototype.generateMatrix = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.setMatrix = function(matrix){
 	this.matrix = matrix;
 
@@ -119,6 +155,11 @@ Transform.prototype.setMatrix = function(matrix){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.setPosition = function (vec){
 
 	if( ! this.position.equals(vec)){
@@ -134,6 +175,11 @@ Transform.prototype.setPosition = function (vec){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.setRotation = function (vec){
 
 	if( ! this.rotation.equals(vec)){
@@ -149,6 +195,11 @@ Transform.prototype.setRotation = function (vec){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.setScale = function (vec){
 
 	if( ! this.scale.equals(vec)){
@@ -164,18 +215,33 @@ Transform.prototype.setScale = function (vec){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.getPosition = function (){
 	return this.position;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.getRotation = function (){
 	return this.rotation;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.getScale = function (){
 	return this.scale;
 };
@@ -183,6 +249,11 @@ Transform.prototype.getScale = function (){
 //----------------------------------------------------------------------
 
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.translate = function (vec){
 
 	if(vec.len() > 0){
@@ -198,6 +269,11 @@ Transform.prototype.translate = function (vec){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.rotate = function (vec){
 
 	if(vec.len() > 0){
@@ -213,6 +289,11 @@ Transform.prototype.rotate = function (vec){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.setScale = function (vec){
 
 	if(vec.len() > 0){
@@ -228,6 +309,11 @@ Transform.prototype.setScale = function (vec){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Transform.prototype.lookAt = function (vec){
 
 	if( ! this.target.equals(vec)){

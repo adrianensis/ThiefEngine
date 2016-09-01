@@ -9,12 +9,19 @@ Time.lastTimeInSeconds = 0.0;
 
 //----------------------------------------------------------------------
 
+/**
+* Starts the timestamp.
+*/
 Time.init = function () {
     Time.lastTime = Date.now();
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Generates the timestamp and calculates the delta time
+* that has passed from the last timestamp.
+*/
 Time.tick = function () {
     var now = Date.now();
 
@@ -29,12 +36,22 @@ Time.tick = function () {
 
 // This time is the same for the whole frame (engine loop).
 // This allows synchronize the animations !!!!
+
+/**
+* This function is used to obtain, in the same engine interation, the
+* same timestamp. For example: This allows synchronize the animations.
+* @returns {Number} now.
+*/
 Time.now = function () {
     return Time.lastTimeInSeconds;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Returns the delta time.
+* @returns {Number} The delta time.
+*/
 Time.deltaTime = function () {
     return Time.deltaInSeconds;
 };

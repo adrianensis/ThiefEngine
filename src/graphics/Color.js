@@ -25,6 +25,11 @@ Color.random = function () {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Color.prototype.toArray = function(){
   // return this.vec.toArray;
   var array = new Array(4);
@@ -38,6 +43,11 @@ Color.prototype.toArray = function(){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 Color.prototype.equals = function(otherColor){
   // return this.vec.equals(otherColor.vec);
   return (this.r === vec.r) &&

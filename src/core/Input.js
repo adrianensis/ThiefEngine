@@ -1,3 +1,7 @@
+/**
+* @class
+* @classdesc Provides a simple input facade.
+*/
 var Input = function (){
 
     var onKeyDown = function(event){
@@ -76,18 +80,30 @@ Input.cursorPos = new Vector2(0,0);
 
 //----------------------------------------------------------------------
 
+/**
+* Returns the key wich is being pressed.
+* @returns {Number} The key.
+*/
 Input.getKey = function (){
 	return Input.key;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Returns the button wich is being pressed.
+* @returns {Number} The button.
+*/
 Input.getButton = function (){
 	return Input.button;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Returns cursor position.
+* @returns {Vector4} The cursor position.
+*/
 Input.getCursorPosition = function (){
 
 	return Input.cursorPos;

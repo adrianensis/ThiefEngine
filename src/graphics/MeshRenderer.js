@@ -13,34 +13,64 @@ var MeshRenderer = function (){
 };
 
 MeshRenderer.prototype = new Component();
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.constructor = MeshRenderer;
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.getMesh = function (){
 	return this.mesh;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.setMesh = function (mesh){
 	this.mesh=mesh;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.getMaterial = function (){
 	return this.material;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.setMaterial = function (material){
 	this.material=material;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.getRadius = function () {
 
 	var t = this.gameObject.getTransform();
@@ -57,18 +87,33 @@ MeshRenderer.prototype.getRadius = function () {
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.getAlphaColor = function (){
 	return this.alphaColor;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.setAlphaColor = function (color){
 	this.alphaColor = color;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.setRegion = function (pos, width, height){
   this.regionPosition = pos;
   this.regionWidth = width;
@@ -77,24 +122,44 @@ MeshRenderer.prototype.setRegion = function (pos, width, height){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.getRegionPosition = function (){
 	return this.regionPosition;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.getRegionWidth = function (){
 	return this.regionWidth;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.getRegionHeight = function (){
 	return this.regionHeight;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 MeshRenderer.prototype.updateMaterial = function (material){
   if(material.getTexture() !== null){
 

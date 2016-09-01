@@ -81,6 +81,11 @@ var RenderEngine = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 RenderEngine.prototype.setClearColor = function (color){
   this.color.r = color.r;
   this.color.g = color.g;
@@ -92,6 +97,11 @@ RenderEngine.prototype.setClearColor = function (color){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 RenderEngine.prototype.addRenderers = function (renderers){
 
   for (var renderer of renderers) {
@@ -117,6 +127,11 @@ RenderEngine.prototype.addRenderers = function (renderers){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 RenderEngine.prototype.clear = function (){
   this.textureBatches = {};
   this.noTextureBatch = new SpriteBatch(new Material());
@@ -125,18 +140,33 @@ RenderEngine.prototype.clear = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 RenderEngine.prototype.getRenderContext = function (){
 	return this.renderContext;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 RenderEngine.prototype.setRenderContext = function (renderContext){
 	this.renderContext=renderContext;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 RenderEngine.prototype.update = function (){
 
   // RE-BUILD frustum
@@ -157,6 +187,11 @@ RenderEngine.prototype.update = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 RenderEngine.prototype.bind = function (){
 
   // for (var renderer of this.renderers){
@@ -174,6 +209,11 @@ RenderEngine.prototype.bind = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 RenderEngine.prototype.render = function (){
 
 
