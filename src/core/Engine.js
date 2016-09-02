@@ -174,19 +174,19 @@ Engine.prototype.loadScene = function(){
 */
 Engine.prototype.run = function () {
 
-  window.requestAnimFrame = (function(){
-    return  window.requestAnimationFrame       ||
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame    ||
-            function( callback ){
-              window.setTimeout(callback, (1/this.fps)*1000);
-            };
-  })();
   // window.requestAnimFrame = (function(){
-  //   return  function( callback ){
+  //   return  window.requestAnimationFrame       ||
+  //           window.webkitRequestAnimationFrame ||
+  //           window.mozRequestAnimationFrame    ||
+  //           function( callback ){
   //             window.setTimeout(callback, (1/this.fps)*1000);
   //           };
   // })();
+  window.requestAnimFrame = (function(){
+    return  function( callback ){
+              window.setTimeout(callback, (1/this.fps)*1000);
+            };
+  })();
 
 
   var renderEngine = this.renderEngine;

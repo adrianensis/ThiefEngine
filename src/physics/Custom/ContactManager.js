@@ -78,6 +78,14 @@ ContactManager.prototype.remove = function (colliderA,colliderB) {
     if(this.map[b.getId()] !== undefined && this.map[b.getId()][a.getId()] !== undefined){
       delete this.map[b.getId()][a.getId()];
     }
+
+    a.gameObject.getComponent(RigidBody).setForceCounterPenetrationAccumulator(new Vector3(0,0,0));
+    b.gameObject.getComponent(RigidBody).setForceCounterPenetrationAccumulator(new Vector3(0,0,0));
+
+    // a.gameObject.getComponent(RigidBody).linear = new Vector3(0,0,0);
+    //
+    // b.gameObject.getComponent(RigidBody).linear = new Vector3(0,0,0);
+
   }
 
 
@@ -176,43 +184,53 @@ ContactManager.prototype.solve = function () {
 
       this.tmpList.push(contact);
 
-
-
-
       var bodyA = a.gameObject.getComponent(RigidBody);
       var bodyB = b.gameObject.getComponent(RigidBody);
 
       if(depth < -Collider.depthEpsilon){
-    
+
           contact.addAlive();
           var alive = contact.getAlive();
 
-          // var force = Math.abs(depth)*alive*50;
-          var force = Math.abs(depth)*alive*100 + vrel.len()*100;
-          // var force = 10000*Math.abs(depth)*(1/this.alive);
+          var force = Math.abs(depth)*alive*100 ;
 
-          // console.log(vrel.len());
-          // if(bodyA.linear.ang(vrel) === 0)
-            // bodyA.linear.mulScl(Math.abs(depth));
+          // console.log("penetration");
+          // console.log(force);
+          // console.log(bodyB.linear);
+          // console.log(normal);
+          // console.log(bodyA.linear.cpy().nor().dot(normal));
+//
+          // if(bodyB.linear.len() > 0.1){
+            bodyA.linear = new Vector3(0,0,0);
+            bodyA.applyForceCounterPenetration(normal.cpy().mulScl(force));
+          // }
 
-          // if(bodyB.linear.ang(vrel) === 0)
-            // bodyB.linear.mulScl(Math.abs(depth));
+          // if(bodyA.linear.len() > 0.1){
+            bodyB.linear = new Vector3(0,0,0);
+            bodyB.applyForceCounterPenetration(normal.cpy().mulScl(-force));
+          // }
+          // bodyA.linear.mulScl( Math.abs(depth));
+          // bodyB.linear.mulScl( Math.abs(depth));
 
-          bodyA.linear = new Vector3(0,0,0);
-          bodyB.linear = new Vector3(0,0,0);
-          // bodyA.linear.mulScl( Math.abs(depth)*1/this.alive);
-          // bodyB.linear.mulScl( Math.abs(depth)*1/this.alive);
 
-          bodyA.applyForce(normal.cpy().mulScl(force));
-          bodyB.applyForce(normal.cpy().mulScl(-force));
+
+          // bodyA.applyForce(normal.cpy().mulScl(force));
+          // bodyB.applyForce(normal.cpy().mulScl(-force));
 
           // ContactManager.applyImpulse(bodyA,bodyB,vrel,normal,0);
 
           // console.log(alive);
 
       }else{
+        // bodyA.linear = new Vector3(0,0,0);
+        //
+        // bodyB.linear = new Vector3(0,0,0);
+
         ContactManager.applyImpulse(bodyA,bodyB,vrel,normal,0);
+
+        // contact.setAlive(0);
         // console.log("collision");
+        // console.log(normal);
 
       }
 

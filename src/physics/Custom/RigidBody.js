@@ -2,6 +2,7 @@ var RigidBody = function (){
 	Component.call(this);
 	this.linear = new Vector3(0,0,0);
 	this.forceAccumulator = new Vector3(0,0,0);
+	this.counterPenetrationAccumulator = new Vector3(0,0,0);
 	this.angular = new Vector3(0,0,0);
 	this.mass = 1;
 	this.onCollision = false;
@@ -26,6 +27,12 @@ RigidBody.prototype.getForceAccumulator = function () {
 
 //----------------------------------------------------------------------
 
+RigidBody.prototype.setForceCounterPenetrationAccumulator = function (vec) {
+	this.forceAccumulator.set(vec);
+};
+
+//----------------------------------------------------------------------
+
 RigidBody.prototype.setForceAccumulator = function (vec) {
 	this.forceAccumulator.set(vec);
 };
@@ -33,6 +40,12 @@ RigidBody.prototype.setForceAccumulator = function (vec) {
 //----------------------------------------------------------------------
 
 RigidBody.prototype.applyForce = function (vec) {
+		this.counterPenetrationAccumulator.add(vec);
+};
+
+//----------------------------------------------------------------------
+
+RigidBody.prototype.applyForceCounterPenetration = function (vec) {
 	this.forceAccumulator.add(vec);
 };
 
@@ -102,6 +115,7 @@ RigidBody.prototype.integrate = function (dt) {
 
 	// v += (1/m * F) * dt
 	this.linear.add(this.forceAccumulator.cpy().mulScl(1/this.mass).mulScl(dt));
+	this.linear.add(this.counterPenetrationAccumulator.cpy().mulScl(1/this.mass).mulScl(dt));
 
 	// x += v * dt
 	t.translate(this.linear.cpy().mulScl(dt));

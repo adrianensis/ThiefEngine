@@ -31,7 +31,8 @@
 * Texture Loader
 * SpriteSheet animation
 * Textures Atlas support
-* Custom 2D Physics/Collisions engine
+* Box2D Web Physics Engine
+* Custom 2D Physics Engine
 * AABB and Circle colliders
 * Simple Scripting Engine
 * Seedable Random function

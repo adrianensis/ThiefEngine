@@ -3,12 +3,18 @@
 # THIS SCRIPT MINIMIZES THE JAVASCRIPT FILES INTO
 # ONLY ONE .js FILE.
 
-# physics/Box2DWeb/Box2d.min.js
-# physics/Box2DWeb/PhysicsEngine.js
-# physics/Box2DWeb/RigidBody.js
-# physics/Box2DWeb/Collider.js
-# physics/Box2DWeb/AABBCollider.js
-# physics/Box2DWeb/CircleCollider.js
+# physics/Custom/QuadTreeNode.js
+# physics/Custom/QuadTree.js
+# physics/Custom/PhysicsEngine.js
+# physics/Custom/State.js
+# physics/Custom/RigidBody.js
+# physics/Custom/ContactManager.js
+# physics/Custom/Contact.js
+# physics/Custom/Collider.js
+# physics/Custom/Collider2D.js
+# physics/Custom/Polygon.js
+# physics/Custom/AABBCollider.js
+# physics/Custom/CircleCollider.js
 
 list="
 geom/Vector4.js
@@ -35,20 +41,14 @@ gameobject/BaseObject.js
 gameobject/GameObject.js
 gameobject/Component.js
 
+physics/Box2DWeb/Box2d.min.js
+physics/Box2DWeb/PhysicsEngine.js
+physics/Box2DWeb/RigidBody.js
+physics/Box2DWeb/Collider.js
+physics/Box2DWeb/AABBCollider.js
+physics/Box2DWeb/CircleCollider.js
 
 
-physics/Custom/QuadTreeNode.js
-physics/Custom/QuadTree.js
-physics/Custom/PhysicsEngine.js
-physics/Custom/State.js
-physics/Custom/RigidBody.js
-physics/Custom/ContactManager.js
-physics/Custom/Contact.js
-physics/Custom/Collider.js
-physics/Custom/Collider2D.js
-physics/Custom/Polygon.js
-physics/Custom/AABBCollider.js
-physics/Custom/CircleCollider.js
 
 gameobject/Scene.js
 gameobject/Transform.js

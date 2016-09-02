@@ -33,6 +33,12 @@ Contact.prototype.getAlive = function () {
 
 //----------------------------------------------------------------------
 
+Contact.prototype.setAlive = function (n) {
+  this.alive = n;
+};
+
+//----------------------------------------------------------------------
+
 Contact.prototype.setSolved = function (bool) {
   this.solved = bool;
 };
