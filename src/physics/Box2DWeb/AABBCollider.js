@@ -2,10 +2,6 @@ var AABBCollider = function (width, height, isSensor) {
     Collider.call(this, isSensor);
     this.width = width;
     this.height = height;
-
-
-    // this.bodyDef.position.x = this.gameObject.getTransform().position.x;
-    // this.bodyDef.position.y = this.gameObject.getTransform().position.y;
 };
 
 AABBCollider.prototype = new Collider();

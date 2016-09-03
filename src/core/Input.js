@@ -6,7 +6,20 @@ var Input = function (){
 
     var onKeyDown = function(event){
 
-        Input.key = event.keyCode;
+        // Input.key = event.keyCode;
+
+        var found = false;
+
+        for (var i = 0; i < Input.stack.length && !found; i++) {
+
+          var key = Input.stack[i];
+
+          if(key === event.keyCode)
+            found = true;
+        }
+
+        if(!found)
+          Input.stack.push(event.keyCode);
 
         // this allow reload page with F5
         // if(event.keyCode !== 116)
@@ -15,8 +28,20 @@ var Input = function (){
     };
 
     var onKeyUp = function(event){
+        // Input.key = -1;
 
-        Input.key = -1;
+        var newStack = [];
+
+        for (var i = 0; i < Input.stack.length; i++) {
+
+          var key = Input.stack[i];
+
+          if(key !== event.keyCode)
+            newStack.push();
+
+        }
+
+        Input.stack = newStack;
 
         // event.preventDefault();
 
@@ -74,6 +99,7 @@ var Input = function (){
 };
 
 Input.key = -1;
+Input.stack = [];
 Input.button = -1;
 
 Input.cursorPos = new Vector2(0,0);
@@ -86,6 +112,25 @@ Input.cursorPos = new Vector2(0,0);
 */
 Input.getKey = function (){
 	return Input.key;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns the key wich is being pressed.
+* @returns {Number} The key.
+*/
+Input.isKeyPressed = function (key){
+	// return Input.key === key;
+
+  var found = false;
+
+  for (var i = 0; i < Input.stack.length && !found; i++) {
+    if(key === Input.stack[i])
+      found = true;
+  }
+
+  return found;
 };
 
 //----------------------------------------------------------------------

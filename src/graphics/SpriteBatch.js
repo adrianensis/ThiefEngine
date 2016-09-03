@@ -117,23 +117,11 @@ SpriteBatch.prototype.update = function (renderContext){
 
 	this.material.enable();
 
-  // var matrices = [];
-  // for (var renderer of this.renderers) {
-  //     matrices.push(renderer.gameObject.getTransform().getMatrix());
-  // }
-  //
-  // this.material.getShader().addMatrixArray(matrices, "transformationMatrix");
-  //
-	// // this.material.getShader().addMatrix(this.gameObject.getTransform().getMatrix(), "transformationMatrix");
-	this.material.getShader().addMatrix(this.renderContext.getCamera().getProjectionMatrix(), "projectionMatrix");
+  this.material.getShader().addMatrix(this.renderContext.getCamera().getProjectionMatrix(), "projectionMatrix");
 	this.material.getShader().addMatrix(this.renderContext.getCamera().getViewMatrix(), "viewMatrix");
 
 	this.material.disable();
 
-	// var children = this.getChildren();
-	// for (var i = 0; i < children.length; i++) {
-	// 	children[i].update(renderContext);
-	// }
 };
 
 //----------------------------------------------------------------------
@@ -164,17 +152,14 @@ SpriteBatch.prototype.render = function (){
 
     if(renderer.isEnabled() && !renderer.isDestroyed()){
 
-      var test = cam.getFrustum().testSphere(renderer.getGameObject().getTransform().position, renderer.getRadius());
+      var isInFrustum = cam.getFrustum().testSphere(renderer.getGameObject().getTransform().position, renderer.getRadius());
 
-      // console.log(renderer.getRadius());
-      // console.log(test);
-
-      if(test){
-
+      if(isInFrustum){
 
         gl.enableVertexAttribArray(2);
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.vboColor);
+        
       	var color = [];
       	for (var i = 0; i < SpriteBatch.mesh.getVerticesData().length/4; i++) {
       	   color = color.concat(renderer.getMaterial().getColor().toArray());

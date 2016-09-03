@@ -47,7 +47,7 @@ PlayerLogic.prototype.update = function (){
         // body.linear = body.linear.add(new Vector2(0,2));
     }
 
-    if (Input.getKey() === 37) {
+    if (Input.isKeyPressed(37)) {
         // LEFT
             this.direction = -1;
             // this.gameObject.getTransform().rotate(new Vector2(10,0));
@@ -64,7 +64,22 @@ PlayerLogic.prototype.update = function (){
             this.gameObject.getComponent(SpriteRenderer).setAnimation("left");
 
     }
-    else if (Input.getKey() === 39) {
+    else if (Input.isKeyPressed(38)) {
+        // UP
+
+        // console.log(Input.isKeyPressed(39));
+
+            // this.gameObject.getTransform().translate(new Vector2(0,this.v*Time.deltaTime()));
+
+            linear.y = this.v;
+            linear.x = 0;
+
+        //   body.SetLinearVelocity(vel);
+          // this.gameObject.getComponent(RigidBody).linearVelocity = new Vector2(0,10);
+
+            this.gameObject.getComponent(SpriteRenderer).setAnimation("up");
+
+    }else if (Input.isKeyPressed(39)) {
         // RIGHT
             this.direction = 1;
 
@@ -80,20 +95,7 @@ PlayerLogic.prototype.update = function (){
 
             this.gameObject.getComponent(SpriteRenderer).setAnimation("right");
 
-   }else if (Input.getKey() === 38) {
-        // UP
-
-            // this.gameObject.getTransform().translate(new Vector2(0,this.v*Time.deltaTime()));
-
-            linear.y = this.v;
-            linear.x = 0;
-
-        //   body.SetLinearVelocity(vel);
-          // this.gameObject.getComponent(RigidBody).linearVelocity = new Vector2(0,10);
-
-            this.gameObject.getComponent(SpriteRenderer).setAnimation("up");
-
-    }else if (Input.getKey() === 40) {
+   }else if (Input.isKeyPressed(40)) {
         // DOWN
 
             // this.gameObject.getTransform().translate(new Vector2(0,-this.v*Time.deltaTime()));
@@ -116,7 +118,7 @@ PlayerLogic.prototype.update = function (){
 //----------------------------------------------------------------------
 
 PlayerLogic.prototype.onEnterCollision = function (otherGameObject, contact){
-  console.log("onEnterCollision");
+  // console.log("onEnterCollision");
 
   // otherGameObject.destroy();
 };
@@ -124,13 +126,13 @@ PlayerLogic.prototype.onEnterCollision = function (otherGameObject, contact){
 //----------------------------------------------------------------------
 
 PlayerLogic.prototype.onExitCollision = function (otherGameObject, contact){
-  console.log("onExitCollision");
+  // console.log("onExitCollision");
 };
 
 //----------------------------------------------------------------------
 
 PlayerLogic.prototype.onDestroy = function (){
-  console.log("onDestroy");
+  // console.log("onDestroy");
 };
 
 //----------------------------------------------------------------------

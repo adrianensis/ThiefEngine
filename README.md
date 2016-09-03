@@ -32,7 +32,7 @@
 * SpriteSheet animation
 * Textures Atlas support
 * Box2D Web Physics Engine
-* Custom 2D Physics Engine
+* (Deprecated) Custom 2D Physics Engine
 * AABB and Circle colliders
 * Simple Scripting Engine
 * Seedable Random function

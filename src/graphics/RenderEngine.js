@@ -1,3 +1,5 @@
+gl = null;
+
 var RenderEngine = function (){
 
   this.color = new Color(0,0,0,1);
@@ -14,8 +16,6 @@ var RenderEngine = function (){
 
   canvas.width = displayWidth;
   canvas.height = displayHeight;
-
-  gl = null;
 
   try {
   // Try to grab the standard context. If it fails, fallback to experimental.
@@ -47,14 +47,6 @@ var RenderEngine = function (){
 
   if (gl) {
 
-    //   console.log(gl.getParameter(gl.MAX_TEXTURE_SIZE));
-    //   console.log(gl.DEPTH_FUNC);
-
-    // canvas.width  = window.innerWidth;
-    // canvas.height = window.innerHeight;
-
-    // gl.viewport(0, 0, canvas.width, canvas.height);
-    //   gl.viewport(0, 0, 1, 1);
     gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
     gl.clearColor(this.color.r, this.color.g, this.color.b, this.color.a);                      // Set clear color to black, fully opaque
 
@@ -66,15 +58,10 @@ var RenderEngine = function (){
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     // gl.enable(gl.BLEND);
 
-    //gl.enable(gl.TEXTURING);
-    //gl.enable(gl.TEXTURE_2D);
-
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);      // Clear the color and the depth buffer.
   }
 
-    // this.renderers = []; // TODO: remove
     this.clear();
-    // this.noTextureIndex = 1;
 
     DebugRenderer.init();
 };
@@ -194,13 +181,6 @@ RenderEngine.prototype.update = function (){
 */
 RenderEngine.prototype.bind = function (){
 
-  // for (var renderer of this.renderers){
-  //     renderer.bind();
-  // }
-
-
-  // TODO IF there are new batches THEN bind !!!!
-
   for (var i in this.textureBatches)
     this.textureBatches[i].bind();
 
@@ -216,22 +196,13 @@ RenderEngine.prototype.bind = function (){
 */
 RenderEngine.prototype.render = function (){
 
-
-  // for (var renderer of this.renderers){
-  //     renderer.render();
-  // }
-
   // TODO: culling ????
 
-
   for (var i in this.textureBatches){
-    // console.log(this.batches[i].material.texture.name);
     this.textureBatches[i].render();
   }
 
-
   this.noTextureBatch.render();
-
 
   for (var renderer of DebugRenderer.getRenderers()){
     renderer.bind();

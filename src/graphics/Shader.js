@@ -17,7 +17,7 @@ Shader.vs =
 "uniform mat4 transformationMatrix;"+
 
 "attribute vec4 position;"+
-"attribute vec4 color; "+ // IF A ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
+"attribute vec4 color; "+ // REMEMBER: IF AN ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
 "attribute vec2 texcoord;"+
 
 "varying lowp vec4 vColor;"+
@@ -88,7 +88,7 @@ Shader.vsDebug=
 "uniform mat4 transformationMatrix;"+
 
 "attribute vec4 position;"+
-"attribute vec4 color;"+ // // IF A ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
+"attribute vec4 color;"+ // // IF AN ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
 
 "varying lowp vec4 vColor;"+
 
@@ -379,7 +379,7 @@ Shader.create = function(typeStr){
       Shader.defaultShader.addFragmentShader(Shader.fs);
       Shader.defaultShader.addAttribute(0, "position");
 
-      //REMEMBER: IF A ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
+      //REMEMBER: IF AN ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
       Shader.defaultShader.addAttribute(2, "color");
       Shader.defaultShader.addAttribute(1, "texcoord");
     }
@@ -396,7 +396,7 @@ Shader.create = function(typeStr){
       Shader.debugShader.addFragmentShader(Shader.fsDebug);
       Shader.debugShader.addAttribute(0, "position");
 
-      //REMEMBER: IF A ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
+      //REMEMBER: IF AN ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
       Shader.debugShader.addAttribute(1, "color");
     }
 
