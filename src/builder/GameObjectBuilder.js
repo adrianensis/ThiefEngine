@@ -141,6 +141,18 @@ GameObjectBuilder.prototype.setMesh = function (mesh) {
 * @param {TYPE} NAME DESCRIPTION
 * @returns {TYPE} DESCRIPTION
 */
+GameObjectBuilder.prototype.setLayer = function (layer) {
+  this.tmpObj.getComponent(MeshRenderer).setLayer(layer);
+  return this;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObjectBuilder.prototype.setMaterial = function (material) {
   this.tmpObj.getComponent(MeshRenderer).setMaterial(material);
   return this;

@@ -3,6 +3,7 @@ gl = null;
 var RenderEngine = function (){
 
   this.color = new Color(0,0,0,1);
+  this.numLayers = 0;
 
   var canvas = document.getElementById("glcanvas");
 
@@ -92,6 +93,8 @@ RenderEngine.prototype.setClearColor = function (color){
 RenderEngine.prototype.addRenderers = function (renderers){
 
   for (var renderer of renderers) {
+
+    this.numLayers = Math.max(this.numLayers,renderer.getLayer());
 
     var tex = renderer.getMaterial().getTexture();
 
@@ -198,11 +201,11 @@ RenderEngine.prototype.render = function (){
 
   // TODO: culling ????
 
-  for (var i in this.textureBatches){
-    this.textureBatches[i].render();
+  for (var i = 0; i <= this.numLayers; i++) {
+    for (var j in this.textureBatches)
+      this.textureBatches[j].render(i);
+      this.noTextureBatch.render(i);
   }
-
-  this.noTextureBatch.render();
 
   for (var renderer of DebugRenderer.getRenderers()){
     renderer.bind();

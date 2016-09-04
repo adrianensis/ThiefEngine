@@ -131,7 +131,7 @@ SpriteBatch.prototype.update = function (renderContext){
 * @param {TYPE} NAME DESCRIPTION
 * @returns {TYPE} DESCRIPTION
 */
-SpriteBatch.prototype.render = function (){
+SpriteBatch.prototype.render = function (layer){
 
   this.material.enable();
 
@@ -150,7 +150,7 @@ SpriteBatch.prototype.render = function (){
 
     var renderer = this.renderers[key];
 
-    if(renderer.isEnabled() && !renderer.isDestroyed()){
+    if(renderer.getLayer() === layer && renderer.isEnabled() && !renderer.isDestroyed()){
 
       var isInFrustum = cam.getFrustum().testSphere(renderer.getGameObject().getTransform().position, renderer.getRadius());
 
@@ -159,7 +159,7 @@ SpriteBatch.prototype.render = function (){
         gl.enableVertexAttribArray(2);
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.vboColor);
-        
+
       	var color = [];
       	for (var i = 0; i < SpriteBatch.mesh.getVerticesData().length/4; i++) {
       	   color = color.concat(renderer.getMaterial().getColor().toArray());

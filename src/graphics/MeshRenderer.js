@@ -10,6 +10,9 @@ var MeshRenderer = function (){
 
   // alpha color
   this.alphaColor = new Color(-1,-1,-1,-1);
+
+	//layer
+	this.layer = 0;
 };
 
 MeshRenderer.prototype = new Component();
@@ -19,6 +22,31 @@ MeshRenderer.prototype = new Component();
 * @returns {TYPE} DESCRIPTION
 */
 MeshRenderer.prototype.constructor = MeshRenderer;
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+MeshRenderer.prototype.getLayer = function (){
+	return this.layer;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+MeshRenderer.prototype.setLayer = function (layer){
+	if(layer < 0)
+		this.layer = 0;
+	else
+		this.layer=layer;
+};
 
 //----------------------------------------------------------------------
 

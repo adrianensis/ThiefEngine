@@ -18,11 +18,6 @@ SpriteBuilder.prototype.constructor = SpriteBuilder;
 * @returns {TYPE} DESCRIPTION
 */
 SpriteBuilder.prototype.begin = function (textureName) {
-  /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 GameObjectBuilder.prototype.begin.call(this);
 
   this.setRenderer(new SpriteRenderer());
