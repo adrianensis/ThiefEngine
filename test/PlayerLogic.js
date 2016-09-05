@@ -39,12 +39,24 @@ PlayerLogic.prototype.update = function (){
 
     // body.linear = body.linear.add(new Vector2(0,-0.3));
 
-
+    console.log(Input.getButton());
     if (Input.getButton() === 0) {
 
         // this.gameObject.getScene().addObject(createSnorlax(Math.random()*5,Math.random()*5,0.5));
 
         // body.linear = body.linear.add(new Vector2(0,2));
+
+        var green =
+        spriteBuilder.begin(null).
+          setPosition(new Vector2(0,0)).
+          setScale(new Vector2(10,5)).
+          setColor(new Color(0,1,0,1)).
+          setStatic(true).
+          setLayer(0).
+        end();
+
+
+        Thief.addGameObjectToScene(green);
     }
 
     if (Input.isKeyPressed(37)) {

@@ -154,7 +154,7 @@ var createSoilder = function(x,y){
 
 
   Thief.addGameObjectToScene(player);
-  Thief.addGameObjectToScene(green);
+  // Thief.addGameObjectToScene(green);
 
   Thief.addGameObjectToScene(createSoilder(2,-1.5));
   Thief.addGameObjectToScene(createSoilder(3.1,-1.3));
