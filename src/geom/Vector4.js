@@ -63,7 +63,7 @@ Vector4.prototype.set = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Return a copy of this vector.
+* Returns a copy of this vector.
 * @returns {Vector4} The copy of this vector.
 */
 Vector4.prototype.cpy = function (){
@@ -73,7 +73,7 @@ Vector4.prototype.cpy = function (){
 //----------------------------------------------------------------------
 
 /**
-* Return the length of this vector.
+* Returns the length of this vector.
 * @returns {Number} The length of this vector.
 */
 Vector4.prototype.len = function (){
@@ -87,7 +87,7 @@ Vector4.prototype.len = function (){
 //----------------------------------------------------------------------
 
 /**
-* Return the maximum v in this vector.
+* Returns the maximum v in this vector.
 * @returns {Number} The maximum v in this vector.
 */
 Vector4.prototype.max = function (){
@@ -101,7 +101,7 @@ Vector4.prototype.max = function (){
 //----------------------------------------------------------------------
 
 /**
-* Divide this vector by a scalar.
+* Divides this vector by a scalar.
 * @returns {Vector4} this.
 */
 Vector4.prototype.min = function (){
@@ -115,7 +115,7 @@ Vector4.prototype.min = function (){
 //----------------------------------------------------------------------
 
 /**
-* Add a vector to this vector.
+* Adds a vector to this vector.
 * @param {Vector4} vec The other vector.
 * @returns {Vector4} this.
 */
@@ -131,7 +131,7 @@ Vector4.prototype.add = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Subtract a vector to this vector.
+* Subtracts a vector to this vector.
 * @param {Vector4} vec The other vector.
 * @returns {Vector4} this.
 */
@@ -147,14 +147,14 @@ Vector4.prototype.sub = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Add a scalar to all the components of this vector.
-* @param {Vector4} v The scalar value.
+* Adds a scalar to all the components of this vector.
+* @param {Number} value The scalar value.
 * @returns {Vector4} this.
 */
-Vector4.prototype.addScl = function (v){
-    this.x = this.x + v;
-    this.y = this.y + v;
-    this.z = this.z + v;
+Vector4.prototype.addScl = function (value){
+    this.x = this.x + value;
+    this.y = this.y + value;
+    this.z = this.z + value;
     this.w = 0;
 
     return this;
@@ -163,14 +163,14 @@ Vector4.prototype.addScl = function (v){
 //----------------------------------------------------------------------
 
 /**
-* Subtract a scalar to all the components of this vector.
-* @param {Vector4} v The scalar value.
+* Subtracts a scalar to all the components of this vector.
+* @param {Number} value The scalar value.
 * @returns {Vector4} this.
 */
-Vector4.prototype.subScl = function (v){
-    this.x = this.x - v;
-    this.y = this.y - v;
-    this.z = this.z - v;
+Vector4.prototype.subScl = function (value){
+    this.x = this.x - value;
+    this.y = this.y - value;
+    this.z = this.z - value;
     this.w = 0;
 
     return this;
@@ -179,7 +179,7 @@ Vector4.prototype.subScl = function (v){
 //----------------------------------------------------------------------
 
 /**
-* Multiply this vector by other vector.
+* Multiplies this vector by other vector.
 * @param {Vector4} vec The other vector.
 * @returns {Vector4} this.
 */
@@ -195,14 +195,14 @@ Vector4.prototype.mul = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Multiply this vector by a scalar.
-* @param {Vector4} v The scalar value.
+* Multiplies this vector by a scalar.
+* @param {Number} value The scalar value.
 * @returns {Vector4} this.
 */
-Vector4.prototype.mulScl = function (v){
-    this.x = this.x*v;
-    this.y = this.y*v;
-    this.z = this.z*v;
+Vector4.prototype.mulScl = function (value){
+    this.x = this.x*value;
+    this.y = this.y*value;
+    this.z = this.z*value;
     this.w = 0;
 
     return this;
@@ -211,7 +211,7 @@ Vector4.prototype.mulScl = function (v){
 //----------------------------------------------------------------------
 
 /**
-* Divide this vector by other vector.
+* Divides this vector by other vector.
 * @param {Vector4} vec The other vector.
 * @returns {Vector4} this.
 */
@@ -227,14 +227,14 @@ Vector4.prototype.div = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Divide this vector by a scalar.
-* @param {Vector4} v The scalar value.
+* Divides this vector by a scalar.
+* @param {Number} value The scalar value.
 * @returns {Vector4} this.
 */
-Vector4.prototype.divScl = function (v){
-    this.x = this.x/v;
-    this.y = this.y/v;
-    this.z = this.z/v;
+Vector4.prototype.divScl = function (value){
+    this.x = this.x/value;
+    this.y = this.y/value;
+    this.z = this.z/value;
     this.w = 0;
 
     return this;
@@ -243,7 +243,7 @@ Vector4.prototype.divScl = function (v){
 //----------------------------------------------------------------------
 
 /**
-* Return the dot product between this vector and other vector.
+* Returns the dot product between this vector and other vector.
 * @param {Vector4} vec The other vector.
 * @returns {Number} The dot product between this vector and other vector..
 */
@@ -308,7 +308,7 @@ Vector4.prototype.ang = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Normalize this vector.
+* Normalizes this vector.
 * @returns {Vector4} this.
 */
 Vector4.prototype.nor = function (){
