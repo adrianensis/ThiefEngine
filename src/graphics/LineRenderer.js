@@ -1,3 +1,12 @@
+/**
+* @class
+* @classdesc This class represents line renderer. (NOTE: This class doesn't extend from MeshRenderer !).
+* @param {Shader} shader The number of vertices.
+* @param {Vector3} start The number of vertices.
+* @param {Vector3} end The number of vertices.
+* @param {Color} color The number of vertices.
+* @param {Matrix4} transformationMatrix The number of vertices.
+*/
 var LineRenderer = function (shader,start,end,color, transformationMatrix){
     this.shader = shader;
     this.color = color;
@@ -29,9 +38,7 @@ var LineRenderer = function (shader,start,end,color, transformationMatrix){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Binds the line renderer. (Sends data to WebGL)
 */
 LineRenderer.prototype.bind = function () {
 
@@ -68,9 +75,7 @@ LineRenderer.prototype.bind = function () {
 
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Renders the line.
 */
 LineRenderer.prototype.render = function () {
     this.shader.enable();

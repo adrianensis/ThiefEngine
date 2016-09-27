@@ -1,3 +1,8 @@
+
+/**
+* @class
+* @classdesc This class offers line rendering.
+*/
 var DebugRenderer = function (){
 };
 
@@ -8,18 +13,28 @@ DebugRenderer.list = [];
 
 //----------------------------------------------------------------------
 
+/**
+* Returns a list of renderers.
+* @returns {Array} The renderers.
+*/
 DebugRenderer.getRenderers = function () {
     return DebugRenderer.list;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Clears the list of renderers.
+*/
 DebugRenderer.clear = function () {
     DebugRenderer.list = [];
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Inits the debug renderer.
+*/
 DebugRenderer.init = function() {
     DebugRenderer.shader = Shader.create('debug');
 
@@ -28,6 +43,11 @@ DebugRenderer.init = function() {
 
 //----------------------------------------------------------------------
 
+/**
+* Sets the transformation matrix. If the matrix is null, the transformation
+* matrix is setted to Identity.
+* @param {Matrix4} matrix The matrix.
+*/
 DebugRenderer.setTransformationMatrix = function (matrix) {
     if(matrix === null)
         DebugRenderer.transformationMatrix = Matrix4.identity();
@@ -37,24 +57,14 @@ DebugRenderer.setTransformationMatrix = function (matrix) {
 
 //----------------------------------------------------------------------
 
+/**
+* Updates the debug renderer.
+* @param {RenderContext} renderContext The render context.
+*/
 DebugRenderer.update = function (renderContext) {
 	DebugRenderer.shader.enable();
 
-	// // Camera matrix
-	// glm::mat4 view = glm::lookAt(
-	// 	glm::vec3(4,3,3), // Camera is at (4,3,3), in World Space
-	// 	glm::vec3(0,0,0), // and looks at the origin
-	// 	glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
-	// );
-
-	// TODO fail --> this.gameObject.getScene().getCamera();
-
-	// if(this.gameObject.getTransform().hasChanged()){
-	//
-	// }
-
 	DebugRenderer.shader.addMatrix(renderContext.getCamera().getProjectionMatrix().transpose(), "projectionMatrix");
-	// this.material.getShader().addMatrix(Matrix4.identity(), "viewMatrix");
 	DebugRenderer.shader.addMatrix(renderContext.getCamera().getViewMatrix().transpose(), "viewMatrix");
 
 	DebugRenderer.shader.disable();
@@ -63,8 +73,13 @@ DebugRenderer.update = function (renderContext) {
 
 //----------------------------------------------------------------------
 
+/**
+* Draws a line.
+* @param {Vector3} start The start.
+* @param {Vector3} end The end.
+* @param {Color} color The color.
+*/
 DebugRenderer.drawLine = function (start,end,color){
-
     DebugRenderer.list.push(new LineRenderer(DebugRenderer.shader,start,end,color,this.transformationMatrix));
 };
 

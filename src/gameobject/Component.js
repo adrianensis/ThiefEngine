@@ -6,11 +6,6 @@ var Component = function (){
 };
 
 Component.prototype = new BaseObject();
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 Component.prototype.constructor = Component;
 
 //----------------------------------------------------------------------

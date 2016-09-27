@@ -344,7 +344,7 @@ Vector4.prototype.dst = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Test if this vector is equal to the other vector.
+* Tests if this vector is equal to the other vector.
 * @param {Vector4} vec The other vector.
 * @returns {boolean} this True if this vector is equal to the other vector.
 */
@@ -357,7 +357,7 @@ Vector4.prototype.equals = function(vec){
 //----------------------------------------------------------------------
 
 /**
-* Test if this vector is equal to the other vector, whit an epsilon error.
+* Tests if this vector is equal to the other vector, whit an epsilon error.
 * @param {Vector4} vec The other vector.
 * @param {Number} epsilon The error.
 * @returns {boolean} this True if this vector is equal to the other vector, whit an epsilon error.

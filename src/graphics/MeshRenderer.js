@@ -1,3 +1,8 @@
+/**
+* @class
+* @extends {Component}
+* @classdesc This class renders a Mesh.
+*/
 var MeshRenderer = function (){
 	Component.call(this);
 	this.mesh = null;
@@ -16,11 +21,6 @@ var MeshRenderer = function (){
 };
 
 MeshRenderer.prototype = new Component();
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 MeshRenderer.prototype.constructor = MeshRenderer;
 
 //----------------------------------------------------------------------

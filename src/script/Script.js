@@ -3,11 +3,6 @@ var Script = function (){
 };
 
 Script.prototype = new Component();
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 Script.prototype.constructor = Script;
 
 //----------------------------------------------------------------------

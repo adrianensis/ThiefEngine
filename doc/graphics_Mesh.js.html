@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: graphics/Mesh.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: graphics/Mesh.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+* @class
+* @classdesc This class represents a mesh.
+* @param {Number} numVertices The number of vertices.
+*/
+var Mesh = function (numVertices) {
+
+    this.numVertices = numVertices;
+    // var size = numVertices*4;
+
+    this.vertices = [];
+    this.normals = [];
+    this.faces = [];
+    this.texCoord = [];
+
+    this.vIndex = 0; // Vertices index
+    this.nIndex = 0; // Normals index
+    this.fIndex = 0; // Face index
+    this.txIndex = 0; // TexCoord index
+
+    this.max = new Vector3(0,0,0); // store the max width, height, depth;
+
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Adds a new vertex.
+* @param {Vector3} vec The vertex.
+*/
+Mesh.prototype.addVertex = function (vec) {
+    this.vertices[this.vIndex] = vec.x; this.vIndex++;
+    this.vertices[this.vIndex] = vec.y; this.vIndex++;
+    this.vertices[this.vIndex] = vec.z; this.vIndex++;
+    this.vertices[this.vIndex] = vec.w; this.vIndex++;
+
+
+    // find the max width, height, depth;
+
+    var x = Math.abs(vec.x)*2; // width
+    var y = Math.abs(vec.y)*2; // height
+    var z = Math.abs(vec.z)*2; // depth
+
+    if(x > this.max.x)
+        this.max.x = x;
+
+    if(y > this.max.y)
+        this.max.y = y;
+
+    if(z > this.max.z)
+        this.max.z = z;
+
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Adds a new normal.
+* @param {Vector3} vec The normal.
+*/
+Mesh.prototype.addNormal = function (vec) {
+    this.normals[this.nIndex] = vec.x; this.nIndex++;
+    this.normals[this.nIndex] = vec.y; this.nIndex++;
+    this.normals[this.nIndex] = vec.z; this.nIndex++;
+    this.normals[this.nIndex] = vec.w; this.nIndex++;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Adds a new face. A face (triangle) is composed by three indices (integers).
+* @param {Number} v1 The 1st index of the face.
+* @param {Number} v2 The 2nd index of the face.
+* @param {Number} v3 The 3rd index of the face.
+*/
+Mesh.prototype.addFace = function (v1,v2,v3) {
+    this.faces[this.fIndex] = v1; this.fIndex++;
+    this.faces[this.fIndex] = v2; this.fIndex++;
+    this.faces[this.fIndex] = v3; this.fIndex++;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Adds a new coordinate texture.
+* @param {Number} u The u coordinate.
+* @param {Number} v The v coordinate.
+*/
+Mesh.prototype.addTexCoord = function (u,v) {
+    this.texCoord[this.txIndex] = u; this.txIndex++;
+    this.texCoord[this.txIndex] = v; this.txIndex++;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns a vertex by index.
+* @param {Number} index The index of the vertex.
+* @returns {Vector3} The vertex.
+*/
+Mesh.prototype.getVertex = function (index) {
+    return new Vector4(this.vertices[(index*4)],this.vertices[(index*4)+1],
+        this.vertices[(index*4)+2],this.vertices[(index*4)+3]);
+};
+
+//----------------------------------------------------------------------
+
+
+// Mesh.prototype.setVertex = function (index,vec) {
+//     this.vertices[(index*4)] = vec.x;
+//     this.vertices[(index*4)+1] = vec.y;
+//     this.vertices[(index*4)+2] = vec.z;
+//     this.vertices[(index*4)+3] = vec.w;
+// };
+
+//----------------------------------------------------------------------
+
+/**
+* Returns the number of vertices.
+* @returns {Number} The number of vertices.
+*/
+Mesh.prototype.getNumVertices = function () {
+    return this.vertices.length/4;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns the number of faces.
+* @returns {Number} The number of faces.
+*/
+Mesh.prototype.getNumFaces = function () {
+    return this.faces.length/3;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns the vertices data.
+* @returns {Array} The vertices data.
+*/
+Mesh.prototype.getVerticesData = function () {
+    return this.vertices;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns the normals data.
+* @returns {Array} The normals data.
+*/
+Mesh.prototype.getNormalsData = function () {
+    return this.normals;
+};
+
+//----------------------------------------------------------------------
+
+
+/**
+* Returns the faces data.
+* @returns {Array} The faces data.
+*/
+Mesh.prototype.getFacesData = function () {
+    return this.faces;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns the coordinates texture data.
+* @returns {Array} The coordinates texture data.
+*/
+Mesh.prototype.getTexCoordData = function () {
+    return this.texCoord;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns a vector with the max value of width, height and depth.
+* @returns {Vector3} The max vector.
+*/
+Mesh.prototype.getMax = function () {
+    return this.max.cpy();
+};
+
+//----------------------------------------------------------------------
+
+// Mesh.prototype.print = function () {
+//     var str = "";
+//     for (var i = 0; i &lt; (this.numVertices*4); i++) {
+//         str += this.vertices[i] + "\n";
+//     }
+//
+//     console.log(str);
+// };
+
+//----------------------------------------------------------------------
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Animation.html">Animation</a></li><li><a href="AnimationFrame.html">AnimationFrame</a></li><li><a href="Camera.html">Camera</a></li><li><a href="Color.html">Color</a></li><li><a href="CubeMesh.html">CubeMesh</a></li><li><a href="DebugRenderer.html">DebugRenderer</a></li><li><a href="Engine.html">Engine</a></li><li><a href="Frustum.html">Frustum</a></li><li><a href="GeometryUtil.html">GeometryUtil</a></li><li><a href="Input.html">Input</a></li><li><a href="LineRenderer.html">LineRenderer</a></li><li><a href="Loader.html">Loader</a></li><li><a href="Material.html">Material</a></li><li><a href="Matrix4.html">Matrix4</a></li><li><a href="Mesh.html">Mesh</a></li><li><a href="MeshRenderer.html">MeshRenderer</a></li><li><a href="OrthoCamera.html">OrthoCamera</a></li><li><a href="PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="RectangleMesh.html">RectangleMesh</a></li><li><a href="RenderContext.html">RenderContext</a></li><li><a href="RenderEngine.html">RenderEngine</a></li><li><a href="Shader.html">Shader</a></li><li><a href="SpriteBatch.html">SpriteBatch</a></li><li><a href="SpriteRenderer.html">SpriteRenderer</a></li><li><a href="Texture.html">Texture</a></li><li><a href="Time.html">Time</a></li><li><a href="Vector2.html">Vector2</a></li><li><a href="Vector3.html">Vector3</a></li><li><a href="Vector4.html">Vector4</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Sep 27 2016 13:41:04 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

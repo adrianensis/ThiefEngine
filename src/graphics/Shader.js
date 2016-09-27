@@ -1,3 +1,8 @@
+
+/**
+* @class
+* @classdesc This class represents a GLSL Shader.
+*/
 var Shader = function (){
     this.programID = gl.createProgram();
     this.vertShaderID = 0;
@@ -109,9 +114,8 @@ Shader.fsDebug=
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns true if the shader is compiled.
+* @returns {Boolean} True if the shader is compiled.
 */
 Shader.prototype.isCompiled = function (){
 	return this.compiled;
@@ -120,9 +124,8 @@ Shader.prototype.isCompiled = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the program id.
+* @returns {Number} The program id.
 */
 Shader.prototype.getProgramid = function (){
 	return this.programID;
@@ -131,63 +134,8 @@ Shader.prototype.getProgramid = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-Shader.prototype.setProgramid = function (programID){
-	this.programID=programID;
-};
-
-//----------------------------------------------------------------------
-
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-Shader.prototype.getVertshaderid = function (){
-	return this.vertShaderID;
-};
-
-//----------------------------------------------------------------------
-
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-Shader.prototype.setVertshaderid = function (vertShaderID){
-	this.vertShaderID=vertShaderID;
-};
-
-//----------------------------------------------------------------------
-
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-Shader.prototype.getFragshaderid = function (){
-	return this.fragShaderID;
-};
-
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-Shader.prototype.setFragshaderid = function (fragShaderID){
-	this.fragShaderID=fragShaderID;
-};
-
-//----------------------------------------------------------------------
-
-// Method definition goes here.
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds a vertex shader.
+* @param {String} sourceText The source.
 */
 Shader.prototype.addVertexShader = function (sourceText){
 
@@ -199,11 +147,9 @@ Shader.prototype.addVertexShader = function (sourceText){
 
 //----------------------------------------------------------------------
 
-// Method definition goes here.
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds a fragment shader.
+* @param {String} sourceText The source.
 */
 Shader.prototype.addFragmentShader = function (sourceText){
 
@@ -216,28 +162,9 @@ Shader.prototype.addFragmentShader = function (sourceText){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-Shader.prototype.addSource = function (type,name){
-  var src = document.getElementById(name).text;
-
-  var shaderID = gl.createShader(type);
-  gl.shaderSource(shaderID,src);
-
-  if(type == gl.VERTEX_SHADER)
-      this.vertShaderID = shaderID;
-  else
-      this.fragShaderID = shaderID;
-};
-
-//----------------------------------------------------------------------
-
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds an attribute. Binds an attribute to a location.
+* @param {Number} location The location of the attribute.
+* @param {String} name The name of the attribute.
 */
 Shader.prototype.addAttribute = function (location,name){
   gl.bindAttribLocation(this. programID, location, name);
@@ -245,11 +172,10 @@ Shader.prototype.addAttribute = function (location,name){
 
 //----------------------------------------------------------------------
 
-// Method definition goes here.
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sends a matrix to the shader.
+* @param {Matrix4} matrix The matrix.
+* @param {String} name The name.
 */
 Shader.prototype.addMatrix = function (matrix,name){
   matrixLocation = gl.getUniformLocation(this.programID, name);
@@ -259,9 +185,9 @@ Shader.prototype.addMatrix = function (matrix,name){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sends an array of matrices to the shader.
+* @param {Array} matrixArray The array.
+* @param {String} name The name.
 */
 Shader.prototype.addMatrixArray = function (matrixArray,name){
   matrixLocation = gl.getUniformLocation(this.programID, name);
@@ -277,9 +203,9 @@ Shader.prototype.addMatrixArray = function (matrixArray,name){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sends an integer to the shader.
+* @param {Number} value The value.
+* @param {String} name The name.
 */
 Shader.prototype.addInt = function (value, name){
   valueLocation = gl.getUniformLocation(this.programID, name);
@@ -289,9 +215,9 @@ Shader.prototype.addInt = function (value, name){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sends an float to the shader.
+* @param {Number} value The value.
+* @param {String} name The name.
 */
 Shader.prototype.addFloat = function (value, name){
   valueLocation = gl.getUniformLocation(this.programID, name);
@@ -301,21 +227,19 @@ Shader.prototype.addFloat = function (value, name){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sends an array of floats to the shader.
+* @param {Array} array The array.
+* @param {String} name The name.
 */
-Shader.prototype.addFloatVector = function (value, name){
+Shader.prototype.addFloatVector = function (array, name){
   valueLocation = gl.getUniformLocation(this.programID, name);
-  gl.uniform4fv(valueLocation, new Float32Array(value));
+  gl.uniform4fv(valueLocation, new Float32Array(array));
 };
 
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Compiles the shader.
 */
 Shader.prototype.compile = function (){
   if( ! this.isCompiled()){
@@ -344,9 +268,7 @@ Shader.prototype.compile = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Enables the shader.
 */
 Shader.prototype.enable = function (){
   gl.useProgram(this.programID);
@@ -355,9 +277,7 @@ Shader.prototype.enable = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Disables the shader.
 */
 Shader.prototype.disable = function (){
   gl.useProgram(null);
@@ -365,6 +285,10 @@ Shader.prototype.disable = function (){
 
 //----------------------------------------------------------------------
 
+/**
+* Creates a shader from a type.
+* @param {String} typeStr The type.
+*/
 Shader.create = function(typeStr){
 
   var shader = null;

@@ -1,3 +1,7 @@
+/**
+* @class
+* @classdesc This class manages multiple sprites wich have the same texture.
+*/
 var SpriteBatch = function (material){
   this.material = material;
   this.renderers = {};
@@ -19,12 +23,12 @@ SpriteBatch.binded = false;
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds a sprite renderer.
+* @param {SpriteRenderer} renderer The sprite renderer.
 */
 SpriteBatch.prototype.add = function (renderer){
 
+  // stored by id
   if( ! (renderer.getId() in this.renderers))
     this.renderers[renderer.getId()] = renderer;
 };
@@ -32,9 +36,7 @@ SpriteBatch.prototype.add = function (renderer){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Binds the batch.
 */
 SpriteBatch.prototype.bind = function (){
 
@@ -108,9 +110,8 @@ SpriteBatch.prototype.bind = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Updates the batch.
+* @param {renderContext} renderContext The render context.
 */
 SpriteBatch.prototype.update = function (renderContext){
   this.renderContext = renderContext;
@@ -127,9 +128,8 @@ SpriteBatch.prototype.update = function (renderContext){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Renders a layer of the batch.
+* @param {Number} layer The layer to render.
 */
 SpriteBatch.prototype.render = function (layer){
 
@@ -139,7 +139,7 @@ SpriteBatch.prototype.render = function (layer){
 
   gl.enableVertexAttribArray(0);
 
-  if(SpriteBatch.mesh.hasTexture())
+  // if(SpriteBatch.mesh.hasTexture())
     gl.enableVertexAttribArray(1);
 
   gl.enableVertexAttribArray(3);

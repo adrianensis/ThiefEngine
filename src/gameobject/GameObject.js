@@ -10,11 +10,6 @@ var GameObject = function (){
 };
 
 GameObject.prototype = new BaseObject();
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 GameObject.prototype.constructor = GameObject;
 
 //----------------------------------------------------------------------

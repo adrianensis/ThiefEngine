@@ -18,11 +18,6 @@ var Transform = function (){
 };
 
 Transform.prototype = new Component();
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 Transform.prototype.constructor = Transform;
 
 //----------------------------------------------------------------------

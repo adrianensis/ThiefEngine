@@ -1,5 +1,9 @@
 gl = null;
 
+/**
+* @class
+* @classdesc This class manage the graphics of the application.
+*/
 var RenderEngine = function (){
 
   this.color = new Color(0,0,0,1);
@@ -7,6 +11,10 @@ var RenderEngine = function (){
 
   var canvas = document.getElementById("glcanvas");
 
+  // ########################################
+  // PATCH
+  // http://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
+  // ########################################
   var realToCSSPixels = window.devicePixelRatio || 1; // FOR HD RETINA SCREEN
 
   // Lookup the size the browser is displaying the canvas in CSS pixels
@@ -18,12 +26,13 @@ var RenderEngine = function (){
   canvas.width = displayWidth;
   canvas.height = displayHeight;
 
+  // ########################################
+
   try {
-  // Try to grab the standard context. If it fails, fallback to experimental.
-  gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-// console.log("MAX_TEXTURE_SIZE: " + gl.getParameter(gl.MAX_TEXTURE_SIZE));
-  }
-  catch(e) {
+    // Try to grab the standard context. If it fails, fallback to experimental.
+    gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+
+  } catch(e) {
     alert("Unable to initialize WebGL. Your browser may not support it.");
   }
 
@@ -49,10 +58,10 @@ var RenderEngine = function (){
   if (gl) {
 
     gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-    gl.clearColor(this.color.r, this.color.g, this.color.b, this.color.a);                      // Set clear color to black, fully opaque
+    gl.clearColor(this.color.r, this.color.g, this.color.b, this.color.a); // Set clear color.
 
-    gl.enable(gl.DEPTH_TEST);                               // Enable depth testing
-    gl.depthFunc(gl.LEQUAL);                                // Near things obscure far things
+    gl.enable(gl.DEPTH_TEST); // Enable depth testing
+    gl.depthFunc(gl.LEQUAL); // Near things obscure far things
     gl.enable(gl.CULL_FACE); // BACK by default
     gl.cullFace(gl.BACK);
 
@@ -86,22 +95,26 @@ RenderEngine.prototype.setClearColor = function (color){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds a list of renderers.
+* @param {Array} renderers The renderers.
 */
 RenderEngine.prototype.addRenderers = function (renderers){
 
   for (var renderer of renderers) {
 
-    this.numLayers = Math.max(this.numLayers,renderer.getLayer());
+    this.numLayers = Math.max(this.numLayers,renderer.getLayer()); // Always check the max number of layers.
+
+
+    // BATCHING BY TEXTURE
 
     var tex = renderer.getMaterial().getTexture();
 
+    // if renderer has a texture.
     if(tex !== null){
 
       var texName = tex.getName();
 
+      // if the batch exists.
       if((texName in this.textureBatches)){
           this.textureBatches[texName].add(renderer);
       }else {
@@ -109,7 +122,7 @@ RenderEngine.prototype.addRenderers = function (renderers){
           this.textureBatches[texName].add(renderer);
       }
 
-    }else
+    }else // if renderer has not a texture.
       this.noTextureBatch.add(renderer);
 
   }
@@ -118,9 +131,7 @@ RenderEngine.prototype.addRenderers = function (renderers){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Clears all the renderers and the render context.
 */
 RenderEngine.prototype.clear = function (){
   this.textureBatches = {};
@@ -131,9 +142,8 @@ RenderEngine.prototype.clear = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the render context.
+* @returns {renderContext} The render context.
 */
 RenderEngine.prototype.getRenderContext = function (){
 	return this.renderContext;
@@ -142,9 +152,8 @@ RenderEngine.prototype.getRenderContext = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the render context.
+* @param {renderContext} renderContext The render context.
 */
 RenderEngine.prototype.setRenderContext = function (renderContext){
 	this.renderContext=renderContext;
@@ -153,21 +162,15 @@ RenderEngine.prototype.setRenderContext = function (renderContext){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Updates the render engine.
 */
 RenderEngine.prototype.update = function (){
 
   // RE-BUILD frustum
   this.renderContext.getCamera().getFrustum().build();
 
-  // for (var renderer of this.renderers)
-  //     renderer.update(this.renderContext);
-
   for (var i in this.textureBatches)
     this.textureBatches[i].update(this.renderContext);
-
 
   this.noTextureBatch.update(this.renderContext);
 
@@ -178,9 +181,7 @@ RenderEngine.prototype.update = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Binds all the batches.
 */
 RenderEngine.prototype.bind = function (){
 
@@ -193,9 +194,7 @@ RenderEngine.prototype.bind = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Renders all the batches and the debug renderer.
 */
 RenderEngine.prototype.render = function (){
 

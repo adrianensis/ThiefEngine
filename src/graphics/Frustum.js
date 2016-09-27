@@ -1,3 +1,8 @@
+/**
+* @class
+* @classdesc This class represents a Frustum
+*	(see: https://en.wikipedia.org/wiki/Frustum).
+*/
 var Frustum = function (camera){
 	this.camera = camera;
 	this.planes = new Array(6);
@@ -12,9 +17,10 @@ var Frustum = function (camera){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Tests if sphere is touching the frustum.
+* @param {Vector3} center The center.
+* @param {Number} radius The radius.
+* @returns {Boolean} True if sphere is touching the frustum.
 */
 Frustum.prototype.testSphere = function (center, radius){
 	// console.log("TEST SPHERE");
@@ -39,9 +45,7 @@ Frustum.prototype.testSphere = function (center, radius){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Builds the frustum planes.
 */
 Frustum.prototype.build = function (){
 

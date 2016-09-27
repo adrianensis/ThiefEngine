@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: core/Engine.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: core/Engine.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+* @class
+* @classdesc This class is the heart of the application.
+* It holds all the scenes and objects.
+*/
+var Engine = function (){
+
+  this.fps = 30;
+
+  this.renderEngine = null;
+  this.physicsEngine = null;
+  this.scriptEngine = null;
+  this.currentScene = null;
+  this.scenes = {};
+  this.input = new Input();
+
+  this.loaded = false;
+  this.physicsEnabled = true;
+};
+
+//----------------------------------------------------------------------
+
+// TODO: Singleton
+
+/**
+* Returns the current scene.
+* @returns {Scene} The current scene.
+*/
+Engine.prototype.getCurrentScene = function (){
+	return this.currentScene;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Adds a new scene.
+* @param {Scene} scene The new scene.
+*/
+Engine.prototype.addScene = function (scene){
+	this.scenes[scene.getName()] = scene;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Sets the current scene as the scene named as 'name'.
+* @param {String} name The scene's name.
+*/
+Engine.prototype.setCurrentScene = function (name){
+
+  if(this.currentScene !== null)
+    this.currentScene.setLoaded(false); // reset
+
+	this.currentScene=this.scenes[name];
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns the scenes.
+* @returns {Array} The scenes.
+*/
+Engine.prototype.getScenes = function (){
+	return this.scenes;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Sets the clear color. WebGL will use this value to repaint the screen.
+* @param {Color} color The color.
+*/
+Engine.prototype.setClearColor = function (color){
+  this.renderEngine.setClearColor(color);
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Enables the physics engine,
+*/
+Engine.prototype.enablePhysics = function (){
+  this.physicsEnabled = true;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Sets the gravity.
+* @param {Vector4} gravity The gravity.
+*/
+Engine.prototype.setGravity = function (gravity){
+  this.physicsEngine.setGravity(gravity);
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Disables the physics engine,
+*/
+Engine.prototype.disablePhysics = function (){
+  this.physicsEnabled = false;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Sets the fps.
+* @param {Number} fps The fps.
+*/
+Engine.prototype.setFPS = function (fps){
+  this.fps = fps;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Starts the engine.
+*/
+Engine.prototype.init = function (){
+
+  this.renderEngine = new RenderEngine();
+  this.physicsEngine = new PhysicsEngine();
+  this.scriptEngine = new ScriptEngine();
+
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Updates the current scene.
+*/
+Engine.prototype.updateScene = function(){
+
+  var root = this.currentScene.getNewsRoot();
+
+  var renderers = root.getComponentsInChildren(MeshRenderer);
+  var rigidBodies = root.getComponentsInChildren(RigidBody);
+  var scripts = root.getComponentsInChildren(Script);
+
+  this.currentScene.setLoaded(true);
+  this.currentScene.flush();
+
+  this.renderEngine.addRenderers(renderers);
+  this.renderEngine.setRenderContext(this.currentScene.getRenderContext());
+
+  this.physicsEngine.addBodies(rigidBodies);
+
+  this.scriptEngine.addScripts(scripts);
+
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Loads the current scene.
+*/
+Engine.prototype.loadScene = function(){
+
+  this.renderEngine.clear();
+  this.physicsEngine.clear();
+  this.scriptEngine.clear();
+
+  this.updateScene();
+
+};
+
+//----------------------------------------------------------------------
+
+
+/**
+* Runs the engine.
+*/
+Engine.prototype.run = function () {
+
+  // window.requestAnimFrame = (function(){
+  //   return  window.requestAnimationFrame       ||
+  //           window.webkitRequestAnimationFrame ||
+  //           window.mozRequestAnimationFrame    ||
+  //           function( callback ){
+  //             window.setTimeout(callback, (1/this.fps)*1000);
+  //           };
+  // })();
+  window.requestAnimFrame = (function(){
+    return  function( callback ){
+              window.setTimeout(callback, (1/this.fps)*1000);
+            };
+  })();
+
+
+  var renderEngine = this.renderEngine;
+  var physicsEngine = this.physicsEngine;
+  var scriptEngine = this.scriptEngine;
+  var currentScene = this.currentScene;
+
+  var engine = this;
+  var physicsDeltaTime = (1/this.fps)/2;
+  var accumulator = 0;
+  var currentTime = 0;
+
+
+  var main = function () {
+
+    Time.tick();
+
+    // console.log(Time.deltaTime());
+
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+
+    if(! currentScene.isLoaded())
+      engine.loadScene();
+
+    if(currentScene.hasNewObjects())
+      engine.updateScene();
+
+    if(Loader.isDone()){
+      engine.loaded = true;
+      renderEngine.bind();
+      Loader.reset();
+    }
+
+    if(engine.loaded){
+
+
+      // if(frameTime > 0.25){ frameTime = 0.25; }
+      //   currentTime = newTime;
+      //
+      // accumulator += frameTime;
+      //
+      // while(accumulator >= physicsDeltaTime)
+      // {
+      //     accumulator -= physicsDeltaTime;
+          scriptEngine.update();
+          if(engine.physicsEnabled){
+            physicsEngine.update(physicsDeltaTime);
+            // physicsEngine.update(physicsDeltaTime);
+          }
+      // }
+
+
+
+      renderEngine.update();
+      renderEngine.render();
+
+      currentScene.cleanTrash();
+
+      // currentTime = newTime;
+    }
+
+    window.requestAnimFrame(main);
+  };
+
+
+
+  Time.init();
+
+
+  // var main2 = function () {
+  //     window.requestAnimFrame(main);
+  //     main2();
+  // };
+
+  // main2();
+
+
+  window.requestAnimFrame(main);
+
+
+  // var ONE_FRAME_TIME = (1/this.fps)*1000 ;
+  // setInterval( main, ONE_FRAME_TIME );
+};
+
+//----------------------------------------------------------------------
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Animation.html">Animation</a></li><li><a href="AnimationFrame.html">AnimationFrame</a></li><li><a href="Camera.html">Camera</a></li><li><a href="Color.html">Color</a></li><li><a href="CubeMesh.html">CubeMesh</a></li><li><a href="DebugRenderer.html">DebugRenderer</a></li><li><a href="Engine.html">Engine</a></li><li><a href="Frustum.html">Frustum</a></li><li><a href="GeometryUtil.html">GeometryUtil</a></li><li><a href="Input.html">Input</a></li><li><a href="LineRenderer.html">LineRenderer</a></li><li><a href="Loader.html">Loader</a></li><li><a href="Material.html">Material</a></li><li><a href="Matrix4.html">Matrix4</a></li><li><a href="Mesh.html">Mesh</a></li><li><a href="MeshRenderer.html">MeshRenderer</a></li><li><a href="OrthoCamera.html">OrthoCamera</a></li><li><a href="PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="RectangleMesh.html">RectangleMesh</a></li><li><a href="RenderContext.html">RenderContext</a></li><li><a href="RenderEngine.html">RenderEngine</a></li><li><a href="Shader.html">Shader</a></li><li><a href="SpriteBatch.html">SpriteBatch</a></li><li><a href="SpriteRenderer.html">SpriteRenderer</a></li><li><a href="Texture.html">Texture</a></li><li><a href="Time.html">Time</a></li><li><a href="Vector2.html">Vector2</a></li><li><a href="Vector3.html">Vector3</a></li><li><a href="Vector4.html">Vector4</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Sep 27 2016 13:41:04 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

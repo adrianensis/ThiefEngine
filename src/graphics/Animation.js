@@ -1,3 +1,7 @@
+/**
+* @class
+* @classdesc This class represents a texture animation.
+*/
 var Animation = function () {
   this.frames = [];
   this.currentFrame = 0;
@@ -8,6 +12,17 @@ var Animation = function () {
 
 //----------------------------------------------------------------------
 
+/**
+* Creates an animation.
+* @param {Number} frameCount The animation's number of frames.
+* @param {Boolean} horizontal True if horizontal (left to right), False if vertical (down to up).
+* @param {Boolean} reverse True to use the reverse direction.
+* @param {Vector2} startPosition The start position (bottom-left corner of the frame) in texture coordinates (see OpenGL texture coordinates).
+* @param {Number} width The frame width.
+* @param {Number} height The frame height.
+* @param {Number} speed The animation's speed.
+* @returns {Animation} The animation.
+*/
 Animation.create = function (frameCount, horizontal, reverse, startPosition, width, height, speed) {
 
     // TODO: check if coordinates are > 1 or < 0 !!!!!
@@ -61,9 +76,8 @@ Animation.create = function (frameCount, horizontal, reverse, startPosition, wid
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the animation's speed.
+* @param {Number} speed The animation's speed.
 */
 Animation.prototype.setSpeed = function (speed) {
     this.speed = speed;
@@ -72,9 +86,8 @@ Animation.prototype.setSpeed = function (speed) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds a frame to the animation.
+* @param {AnimationFrame} frame The frame.
 */
 Animation.prototype.addFrame = function (frame) {
     this.frames.push(frame);
@@ -83,9 +96,8 @@ Animation.prototype.addFrame = function (frame) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the number of frames.
+* @returns {Number} The number of frames.
 */
 Animation.prototype.getNumberOfFrames = function () {
     return this.frames.length;
@@ -94,9 +106,8 @@ Animation.prototype.getNumberOfFrames = function () {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the current frame number.
+* @returns {Number} The current frame number.
 */
 Animation.prototype.getCurrentFrameNumber = function () {
     return this.currentFrame;
@@ -105,9 +116,8 @@ Animation.prototype.getCurrentFrameNumber = function () {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the next frame.
+* @returns {AnimationFrame} The next frame.
 */
 Animation.prototype.getNextFrame = function () {
 

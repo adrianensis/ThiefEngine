@@ -1,3 +1,8 @@
+
+/**
+* @class
+* @classdesc This class provides time-related functionality.
+*/
 var Time = function () {
 
 };

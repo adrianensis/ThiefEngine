@@ -1,3 +1,10 @@
+
+/**
+* @class
+* @extends {Component}
+* @classdesc This class represents a camera.
+* @param {Matrix4} matrix The matrix. The matrix can be Perspective or Orthogonal.
+*/
 var Camera = function (matrix){
 	Component.call(this);
 	this.target = null;
@@ -7,19 +14,13 @@ var Camera = function (matrix){
 };
 
 Camera.prototype = new Component();
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 Camera.prototype.constructor = Camera;
 
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the frustum.
+* @returns {Frustum} The frustum.
 */
 Camera.prototype.getFrustum = function (){
 	return this.frustum;
@@ -28,9 +29,8 @@ Camera.prototype.getFrustum = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the projection matrix.
+* @param {Matrix4} projectionMatrix The projection matrix.
 */
 Camera.prototype.setProjection = function (projectionMatrix){
     this.projectionMatrix = projectionMatrix;
@@ -39,9 +39,8 @@ Camera.prototype.setProjection = function (projectionMatrix){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the projection matrix.
+* @returns {Matrix4} The projectionMatrix.
 */
 Camera.prototype.getProjectionMatrix = function (){
     return this.projectionMatrix;
@@ -50,9 +49,8 @@ Camera.prototype.getProjectionMatrix = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the view matrix.
+* @returns {Matrix4} The viewMatrix.
 */
 Camera.prototype.getViewMatrix = function (){
 

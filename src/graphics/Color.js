@@ -1,3 +1,11 @@
+/**
+* @class
+* @classdesc This class represents a color.
+* @param {Number} r The red component.
+* @param {Number} g The green component.
+* @param {Number} b The blue component.
+* @param {Number} a The alpha component.
+*/
 var Color = function (r,g,b,a) {
   // this.vec = new Vector4(r,g,b,a);
 
@@ -7,6 +15,7 @@ var Color = function (r,g,b,a) {
   this.a = a;
 };
 
+// PRE-DEFINED COLORS
 Color.NONE = new Color(0.0, 0.0, 0.0, 0.0);
 Color.RED = new Color(1.0, 0.0, 0.0, 1.0);
 Color.GREEN = new Color(0.0, 1.0, 0.0, 1.0);
@@ -14,6 +23,10 @@ Color.BLUE = new Color(0.0, 0.0, 1.0, 1.0);
 
 //----------------------------------------------------------------------
 
+/**
+* Returns a random color.
+* @returns {Color} The color.
+*/
 Color.random = function () {
   var r = Math.random();
   var g = Math.random();
@@ -26,9 +39,8 @@ Color.random = function () {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns an array representation of the color.
+* @returns {Array} An array representation of the color.
 */
 Color.prototype.toArray = function(){
   // return this.vec.toArray;
@@ -44,9 +56,9 @@ Color.prototype.toArray = function(){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Tests if this color is equal to the other color.
+* @param {Vector4} vec The other color.
+* @returns {boolean} this True if this color is equal to the other color.
 */
 Color.prototype.equals = function(otherColor){
   // return this.vec.equals(otherColor.vec);

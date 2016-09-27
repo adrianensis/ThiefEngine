@@ -1,3 +1,7 @@
+/**
+* @class
+* @classdesc This class represents a frame of an animation.
+*/
 var AnimationFrame = function () {
     this.position = new Vector2(0,0);
     this.width = 1.0;
@@ -7,9 +11,10 @@ var AnimationFrame = function () {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the animation frame.
+* @param {Vector2} position The position of the frame.
+* @param {Number} width The width of the frame.
+* @param {Number} height The height of the frame.
 */
 AnimationFrame.prototype.set = function (position, width, height) {
     this.position = position
@@ -20,9 +25,8 @@ AnimationFrame.prototype.set = function (position, width, height) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the position.
+* @returns {Vector2} The position of the frame.
 */
 AnimationFrame.prototype.getPosition = function (){
 	return this.position;
@@ -31,9 +35,8 @@ AnimationFrame.prototype.getPosition = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the width.
+* @returns {Number} The width of the frame.
 */
 AnimationFrame.prototype.getWidth = function (){
 	return this.width;
@@ -42,9 +45,8 @@ AnimationFrame.prototype.getWidth = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the height.
+* @returns {Number} The height of the frame.
 */
 AnimationFrame.prototype.getHeight = function (){
 	return this.height;

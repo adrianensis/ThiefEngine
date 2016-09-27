@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Scene.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Scene.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var Scene = function (name){
+
+  this.name = name;
+
+  this.root = new GameObject();
+  this.camera = null;
+  this.renderContext = null;
+
+  this.newsRoot = new GameObject(); // Root Node where the new objects are stored.
+
+  this.newObjects = false;
+  this.loaded = false;
+
+  this.trash = [];
+
+};
+
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.getName = function (){
+	return this.name;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.setLoaded = function (bool){
+	this.loaded=bool;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.isLoaded = function (){
+	return this.loaded;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.getRoot = function (){
+  return this.root;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.getNewsRoot = function (){
+	return this.newsRoot;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.flush = function (){
+  this.root.setChildren(this.root.getChildren().concat(this.newsRoot.getChildren()));
+  this.newsRoot.setChildren([]);
+  this.newObjects = false;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.hasNewObjects = function (){
+	return this.newObjects;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.addObject = function (obj){
+  // console.log("ADD OBJECT: " + obj.getId());
+  this.newObjects = true;
+
+  obj.setScene(this);
+  obj.getTransform().initMatrix();
+  this.newsRoot.addChild(obj);
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.deleteObject = function (obj){
+  this.trash.push(obj);
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.cleanTrash = function (obj){
+
+  for (var i = 0; i &lt; this.trash.length; i++) {
+    // TODO remove deleted objects
+
+    var gameObject = this.trash[i];
+
+    var script = gameObject.getComponent(Script);
+
+    if(script !== null){
+      script.onDestroy();
+    }
+  }
+
+  this.trash = [];
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.getRenderContext = function (){
+	return this.renderContext;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.setRenderContext = function (renderContext){
+	this.renderContext=renderContext;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.getCamera = function (){
+	return this.camera;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+Scene.prototype.setCamera = function (camera){
+	this.camera=camera;
+};
+
+//----------------------------------------------------------------------
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Sep 19 2016 13:04:16 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

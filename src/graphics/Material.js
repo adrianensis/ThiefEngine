@@ -1,3 +1,7 @@
+/**
+* @class
+* @classdesc This class represents a material.
+*/
 var Material = function (){
     this.texture = null;
     this.shader = null;
@@ -9,9 +13,8 @@ var Material = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns a texture.
+* @returns {Texture} The texture.
 */
 Material.prototype.getTexture = function (){
 	 return this.texture;
@@ -20,9 +23,8 @@ Material.prototype.getTexture = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the texture.
+* @param {Texture} texture The new texture
 */
 Material.prototype.setTexture = function (texture){
 	 this.texture=texture;
@@ -31,9 +33,8 @@ Material.prototype.setTexture = function (texture){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns a shader.
+* @returns {Shader} The shader.
 */
 Material.prototype.getShader = function (){
 	 return this.shader;
@@ -42,9 +43,8 @@ Material.prototype.getShader = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the shader.
+* @param {Shader} The new shader.
 */
 Material.prototype.setShader = function (shader){
 	 this.shader=shader;
@@ -53,9 +53,8 @@ Material.prototype.setShader = function (shader){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the color.
+* @param {Color} The new color.
 */
 Material.prototype.setColor = function (color){
 	 this.color = color;
@@ -64,9 +63,8 @@ Material.prototype.setColor = function (color){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns a color.
+* @returns {Color} The color.
 */
 Material.prototype.getColor = function (){
 	 return this.color;
@@ -76,9 +74,7 @@ Material.prototype.getColor = function (){
 
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Enables the material for rendering.
 */
 Material.prototype.enable = function (){
   // TODO: If not texture then use color, ...
@@ -105,9 +101,7 @@ Material.prototype.enable = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Disables the material.
 */
 Material.prototype.disable = function (){
 
@@ -119,9 +113,7 @@ Material.prototype.disable = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Resets the material parameters for material animation.
 */
 Material.prototype.reset = function (){
     this.shader.addFloat(0.0, "animationX");
@@ -138,7 +130,7 @@ Material.prototype.reset = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
+* Binds the material. (Sends data to WebGL).
 * @param {TYPE} NAME DESCRIPTION
 * @returns {TYPE} DESCRIPTION
 */

@@ -1,3 +1,8 @@
+/**
+* @class
+* @extends {MeshRenderer}
+* @classdesc This class renders a sprite, and manages the animations.
+*/
 var SpriteRenderer = function (){
   MeshRenderer.call(this);
 
@@ -10,19 +15,13 @@ var SpriteRenderer = function (){
 };
 
 SpriteRenderer.prototype = new MeshRenderer();
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 SpriteRenderer.prototype.constructor = SpriteRenderer;
 
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the animation, by name.
+* @param {String} name The name.
 */
 SpriteRenderer.prototype.setAnimation = function (name){
 	this.animation = this.animations[name];
@@ -31,9 +30,9 @@ SpriteRenderer.prototype.setAnimation = function (name){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds an animation, by name.
+* @param {String} name The name.
+* @param {Animation} animation The animation.
 */
 SpriteRenderer.prototype.addAnimation = function (name, animation){
 	this.animations[name] = animation;

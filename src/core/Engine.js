@@ -1,7 +1,7 @@
 
 /**
 * @class
-* @classdesc This class is the main application.
+* @classdesc This class is the heart of the application.
 * It holds all the scenes and objects.
 */
 var Engine = function (){
