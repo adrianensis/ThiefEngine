@@ -222,23 +222,10 @@ Engine.prototype.run = function () {
 
     if(engine.loaded){
 
-
-      // if(frameTime > 0.25){ frameTime = 0.25; }
-      //   currentTime = newTime;
-      //
-      // accumulator += frameTime;
-      //
-      // while(accumulator >= physicsDeltaTime)
-      // {
-      //     accumulator -= physicsDeltaTime;
-          scriptEngine.update();
-          if(engine.physicsEnabled){
-            physicsEngine.update(physicsDeltaTime);
-            // physicsEngine.update(physicsDeltaTime);
-          }
-      // }
-
-
+      scriptEngine.update();
+      
+      if(engine.physicsEnabled)
+        physicsEngine.update(physicsDeltaTime);
 
       renderEngine.update();
       renderEngine.render();
