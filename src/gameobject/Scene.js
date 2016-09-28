@@ -1,6 +1,7 @@
 /**
 * @class
 * @classdesc This class represents a scene. Contains a camera, a render context and the game objects.
+* @param {String} name The name of the scene.
 */
 var Scene = function (name){
 
@@ -23,9 +24,8 @@ var Scene = function (name){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the name of the scene.
+* @returns {String} The name.
 */
 Scene.prototype.getName = function (){
 	return this.name;
@@ -34,9 +34,8 @@ Scene.prototype.getName = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the scene as loaded.
+* @param {Boolean} bool The boolean.
 */
 Scene.prototype.setLoaded = function (bool){
 	this.loaded=bool;
@@ -45,9 +44,8 @@ Scene.prototype.setLoaded = function (bool){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns true if the scene is loaded.
+* @returns {Boolean} True if the scene is loaded.
 */
 Scene.prototype.isLoaded = function (){
 	return this.loaded;
@@ -56,9 +54,8 @@ Scene.prototype.isLoaded = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the root of the scene,
+* @returns {GameObject} The root.
 */
 Scene.prototype.getRoot = function (){
   return this.root;
@@ -67,9 +64,8 @@ Scene.prototype.getRoot = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the root that contains the new game objects added.
+* @returns {GameObject} The news-root.
 */
 Scene.prototype.getNewsRoot = function (){
 	return this.newsRoot;
@@ -78,9 +74,7 @@ Scene.prototype.getNewsRoot = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds all the new game objects to the main root. Clears the news-root
 */
 Scene.prototype.flush = function (){
   this.root.setChildren(this.root.getChildren().concat(this.newsRoot.getChildren()));
@@ -91,9 +85,8 @@ Scene.prototype.flush = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns true if the scene has new game objects.
+* @returns {Boolean} True if the scene has new game objects.
 */
 Scene.prototype.hasNewObjects = function (){
 	return this.newObjects;
@@ -102,9 +95,8 @@ Scene.prototype.hasNewObjects = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds a game object.
+* @param {GameObject} obj The game object.
 */
 Scene.prototype.addObject = function (obj){
   // console.log("ADD OBJECT: " + obj.getId());
@@ -118,9 +110,8 @@ Scene.prototype.addObject = function (obj){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Deletes a game object.
+* @param {GameObject} obj The game object.
 */
 Scene.prototype.deleteObject = function (obj){
   this.trash.push(obj);
@@ -129,11 +120,9 @@ Scene.prototype.deleteObject = function (obj){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Cleans the destroyed objects.
 */
-Scene.prototype.cleanTrash = function (obj){
+Scene.prototype.cleanTrash = function (){
 
   for (var i = 0; i < this.trash.length; i++) {
     // TODO remove deleted objects
@@ -153,9 +142,8 @@ Scene.prototype.cleanTrash = function (obj){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the render context.
+* @returns {RenderContext} The render context.
 */
 Scene.prototype.getRenderContext = function (){
 	return this.renderContext;
@@ -164,9 +152,8 @@ Scene.prototype.getRenderContext = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the render context.
+* @param {RenderContext} renderContext The render context.
 */
 Scene.prototype.setRenderContext = function (renderContext){
 	this.renderContext=renderContext;
@@ -175,9 +162,8 @@ Scene.prototype.setRenderContext = function (renderContext){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the camera.
+* @returns {Camera} The camera.
 */
 Scene.prototype.getCamera = function (){
 	return this.camera;
@@ -186,9 +172,8 @@ Scene.prototype.getCamera = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the camera.
+* @param {Camera} camera The camera.
 */
 Scene.prototype.setCamera = function (camera){
 	this.camera=camera;

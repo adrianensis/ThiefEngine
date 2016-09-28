@@ -44,7 +44,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="Scene"><span class="type-signature"></span>new Scene<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Scene"><span class="type-signature"></span>new Scene<span class="signature">(name)</span><span class="type-signature"></span></h4>
 
     
 
@@ -56,6 +56,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of the scene.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -91,7 +140,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line5">line 5</a>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -140,14 +189,14 @@
 
     
 
-    <h4 class="name" id="addObject"><span class="type-signature"></span>addObject<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+    <h4 class="name" id="addObject"><span class="type-signature"></span>addObject<span class="signature">(obj)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    DESCRIPTION
+    Adds a game object.
 </div>
 
 
@@ -183,13 +232,13 @@
 
         <tr>
             
-                <td class="name"><code>NAME</code></td>
+                <td class="name"><code>obj</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">TYPE</span>
+<span class="param-type"><a href="GameObject.html">GameObject</a></span>
 
 
             
@@ -199,7 +248,7 @@
 
             
 
-            <td class="description last">DESCRIPTION</td>
+            <td class="description last">The game object.</td>
         </tr>
 
     
@@ -240,7 +289,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line109">line 109</a>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line101">line 101</a>
     </li></ul></dd>
     
 
@@ -263,28 +312,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -293,14 +320,14 @@
 
     
 
-    <h4 class="name" id="cleanTrash"><span class="type-signature"></span>cleanTrash<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+    <h4 class="name" id="cleanTrash"><span class="type-signature"></span>cleanTrash<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    DESCRIPTION
+    Cleans the destroyed objects.
 </div>
 
 
@@ -309,208 +336,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>NAME</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TYPE</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">DESCRIPTION</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line136">line 136</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="deleteObject"><span class="type-signature"></span>deleteObject<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
-
-    
-
-
-
-<div class="description">
-    DESCRIPTION
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>NAME</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TYPE</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">DESCRIPTION</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -569,28 +394,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -599,14 +402,14 @@
 
     
 
-    <h4 class="name" id="flush"><span class="type-signature"></span>flush<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+    <h4 class="name" id="deleteObject"><span class="type-signature"></span>deleteObject<span class="signature">(obj)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    DESCRIPTION
+    Deletes a game object.
 </div>
 
 
@@ -642,13 +445,13 @@
 
         <tr>
             
-                <td class="name"><code>NAME</code></td>
+                <td class="name"><code>obj</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">TYPE</span>
+<span class="param-type"><a href="GameObject.html">GameObject</a></span>
 
 
             
@@ -658,7 +461,7 @@
 
             
 
-            <td class="description last">DESCRIPTION</td>
+            <td class="description last">The game object.</td>
         </tr>
 
     
@@ -699,7 +502,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line85">line 85</a>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line116">line 116</a>
     </li></ul></dd>
     
 
@@ -722,28 +525,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -752,14 +533,14 @@
 
     
 
-    <h4 class="name" id="getCamera"><span class="type-signature"></span>getCamera<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+    <h4 class="name" id="flush"><span class="type-signature"></span>flush<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    DESCRIPTION
+    Adds all the new game objects to the main root. Clears the news-root
 </div>
 
 
@@ -768,55 +549,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>NAME</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TYPE</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">DESCRIPTION</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -852,7 +584,89 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line182">line 182</a>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line79">line 79</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getCamera"><span class="type-signature"></span>getCamera<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Camera.html">Camera</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns the camera.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line168">line 168</a>
     </li></ul></dd>
     
 
@@ -879,7 +693,7 @@
 
         
 <div class="param-desc">
-    DESCRIPTION
+    The camera.
 </div>
 
 
@@ -890,7 +704,7 @@
     </dt>
     <dd>
         
-<span class="param-type">TYPE</span>
+<span class="param-type"><a href="Camera.html">Camera</a></span>
 
 
     </dd>
@@ -905,14 +719,14 @@
 
     
 
-    <h4 class="name" id="getName"><span class="type-signature"></span>getName<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+    <h4 class="name" id="getName"><span class="type-signature"></span>getName<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
 
 
 <div class="description">
-    DESCRIPTION
+    Returns the name of the scene.
 </div>
 
 
@@ -921,55 +735,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>NAME</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TYPE</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">DESCRIPTION</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1032,7 +797,7 @@
 
         
 <div class="param-desc">
-    DESCRIPTION
+    The name.
 </div>
 
 
@@ -1043,7 +808,7 @@
     </dt>
     <dd>
         
-<span class="param-type">TYPE</span>
+<span class="param-type">String</span>
 
 
     </dd>
@@ -1058,14 +823,534 @@
 
     
 
-    <h4 class="name" id="getNewsRoot"><span class="type-signature"></span>getNewsRoot<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+    <h4 class="name" id="getNewsRoot"><span class="type-signature"></span>getNewsRoot<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="GameObject.html">GameObject</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    DESCRIPTION
+    Returns the root that contains the new game objects added.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line70">line 70</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The news-root.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="GameObject.html">GameObject</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getRenderContext"><span class="type-signature"></span>getRenderContext<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="RenderContext.html">RenderContext</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns the render context.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line148">line 148</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The render context.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="RenderContext.html">RenderContext</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getRoot"><span class="type-signature"></span>getRoot<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="GameObject.html">GameObject</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns the root of the scene,
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line60">line 60</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The root.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="GameObject.html">GameObject</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="hasNewObjects"><span class="type-signature"></span>hasNewObjects<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns true if the scene has new game objects.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line91">line 91</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    True if the scene has new game objects.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isLoaded"><span class="type-signature"></span>isLoaded<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns true if the scene is loaded.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line50">line 50</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    True if the scene is loaded.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setCamera"><span class="type-signature"></span>setCamera<span class="signature">(camera)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Sets the camera.
 </div>
 
 
@@ -1101,13 +1386,13 @@
 
         <tr>
             
-                <td class="name"><code>NAME</code></td>
+                <td class="name"><code>camera</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">TYPE</span>
+<span class="param-type"><a href="Camera.html">Camera</a></span>
 
 
             
@@ -1117,7 +1402,7 @@
 
             
 
-            <td class="description last">DESCRIPTION</td>
+            <td class="description last">The camera.</td>
         </tr>
 
     
@@ -1158,7 +1443,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line74">line 74</a>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line178">line 178</a>
     </li></ul></dd>
     
 
@@ -1181,28 +1466,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -1211,14 +1474,14 @@
 
     
 
-    <h4 class="name" id="getRenderContext"><span class="type-signature"></span>getRenderContext<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+    <h4 class="name" id="setLoaded"><span class="type-signature"></span>setLoaded<span class="signature">(bool)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    DESCRIPTION
+    Sets the scene as loaded.
 </div>
 
 
@@ -1254,13 +1517,13 @@
 
         <tr>
             
-                <td class="name"><code>NAME</code></td>
+                <td class="name"><code>bool</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">TYPE</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -1270,7 +1533,7 @@
 
             
 
-            <td class="description last">DESCRIPTION</td>
+            <td class="description last">The boolean.</td>
         </tr>
 
     
@@ -1311,7 +1574,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line160">line 160</a>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line40">line 40</a>
     </li></ul></dd>
     
 
@@ -1334,28 +1597,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -1364,14 +1605,14 @@
 
     
 
-    <h4 class="name" id="getRoot"><span class="type-signature"></span>getRoot<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+    <h4 class="name" id="setRenderContext"><span class="type-signature"></span>setRenderContext<span class="signature">(renderContext)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    DESCRIPTION
+    Sets the render context.
 </div>
 
 
@@ -1407,13 +1648,13 @@
 
         <tr>
             
-                <td class="name"><code>NAME</code></td>
+                <td class="name"><code>renderContext</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">TYPE</span>
+<span class="param-type"><a href="RenderContext.html">RenderContext</a></span>
 
 
             
@@ -1423,7 +1664,7 @@
 
             
 
-            <td class="description last">DESCRIPTION</td>
+            <td class="description last">The render context.</td>
         </tr>
 
     
@@ -1464,7 +1705,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line63">line 63</a>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line158">line 158</a>
     </li></ul></dd>
     
 
@@ -1487,793 +1728,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="hasNewObjects"><span class="type-signature"></span>hasNewObjects<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
-
-    
-
-
-
-<div class="description">
-    DESCRIPTION
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>NAME</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TYPE</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">DESCRIPTION</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line98">line 98</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="isLoaded"><span class="type-signature"></span>isLoaded<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
-
-    
-
-
-
-<div class="description">
-    DESCRIPTION
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>NAME</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TYPE</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">DESCRIPTION</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line52">line 52</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setCamera"><span class="type-signature"></span>setCamera<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
-
-    
-
-
-
-<div class="description">
-    DESCRIPTION
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>NAME</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TYPE</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">DESCRIPTION</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line193">line 193</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setLoaded"><span class="type-signature"></span>setLoaded<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
-
-    
-
-
-
-<div class="description">
-    DESCRIPTION
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>NAME</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TYPE</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">DESCRIPTION</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line41">line 41</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setRenderContext"><span class="type-signature"></span>setRenderContext<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
-
-    
-
-
-
-<div class="description">
-    DESCRIPTION
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>NAME</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TYPE</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">DESCRIPTION</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line171">line 171</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    DESCRIPTION
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">TYPE</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -2299,7 +1753,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Sep 28 2016 12:41:43 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Sep 28 2016 16:42:32 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

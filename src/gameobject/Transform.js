@@ -28,9 +28,8 @@ Transform.prototype.constructor = Transform;
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns true if the game object is static.
+* @returns {Boolean} True if the game object is static.
 */
 Transform.prototype.isStatic = function () {
 	return this.gameObject.isStatic();
@@ -39,9 +38,8 @@ Transform.prototype.isStatic = function () {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns true if the game object is dirty.
+* @returns {Boolean} True if the game object is dirty.
 */
 Transform.prototype.isDirty = function () {
 	return this.dirty;
@@ -50,9 +48,7 @@ Transform.prototype.isDirty = function () {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Generates the local space model matrix.
 */
 Transform.prototype.generateLocalSpaceMatrix = function (){
 	this.matrix = Matrix4.scale(this.scale);
@@ -66,9 +62,7 @@ Transform.prototype.generateLocalSpaceMatrix = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Initializes the model matrix.
 */
 Transform.prototype.initMatrix = function (){
 
@@ -90,9 +84,8 @@ Transform.prototype.initMatrix = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the model matrix.
+* @returns {Matrix4} The model matrix.
 */
 Transform.prototype.getMatrix = function (){
 	return this.matrix;
@@ -101,9 +94,7 @@ Transform.prototype.getMatrix = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Generates the model matrix.
 */
 Transform.prototype.generateMatrix = function (){
 
@@ -143,9 +134,8 @@ Transform.prototype.generateMatrix = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the model matrix.
+* @param {Matrix4} matrix The model matrix.
 */
 Transform.prototype.setMatrix = function(matrix){
 	this.matrix = matrix;
@@ -156,19 +146,13 @@ Transform.prototype.setMatrix = function(matrix){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the Position.
+* @param {Vector3} vec The Position.
 */
 Transform.prototype.setPosition = function (vec){
 
 	if( ! this.position.equals(vec)){
 		this.dirty = true;
-
-		// this.position.x = vec.x;
-		// this.position.y = vec.y;
-		// this.position.z = vec.z;
-
 		this.position.set(vec);
 	}
 };
@@ -176,19 +160,13 @@ Transform.prototype.setPosition = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the Rotation.
+* @param {Vector3} vec The Rotation.
 */
 Transform.prototype.setRotation = function (vec){
 
 	if( ! this.rotation.equals(vec)){
 		this.dirty = true;
-
-		// this.rotation.x = vec.x;
-		// this.rotation.y = vec.y;
-		// this.rotation.z = vec.z;
-
 		this.rotation.set(vec);
 	}
 };
@@ -196,19 +174,13 @@ Transform.prototype.setRotation = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the Scale.
+* @param {Vector3} vec The Scale.
 */
 Transform.prototype.setScale = function (vec){
 
 	if( ! this.scale.equals(vec)){
 		this.dirty = true;
-
-		// this.scale.x = vec.x;
-		// this.scale.y = vec.y;
-		// this.scale.z = vec.z;
-
 		this.scale.set(vec);
 	}
 };
@@ -216,9 +188,8 @@ Transform.prototype.setScale = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the Position.
+* @returns {Vector3} The Position.
 */
 Transform.prototype.getPosition = function (){
 	return this.position;
@@ -227,9 +198,8 @@ Transform.prototype.getPosition = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the Rotation.
+* @returns {Vector3} The Rotation.
 */
 Transform.prototype.getRotation = function (){
 	return this.rotation;
@@ -238,9 +208,8 @@ Transform.prototype.getRotation = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the Scale.
+* @returns {Vector3} The Scale.
 */
 Transform.prototype.getScale = function (){
 	return this.scale;
@@ -250,9 +219,8 @@ Transform.prototype.getScale = function (){
 
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Translates the game object.
+* @param {Vector3} vec The vector.
 */
 Transform.prototype.translate = function (vec){
 
@@ -270,9 +238,8 @@ Transform.prototype.translate = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Rotates the game object.
+* @param {Vector3} vec The vector.
 */
 Transform.prototype.rotate = function (vec){
 
@@ -290,27 +257,7 @@ Transform.prototype.rotate = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-Transform.prototype.setScale = function (vec){
-
-	if(vec.len() > 0){
-		// this.scale.x = vec.x; //+ this.scale.x;
-		// this.scale.y = vec.y; //+ this.scale.y;
-		// this.scale.z = vec.z; //+ this.scale.z;
-
-		this.scale.set(vec);
-
-		this.dirty = true;
-	}
-};
-
-//----------------------------------------------------------------------
-
-/**
-* DESCRIPTION
+* Directs the game object to a point.
 * @param {TYPE} NAME DESCRIPTION
 * @returns {TYPE} DESCRIPTION
 */
