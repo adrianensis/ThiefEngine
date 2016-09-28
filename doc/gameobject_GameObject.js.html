@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: GameObject.js</title>
+    <title>JSDoc: Source: gameobject/GameObject.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: GameObject.js</h1>
+    <h1 class="page-title">Source: gameobject/GameObject.js</h1>
 
     
 
@@ -26,7 +26,12 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>var GameObject = function (){
+            <pre class="prettyprint source linenums"><code>/**
+* @class
+* @classdesc Represents a game object, every entity in our game is a GameObject. This class needs
+* the Component class to have functionality, like rendering or physics properties.
+*/
+var GameObject = function (){
     BaseObject.call(this);
     this.parent = null;
     this.children = [];
@@ -38,19 +43,14 @@
 };
 
 GameObject.prototype = new BaseObject();
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 GameObject.prototype.constructor = GameObject;
 
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the game object's transform. This function is more useful than getComponent(Transform)
+* because this function avoid the search of the transform component in the components list.
+* @returns {Transform} The game object's transform.
 */
 GameObject.prototype.getTransform = function (){
 	return this.transform;
@@ -59,9 +59,8 @@ GameObject.prototype.getTransform = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the game object's parent.
+* @returns {GameObject} The game object's parent.
 */
 GameObject.prototype.getParent = function (){
 	return this.parent;
@@ -70,9 +69,8 @@ GameObject.prototype.getParent = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the game object's parent.
+* @param {GameObject} parent The game object's parent.
 */
 GameObject.prototype.setParent = function (parent){
 	this.parent=parent;
@@ -81,9 +79,8 @@ GameObject.prototype.setParent = function (parent){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the game object as static.
+* @param {Boolean} bool The boolean value.
 */
 GameObject.prototype.setStatic = function (bool){
 	this.static = bool;
@@ -92,20 +89,18 @@ GameObject.prototype.setStatic = function (bool){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns true if the game object is static.
+* @returns {Boolean True if the game object is static.
 */
-GameObject.prototype.isStatic = function (parent){
+GameObject.prototype.isStatic = function (){
 	return this.static;
 };
 
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the scene where the game object is.
+* @returns {Scene} The scene where the game object is.
 */
 GameObject.prototype.getScene = function (){
 	return this.scene;
@@ -114,9 +109,8 @@ GameObject.prototype.getScene = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the scene where the game object is.
+* @param {Scene} scene The scene where the game object is.
 */
 GameObject.prototype.setScene = function (scene){
 	this.scene=scene;
@@ -125,9 +119,8 @@ GameObject.prototype.setScene = function (scene){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the game object's children.
+* @returns {Array} The game object's children.
 */
 GameObject.prototype.getChildren = function (){
 	return this.children;
@@ -136,9 +129,8 @@ GameObject.prototype.getChildren = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the game object's children.
+* @param {Array} children The game object's children.
 */
 GameObject.prototype.setChildren = function (children){
     for (var child of children) {
@@ -151,9 +143,8 @@ GameObject.prototype.setChildren = function (children){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the game object's components.
+* @returns {Array} The game object's components.
 */
 GameObject.prototype.getComponents = function (){
 	return this.components;
@@ -162,9 +153,7 @@ GameObject.prototype.getComponents = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Enables all the components.
 */
 GameObject.prototype.enable = function (){
 	for (var component of this.components) {
@@ -175,9 +164,7 @@ GameObject.prototype.enable = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Disables all the components.
 */
 GameObject.prototype.disable = function (){
   for (var component of this.components) {
@@ -188,9 +175,8 @@ GameObject.prototype.disable = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds a child and sets this game object as its parent.
+* @param {GameObject} child The child.
 */
 GameObject.prototype.addChild = function (child){
   child.setParent(this);
@@ -199,24 +185,20 @@ GameObject.prototype.addChild = function (child){
 
 //----------------------------------------------------------------------
 
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-GameObject.prototype.getChild = function (){
-
-};
+// TODO: create function to get only one child ???
+// GameObject.prototype.getChild = function (){
+//
+// };
 
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds a component.
+* @param {Component} component The component.
 */
 GameObject.prototype.addComponent = function (component){
 
+  // TODO: only allow one transform component. What if there are many?
   if( (component instanceof Transform) &amp;&amp; (this.transform === null)){
 
     this.transform = component;
@@ -233,9 +215,9 @@ GameObject.prototype.addComponent = function (component){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns all the components in this game object and in children.
+* @param {function} componentClass The component class.
+* @returns {Array} The components.
 */
 GameObject.prototype.getAllComponents = function (componentClass){
 
@@ -247,11 +229,6 @@ GameObject.prototype.getAllComponents = function (componentClass){
       componentList.push(component);
 
     for (var child of this.children) {
-        // var component = child.getComponent(componentClass);
-        //
-        // if(component != null)
-        //   componentList.push(component);
-
         componentList = componentList.concat(child.getAllComponents(componentClass));
     }
 
@@ -264,9 +241,9 @@ GameObject.prototype.getAllComponents = function (componentClass){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns one component in this game object.
+* @param {function} componentClass The component class.
+* @returns {Component} The components.
 */
 GameObject.prototype.getComponent = function (componentClass){
 
@@ -283,9 +260,9 @@ GameObject.prototype.getComponent = function (componentClass){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns all the components in children.
+* @param {function} componentClass The component class.
+* @returns {Array} The components.
 */
 GameObject.prototype.getComponentsInChildren = function (componentClass){
     var componentList = [];
@@ -300,9 +277,7 @@ GameObject.prototype.getComponentsInChildren = function (componentClass){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Destroys the game object's children.
 */
 GameObject.prototype.destroyChildren = function (){
   for (var child of this.children)
@@ -313,9 +288,7 @@ GameObject.prototype.destroyChildren = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Destroys the game object's component.
 */
 GameObject.prototype.destroyAllComponents = function (){
   for (var component of this.components)
@@ -326,9 +299,7 @@ GameObject.prototype.destroyAllComponents = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Destroys the game object.
 */
 GameObject.prototype.destroy = function (){
   // this.setParent(null);
@@ -351,13 +322,13 @@ GameObject.prototype.destroy = function (){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Animation.html">Animation</a></li><li><a href="AnimationFrame.html">AnimationFrame</a></li><li><a href="BaseObject.html">BaseObject</a></li><li><a href="Camera.html">Camera</a></li><li><a href="Color.html">Color</a></li><li><a href="Component.html">Component</a></li><li><a href="CubeMesh.html">CubeMesh</a></li><li><a href="DebugRenderer.html">DebugRenderer</a></li><li><a href="Engine.html">Engine</a></li><li><a href="Frustum.html">Frustum</a></li><li><a href="GameObject.html">GameObject</a></li><li><a href="GeometryUtil.html">GeometryUtil</a></li><li><a href="Input.html">Input</a></li><li><a href="LineRenderer.html">LineRenderer</a></li><li><a href="Loader.html">Loader</a></li><li><a href="Material.html">Material</a></li><li><a href="Matrix4.html">Matrix4</a></li><li><a href="Mesh.html">Mesh</a></li><li><a href="MeshRenderer.html">MeshRenderer</a></li><li><a href="OrthoCamera.html">OrthoCamera</a></li><li><a href="PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="RectangleMesh.html">RectangleMesh</a></li><li><a href="RenderContext.html">RenderContext</a></li><li><a href="RenderEngine.html">RenderEngine</a></li><li><a href="Scene.html">Scene</a></li><li><a href="Shader.html">Shader</a></li><li><a href="SpriteBatch.html">SpriteBatch</a></li><li><a href="SpriteRenderer.html">SpriteRenderer</a></li><li><a href="Texture.html">Texture</a></li><li><a href="Time.html">Time</a></li><li><a href="Transform.html">Transform</a></li><li><a href="Vector2.html">Vector2</a></li><li><a href="Vector3.html">Vector3</a></li><li><a href="Vector4.html">Vector4</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Sep 19 2016 13:04:16 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Sep 28 2016 12:41:43 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

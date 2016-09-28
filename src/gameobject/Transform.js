@@ -1,3 +1,8 @@
+/**
+* @class
+* @extends {Component}
+* @classdesc This class holds de position, rotation and scale of the game object.
+*/
 var Transform = function (){
 	Component.call(this);
 	this.position = new Vector3(0,0,0);

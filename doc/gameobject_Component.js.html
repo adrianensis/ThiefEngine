@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: graphics/RenderContext.js</title>
+    <title>JSDoc: Source: gameobject/Component.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: graphics/RenderContext.js</h1>
+    <h1 class="page-title">Source: gameobject/Component.js</h1>
 
     
 
@@ -28,43 +28,113 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
 * @class
-* @classdesc This class holds the elements tha are shared by the renderers, like the camera.
+* @extends {BaseObject}
+* @classdesc Represents a component of a game object. A component provides specific functionality to the game object.
 */
-var RenderContext = function (){
-  // this.lights = null;
-  this.camera = null;
+var Component = function (){
+    BaseObject.call(this);
+    this.gameObject = null;
+    this.enabled = true;
+    this.destroyed = false;
 };
 
-//----------------------------------------------------------------------
-
-// RenderContext.prototype.getLights = function (){
-// 	return this.lights;
-// };
-
-//----------------------------------------------------------------------
-
-// RenderContext.prototype.setLights = function (lights){
-// 	this.lights=lights;
-// };
+Component.prototype = new BaseObject();
+Component.prototype.constructor = Component;
 
 //----------------------------------------------------------------------
 
 /**
-* Returns the camera.
-* @returns {Camera} The camera
+* Returns the game object.
+* @returns {GameObject} The game object.
 */
-RenderContext.prototype.getCamera = function (){
-	return this.camera;
+Component.prototype.getGameObject = function (){
+	return this.gameObject;
 };
 
 //----------------------------------------------------------------------
 
 /**
-* Sets the camera.
-* @param {Camera} camera The camera.
+* Sets the game object.
+* @param {GameObject} gameObject The Game object.
 */
-RenderContext.prototype.setCamera = function (camera){
-	this.camera=camera;
+Component.prototype.setGameObject = function (gameObject){
+	this.gameObject=gameObject;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Enables the component.
+*/
+Component.prototype.enable = function (){
+	this.enabled=true;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Disables the component.
+*/
+Component.prototype.disable = function (){
+	this.enabled=false;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns true if component is enabled.
+* @returns {Boolean} True if component is enabled.
+*/
+Component.prototype.isEnabled = function (){
+	return this.enabled;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns the component's parent. The componet's parent is the component ,with the same class of
+* this component, in the game object's parent.
+* @returns {Component} The component's parent.
+*/
+Component.prototype.getParent = function(){
+    var parent = this.gameObject.getParent();
+
+    if(parent !== null)
+        return parent.getComponent(this.constructor);
+
+    return null;
+
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns the component's children. Returns all the components, with the same class of this component,
+* in the game component's children.
+* @returns {Component} The component's children.
+*/
+Component.prototype.getChildren = function (){
+    return this.gameObject.getComponentsInChildren(this.constructor);
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Destroys the component.
+*/
+Component.prototype.destroy = function (){
+  // this.gameObject = null;
+  this.destroyed = true;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Returns true if the component is destroyed.
+* @returns {Boolean} True if the component is destroyed.
+*/
+Component.prototype.isDestroyed = function (){
+	return this.destroyed;
 };
 
 //----------------------------------------------------------------------

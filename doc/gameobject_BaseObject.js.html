@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: graphics/RenderContext.js</title>
+    <title>JSDoc: Source: gameobject/BaseObject.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: graphics/RenderContext.js</h1>
+    <h1 class="page-title">Source: gameobject/BaseObject.js</h1>
 
     
 
@@ -28,43 +28,23 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
 * @class
-* @classdesc This class holds the elements tha are shared by the renderers, like the camera.
+* @classdesc This is the root class for classes that need an ID, like Component or GameObject.
 */
-var RenderContext = function (){
-  // this.lights = null;
-  this.camera = null;
+var BaseObject = function (){
+    this.id = BaseObject.lastId;
+    BaseObject.lastId++;
 };
 
-//----------------------------------------------------------------------
-
-// RenderContext.prototype.getLights = function (){
-// 	return this.lights;
-// };
-
-//----------------------------------------------------------------------
-
-// RenderContext.prototype.setLights = function (lights){
-// 	this.lights=lights;
-// };
+BaseObject.lastId = 0;
 
 //----------------------------------------------------------------------
 
 /**
-* Returns the camera.
-* @returns {Camera} The camera
+* Returns the id of the object.
+* @returns {Number} The id.
 */
-RenderContext.prototype.getCamera = function (){
-	return this.camera;
-};
-
-//----------------------------------------------------------------------
-
-/**
-* Sets the camera.
-* @param {Camera} camera The camera.
-*/
-RenderContext.prototype.setCamera = function (camera){
-	this.camera=camera;
+BaseObject.prototype.getId = function (){
+	return this.id;
 };
 
 //----------------------------------------------------------------------

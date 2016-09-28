@@ -1,3 +1,8 @@
+/**
+* @class
+* @classdesc Represents a game object, every entity in our game is a GameObject. This class needs
+* the Component class to have functionality, like rendering or physics properties.
+*/
 var GameObject = function (){
     BaseObject.call(this);
     this.parent = null;
@@ -15,9 +20,9 @@ GameObject.prototype.constructor = GameObject;
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the game object's transform. This function is more useful than getComponent(Transform)
+* because this function avoid the search of the transform component in the components list.
+* @returns {Transform} The game object's transform.
 */
 GameObject.prototype.getTransform = function (){
 	return this.transform;
@@ -26,9 +31,8 @@ GameObject.prototype.getTransform = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the game object's parent.
+* @returns {GameObject} The game object's parent.
 */
 GameObject.prototype.getParent = function (){
 	return this.parent;
@@ -37,9 +41,8 @@ GameObject.prototype.getParent = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the game object's parent.
+* @param {GameObject} parent The game object's parent.
 */
 GameObject.prototype.setParent = function (parent){
 	this.parent=parent;
@@ -48,9 +51,8 @@ GameObject.prototype.setParent = function (parent){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the game object as static.
+* @param {Boolean} bool The boolean value.
 */
 GameObject.prototype.setStatic = function (bool){
 	this.static = bool;
@@ -59,20 +61,18 @@ GameObject.prototype.setStatic = function (bool){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns true if the game object is static.
+* @returns {Boolean True if the game object is static.
 */
-GameObject.prototype.isStatic = function (parent){
+GameObject.prototype.isStatic = function (){
 	return this.static;
 };
 
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the scene where the game object is.
+* @returns {Scene} The scene where the game object is.
 */
 GameObject.prototype.getScene = function (){
 	return this.scene;
@@ -81,9 +81,8 @@ GameObject.prototype.getScene = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the scene where the game object is.
+* @param {Scene} scene The scene where the game object is.
 */
 GameObject.prototype.setScene = function (scene){
 	this.scene=scene;
@@ -92,9 +91,8 @@ GameObject.prototype.setScene = function (scene){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the game object's children.
+* @returns {Array} The game object's children.
 */
 GameObject.prototype.getChildren = function (){
 	return this.children;
@@ -103,9 +101,8 @@ GameObject.prototype.getChildren = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Sets the game object's children.
+* @param {Array} children The game object's children.
 */
 GameObject.prototype.setChildren = function (children){
     for (var child of children) {
@@ -118,9 +115,8 @@ GameObject.prototype.setChildren = function (children){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns the game object's components.
+* @returns {Array} The game object's components.
 */
 GameObject.prototype.getComponents = function (){
 	return this.components;
@@ -129,9 +125,7 @@ GameObject.prototype.getComponents = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Enables all the components.
 */
 GameObject.prototype.enable = function (){
 	for (var component of this.components) {
@@ -142,9 +136,7 @@ GameObject.prototype.enable = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Disables all the components.
 */
 GameObject.prototype.disable = function (){
   for (var component of this.components) {
@@ -155,9 +147,8 @@ GameObject.prototype.disable = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds a child and sets this game object as its parent.
+* @param {GameObject} child The child.
 */
 GameObject.prototype.addChild = function (child){
   child.setParent(this);
@@ -166,24 +157,20 @@ GameObject.prototype.addChild = function (child){
 
 //----------------------------------------------------------------------
 
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-GameObject.prototype.getChild = function (){
-
-};
+// TODO: create function to get only one child ???
+// GameObject.prototype.getChild = function (){
+//
+// };
 
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Adds a component.
+* @param {Component} component The component.
 */
 GameObject.prototype.addComponent = function (component){
 
+  // TODO: only allow one transform component. What if there are many?
   if( (component instanceof Transform) && (this.transform === null)){
 
     this.transform = component;
@@ -200,9 +187,9 @@ GameObject.prototype.addComponent = function (component){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns all the components in this game object and in children.
+* @param {function} componentClass The component class.
+* @returns {Array} The components.
 */
 GameObject.prototype.getAllComponents = function (componentClass){
 
@@ -214,11 +201,6 @@ GameObject.prototype.getAllComponents = function (componentClass){
       componentList.push(component);
 
     for (var child of this.children) {
-        // var component = child.getComponent(componentClass);
-        //
-        // if(component != null)
-        //   componentList.push(component);
-
         componentList = componentList.concat(child.getAllComponents(componentClass));
     }
 
@@ -231,9 +213,9 @@ GameObject.prototype.getAllComponents = function (componentClass){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns one component in this game object.
+* @param {function} componentClass The component class.
+* @returns {Component} The components.
 */
 GameObject.prototype.getComponent = function (componentClass){
 
@@ -250,9 +232,9 @@ GameObject.prototype.getComponent = function (componentClass){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Returns all the components in children.
+* @param {function} componentClass The component class.
+* @returns {Array} The components.
 */
 GameObject.prototype.getComponentsInChildren = function (componentClass){
     var componentList = [];
@@ -267,9 +249,7 @@ GameObject.prototype.getComponentsInChildren = function (componentClass){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Destroys the game object's children.
 */
 GameObject.prototype.destroyChildren = function (){
   for (var child of this.children)
@@ -280,9 +260,7 @@ GameObject.prototype.destroyChildren = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Destroys the game object's component.
 */
 GameObject.prototype.destroyAllComponents = function (){
   for (var component of this.components)
@@ -293,9 +271,7 @@ GameObject.prototype.destroyAllComponents = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Destroys the game object.
 */
 GameObject.prototype.destroy = function (){
   // this.setParent(null);

@@ -1,3 +1,7 @@
+/**
+* @class
+* @classdesc This class represents a scene. Contains a camera, a render context and the game objects.
+*/
 var Scene = function (name){
 
   this.name = name;

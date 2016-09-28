@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Shader</title>
+    <title>JSDoc: Class: Scene</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Shader</h1>
+    <h1 class="page-title">Class: Scene</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2>Shader</h2>
+        <h2>Scene</h2>
         
-            <div class="class-description">This class represents a GLSL Shader.</div>
+            <div class="class-description">This class represents a scene. Contains a camera, a render context and the game objects.</div>
         
     
 </header>
@@ -44,7 +44,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="Shader"><span class="type-signature"></span>new Shader<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Scene"><span class="type-signature"></span>new Scene<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -91,7 +91,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line6">line 6</a>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -140,14 +140,14 @@
 
     
 
-    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">(typeStr)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="addObject"><span class="type-signature"></span>addObject<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a shader from a type.
+    DESCRIPTION
 </div>
 
 
@@ -183,13 +183,13 @@
 
         <tr>
             
-                <td class="name"><code>typeStr</code></td>
+                <td class="name"><code>NAME</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">TYPE</span>
 
 
             
@@ -199,7 +199,7 @@
 
             
 
-            <td class="description last">The type.</td>
+            <td class="description last">DESCRIPTION</td>
         </tr>
 
     
@@ -240,1521 +240,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line292">line 292</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="addAttribute"><span class="type-signature"></span>addAttribute<span class="signature">(location, name)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Adds an attribute. Binds an attribute to a location.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>location</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The location of the attribute.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The name of the attribute.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line169">line 169</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="addFloat"><span class="type-signature"></span>addFloat<span class="signature">(value, name)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Sends an float to the shader.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The value.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The name.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line222">line 222</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="addFloatVector"><span class="type-signature"></span>addFloatVector<span class="signature">(array, name)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Sends an array of floats to the shader.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>array</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The array.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The name.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line234">line 234</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="addFragmentShader"><span class="type-signature"></span>addFragmentShader<span class="signature">(sourceText)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Adds a fragment shader.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>sourceText</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The source.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line154">line 154</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="addInt"><span class="type-signature"></span>addInt<span class="signature">(value, name)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Sends an integer to the shader.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The value.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The name.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line210">line 210</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="addMatrix"><span class="type-signature"></span>addMatrix<span class="signature">(matrix, name)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Sends a matrix to the shader.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>matrix</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Matrix4.html">Matrix4</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The matrix.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The name.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line180">line 180</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="addMatrixArray"><span class="type-signature"></span>addMatrixArray<span class="signature">(matrixArray, name)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Sends an array of matrices to the shader.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>matrixArray</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The array.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The name.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line192">line 192</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="addVertexShader"><span class="type-signature"></span>addVertexShader<span class="signature">(sourceText)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Adds a vertex shader.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>sourceText</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The source.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line140">line 140</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="compile"><span class="type-signature"></span>compile<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Compiles the shader.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line244">line 244</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="disable"><span class="type-signature"></span>disable<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Disables the shader.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line282">line 282</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="enable"><span class="type-signature"></span>enable<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Enables the shader.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line273">line 273</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getProgramid"><span class="type-signature"></span>getProgramid<span class="signature">()</span><span class="type-signature"> &rarr; {Number}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Returns the program id.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line130">line 130</a>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line109">line 109</a>
     </li></ul></dd>
     
 
@@ -1781,7 +267,7 @@
 
         
 <div class="param-desc">
-    The program id.
+    DESCRIPTION
 </div>
 
 
@@ -1792,7 +278,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Number</span>
+<span class="param-type">TYPE</span>
 
 
     </dd>
@@ -1807,14 +293,14 @@
 
     
 
-    <h4 class="name" id="isCompiled"><span class="type-signature"></span>isCompiled<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    <h4 class="name" id="cleanTrash"><span class="type-signature"></span>cleanTrash<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns true if the shader is compiled.
+    DESCRIPTION
 </div>
 
 
@@ -1823,6 +309,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1858,7 +393,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_Shader.js.html">graphics/Shader.js</a>, <a href="graphics_Shader.js.html#line120">line 120</a>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line136">line 136</a>
     </li></ul></dd>
     
 
@@ -1885,7 +420,7 @@
 
         
 <div class="param-desc">
-    True if the shader is compiled.
+    DESCRIPTION
 </div>
 
 
@@ -1896,7 +431,1843 @@
     </dt>
     <dd>
         
-<span class="param-type">Boolean</span>
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="deleteObject"><span class="type-signature"></span>deleteObject<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line125">line 125</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="flush"><span class="type-signature"></span>flush<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line85">line 85</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getCamera"><span class="type-signature"></span>getCamera<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line182">line 182</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getName"><span class="type-signature"></span>getName<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line30">line 30</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getNewsRoot"><span class="type-signature"></span>getNewsRoot<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line74">line 74</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getRenderContext"><span class="type-signature"></span>getRenderContext<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line160">line 160</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getRoot"><span class="type-signature"></span>getRoot<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line63">line 63</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="hasNewObjects"><span class="type-signature"></span>hasNewObjects<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line98">line 98</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isLoaded"><span class="type-signature"></span>isLoaded<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setCamera"><span class="type-signature"></span>setCamera<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line193">line 193</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setLoaded"><span class="type-signature"></span>setLoaded<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setRenderContext"><span class="type-signature"></span>setRenderContext<span class="signature">(NAME)</span><span class="type-signature"> &rarr; {TYPE}</span></h4>
+
+    
+
+
+
+<div class="description">
+    DESCRIPTION
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAME</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DESCRIPTION</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gameobject_Scene.js.html">gameobject/Scene.js</a>, <a href="gameobject_Scene.js.html#line171">line 171</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    DESCRIPTION
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">TYPE</span>
 
 
     </dd>

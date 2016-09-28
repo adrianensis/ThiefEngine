@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: RenderContext</title>
+    <title>JSDoc: Class: BaseObject</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: RenderContext</h1>
+    <h1 class="page-title">Class: BaseObject</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2>RenderContext</h2>
+        <h2>BaseObject</h2>
         
-            <div class="class-description">This class holds the elements tha are shared by the renderers, like the camera.</div>
+            <div class="class-description">This is the root class for classes that need an ID, like Component or GameObject.</div>
         
     
 </header>
@@ -44,7 +44,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="RenderContext"><span class="type-signature"></span>new RenderContext<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="BaseObject"><span class="type-signature"></span>new BaseObject<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -91,7 +91,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_RenderContext.js.html">graphics/RenderContext.js</a>, <a href="graphics_RenderContext.js.html#line5">line 5</a>
+        <a href="gameobject_BaseObject.js.html">gameobject/BaseObject.js</a>, <a href="gameobject_BaseObject.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -140,14 +140,14 @@
 
     
 
-    <h4 class="name" id="getCamera"><span class="type-signature"></span>getCamera<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Camera.html">Camera</a>}</span></h4>
+    <h4 class="name" id="getId"><span class="type-signature"></span>getId<span class="signature">()</span><span class="type-signature"> &rarr; {Number}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns the camera.
+    Returns the id of the object.
 </div>
 
 
@@ -191,7 +191,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_RenderContext.js.html">graphics/RenderContext.js</a>, <a href="graphics_RenderContext.js.html#line28">line 28</a>
+        <a href="gameobject_BaseObject.js.html">gameobject/BaseObject.js</a>, <a href="gameobject_BaseObject.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -218,7 +218,7 @@
 
         
 <div class="param-desc">
-    The camera
+    The id.
 </div>
 
 
@@ -229,144 +229,13 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Camera.html">Camera</a></span>
+<span class="param-type">Number</span>
 
 
     </dd>
 </dl>
 
     
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setCamera"><span class="type-signature"></span>setCamera<span class="signature">(camera)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Sets the camera.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>camera</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Camera.html">Camera</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The camera.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphics_RenderContext.js.html">graphics/RenderContext.js</a>, <a href="graphics_RenderContext.js.html#line38">line 38</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
