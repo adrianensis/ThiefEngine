@@ -3,11 +3,6 @@ var SpriteBuilder = function (){
 };
 
 SpriteBuilder.prototype = new GameObjectBuilder();
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 SpriteBuilder.prototype.constructor = SpriteBuilder;
 
 //----------------------------------------------------------------------

@@ -79,6 +79,17 @@ var RenderEngine = function (){
 //----------------------------------------------------------------------
 
 /**
+* Clears all the renderers and the render context.
+*/
+RenderEngine.prototype.clear = function (){
+  this.textureBatches = {};
+  this.noTextureBatch = new SpriteBatch(new Material());
+  this.renderContext = null;
+};
+
+//----------------------------------------------------------------------
+
+/**
 * DESCRIPTION
 * @param {TYPE} NAME DESCRIPTION
 * @returns {TYPE} DESCRIPTION
@@ -128,16 +139,7 @@ RenderEngine.prototype.addRenderers = function (renderers){
   }
 };
 
-//----------------------------------------------------------------------
 
-/**
-* Clears all the renderers and the render context.
-*/
-RenderEngine.prototype.clear = function (){
-  this.textureBatches = {};
-  this.noTextureBatch = new SpriteBatch(new Material());
-  this.renderContext = null;
-};
 
 //----------------------------------------------------------------------
 

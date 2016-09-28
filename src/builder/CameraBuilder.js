@@ -3,11 +3,6 @@ var CameraBuilder = function (){
 };
 
 CameraBuilder.prototype = new GameObjectBuilder();
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
 CameraBuilder.prototype.constructor = CameraBuilder;
 
 //----------------------------------------------------------------------
