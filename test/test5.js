@@ -98,7 +98,7 @@ var spriteBuilder = new SpriteBuilder();
     setScale(new Vector2(1,1)).
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
-    setRigidBody(). // set physics properties
+    setRigidBody(0,0,0). // set physics properties
     setCollider(new AABBCollider(1,1, false)). // set a Box Collider
     setLayer(1).
   end();
@@ -115,9 +115,9 @@ var spriteBuilder = new SpriteBuilder();
     addAnimation("left", 4, true, false, new Vector2(0,0.5), 1/4, 1/4, 6). // add LEFT animation
     addAnimation("right", 4, true, false, new Vector2(0,0.25), 1/4, 1/4, 6). // add RIGHT animation
     setAnimation("down"). // set the default animation
-    setRigidBody(). // set physics properties
-    // setCollider(new AABBCollider(1,1, false)). // set a Box Collider
-    setCollider(new CircleCollider(0.5)). // set a Box Collider
+    setRigidBody(1,0,0). // set physics properties
+    setCollider(new AABBCollider(1,1, false)). // set a Box Collider
+    // setCollider(new CircleCollider(0.5,false)). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
     setLayer(1).
   end();
@@ -135,7 +135,7 @@ var createSoilder = function(x,y){
     setStatic(false).
     addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
     setAnimation("right"). // set the default animation
-    setRigidBody(). // set physics properties
+    setRigidBody(1,0,0). // set physics properties
     setCollider(collider). // set a Box Collider
     setLayer(1).
   end();
@@ -154,7 +154,7 @@ var createSoilder = function(x,y){
 
 
   Thief.addGameObjectToScene(player);
-  // Thief.addGameObjectToScene(green);
+  Thief.addGameObjectToScene(green);
 
   Thief.addGameObjectToScene(createSoilder(2,-1.5));
   Thief.addGameObjectToScene(createSoilder(3.1,-1.3));

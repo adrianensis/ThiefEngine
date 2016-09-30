@@ -1,6 +1,6 @@
 var PlayerLogic = function () {
     Script.call(this);
-    this.v = 2;
+    this.v = 1.2;
 
 };
 
@@ -121,6 +121,7 @@ PlayerLogic.prototype.update = function (){
 
           // this.gameObject.getComponent(RigidBody).linearVelocity = new Vector2(0,-10);
             this.gameObject.getComponent(SpriteRenderer).setAnimation("down");
+
 
     }else{
         // body.linear.y = 0;

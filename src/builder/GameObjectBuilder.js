@@ -92,8 +92,8 @@ GameObjectBuilder.prototype.setScale = function (vec){
 * @param {TYPE} NAME DESCRIPTION
 * @returns {TYPE} DESCRIPTION
 */
-GameObjectBuilder.prototype.setRigidBody = function (){
-  var rigidBody = new RigidBody();
+GameObjectBuilder.prototype.setRigidBody = function (density, friction, restitution){
+  var rigidBody = new RigidBody(density, friction, restitution);
   this.tmpObj.addComponent(rigidBody);
   return this;
 };

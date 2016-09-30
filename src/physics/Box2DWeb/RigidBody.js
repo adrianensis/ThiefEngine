@@ -1,10 +1,10 @@
-var RigidBody = function (){
+var RigidBody = function (density, friction, restitution){
 	Component.call(this);
 
 	this.fixDef = new b2FixtureDef;
-	this.fixDef.density = 0.0;
-	this.fixDef.friction = 0.0;
-	this.fixDef.restitution = 0.0;
+	this.fixDef.density = density;
+	this.fixDef.friction = friction;
+	this.fixDef.restitution = restitution;
 
 	this.bodyDef = new b2BodyDef;
 	this.bodyDef.type = b2Body.b2_dynamicBody;
@@ -32,11 +32,14 @@ RigidBody.prototype.adapt = function (world) {
 	else
 		this.bodyDef.type = b2Body.b2_dynamicBody;
 
+	this.bodyDef.fixedRotation = this.isStatic();
+
   this.bodyDef.position.x = this.gameObject.getTransform().position.x;
   this.bodyDef.position.y = this.gameObject.getTransform().position.y;
 
 	this.body = this.world.CreateBody(this.bodyDef);
 	this.body.SetUserData(this.gameObject);
+
 
   this.fixture = this.body.CreateFixture(this.fixDef);
 

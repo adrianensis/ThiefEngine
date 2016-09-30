@@ -15,10 +15,21 @@ var PhysicsEngine = function (){
     this.destroyList = [];
     this.fixtures = [];
 
+
+
     this.world = new b2World(
           new b2Vec2(0,0)    //NO gravity
        ,  false                 //allow sleep
     );
+
+    // this.debugDraw = new b2DebugDraw();
+    // var ctx = document.getElementById("glcanvas").getContext("2d");
+    // this.debugDraw.SetSprite(ctx);
+    // this.debugDraw.SetDrawScale(1);
+    // this.debugDraw.SetFillAlpha(0.3);
+    // this.debugDraw.SetLineThickness(1.0);
+    // this.debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+    // this.world.SetDebugDraw(this.debugDraw);
 
     var listener = new b2Listener();
 
@@ -105,12 +116,24 @@ PhysicsEngine.prototype.update = function (dt){
     var body = this.bodies[i];
 
     if(!body.isStatic() && body.isEnabled() && !body.isDestroyed()){
+
       var v = body.getBox2dBody().GetLinearVelocity();
       var x = body.getBox2dBody().GetPosition().x;
       var y = body.getBox2dBody().GetPosition().y;
+
+      var angle = body.getBox2dBody().GetAngle();
+
       body.gameObject.getTransform().setPosition(new Vector2(x,y));
+      body.gameObject.getTransform().setRotation(new Vector3(0,0,angle));
+
     }else if(body.isDestroyed())
       this.destroyList.push(body);
+
+    // if(body.isStatic()){
+    //   body.getBox2dBody().SetAngle(0);
+    //   body.getBox2dBody().SetSpin(0);
+    // }
+
   }
 
   for (var i = 0; i < this.destroyList.length; i++) {
@@ -121,5 +144,9 @@ PhysicsEngine.prototype.update = function (dt){
 
   this.world.ClearForces();
   this.destroyList = [];
+
+
+  // this.world.DrawDebugData();
+
 
 };

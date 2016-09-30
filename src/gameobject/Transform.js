@@ -51,11 +51,18 @@ Transform.prototype.isDirty = function () {
 * Generates the local space model matrix.
 */
 Transform.prototype.generateLocalSpaceMatrix = function (){
+
 	this.matrix = Matrix4.scale(this.scale);
-	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(this.rotation.x, 0, 0)));
-	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, this.rotation.y, 0)));
-	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
 	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.translation(this.position));
+
+	if(this.rotation.x !== 0)
+		this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(this.rotation.x, 0, 0)));
+	if(this.rotation.y !== 0)
+		this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, this.rotation.y, 0)));
+	if(this.rotation.z !== 0)
+		this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
+
+
 
 };
 
