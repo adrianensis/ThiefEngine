@@ -34,8 +34,11 @@ RigidBody.prototype.adapt = function (world) {
 
 	this.bodyDef.fixedRotation = this.isStatic();
 
-  this.bodyDef.position.x = this.gameObject.getTransform().position.x;
-  this.bodyDef.position.y = this.gameObject.getTransform().position.y;
+	var t = this.gameObject.getTransform();
+  this.bodyDef.position.x = t.position.x;
+  this.bodyDef.position.y = t.position.y;
+
+	this.bodyDef.angle = t.rotation.z;
 
 	this.body = this.world.CreateBody(this.bodyDef);
 	this.body.SetUserData(this.gameObject);

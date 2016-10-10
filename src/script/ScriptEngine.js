@@ -48,7 +48,7 @@ ScriptEngine.prototype.clear = function (){
 ScriptEngine.prototype.update = function (){
     for (script of this.scripts){
 
-      if(!script.isDestroyed())
+      if(!script.isDestroyed() && script.isEnabled())
         script.update();
     }
 

@@ -126,6 +126,8 @@ PhysicsEngine.prototype.update = function (dt){
       body.gameObject.getTransform().setPosition(new Vector2(x,y));
       body.gameObject.getTransform().setRotation(new Vector3(0,0,angle));
 
+      
+
     }else if(body.isDestroyed())
       this.destroyList.push(body);
 

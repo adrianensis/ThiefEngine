@@ -5,17 +5,21 @@
 */
 var Transform = function (){
 	Component.call(this);
+
 	this.position = new Vector3(0,0,0);
 	this.rotation = new Vector3(0,0,0);
 	this.scale = new Vector3(1,1,1);
+
+	// this.localPosition = new Vector3(0,0,0);
 
 	this.right = new Vector3(1,0,0);
 	this.up = new Vector3(0,1,0);
 	this.forward = new Vector3(0,0,1);
 
   this.matrix = Matrix4.identity();
-  // this.parentMatrix = Matrix4.identity();
-	// this.matrixStaticGenerated = false;
+  this.translationMatrix = Matrix4.identity();
+  this.rotationMatrix = Matrix4.identity();
+  this.scaleMatrix = Matrix4.identity();
 
 	this.target = this.forward.cpy();
 
@@ -52,17 +56,28 @@ Transform.prototype.isDirty = function () {
 */
 Transform.prototype.generateLocalSpaceMatrix = function (){
 
-	this.matrix = Matrix4.scale(this.scale);
-	this.matrix = Matrix4.mulMM(this.matrix, Matrix4.translation(this.position));
+	this.translationMatrix = Matrix4.identity();
+	this.rotationMatrix = Matrix4.identity();
+	this.scaleMatrix = Matrix4.identity();
+
+	this.scaleMatrix = Matrix4.scale(this.scale);
+	this.translationMatrix = Matrix4.translation(this.position);
+	// this.matrix = Matrix4.mulMM(this.matrix, Matrix4.translation(this.position));
 
 	if(this.rotation.x !== 0)
-		this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(this.rotation.x, 0, 0)));
+		this.rotationMatrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.rotation(new Vector3(this.rotation.x, 0, 0)));
 	if(this.rotation.y !== 0)
-		this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, this.rotation.y, 0)));
+		this.rotationMatrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.rotation(new Vector3(0, this.rotation.y, 0)));
 	if(this.rotation.z !== 0)
-		this.matrix = Matrix4.mulMM(this.matrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
+		this.rotationMatrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
+
+		this.matrix = Matrix4.mulMM(Matrix4.mulMM(this.scaleMatrix, this.translationMatrix),this.rotationMatrix);
 
 
+
+		this.up = Matrix4.mulMV(this.matrix,new Vector3(0,1,0));
+		this.forward = Matrix4.mulMV(this.matrix,new Vector3(0,0,1));
+		this.right = Matrix4.mulMV(this.matrix,new Vector3(1,0,0));
 
 };
 
@@ -113,12 +128,14 @@ Transform.prototype.generateMatrix = function (){
 		// If this transform has parent -> generate local + parent matrix
 		if(parent !== null && parent.isDirty()){
 			this.generateLocalSpaceMatrix();
-			this.matrix = Matrix4.mulMM(this.matrix,parent.getMatrix());
+			this.matrix = Matrix4.mulMM(parent.getMatrix(),this.matrix);
+
+			// console.log(this.position.cpy().add(parent.position));
+			// console.log(this.position);
 
 		// Else, generate only local matrix
 		}else if(this.dirty)
 			this.generateLocalSpaceMatrix();
-
 	}
 
 	// update children
@@ -127,16 +144,7 @@ Transform.prototype.generateMatrix = function (){
 	}
 
 	this.dirty = false; // clear dirty flag
-
-	// DebugRenderer.setTransformationMatrix(this.matrix);
-    // DebugRenderer.drawLine(this.position,this.position.cpy().add(this.right).mulScl(-20),Color.GREEN);
-    // DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(0,0.5,0),Color.BLUE);
-    // DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(0,0,0.5),Color.RED);
-	// DebugRenderer.setTransformationMatrix(null);
-
-
 };
-
 
 //----------------------------------------------------------------------
 
@@ -160,7 +168,9 @@ Transform.prototype.setPosition = function (vec){
 
 	if( ! this.position.equals(vec)){
 		this.dirty = true;
+
 		this.position.set(vec);
+
 	}
 };
 
@@ -199,6 +209,16 @@ Transform.prototype.setScale = function (vec){
 * @returns {Vector3} The Position.
 */
 Transform.prototype.getPosition = function (){
+
+	var parent = this.getParent();
+	if(parent !== null){
+
+		this.position.w = 1;
+
+		var worldPos = Matrix4.mulMV(Matrix4.mulMM(this.translationMatrix,Matrix4.mulMM(parent.translationMatrix,parent.rotationMatrix)),this.position);
+		return worldPos;
+	}
+
 	return this.position;
 };
 
@@ -236,9 +256,9 @@ Transform.prototype.translate = function (vec){
 		// this.position.y = vec.y + this.position.y;
 		// this.position.z = vec.z + this.position.z;
 
-		this.position.add(vec);
+		this.setPosition(this.position.cpy().add(vec));
 
-		this.dirty = true;
+		// this.dirty = true;
 	}
 };
 

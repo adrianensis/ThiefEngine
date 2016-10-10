@@ -7,7 +7,7 @@ var DebugRenderer = function (){
 };
 
 DebugRenderer.shader = null;
-DebugRenderer.transformationMatrix = Matrix4.identity();
+DebugRenderer.modelMatrix = Matrix4.identity();
 
 DebugRenderer.list = [];
 
@@ -50,9 +50,9 @@ DebugRenderer.init = function() {
 */
 DebugRenderer.setTransformationMatrix = function (matrix) {
     if(matrix === null)
-        DebugRenderer.transformationMatrix = Matrix4.identity();
+        DebugRenderer.modelMatrix = Matrix4.identity();
     else
-        DebugRenderer.transformationMatrix = matrix;
+        DebugRenderer.modelMatrix = matrix;
 };
 
 //----------------------------------------------------------------------
@@ -70,6 +70,18 @@ DebugRenderer.update = function (renderContext) {
 	DebugRenderer.shader.disable();
 
 };
+//----------------------------------------------------------------------
+
+/**
+* Renders the debug renderer.
+*/
+DebugRenderer.render = function () {
+  for (var renderer of this.list){
+    renderer.bind();
+    renderer.render();
+  }
+
+};
 
 //----------------------------------------------------------------------
 
@@ -80,7 +92,7 @@ DebugRenderer.update = function (renderContext) {
 * @param {Color} color The color.
 */
 DebugRenderer.drawLine = function (start,end,color){
-    DebugRenderer.list.push(new LineRenderer(DebugRenderer.shader,start,end,color,this.transformationMatrix));
+    DebugRenderer.list.push(new LineRenderer(DebugRenderer.shader,start,end,color,this.modelMatrix));
 };
 
 //----------------------------------------------------------------------

@@ -1,4 +1,0 @@
-(\w+\.prototype\.\w+)
-
-
-/**\n* DESCRIPTION\n* @param {TYPE} NAME DESCRIPTION\n* @returns {TYPE} DESCRIPTION\n*/\n$1

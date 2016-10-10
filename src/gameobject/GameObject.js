@@ -10,6 +10,7 @@ var GameObject = function (){
     this.components = [];
     this.scene = null;
     this.static = false;
+    this.name = null;
 
     this.transform = null;
 };
@@ -28,6 +29,25 @@ GameObject.prototype.getTransform = function (){
 	return this.transform;
 };
 
+//----------------------------------------------------------------------
+
+/**
+* Returns the game object's name.
+* @returns {String} The game object's name.
+*/
+GameObject.prototype.getName = function (){
+	return this.name;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Sets the game object's name.
+* @param {String} name The game object's name.
+*/
+GameObject.prototype.setName = function (name){
+	this.name=name;
+};
 //----------------------------------------------------------------------
 
 /**

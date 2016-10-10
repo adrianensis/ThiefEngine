@@ -41,6 +41,18 @@ var Matrix4 = function (row0,row1,row2,row3){
 //----------------------------------------------------------------------
 
 /**
+* Returns a copy of the matrix.
+* @returns {Matrix4} The copy.
+*/
+Matrix4.prototype.cpy = function (){
+	var copy = Matrix4.zeros();
+  copy.data = this.data.slice();
+
+  return copy;
+};
+//----------------------------------------------------------------------
+
+/**
 * Returns an array that contains the matrix data.
 * @returns {Array} An array that contains the matrix data.
 */

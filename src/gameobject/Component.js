@@ -72,7 +72,7 @@ Component.prototype.getParent = function(){
     var parent = this.gameObject.getParent();
 
     if(parent !== null)
-        return parent.getComponent(this.constructor);
+      return parent.getComponent(this.constructor);
 
     return null;
 

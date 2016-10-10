@@ -5,13 +5,13 @@
 * @param {Vector3} start The number of vertices.
 * @param {Vector3} end The number of vertices.
 * @param {Color} color The number of vertices.
-* @param {Matrix4} transformationMatrix The number of vertices.
+* @param {Matrix4} modelMatrix The number of vertices.
 */
-var LineRenderer = function (shader,start,end,color, transformationMatrix){
+var LineRenderer = function (shader,start,end,color, modelMatrix){
     this.shader = shader;
     this.color = color;
 
-    this.transformationMatrix = transformationMatrix;
+    this.modelMatrix = modelMatrix;
 
     this.start = start.cpy();
     this.end = end.cpy();
@@ -21,7 +21,7 @@ var LineRenderer = function (shader,start,end,color, transformationMatrix){
 
     this.vertices = this.start.toArray().concat(this.end.toArray());
 
-    this.colors = this.color.vec.toArray().concat(this.color.vec.toArray());
+    this.colors = this.color.toArray().concat(this.color.toArray());
 
     this.elem = [];
     this.elem[0] = 0;
@@ -80,7 +80,7 @@ LineRenderer.prototype.bind = function () {
 LineRenderer.prototype.render = function () {
     this.shader.enable();
 
-    this.shader.addMatrix(this.transformationMatrix.transpose(), "transformationMatrix");
+    this.shader.addMatrix(this.modelMatrix.transpose(), "modelMatrix");
 
   	vao_ext.bindVertexArrayOES(this.vao);
 

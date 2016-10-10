@@ -208,11 +208,7 @@ RenderEngine.prototype.render = function (){
       this.noTextureBatch.render(i);
   }
 
-  for (var renderer of DebugRenderer.getRenderers()){
-    renderer.bind();
-    renderer.render();
-  }
-
+  DebugRenderer.render();
   DebugRenderer.clear();
 
 };

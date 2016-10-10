@@ -19,7 +19,7 @@ Shader.debugShader = null;
 Shader.vs =
 "uniform mat4 projectionMatrix;"+
 "uniform mat4 viewMatrix;"+
-"uniform mat4 transformationMatrix;"+
+"uniform mat4 modelMatrix;"+
 
 "attribute vec4 position;"+
 "attribute vec4 color; "+ // REMEMBER: IF AN ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
@@ -29,7 +29,7 @@ Shader.vs =
 "varying vec2 vTexcoord;"+
 
 "void main() {"+
-"  gl_Position = projectionMatrix*viewMatrix*transformationMatrix*position;"+
+"  gl_Position = projectionMatrix*viewMatrix*modelMatrix*position;"+
 
   // Pass the texcoord to the fragment shader.
 "  vTexcoord = texcoord;"+
@@ -90,7 +90,7 @@ Shader.fs=
 Shader.vsDebug=
 "uniform mat4 projectionMatrix;"+
 "uniform mat4 viewMatrix;"+
-"uniform mat4 transformationMatrix;"+
+"uniform mat4 modelMatrix;"+
 
 "attribute vec4 position;"+
 "attribute vec4 color;"+ // // IF AN ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
@@ -98,7 +98,7 @@ Shader.vsDebug=
 "varying lowp vec4 vColor;"+
 
 "void main() {"+
-"    gl_Position = projectionMatrix*viewMatrix*transformationMatrix*position;"+
+"    gl_Position = projectionMatrix*viewMatrix*modelMatrix*position;"+
 "    vColor = color;"+ // Pass the color to the fragment shader.
 "}"
 

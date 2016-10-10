@@ -106,6 +106,7 @@ var spriteBuilder = new SpriteBuilder();
 
   var player =
   spriteBuilder.begin("res/pok-char.png"). // create a basic sprite
+    setName("player").
     setPosition(new Vector2(0,2)).
     // setRotation(new Vector3(0,0,90)).
     setSize(1).
@@ -115,28 +116,29 @@ var spriteBuilder = new SpriteBuilder();
     addAnimation("left", 4, true, false, new Vector2(0,0.5), 1/4, 1/4, 6). // add LEFT animation
     addAnimation("right", 4, true, false, new Vector2(0,0.25), 1/4, 1/4, 6). // add RIGHT animation
     setAnimation("down"). // set the default animation
-    setRigidBody(1,0,0). // set physics properties
-    setCollider(new AABBCollider(1,1, false)). // set a Box Collider
+    // setRigidBody(1,0,0). // set physics properties
+    // setCollider(new AABBCollider(1,1, false)). // set a Box Collider
     // setCollider(new CircleCollider(0.5,false)). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
     setLayer(1).
   end();
 
 
-var createSoilder = function(x,y){
+var createSoilder = function(x,y, name){
 
   var collider = new AABBCollider(1,1, false);
 
   // console.log(collider.getId());
 
   return spriteBuilder.begin("res/soldier.png"). // create a basic sprite
+    setName(name).
     setPosition(new Vector2(x,y)).
     setSize(1).
     setStatic(false).
     addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
     setAnimation("right"). // set the default animation
-    setRigidBody(1,0,0). // set physics properties
-    setCollider(collider). // set a Box Collider
+    // setRigidBody(1,0,0). // set physics properties
+    // setCollider(collider). // set a Box Collider
     setLayer(1).
   end();
 };
@@ -153,17 +155,6 @@ var createSoilder = function(x,y){
   end();
 
 
-  Thief.addGameObjectToScene(player);
-  Thief.addGameObjectToScene(green);
-
-  Thief.addGameObjectToScene(createSoilder(2,-1.5));
-  Thief.addGameObjectToScene(createSoilder(3.1,-1.3));
-  Thief.addGameObjectToScene(createSoilder(4.2,-1.2));
-  Thief.addGameObjectToScene(createSoilder(5.3,-1.1));
-  Thief.addGameObjectToScene(snorlax);
-  // Thief.addGameObjectToScene(font);
-
-
   var canvas = document.getElementById("glcanvas");
 	// alert("Width: "+canvas.width + " Height: " + canvas.height);
 
@@ -175,6 +166,7 @@ var createSoilder = function(x,y){
   var w = 1*aspect;
   var h = 1;
 
+
   var camBuilder = new CameraBuilder();
 
   var cam =
@@ -184,6 +176,25 @@ var createSoilder = function(x,y){
     addScript(new CameraLogic(player)).
   end();
 
+  // player.addChild(cam);
+  player.addChild(createSoilder(0,2, "sol0"));
+
+
+  Thief.addGameObjectToScene(player);
+  // Thief.addGameObjectToScene(green);
+
+  // Thief.addGameObjectToScene(createSoilder(2,-1.5, , "sol1"));
+  // Thief.addGameObjectToScene(createSoilder(3.1,-1.3, , "sol2"));
+  // Thief.addGameObjectToScene(createSoilder(4.2,-1.2, , "sol3"));
+  // Thief.addGameObjectToScene(createSoilder(5.3,-1.1, , "sol4"));
+  Thief.addGameObjectToScene(snorlax);
+  // Thief.addGameObjectToScene(font);
+
+
+
+
+
+  Thief.addGameObjectToScene(cam);
   Thief.setCamera(cam);
 
   // Thief.setGravity(new Vector2(0,-5));

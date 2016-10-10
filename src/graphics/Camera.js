@@ -65,8 +65,8 @@ Camera.prototype.getViewMatrix = function (){
 
 		this.viewMatrix = Matrix4.mulMM( Matrix4.translation(t.position.cpy().mulScl(-1)),this.viewMatrix);
 
-		// viewMatrix.print()
 	}
+
 
 
 	return this.viewMatrix;

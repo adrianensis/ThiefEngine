@@ -1,6 +1,6 @@
 var PlayerLogic = function () {
     Script.call(this);
-    this.v = 1.2;
+    this.v = 3;
 
 };
 
@@ -29,17 +29,22 @@ PlayerLogic.prototype.update = function (){
     // this.gameObject.getTransform().rotate(new Vector3(0.5,0.5,0.0));
 
 
-    var body = this.gameObject.getComponent(RigidBody);
-    var linear = body.getBox2dBody().GetLinearVelocity();
-    // var linear = body.linear;
+    // var body = this.gameObject.getComponent(RigidBody);
+    // var linear = body.getBox2dBody().GetLinearVelocity();
 
-    // console.log(this.gameObject.getTransform().position);
-    // body.linear.x = 0;
-    // body.linear.y = 0;
 
-    // body.linear = body.linear.add(new Vector2(0,-0.3));
+    // var t = this.gameObject.getTransform();
+    // var m = t.getMatrix();
+    // DebugRenderer.setTransformationMatrix(m);
+    // DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(0,1,0),Color.BLUE);
+    // DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(1,0,0),Color.RED);
+    // DebugRenderer.drawLine(new Vector3(0,0,0),t.up,Color.BLUE);
+    // DebugRenderer.drawLine(new Vector3(0,0,0),t.right,Color.RED);
+	  // DebugRenderer.setTransformationMatrix(null);
 
     if (Input.isKeyPressed(32)) {
+
+      // body.getBox2dBody().SetAngularVelocity(1);
 
         // this.gameObject.getScene().addObject(createSnorlax(Math.random()*5,Math.random()*5,0.5));
 
@@ -64,13 +69,13 @@ PlayerLogic.prototype.update = function (){
     if (Input.isKeyPressed(37)) {
         // LEFT
             this.direction = -1;
-            // this.gameObject.getTransform().rotate(new Vector2(10,0));
+            this.gameObject.getTransform().rotate(new Vector3(0,0,1));
 
             // this.gameObject.getTransform().translate(new Vector2(-this.v*Time.deltaTime(),0));
             //
             //
-              linear.x = -this.v;
-              linear.y = 0;
+              // linear.x = -this.v;
+              // linear.y = 0;
 
             // body.SetLinearVelocity(vel);
 
@@ -97,10 +102,10 @@ PlayerLogic.prototype.update = function (){
         // RIGHT
             this.direction = 1;
 
-            // this.gameObject.getTransform().translate(new Vector2(this.v*Time.deltaTime(),0));
+            this.gameObject.getTransform().translate(new Vector2(this.v*Time.deltaTime(),0));
 
-            linear.x = this.v;
-            linear.y = 0;
+            // linear.x = this.v;
+            // linear.y = 0;
 
         //   body.SetLinearVelocity(vel);
 

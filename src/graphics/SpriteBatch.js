@@ -42,6 +42,7 @@ SpriteBatch.prototype.bind = function (){
 
   this.material.bind();
 
+  // only bind the rectangle once
   if(! SpriteBatch.binded){
 
     SpriteBatch.binded = true;
@@ -152,7 +153,7 @@ SpriteBatch.prototype.render = function (layer){
 
     if(renderer.getLayer() === layer && renderer.isEnabled() && !renderer.isDestroyed()){
 
-      var isInFrustum = cam.getFrustum().testSphere(renderer.getGameObject().getTransform().position, renderer.getRadius());
+      var isInFrustum = cam.getFrustum().testSphere(renderer.getGameObject().getTransform().getPosition(), renderer.getRadius());
 
       if(isInFrustum){
 
@@ -168,7 +169,7 @@ SpriteBatch.prototype.render = function (layer){
       	gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 0, 0);
 
         renderer.gameObject.getTransform().generateMatrix();
-        this.material.getShader().addMatrix(renderer.gameObject.getTransform().getMatrix(), "transformationMatrix");
+        this.material.getShader().addMatrix(renderer.gameObject.getTransform().getMatrix(), "modelMatrix");
 
         renderer.updateMaterial(this.material);
 
@@ -179,14 +180,10 @@ SpriteBatch.prototype.render = function (layer){
     }
   }
 
-
-
   gl.disableVertexAttribArray(0);
 	gl.disableVertexAttribArray(1);
 	gl.disableVertexAttribArray(2);
 	gl.disableVertexAttribArray(3);
-
-
 
 	this.material.disable();
 };

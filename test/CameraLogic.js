@@ -15,24 +15,12 @@ CameraLogic.prototype.start = function () {
 CameraLogic.prototype.update = function (){
 
 
-    // console.log(Input.getCursorPosition());
-
     var t = this.gameObject.getTransform();
 
     var newCamPos = this.player.getTransform().position.cpy();
     newCamPos.z = t.getPosition().z;
 
     t.setPosition(newCamPos);
-
-    // DebugRenderer.setTransformationMatrix(Matrix4.identity());
-    // DebugRenderer.drawLine(new Vector3(0,-20,0),new Vector3(0,20,0),Color.BLUE);
-    // DebugRenderer.drawLine(new Vector3(-20,0,0),new Vector3(20,0,0),Color.BLUE);
-	// DebugRenderer.setTransformationMatrix(null);
-
-
-    // if(Input.getKey() != -1){
-    //     console.log(t.right);
-    // }
 
     if (Input.getKey() === 37) {
         // LEFT

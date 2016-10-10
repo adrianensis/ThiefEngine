@@ -32,6 +32,19 @@ GameObjectBuilder.prototype.begin = function () {
 * @param {TYPE} NAME DESCRIPTION
 * @returns {TYPE} DESCRIPTION
 */
+GameObjectBuilder.prototype.setName = function (name){
+  this.tmpObj.setName(name);
+  return this;
+};
+
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
 GameObjectBuilder.prototype.setStatic = function (bool){
  this.tmpObj.setStatic(bool);
  return this;

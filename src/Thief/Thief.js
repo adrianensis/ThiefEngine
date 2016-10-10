@@ -88,7 +88,7 @@ Thief.setCamera = function (obj) {
 
   Thief.getScene().setRenderContext(renderContext);
 
-  Thief.currentScene.addObject(obj);
+  // Thief.currentScene.addObject(obj);
 };
 
 //----------------------------------------------------------------------
