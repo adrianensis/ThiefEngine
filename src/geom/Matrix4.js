@@ -13,25 +13,25 @@ var Matrix4 = function (row0,row1,row2,row3){
 
 
     // REMEMBER
-    // WebGL uses column-major ordering (transposed)
+    // WebGL uses column-major order (transposed)
     // a webGL matrix : [ [column 0] [column 1] [column 2] [column 3] ]
 
     // NOTE:
     // You can use the get(row,col) and set(row,col,value) functions
-    // to access the data as a row-major ordering matrix.
+    // to access the data as a row-major ordered matrix.
 
     // NOTE:
-    // Here I use, row-major order.
+    // Here I use, column-major order.
 
     /*
-        ROW-MAJOR ORDERING:
+        ROW-MAJOR ORDER:
 
         row 0 | a b c d |
         row 1 | e f g h |
         row 2 | i j k l |
         row 3 | m n o p |
 
-        COLUMN-MAJOR ORDERING:
+        COLUMN-MAJOR ORDER:
 
         column 0 | a e i m |
         column 1 | b f j n |
