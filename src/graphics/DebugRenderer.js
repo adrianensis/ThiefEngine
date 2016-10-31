@@ -64,11 +64,10 @@ DebugRenderer.setTransformationMatrix = function (matrix) {
 DebugRenderer.update = function (renderContext) {
 	DebugRenderer.shader.enable();
 
-	DebugRenderer.shader.addMatrix(renderContext.getCamera().getProjectionMatrix().transpose(), "projectionMatrix");
-	DebugRenderer.shader.addMatrix(renderContext.getCamera().getViewMatrix().transpose(), "viewMatrix");
+	DebugRenderer.shader.addMatrix(renderContext.getCamera().getProjectionMatrix(), "projectionMatrix");
+	DebugRenderer.shader.addMatrix(renderContext.getCamera().getViewMatrix(), "viewMatrix");
 
 	DebugRenderer.shader.disable();
-
 };
 //----------------------------------------------------------------------
 
@@ -76,9 +75,9 @@ DebugRenderer.update = function (renderContext) {
 * Renders the debug renderer.
 */
 DebugRenderer.render = function () {
-  for (var renderer of this.list){
-    renderer.bind();
-    renderer.render();
+  for (var lineRenderer of this.list){
+    lineRenderer.bind();
+    lineRenderer.render();
   }
 
 };
@@ -92,7 +91,7 @@ DebugRenderer.render = function () {
 * @param {Color} color The color.
 */
 DebugRenderer.drawLine = function (start,end,color){
-    DebugRenderer.list.push(new LineRenderer(DebugRenderer.shader,start,end,color,this.modelMatrix));
+    DebugRenderer.list.push(new LineRenderer(DebugRenderer.shader,start,end,color,this.modelMatrix.cpy()));
 };
 
 //----------------------------------------------------------------------

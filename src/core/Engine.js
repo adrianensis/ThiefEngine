@@ -196,13 +196,27 @@ Engine.prototype.run = function () {
 
   var engine = this;
   var physicsDeltaTime = (1/this.fps)/2;
-  var accumulator = 0;
-  var currentTime = 0;
 
+  // var max =0;
+  // var n = 0;
 
   var main = function () {
 
+
+
+    // console.log(((1/engine.fps))+" --- "+Time.deltaTime());
+
+
+    // var skipPhysics = Time.deltaTime() > (1/engine.fps); //boolean
+
+    // console.log(skipPhysics);
+
     Time.tick();
+
+    // max = Math.max(Time.deltaTime(),max);
+    // if(n%30 === 0)
+    //   console.log(max);
+    // n++;
 
     // console.log(Time.deltaTime());
 
@@ -222,10 +236,23 @@ Engine.prototype.run = function () {
 
     if(engine.loaded){
 
-      scriptEngine.update();
-      
-      if(engine.physicsEnabled)
-        physicsEngine.update(physicsDeltaTime);
+
+      // if(Time.deltaTime() < (1/engine.fps)){
+
+        var frames = engine.fps - (Time.deltaTime()*engine.fps*engine.fps);
+
+        frames = Math.floor(Math.min(frames,5));
+
+        while(frames > 0){
+
+          scriptEngine.update();
+
+          if(engine.physicsEnabled)
+            physicsEngine.update((1/engine.fps)/frames);
+
+          frames--;
+        }
+      // }
 
       renderEngine.update();
       renderEngine.render();
@@ -234,6 +261,7 @@ Engine.prototype.run = function () {
 
       // currentTime = newTime;
     }
+
 
     window.requestAnimFrame(main);
   };
@@ -254,7 +282,7 @@ Engine.prototype.run = function () {
   window.requestAnimFrame(main);
 
 
-  // var ONE_FRAME_TIME = (1/this.fps)*1000 ;
+  // var ONE_FRAME_TIME = (1/this.fps)*1000this.fps)*1000 ;
   // setInterval( main, ONE_FRAME_TIME );
 };
 

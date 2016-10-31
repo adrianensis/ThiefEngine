@@ -93,6 +93,7 @@ var spriteBuilder = new SpriteBuilder();
 
   var snorlax =
   spriteBuilder.begin("res/snorlax.bmp").
+    setName("snorlax").
     setPosition(new Vector2(0,-2)).
     // setSize(1).
     setScale(new Vector2(1,1)).
@@ -116,11 +117,11 @@ var spriteBuilder = new SpriteBuilder();
     addAnimation("left", 4, true, false, new Vector2(0,0.5), 1/4, 1/4, 6). // add LEFT animation
     addAnimation("right", 4, true, false, new Vector2(0,0.25), 1/4, 1/4, 6). // add RIGHT animation
     setAnimation("down"). // set the default animation
-    // setRigidBody(1,0,0). // set physics properties
+    setRigidBody(1,0,0). // set physics properties
     // setCollider(new AABBCollider(1,1, false)). // set a Box Collider
-    // setCollider(new CircleCollider(0.5,false)). // set a Box Collider
+    setCollider(new CircleCollider(0.5,false)). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
-    setLayer(1).
+    setLayer(2).
   end();
 
 
@@ -137,8 +138,8 @@ var createSoilder = function(x,y, name){
     setStatic(false).
     addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
     setAnimation("right"). // set the default animation
-    // setRigidBody(1,0,0). // set physics properties
-    // setCollider(collider). // set a Box Collider
+    setRigidBody(1,0,0). // set physics properties
+    setCollider(collider). // set a Box Collider
     setLayer(1).
   end();
 };
@@ -147,7 +148,8 @@ var createSoilder = function(x,y, name){
 
   var green =
   spriteBuilder.begin(null).
-    setPosition(new Vector2(0,0)).
+    setName("green").
+    setPosition(new Vector2(0,-5)).
     setScale(new Vector2(10,5)).
     setColor(new Color(0,1,0,1)).
     setStatic(true).
@@ -171,13 +173,14 @@ var createSoilder = function(x,y, name){
 
   var cam =
   camBuilder.begin().
+    setName("cam").
     setPosition(new Vector3(0,0,15)).
     setOrtho(w*zoom,h*zoom, -100,100).
     addScript(new CameraLogic(player)).
   end();
 
   // player.addChild(cam);
-  player.addChild(createSoilder(0,2, "sol0"));
+  // player.addChild(createSoilder(0,2, "sol0"));
 
 
   Thief.addGameObjectToScene(player);
@@ -191,13 +194,22 @@ var createSoilder = function(x,y, name){
   // Thief.addGameObjectToScene(font);
 
 
+  for (var i = 0; i < 100; i++){
+
+    var randomX = (Math.random()*1000)%10;
+    var randomY = (Math.random()*1000)%10;
+
+    randomX *= (Math.random() > 0.5 ? 1 : -1);
+    randomY *= (Math.random() > 0.5 ? 1 : -1);
 
 
+    Thief.addGameObjectToScene(createSoilder(randomX,randomY, "sol"+i));
+  }
 
   Thief.addGameObjectToScene(cam);
   Thief.setCamera(cam);
 
-  // Thief.setGravity(new Vector2(0,-5));
+  // Thief.setGravity(new Vector2(0,-3));
 
   Thief.run();
 

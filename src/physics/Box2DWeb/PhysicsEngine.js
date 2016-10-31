@@ -21,16 +21,6 @@ var PhysicsEngine = function (){
           new b2Vec2(0,0)    //NO gravity
        ,  false                 //allow sleep
     );
-
-    // this.debugDraw = new b2DebugDraw();
-    // var ctx = document.getElementById("glcanvas").getContext("2d");
-    // this.debugDraw.SetSprite(ctx);
-    // this.debugDraw.SetDrawScale(1);
-    // this.debugDraw.SetFillAlpha(0.3);
-    // this.debugDraw.SetLineThickness(1.0);
-    // this.debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-    // this.world.SetDebugDraw(this.debugDraw);
-
     var listener = new b2Listener();
 
     listener.BeginContact = function(contact) {
@@ -49,8 +39,6 @@ var PhysicsEngine = function (){
     };
 
     listener.EndContact = function(contact) {
-        // console.log(contact.GetFixtureA().GetBody().GetUserData());
-        // console.log("EXIT");
 
         var gameObjectA = contact.GetFixtureA().GetBody().GetUserData();
         var gameObjectB = contact.GetFixtureB().GetBody().GetUserData();
@@ -72,6 +60,12 @@ var PhysicsEngine = function (){
 
 PhysicsEngine.prototype.setGravity = function (gravity){
   this.world.SetGravity(new b2Vec2(gravity.x,gravity.y));
+};
+
+//----------------------------------------------------------------------
+
+PhysicsEngine.prototype.getBox2dWorld = function (){
+  return this.world;
 };
 
 //----------------------------------------------------------------------
@@ -126,7 +120,7 @@ PhysicsEngine.prototype.update = function (dt){
       body.gameObject.getTransform().setPosition(new Vector2(x,y));
       body.gameObject.getTransform().setRotation(new Vector3(0,0,angle));
 
-      
+
 
     }else if(body.isDestroyed())
       this.destroyList.push(body);

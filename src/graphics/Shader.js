@@ -93,20 +93,18 @@ Shader.vsDebug=
 "uniform mat4 modelMatrix;"+
 
 "attribute vec4 position;"+
-"attribute vec4 color;"+ // // IF AN ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
+"attribute vec4 color;"+ // IF AN ATTRIBUTE IS NEVER USED getAttribLocation RETURNS -1 !!!
 
 "varying lowp vec4 vColor;"+
 
 "void main() {"+
 "    gl_Position = projectionMatrix*viewMatrix*modelMatrix*position;"+
 "    vColor = color;"+ // Pass the color to the fragment shader.
-"}"
+"}";
 
 Shader.fsDebug=
 "precision mediump float;"+
-
 "varying lowp vec4 vColor;"+ // Passed in from the vertex shader.
-
 "void main() {"+
 "    gl_FragColor = vColor;"+
 "}";

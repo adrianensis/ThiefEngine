@@ -57,17 +57,17 @@ Camera.prototype.getViewMatrix = function (){
 	var t = this.gameObject.getTransform();
 
 	if(t.isDirty()){
-		this.viewMatrix = new Matrix4(
+		
+		var rotationMatrix = new Matrix4(
 	        t.right,
 	        t.up,
 	        t.forward,
 	        new Vector4(0,0,0,1));
 
-		this.viewMatrix = Matrix4.mulMM( Matrix4.translation(t.position.cpy().mulScl(-1)),this.viewMatrix);
+		var translationMatrix = Matrix4.translation(t.getPosition().cpy().mulScl(-1));
 
+		this.viewMatrix = Matrix4.mulMM(translationMatrix, rotationMatrix);
 	}
-
-
 
 	return this.viewMatrix;
 };

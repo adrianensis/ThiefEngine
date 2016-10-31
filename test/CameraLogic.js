@@ -20,7 +20,7 @@ CameraLogic.prototype.update = function (){
     var newCamPos = this.player.getTransform().position.cpy();
     newCamPos.z = t.getPosition().z;
 
-    t.setPosition(newCamPos);
+    // t.setPosition(newCamPos);
 
     if (Input.getKey() === 37) {
         // LEFT

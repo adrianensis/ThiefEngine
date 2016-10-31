@@ -10,8 +10,6 @@ var Transform = function (){
 	this.rotation = new Vector3(0,0,0);
 	this.scale = new Vector3(1,1,1);
 
-	// this.localPosition = new Vector3(0,0,0);
-
 	this.right = new Vector3(1,0,0);
 	this.up = new Vector3(0,1,0);
 	this.forward = new Vector3(0,0,1);
@@ -56,13 +54,12 @@ Transform.prototype.isDirty = function () {
 */
 Transform.prototype.generateLocalSpaceMatrix = function (){
 
-	this.translationMatrix = Matrix4.identity();
+	// this.translationMatrix = Matrix4.identity();
 	this.rotationMatrix = Matrix4.identity();
-	this.scaleMatrix = Matrix4.identity();
+	// this.scaleMatrix = Matrix4.identity();
 
 	this.scaleMatrix = Matrix4.scale(this.scale);
 	this.translationMatrix = Matrix4.translation(this.position);
-	// this.matrix = Matrix4.mulMM(this.matrix, Matrix4.translation(this.position));
 
 	if(this.rotation.x !== 0)
 		this.rotationMatrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.rotation(new Vector3(this.rotation.x, 0, 0)));
@@ -71,13 +68,9 @@ Transform.prototype.generateLocalSpaceMatrix = function (){
 	if(this.rotation.z !== 0)
 		this.rotationMatrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
 
-		this.matrix = Matrix4.mulMM(Matrix4.mulMM(this.scaleMatrix, this.translationMatrix),this.rotationMatrix);
+	this.matrix = Matrix4.mulMM(Matrix4.mulMM(this.scaleMatrix, this.translationMatrix),this.rotationMatrix);
 
 
-
-		this.up = Matrix4.mulMV(this.matrix,new Vector3(0,1,0));
-		this.forward = Matrix4.mulMV(this.matrix,new Vector3(0,0,1));
-		this.right = Matrix4.mulMV(this.matrix,new Vector3(1,0,0));
 
 };
 
@@ -97,7 +90,7 @@ Transform.prototype.initMatrix = function (){
 
 	var children = this.getChildren();
 
-	for (c of children){
+	for (var c of children){
 		c.initMatrix();
 	}
 };
@@ -139,11 +132,12 @@ Transform.prototype.generateMatrix = function (){
 	}
 
 	// update children
-	for (c of this.getChildren()){
+	for (var c of this.getChildren()){
 		c.generateMatrix();
 	}
 
 	this.dirty = false; // clear dirty flag
+
 };
 
 //----------------------------------------------------------------------
@@ -251,15 +245,8 @@ Transform.prototype.getScale = function (){
 */
 Transform.prototype.translate = function (vec){
 
-	if(vec.len() > 0){
-		// this.position.x = vec.x + this.position.x;
-		// this.position.y = vec.y + this.position.y;
-		// this.position.z = vec.z + this.position.z;
-
+	if(vec.len() > 0)
 		this.setPosition(this.position.cpy().add(vec));
-
-		// this.dirty = true;
-	}
 };
 
 //----------------------------------------------------------------------
@@ -271,9 +258,6 @@ Transform.prototype.translate = function (vec){
 Transform.prototype.rotate = function (vec){
 
 	if(vec.len() > 0){
-		// this.rotation.x = vec.x + this.rotation.x;
-		// this.rotation.y = vec.y + this.rotation.y;
-		// this.rotation.z = vec.z + this.rotation.z;
 
 		this.rotation.add(vec);
 
@@ -283,29 +267,22 @@ Transform.prototype.rotate = function (vec){
 
 //----------------------------------------------------------------------
 
-/**
-* Directs the game object to a point.
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-Transform.prototype.lookAt = function (vec){
+// Transform.prototype.lookAt = function (vec){
 
-	if( ! this.target.equals(vec)){
-		this.dirty = true;
-
-		this.target = vec.cpy();
-
-		var pos = this.position.cpy();
-
-		this.forward = pos.sub(vec).nor();
-
-		var yAxis = new Vector3(0,1,0);
-		this.right = yAxis.cross(this.forward).nor();
-		this.up = this.forward.cpy().cross(this.right);
-
-	}
-
-
-};
+	// if( ! this.target.equals(vec)){
+	// 	this.dirty = true;
+	//
+	// 	this.target = vec.cpy();
+	//
+	// 	var pos = this.getPosition().cpy();
+	//
+	// 	this.forward = pos.sub(vec).nor();
+	//
+	// 	var yAxis = new Vector3(0,1,0);
+	// 	this.right = yAxis.cross(this.forward).nor();
+	// 	this.up = this.forward.cpy().cross(this.right);
+	//
+	// }
+// };
 
 //----------------------------------------------------------------------

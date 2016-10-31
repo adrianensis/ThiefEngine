@@ -9,8 +9,8 @@ var RectangleMesh = function () {
   this.width = 1;
   this.height = 1;
 
-  var w = (this.width/2.0);
-  var h = (this.height/2.0);
+  var w = (this.width/2);
+  var h = (this.height/2);
 
 
   // Vertices

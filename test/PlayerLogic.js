@@ -1,6 +1,6 @@
 var PlayerLogic = function () {
     Script.call(this);
-    this.v = 3;
+    this.v = 1;
 
 };
 
@@ -22,19 +22,26 @@ PlayerLogic.prototype.start = function () {
 
 PlayerLogic.prototype.update = function (){
 
+  var start = new Vector3(0,0,0);
+  var end = new Vector3(1,0,0);
 
+  var t = this.gameObject.getTransform();
+  var m = t.getMatrix();
 
-    // console.log(this.gameObject.getTransform().position);
+  DebugRenderer.setTransformationMatrix(m);
+  DebugRenderer.drawLine(start,end,Color.BLUE);
+  DebugRenderer.setTransformationMatrix(null);
 
-    // this.gameObject.getTransform().rotate(new Vector3(0.5,0.5,0.0));
+    var body = this.gameObject.getComponent(RigidBody);
+    var linear = body.getBox2dBody().GetLinearVelocity();
 
-
-    // var body = this.gameObject.getComponent(RigidBody);
-    // var linear = body.getBox2dBody().GetLinearVelocity();
+    this.v = 50*Time.deltaTime();
 
 
     // var t = this.gameObject.getTransform();
     // var m = t.getMatrix();
+    // console.log(m.data);
+    // m.print();
     // DebugRenderer.setTransformationMatrix(m);
     // DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(0,1,0),Color.BLUE);
     // DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(1,0,0),Color.RED);
@@ -44,7 +51,7 @@ PlayerLogic.prototype.update = function (){
 
     if (Input.isKeyPressed(32)) {
 
-      // body.getBox2dBody().SetAngularVelocity(1);
+      body.getBox2dBody().SetAngularVelocity(5);
 
         // this.gameObject.getScene().addObject(createSnorlax(Math.random()*5,Math.random()*5,0.5));
 
@@ -69,13 +76,13 @@ PlayerLogic.prototype.update = function (){
     if (Input.isKeyPressed(37)) {
         // LEFT
             this.direction = -1;
-            this.gameObject.getTransform().rotate(new Vector3(0,0,1));
+            // this.gameObject.getTransform().rotate(new Vector3(0,0,1));
 
             // this.gameObject.getTransform().translate(new Vector2(-this.v*Time.deltaTime(),0));
             //
             //
-              // linear.x = -this.v;
-              // linear.y = 0;
+              linear.x = -this.v;
+              linear.y = 0;
 
             // body.SetLinearVelocity(vel);
 
@@ -102,10 +109,10 @@ PlayerLogic.prototype.update = function (){
         // RIGHT
             this.direction = 1;
 
-            this.gameObject.getTransform().translate(new Vector2(this.v*Time.deltaTime(),0));
+            // this.gameObject.getTransform().translate(new Vector2(this.v*Time.deltaTime(),0));
 
-            // linear.x = this.v;
-            // linear.y = 0;
+            linear.x = this.v;
+            linear.y = 0;
 
         //   body.SetLinearVelocity(vel);
 

@@ -20,6 +20,9 @@ var Matrix4 = function (row0,row1,row2,row3){
     // You can use the get(row,col) and set(row,col,value) functions
     // to access the data as a row-major ordering matrix.
 
+    // NOTE:
+    // Here I use, row-major order.
+
     /*
         ROW-MAJOR ORDERING:
 
