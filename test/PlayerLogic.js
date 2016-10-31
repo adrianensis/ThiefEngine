@@ -25,12 +25,12 @@ PlayerLogic.prototype.update = function (){
   var start = new Vector3(0,0,0);
   var end = new Vector3(1,0,0);
 
-  var t = this.gameObject.getTransform();
-  var m = t.getMatrix();
+  // var t = this.gameObject.getTransform();
+  // var m = t.getMatrix();
 
-  DebugRenderer.setTransformationMatrix(m);
-  DebugRenderer.drawLine(start,end,Color.BLUE);
-  DebugRenderer.setTransformationMatrix(null);
+  // DebugRenderer.setTransformationMatrix(m);
+  // DebugRenderer.drawLine(start,end,Color.BLUE);
+  // DebugRenderer.setTransformationMatrix(null);
 
     var body = this.gameObject.getComponent(RigidBody);
     var linear = body.getBox2dBody().GetLinearVelocity();

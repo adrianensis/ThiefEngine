@@ -138,6 +138,12 @@ Transform.prototype.generateMatrix = function (){
 
 	this.dirty = false; // clear dirty flag
 
+
+	DebugRenderer.setTransformationMatrix(this.matrix);
+  DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(1,0,0),Color.BLUE);
+  DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(0,1,0),Color.RED);
+  DebugRenderer.setTransformationMatrix(null);
+
 };
 
 //----------------------------------------------------------------------
