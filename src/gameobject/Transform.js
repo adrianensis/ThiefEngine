@@ -136,13 +136,16 @@ Transform.prototype.generateMatrix = function (){
 		c.generateMatrix();
 	}
 
+
+
 	this.dirty = false; // clear dirty flag
 
 
-	DebugRenderer.setTransformationMatrix(this.matrix);
-  DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(1,0,0),Color.BLUE);
-  DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(0,1,0),Color.RED);
-  DebugRenderer.setTransformationMatrix(null);
+	var pos = this.getPosition();
+
+	// DebugRenderer.drawLine(pos,this.right.cpy().add(pos),Color.RED);
+  // DebugRenderer.drawLine(pos,this.up.cpy().add(pos),Color.BLUE);
+  // DebugRenderer.drawLine(pos,this.forward.cpy().add(pos),Color.GREEN);
 
 };
 
@@ -273,22 +276,22 @@ Transform.prototype.rotate = function (vec){
 
 //----------------------------------------------------------------------
 
-// Transform.prototype.lookAt = function (vec){
+Transform.prototype.lookAt = function (vec){
 
-	// if( ! this.target.equals(vec)){
-	// 	this.dirty = true;
-	//
-	// 	this.target = vec.cpy();
-	//
-	// 	var pos = this.getPosition().cpy();
-	//
-	// 	this.forward = pos.sub(vec).nor();
-	//
-	// 	var yAxis = new Vector3(0,1,0);
-	// 	this.right = yAxis.cross(this.forward).nor();
-	// 	this.up = this.forward.cpy().cross(this.right);
-	//
-	// }
-// };
+	this.dirty = true;
+
+	this.target = vec.cpy();
+
+	var pos = this.getPosition().cpy();
+
+	this.forward = this.target.cpy().sub(pos).nor();
+	// this.forward = pos.sub(this.target).nor();
+	// console.log(this.forward);
+
+	var yAxis = new Vector3(0,1,0);
+	this.right = yAxis.cross(this.forward).nor();
+	this.up = this.forward.cpy().cross(this.right);
+
+};
 
 //----------------------------------------------------------------------

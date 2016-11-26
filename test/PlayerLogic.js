@@ -2,6 +2,8 @@ var PlayerLogic = function () {
     Script.call(this);
     this.v = 1;
 
+    this.n = 0;
+
 };
 
 PlayerLogic.prototype = new Script();
@@ -49,27 +51,15 @@ PlayerLogic.prototype.update = function (){
     // DebugRenderer.drawLine(new Vector3(0,0,0),t.right,Color.RED);
 	  // DebugRenderer.setTransformationMatrix(null);
 
+    var t = this.gameObject.getTransform();
+    t.lookAt(new Vector3(1,0,1));
+    this.n-=0.01;
+
     if (Input.isKeyPressed(32)) {
 
-      body.getBox2dBody().SetAngularVelocity(5);
+      // body.getBox2dBody().SetAngularVelocity(5);
 
-        // this.gameObject.getScene().addObject(createSnorlax(Math.random()*5,Math.random()*5,0.5));
 
-        // body.linear = body.linear.add(new Vector2(0,2));
-
-        // var spriteBuilder = new SpriteBuilder();
-        //
-        // var green =
-        // spriteBuilder.begin(null).
-        //   setPosition(new Vector2(0,0)).
-        //   setScale(new Vector2(10,5)).
-        //   setColor(new Color(0,1,0,1)).
-        //   setStatic(true).
-        //   setLayer(0).
-        // end();
-        //
-        //
-        // Thief.addGameObjectToScene(green);
 
     }
 

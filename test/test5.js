@@ -108,7 +108,7 @@ var spriteBuilder = new SpriteBuilder();
   var player =
   spriteBuilder.begin("res/pok-char.png"). // create a basic sprite
     setName("player").
-    setPosition(new Vector2(0,2)).
+    setPosition(new Vector2(0,0)).
     // setRotation(new Vector3(0,0,90)).
     setSize(1).
     setStatic(false).
@@ -186,11 +186,11 @@ var createSoilder = function(x,y, name){
   Thief.addGameObjectToScene(player);
   // Thief.addGameObjectToScene(green);
 
-  // Thief.addGameObjectToScene(createSoilder(2,-1.5, , "sol1"));
-  // Thief.addGameObjectToScene(createSoilder(3.1,-1.3, , "sol2"));
-  // Thief.addGameObjectToScene(createSoilder(4.2,-1.2, , "sol3"));
-  // Thief.addGameObjectToScene(createSoilder(5.3,-1.1, , "sol4"));
-  Thief.addGameObjectToScene(snorlax);
+  Thief.addGameObjectToScene(createSoilder(2,-1.5, "sol1"));
+  Thief.addGameObjectToScene(createSoilder(3.1,-1.3, "sol2"));
+  Thief.addGameObjectToScene(createSoilder(4.2,-1.2, "sol3"));
+  Thief.addGameObjectToScene(createSoilder(5.3,-1.1, "sol4"));
+  // Thief.addGameObjectToScene(snorlax);
   // Thief.addGameObjectToScene(font);
 
 
@@ -203,7 +203,7 @@ var createSoilder = function(x,y, name){
     randomY *= (Math.random() > 0.5 ? 1 : -1);
 
 
-    Thief.addGameObjectToScene(createSoilder(randomX,randomY, "sol"+i));
+    // Thief.addGameObjectToScene(createSoilder(randomX,randomY, "sol"+i));
   }
 
   Thief.addGameObjectToScene(cam);

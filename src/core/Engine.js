@@ -236,10 +236,9 @@ Engine.prototype.run = function () {
 
     if(engine.loaded){
 
+      var frames = engine.fps - (Time.deltaTime()*engine.fps);
 
-      // if(Time.deltaTime() < (1/engine.fps)){
-
-        var frames = engine.fps - (Time.deltaTime()*engine.fps*engine.fps);
+      if(frames > 0){
 
         frames = Math.floor(Math.min(frames,5));
 
@@ -252,7 +251,7 @@ Engine.prototype.run = function () {
 
           frames--;
         }
-      // }
+      }
 
       renderEngine.update();
       renderEngine.render();

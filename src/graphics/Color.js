@@ -20,6 +20,8 @@ Color.NONE = new Color(0.0, 0.0, 0.0, 0.0);
 Color.RED = new Color(1.0, 0.0, 0.0, 1.0);
 Color.GREEN = new Color(0.0, 1.0, 0.0, 1.0);
 Color.BLUE = new Color(0.0, 0.0, 1.0, 1.0);
+Color.CYAN = new Color(0.0, 1.0, 1.0, 1.0);
+Color.YELLOW = new Color(1.0, 1.0, 0.0, 1.0);
 
 //----------------------------------------------------------------------
 
