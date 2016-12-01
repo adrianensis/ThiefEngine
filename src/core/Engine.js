@@ -174,19 +174,19 @@ Engine.prototype.loadScene = function(){
 */
 Engine.prototype.run = function () {
 
-  // window.requestAnimFrame = (function(){
-  //   return  window.requestAnimationFrame       ||
-  //           window.webkitRequestAnimationFrame ||
-  //           window.mozRequestAnimationFrame    ||
-  //           function( callback ){
-  //             window.setTimeout(callback, (1/this.fps)*1000);
-  //           };
-  // })();
   window.requestAnimFrame = (function(){
-    return  function( callback ){
+    return  window.requestAnimationFrame       ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            function( callback ){
               window.setTimeout(callback, (1/this.fps)*1000);
             };
   })();
+  // window.requestAnimFrame = (function(){
+  //   return  function( callback ){
+  //             window.setTimeout(callback, (1/this.fps)*1000);
+  //           };
+  // })();
 
 
   var renderEngine = this.renderEngine;
@@ -195,30 +195,11 @@ Engine.prototype.run = function () {
   var currentScene = this.currentScene;
 
   var engine = this;
-  var physicsDeltaTime = (1/this.fps)/2;
-
-  // var max =0;
-  // var n = 0;
+  var physicsDeltaTime = (1/this.fps);
 
   var main = function () {
 
-
-
-    // console.log(((1/engine.fps))+" --- "+Time.deltaTime());
-
-
-    // var skipPhysics = Time.deltaTime() > (1/engine.fps); //boolean
-
-    // console.log(skipPhysics);
-
     Time.tick();
-
-    // max = Math.max(Time.deltaTime(),max);
-    // if(n%30 === 0)
-    //   console.log(max);
-    // n++;
-
-    // console.log(Time.deltaTime());
 
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
 
@@ -236,53 +217,25 @@ Engine.prototype.run = function () {
 
     if(engine.loaded){
 
-      var frames = engine.fps - (Time.deltaTime()*engine.fps);
+      scriptEngine.update();
 
-      if(frames > 0){
-
-        frames = Math.floor(Math.min(frames,5));
-
-        while(frames > 0){
-
-          scriptEngine.update();
-
-          if(engine.physicsEnabled)
-            physicsEngine.update((1/engine.fps)/frames);
-
-          frames--;
-        }
-      }
+      if(engine.physicsEnabled)
+        physicsEngine.update(physicsDeltaTime);
 
       renderEngine.update();
       renderEngine.render();
 
       currentScene.cleanTrash();
 
-      // currentTime = newTime;
     }
-
 
     window.requestAnimFrame(main);
   };
 
-
-
   Time.init();
-
-
-  // var main2 = function () {
-  //     window.requestAnimFrame(main);
-  //     main2();
-  // };
-
-  // main2();
-
 
   window.requestAnimFrame(main);
 
-
-  // var ONE_FRAME_TIME = (1/this.fps)*1000this.fps)*1000 ;
-  // setInterval( main, ONE_FRAME_TIME );
 };
 
 //----------------------------------------------------------------------
