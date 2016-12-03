@@ -4,6 +4,8 @@ var PlayerLogic = function () {
 
     this.n = 0;
 
+    this.b = true;
+
 };
 
 PlayerLogic.prototype = new Script();
@@ -26,6 +28,8 @@ PlayerLogic.prototype.update = function (){
 
   var start = new Vector3(0,0,0);
   var end = new Vector3(1,0,0);
+
+
 
   // var t = this.gameObject.getTransform();
   // var m = t.getMatrix();
@@ -57,9 +61,12 @@ PlayerLogic.prototype.update = function (){
 
     if (Input.isKeyPressed(32)) {
 
-      // body.getBox2dBody().SetAngularVelocity(5);
+      if(this.b)
+        this.gameObject.getComponent(RigidBody).disable();
+      else
+        this.gameObject.getComponent(RigidBody).enable();
 
-
+      this.b = !this.b;
 
     }
 

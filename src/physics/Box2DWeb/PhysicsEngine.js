@@ -31,10 +31,10 @@ var PhysicsEngine = function (){
         var scriptA = gameObjectA.getComponent(Script);
         var scriptB = gameObjectB.getComponent(Script);
 
-        if(scriptA !== null)
+        if(scriptA !== null && (! scriptA.isDestroyed()) && scriptA.isEnabled())
           scriptA.onEnterCollision(gameObjectB,contact);
 
-        if(scriptB !== null)
+        if(scriptB !== null && (! scriptB.isDestroyed()) && scriptB.isEnabled())
           scriptB.onEnterCollision(gameObjectA,contact);
     };
 
@@ -46,10 +46,10 @@ var PhysicsEngine = function (){
         var scriptA = gameObjectA.getComponent(Script);
         var scriptB = gameObjectB.getComponent(Script);
 
-        if(scriptA !== null)
+        if(scriptA !== null && (! scriptA.isDestroyed()) && scriptA.isEnabled())
           scriptA.onExitCollision(gameObjectB,contact);
 
-        if(scriptB !== null)
+        if(scriptB !== null && (! scriptB.isDestroyed()) && scriptB.isEnabled())
           scriptB.onExitCollision(gameObjectA,contact);
     };
 
