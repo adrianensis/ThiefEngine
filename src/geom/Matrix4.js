@@ -247,23 +247,32 @@ Matrix4.rotation = function(vec){
 
     if(vec.x !== 0){
         var rad = vec.x*(Math.PI/180);
+        var sin = Math.sin(rad);
+        var cos = Math.cos(rad);
+
         result = new Matrix4(
             new Vector4(1,0,0,0),
-            new Vector4(0,Math.cos(rad),-Math.sin(rad),0),
-            new Vector4(0,Math.sin(rad),Math.cos(rad),0),
+            new Vector4(0,cos,-sin,0),
+            new Vector4(0,sin,cos,0),
             new Vector4(0,0,0,1));
     }else if(vec.y !== 0){
         var rad = vec.y*(Math.PI/180);
+        var sin = Math.sin(rad);
+        var cos = Math.cos(rad);
+
         result = new Matrix4(
-            new Vector4(Math.cos(rad),0,Math.sin(rad),0),
+            new Vector4(cos,0,sin,0),
             new Vector4(0,1,0,0),
-            new Vector4(-Math.sin(rad),0,Math.cos(rad),0),
+            new Vector4(-sin,0,cos,0),
             new Vector4(0,0,0,1));
     }else if(vec.z !== 0){
         var rad = vec.z*(Math.PI/180);
+        var sin = Math.sin(rad);
+        var cos = Math.cos(rad);
+
         result = new Matrix4(
-            new Vector4(Math.cos(rad),-Math.sin(rad),0,0),
-            new Vector4(Math.sin(rad),Math.cos(rad),0,0),
+            new Vector4(cos,-sin,0,0),
+            new Vector4(sin,cos,0,0),
             new Vector4(0,0,1,0),
             new Vector4(0,0,0,1));
     }
