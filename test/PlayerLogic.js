@@ -1,11 +1,6 @@
 var PlayerLogic = function () {
     Script.call(this);
-    this.v = 1;
-
-    this.n = 0;
-
-    this.b = true;
-
+    this.v = 0;
 };
 
 PlayerLogic.prototype = new Script();
@@ -14,12 +9,7 @@ PlayerLogic.prototype.constructor = PlayerLogic;
 //----------------------------------------------------------------------
 
 PlayerLogic.prototype.start = function () {
-
-  // var w = 1/8;
-  // var h = 1/6;
-  // Thief.spriteBuilder.begin("test/res/digi/digi1.png", new Vector2(2,0.1), 0.5, true).
-  //   setTextureRegion(new Vector2((1/8),(1/6)),1/8,1/6).
-  // end();
+  this.v = 50;
 };
 
 //----------------------------------------------------------------------
@@ -29,114 +19,63 @@ PlayerLogic.prototype.update = function (){
   var start = new Vector3(0,0,0);
   var end = new Vector3(1,0,0);
 
+  var body = this.gameObject.getComponent(RigidBody);
+  var linear = body.getBox2dBody().GetLinearVelocity();
+
+  var dt = Time.deltaTime();
 
 
   // var t = this.gameObject.getTransform();
-  // var m = t.getMatrix();
-
-  // DebugRenderer.setTransformationMatrix(m);
-  // DebugRenderer.drawLine(start,end,Color.BLUE);
-  // DebugRenderer.setTransformationMatrix(null);
-
-    var body = this.gameObject.getComponent(RigidBody);
-    var linear = body.getBox2dBody().GetLinearVelocity();
-
-    this.v = 50*Time.deltaTime();
 
 
-    // var t = this.gameObject.getTransform();
-    // var m = t.getMatrix();
-    // console.log(m.data);
-    // m.print();
-    // DebugRenderer.setTransformationMatrix(m);
-    // DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(0,1,0),Color.BLUE);
-    // DebugRenderer.drawLine(new Vector3(0,0,0),new Vector3(1,0,0),Color.RED);
-    // DebugRenderer.drawLine(new Vector3(0,0,0),t.up,Color.BLUE);
-    // DebugRenderer.drawLine(new Vector3(0,0,0),t.right,Color.RED);
-	  // DebugRenderer.setTransformationMatrix(null);
+  if (Input.isKeyPressed(32)) {
+    // SPACE
 
-    var t = this.gameObject.getTransform();
-    t.lookAt(new Vector3(1,0,1));
-    this.n-=0.01;
+  }else if (Input.isKeyPressed(37)) {
+    // LEFT
 
-    if (Input.isKeyPressed(32)) {
+    // t.translate(new Vector2(-this.v*Time.deltaTime(),0));
 
-      if(this.b)
-        this.gameObject.getComponent(RigidBody).disable();
-      else
-        this.gameObject.getComponent(RigidBody).enable();
-
-      this.b = !this.b;
-
-    }
-
-    if (Input.isKeyPressed(37)) {
-        // LEFT
-            this.direction = -1;
-            // this.gameObject.getTransform().rotate(new Vector3(0,0,1));
-
-            // this.gameObject.getTransform().translate(new Vector2(-this.v*Time.deltaTime(),0));
-            //
-            //
-              linear.x = -this.v;
-              linear.y = 0;
-
-            // body.SetLinearVelocity(vel);
-
-            // this.gameObject.getComponent(RigidBody).linearVelocity = new Vector2(-5,0);
-            this.gameObject.getComponent(SpriteRenderer).setAnimation("left");
-
-    }
-    else if (Input.isKeyPressed(38)) {
-        // UP
-
-        // console.log(Input.isKeyPressed(39));
-
-            // this.gameObject.getTransform().translate(new Vector2(0,this.v*Time.deltaTime()));
-
-            linear.y = this.v;
-            linear.x = 0;
-
-        //   body.SetLinearVelocity(vel);
-          // this.gameObject.getComponent(RigidBody).linearVelocity = new Vector2(0,10);
-
-            this.gameObject.getComponent(SpriteRenderer).setAnimation("up");
-
-    }else if (Input.isKeyPressed(39)) {
-        // RIGHT
-            this.direction = 1;
-
-            // this.gameObject.getTransform().translate(new Vector2(this.v*Time.deltaTime(),0));
-
-            linear.x = this.v;
-            linear.y = 0;
-
-        //   body.SetLinearVelocity(vel);
-
-          // this.gameObject.getComponent(RigidBody).linearVelocity = Vector4.sum(this.gameObject.getComponent(RigidBody).linearVelocity,new Vector2(1,0));
-          // this.gameObject.getComponent(RigidBody).linearVelocity = new Vector2(50,0);
-
-            this.gameObject.getComponent(SpriteRenderer).setAnimation("right");
-
-   }else if (Input.isKeyPressed(40)) {
-        // DOWN
-
-            // this.gameObject.getTransform().translate(new Vector2(0,-this.v*Time.deltaTime()));
-
-            linear.y = -this.v;
-            linear.x = 0;
-
-        //   body.SetLinearVelocity(vel);
-
-          // this.gameObject.getComponent(RigidBody).linearVelocity = new Vector2(0,-10);
-            this.gameObject.getComponent(SpriteRenderer).setAnimation("down");
+    linear.x = -this.v*dt;
+    linear.y = 0;
 
 
-    }else{
-        // body.linear.y = 0;
-        // body.linear.x = 0;
-    }
+    this.gameObject.getComponent(SpriteRenderer).setAnimation("left");
 
+  }else if (Input.isKeyPressed(38)) {
+    // UP
+
+    // t.translate(new Vector2(0,this.v*Time.deltaTime()));
+
+    linear.y = this.v*dt;
+    linear.x = 0;
+
+    this.gameObject.getComponent(SpriteRenderer).setAnimation("up");
+
+  }else if (Input.isKeyPressed(39)) {
+    // RIGHT
+
+    // t.translate(new Vector2(this.v*Time.deltaTime(),0));
+
+    linear.x = this.v*dt;
+    linear.y = 0;
+
+    this.gameObject.getComponent(SpriteRenderer).setAnimation("right");
+
+ }else if (Input.isKeyPressed(40)) {
+    // DOWN
+
+    // t.translate(new Vector2(0,-this.v*Time.deltaTime()));
+
+    linear.y = -this.v*dt;
+    linear.x = 0;
+
+    this.gameObject.getComponent(SpriteRenderer).setAnimation("down");
+
+  }else{
+
+
+  }
 };
 
 //----------------------------------------------------------------------

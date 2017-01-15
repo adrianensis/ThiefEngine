@@ -245,10 +245,12 @@ Matrix4.translation = function(vec){
 Matrix4.rotation = function(vec){
     var result = Matrix4.identity();
 
+    var rad, cos, sin;
+
     if(vec.x !== 0){
-        var rad = vec.x*(Math.PI/180);
-        var sin = Math.sin(rad);
-        var cos = Math.cos(rad);
+        rad = vec.x*(Math.PI/180);
+        sin = Math.sin(rad);
+        cos = Math.cos(rad);
 
         result = new Matrix4(
             new Vector4(1,0,0,0),
@@ -256,9 +258,9 @@ Matrix4.rotation = function(vec){
             new Vector4(0,sin,cos,0),
             new Vector4(0,0,0,1));
     }else if(vec.y !== 0){
-        var rad = vec.y*(Math.PI/180);
-        var sin = Math.sin(rad);
-        var cos = Math.cos(rad);
+        rad = vec.y*(Math.PI/180);
+        sin = Math.sin(rad);
+        cos = Math.cos(rad);
 
         result = new Matrix4(
             new Vector4(cos,0,sin,0),
@@ -266,9 +268,9 @@ Matrix4.rotation = function(vec){
             new Vector4(-sin,0,cos,0),
             new Vector4(0,0,0,1));
     }else if(vec.z !== 0){
-        var rad = vec.z*(Math.PI/180);
-        var sin = Math.sin(rad);
-        var cos = Math.cos(rad);
+        rad = vec.z*(Math.PI/180);
+        sin = Math.sin(rad);
+        cos = Math.cos(rad);
 
         result = new Matrix4(
             new Vector4(cos,-sin,0,0),

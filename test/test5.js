@@ -5,82 +5,75 @@ Thief.createAndSetScene("test");
 
 var spriteBuilder = new SpriteBuilder();
 
- /*
-  * PERLIN NOISE
-  */
+// -----------------------------------------------------------------------------
 
-  var perlin = new PerlinNoise(25,10);
+/*
+* RANDOM TILED MAP - PERLIN NOISE
+*/
 
-  var resolution = 50;
-  var step = 0.1;
+var tex = "res/pokemonTiles.png"; // collection of pokemon tiles
 
-  var random = new Random(5);
+var perlin = new PerlinNoise(5,10); // perlin noise generator
 
-  for ( var i=0; i<resolution; i++ ) {
-      for ( var j=0; j<resolution; j++ ) {
+var resolution = 20; // number of tiles on x and y axes
+var r = resolution/2;
+var size = 1; // size of each tile
 
-          var v = perlin.generate(i,j);
+// this loop create the tiled map
+for ( var i=-r; i<r; i++ ) {
+    for ( var j=-r; j<r; j++ ) {
 
-          var tileSizeX = 1/88;
-          var tileSizeY = 1/69;
-          var borderX = 1/1408; // 1408 is the image width
-          var borderY = 1/1104; // 1104 is the image height
+        var v = perlin.generate(i,j); // generate random value
 
-          var pos = new Vector2(i*step,j*step);
-          var size = step;
+        var tileWidth = 1/88; // width in pixels of a tile
+        var tileHeight = 1/69; // height in pixels of a tile
+        var pixelWidth = 1/1408; // 1408 is the texture width
+        var pixelHeight = 1/1104; // 1104 is the texture height
 
-          var tex = "res/pokemonTiles.png";
-          // var tex = null;
+        var pos = new Vector2(i,j);
 
-          spriteBuilder.begin(tex).
-            setPosition(pos).
-            setSize(size).
-            setStatic(true);
+        // initialize sprite builder
+        spriteBuilder.begin(tex). // set the texture atlas.
+          setPosition(pos).
+          setSize(size).
+          setStatic(true);
 
-          // v *= 10;
-          // console.log(v);
+        // classifies the sprite according to random value
 
-          // if(v < 0)
-          //   v *=-1;
+        var x,y,width,height;
 
-          var color = new Color(v,v,v,1);
+        if(v > 0.1){
+          // ROCK TILE
+          // tile's position within the texture: (0,40)
+          x = tileWidth*0 + pixelWidth;
+          y = (tileHeight*40) + pixelHeight;
+          width = tileWidth - pixelWidth;
+          height = tileHeight - pixelHeight;
+        }else{
+          // GRASS TILE
+          // tile's position within the texture: (5,67)
+          x = tileWidth*5 + pixelWidth;
+          y = (tileHeight*67) + pixelHeight;
+          width = tileWidth - pixelWidth;
+          height = tileHeight - pixelHeight;
+        }
 
-          if(v > 0.1){
-            // spriteBuilder.setColor(color);
-              spriteBuilder.setTextureRegion(new Vector2(tileSizeX*0 + borderX, borderY + 1-(tileSizeY*29)),tileSizeX-borderX,tileSizeY-borderY);
+        spriteBuilder.setTextureRegion(new Vector2(x,y),width,height); // select the region of the texture atlas.
 
-          }else{
-            // spriteBuilder.setColor(color);
-              // if(random.seededRandom() > 0.98){
-                spriteBuilder.setTextureRegion(new Vector2(tileSizeX*5 + borderX, borderY + 1-(tileSizeY*2)),tileSizeX-borderX,tileSizeY-borderY);
-              // }else{
-                  // spriteBuilder.setTextureRegion(new Vector2(tileSizeX*10 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
-              // }
-            }
-          // else{
-              // if(random.seededRandom() > 0.8){
-                  // spriteBuilder.setTextureRegion(new Vector2(tileSizeX*4 + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
-              // }else{
-                  // spriteBuilder.setTextureRegion(new Vector2(tileSizeX + borderX, borderY + 1-tileSizeY),tileSizeX-borderX,tileSizeY-borderY);
-              // }
-          // }
+        Thief.addGameObjectToScene(spriteBuilder.end()); // add sprite
 
-          // Thief.addGameObjectToScene(spriteBuilder.end());
-
-      }
+    }
   }
 
   /*
   * END PERLIN NOISE
   */
 
-  /**
-   * NOTE: NEW FACADE
-   */
+// -----------------------------------------------------------------------------
 
 
 
-   // BITMAP FONTS
+  // BITMAP FONTS
   var font =
   spriteBuilder.begin("res/font.bmp").
     setPosition(new Vector2(3,0)).
@@ -91,6 +84,10 @@ var spriteBuilder = new SpriteBuilder();
 
 
 
+// -----------------------------------------------------------------------------
+
+
+  // SNORLAX
   var snorlax =
   spriteBuilder.begin("res/snorlax.bmp").
     setName("snorlax").
@@ -105,6 +102,10 @@ var spriteBuilder = new SpriteBuilder();
   end();
 
 
+// -----------------------------------------------------------------------------
+
+
+  // PLAYER
   var player =
   spriteBuilder.begin("res/pok-char.png"). // create a basic sprite
     setName("player").
@@ -125,27 +126,30 @@ var spriteBuilder = new SpriteBuilder();
   end();
 
 
-var createSoilder = function(x,y, name){
+// -----------------------------------------------------------------------------
 
-  var collider = new AABBCollider(1,1, false);
 
-  // console.log(collider.getId());
+  // SOILDER
+  var createSoilder = function(x,y, name){
+    // note that spriteBuilder is a global variable !
+    return spriteBuilder.begin("res/soldier.png"). // create a basic sprite
+      setName(name).
+      setPosition(new Vector2(x,y)).
+      setSize(1).
+      setStatic(false).
+      addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
+      setAnimation("right"). // set the default animation
+      setRigidBody(1,0,0). // set physics properties
+      setCollider(new AABBCollider(1,1, false)). // set a Box Collider
+      setLayer(1).
+    end();
+  };
 
-  return spriteBuilder.begin("res/soldier.png"). // create a basic sprite
-    setName(name).
-    setPosition(new Vector2(x,y)).
-    setSize(1).
-    setStatic(false).
-    addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
-    setAnimation("right"). // set the default animation
-    setRigidBody(1,0,0). // set physics properties
-    setCollider(collider). // set a Box Collider
-    setLayer(1).
-  end();
-};
 
-  // player.addChild(soilder);
+// -----------------------------------------------------------------------------
 
+
+  // GREEN BLOCK
   var green =
   spriteBuilder.begin(null).
     setName("green").
@@ -157,8 +161,12 @@ var createSoilder = function(x,y, name){
   end();
 
 
+// -----------------------------------------------------------------------------
+
+
+  // CAMERA
+
   var canvas = document.getElementById("glcanvas");
-	// alert("Width: "+canvas.width + " Height: " + canvas.height);
 
   var screenW = canvas.width;
   var screenH = canvas.height;
@@ -183,8 +191,9 @@ var createSoilder = function(x,y, name){
   // player.addChild(createSoilder(0,2, "sol0"));
 
 
+// -----------------------------------------------------------------------------
+
   Thief.addGameObjectToScene(player);
-  // Thief.addGameObjectToScene(green);
 
   Thief.addGameObjectToScene(createSoilder(2,-1.5, "sol1"));
   Thief.addGameObjectToScene(createSoilder(3.1,-1.3, "sol2"));
@@ -192,19 +201,6 @@ var createSoilder = function(x,y, name){
   Thief.addGameObjectToScene(createSoilder(5.3,-1.1, "sol4"));
   // Thief.addGameObjectToScene(snorlax);
   // Thief.addGameObjectToScene(font);
-
-
-  for (var i = 0; i < 100; i++){
-
-    var randomX = (Math.random()*1000)%10;
-    var randomY = (Math.random()*1000)%10;
-
-    randomX *= (Math.random() > 0.5 ? 1 : -1);
-    randomY *= (Math.random() > 0.5 ? 1 : -1);
-
-
-    // Thief.addGameObjectToScene(createSoilder(randomX,randomY, "sol"+i));
-  }
 
   Thief.addGameObjectToScene(cam);
   Thief.setCamera(cam);
