@@ -210,10 +210,6 @@ GameObjectBuilder.prototype.setTextureRegion = function (texCoord, width, height
 //----------------------------------------------------------------------
 
 /**
- * horizontalDir: -1 -> left, 1 -> right, 0 -> not move
- * verticalDir: -1 -> down, 1 -> up, 0 -> not move
- */
-/**
 * DESCRIPTION
 * @param {TYPE} NAME DESCRIPTION
 * @returns {TYPE} DESCRIPTION

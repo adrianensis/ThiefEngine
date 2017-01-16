@@ -11,7 +11,7 @@ var spriteBuilder = new SpriteBuilder();
 * RANDOM TILED MAP - PERLIN NOISE
 */
 
-var tex = "res/pokemonTiles.png"; // collection of pokemon tiles
+var tex = "res/pokemonTiles.png"; // collection of pokemon tiles, the texture atlas.
 
 var perlin = new PerlinNoise(5,10); // perlin noise generator
 
@@ -33,9 +33,7 @@ for ( var i=-r; i<r; i++ ) {
         var pos = new Vector2(i,j);
 
         // initialize sprite builder
-        spriteBuilder.begin(tex). // set the texture atlas.
-          setPosition(pos).
-          setSize(size).
+        spriteBuilder.create(tex,pos,size,size).
           setStatic(true);
 
         // classifies the sprite according to random value
@@ -60,7 +58,7 @@ for ( var i=-r; i<r; i++ ) {
 
         spriteBuilder.setTextureRegion(new Vector2(x,y),width,height); // select the region of the texture atlas.
 
-        // Thief.addGameObjectToScene(spriteBuilder.end()); // add sprite
+        // Thief.addGameObjectToScene(tile.end()); // add sprite
 
     }
   }
@@ -75,9 +73,7 @@ for ( var i=-r; i<r; i++ ) {
 
   // BITMAP FONTS
   var font =
-  spriteBuilder.begin("res/font.bmp").
-    setPosition(new Vector2(3,0)).
-    setSize(6).
+  spriteBuilder.create("res/font.bmp",new Vector2(3,0),6,6).
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
   end();
@@ -89,16 +85,11 @@ for ( var i=-r; i<r; i++ ) {
 
   // SNORLAX
   var snorlax =
-  spriteBuilder.begin("res/snorlax.bmp").
-    setName("snorlax").
-    setPosition(new Vector2(0,-2)).
-    // setSize(1).
-    setScale(new Vector2(1,1)).
+  spriteBuilder.create("res/snorlax.bmp",new Vector2(0,-2),1,1).
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
     setRigidBody(0,0,0). // set physics properties
     setCollider(new AABBCollider(1,1, false)). // set a Box Collider
-    setLayer(1).
   end();
 
 
@@ -107,12 +98,7 @@ for ( var i=-r; i<r; i++ ) {
 
   // PLAYER
   var player =
-  spriteBuilder.begin("res/pok-char.png"). // create a basic sprite
-    setName("player").
-    setPosition(new Vector2(0,0)).
-    // setRotation(new Vector3(0,0,90)).
-    setSize(1).
-    setStatic(false).
+  spriteBuilder.create("res/pok-char.png",new Vector2(0,0),1,1).
     addAnimation("up", 4, true, false, new Vector2(0,0), 1/4, 1/4, 6). // add UP animation
     addAnimation("down", 4, true, false, new Vector2(0,0.75), 1/4, 1/4, 6). // add DOWN animation
     addAnimation("left", 4, true, false, new Vector2(0,0.5), 1/4, 1/4, 6). // add LEFT animation
@@ -122,7 +108,6 @@ for ( var i=-r; i<r; i++ ) {
     // setCollider(new AABBCollider(1,1, false)). // set a Box Collider
     setCollider(new CircleCollider(0.5,false)). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
-    setLayer(2).
   end();
 
 
@@ -132,16 +117,11 @@ for ( var i=-r; i<r; i++ ) {
   // SOILDER
   var createSoilder = function(x,y, name){
     // note that spriteBuilder is a global variable !
-    return spriteBuilder.begin("res/soldier.png"). // create a basic sprite
-      setName(name).
-      setPosition(new Vector2(x,y)).
-      setSize(1).
-      setStatic(false).
+    return spriteBuilder.create("res/soldier.png",new Vector2(x,y),1,1).
       addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
       setAnimation("right"). // set the default animation
       setRigidBody(1,0,0). // set physics properties
       setCollider(new AABBCollider(1,1, false)). // set a Box Collider
-      setLayer(1).
     end();
   };
 
@@ -151,13 +131,9 @@ for ( var i=-r; i<r; i++ ) {
 
   // GREEN BLOCK
   var green =
-  spriteBuilder.begin(null).
-    setName("green").
-    setPosition(new Vector2(0,-5)).
-    setScale(new Vector2(10,5)).
+  spriteBuilder.create("res/soldier.png",new Vector2(0,-5),10,5).
     setColor(new Color(0,1,0,1)).
     setStatic(true).
-    setLayer(0).
   end();
 
 
@@ -180,9 +156,7 @@ for ( var i=-r; i<r; i++ ) {
   var camBuilder = new CameraBuilder();
 
   var cam =
-  camBuilder.begin().
-    setName("cam").
-    setPosition(new Vector3(0,0,15)).
+  camBuilder.create(new Vector3(0,0,15)).
     setOrtho(w*zoom,h*zoom, -100,100).
     addScript(new CameraLogic(player)).
   end();

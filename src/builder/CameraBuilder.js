@@ -37,3 +37,17 @@ CameraBuilder.prototype.setPerspective = function (far,near,aspect,fov) {
 };
 
 //----------------------------------------------------------------------
+
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+CameraBuilder.prototype.create = function (pos) {
+
+  return this.begin().setPosition(pos);
+
+};
+
+//----------------------------------------------------------------------
