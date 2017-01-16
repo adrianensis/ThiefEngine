@@ -174,20 +174,22 @@ Engine.prototype.loadScene = function(){
 */
 Engine.prototype.run = function () {
 
+  var step = (1/this.fps);
+
   window.requestAnimFrame = (function(){
     return  window.requestAnimationFrame       ||
             window.webkitRequestAnimationFrame ||
             window.mozRequestAnimationFrame    ||
             function( callback ){
-              window.setTimeout(callback, (1/this.fps)*1000);
+              window.setTimeout(callback, step*1000);
             };
   })();
+
   // window.requestAnimFrame = (function(){
-  //   return  function( callback ){
-  //             window.setTimeout(callback, (1/this.fps)*1000);
+  //   return function( callback ){
+  //             window.setTimeout(callback, step*1000);
   //           };
   // })();
-
 
   var renderEngine = this.renderEngine;
   var physicsEngine = this.physicsEngine;
@@ -195,11 +197,14 @@ Engine.prototype.run = function () {
   var currentScene = this.currentScene;
 
   var engine = this;
-  var physicsDeltaTime = (1/this.fps);
+
+  var dt = 0;
 
   var main = function () {
 
     Time.tick();
+    // dt = dt + Math.min(step,Time.deltaTime());
+    dt = dt + Time.deltaTime();
 
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
 
@@ -219,8 +224,15 @@ Engine.prototype.run = function () {
 
       scriptEngine.update();
 
-      if(engine.physicsEnabled)
-        physicsEngine.update(physicsDeltaTime);
+      while(dt > step){
+        dt = dt - step;
+
+        if(engine.physicsEnabled)
+          physicsEngine.update(step);
+      }
+
+      Time.delta = dt*1000;
+      Time.deltaInSeconds = dt;
 
       renderEngine.update();
       renderEngine.render();

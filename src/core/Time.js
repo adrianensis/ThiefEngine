@@ -43,7 +43,7 @@ Time.tick = function () {
 // This allows synchronize the animations !!!!
 
 /**
-* This function is used to obtain, in the same engine interation, the
+* This function is used to obtain, within the same engine iteration, the
 * same timestamp. For example: This allows synchronize the animations.
 * @returns {Number} now.
 */

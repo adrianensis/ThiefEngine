@@ -60,7 +60,7 @@ for ( var i=-r; i<r; i++ ) {
 
         spriteBuilder.setTextureRegion(new Vector2(x,y),width,height); // select the region of the texture atlas.
 
-        Thief.addGameObjectToScene(spriteBuilder.end()); // add sprite
+        // Thief.addGameObjectToScene(spriteBuilder.end()); // add sprite
 
     }
   }
