@@ -8,4 +8,4 @@
  #   jsdoc "src/$x" -d doc # test
  # done
 
-jsdoc src/core src/graphics src/geom src/gameobject -d doc # test
+jsdoc src/core src/graphics src/geom src/gameobject -d=doc # test
