@@ -18,6 +18,10 @@ var MeshRenderer = function (){
 
 	//layer
 	this.layer = 0;
+
+	// Animations
+  this.animations = [];
+  this.animation = null;
 };
 
 MeshRenderer.prototype = new Component();
@@ -180,6 +184,29 @@ MeshRenderer.prototype.getRegionWidth = function (){
 MeshRenderer.prototype.getRegionHeight = function (){
 	return this.regionHeight;
 };
+
+//----------------------------------------------------------------------
+
+
+/**
+* Sets the animation, by name.
+* @param {String} name The name.
+*/
+MeshRenderer.prototype.setAnimation = function (name){
+	this.animation = this.animations[name];
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Adds an animation, by name.
+* @param {String} name The name.
+* @param {Animation} animation The animation.
+*/
+MeshRenderer.prototype.addAnimation = function (name, animation){
+	this.animations[name] = animation;
+};
+
 
 //----------------------------------------------------------------------
 
