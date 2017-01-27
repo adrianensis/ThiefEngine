@@ -115,7 +115,6 @@ RenderEngine.prototype.addRenderers = function (renderers){
 
     this.numLayers = Math.max(this.numLayers,renderer.getLayer()); // Always check the max number of layers.
 
-
     // BATCHING BY TEXTURE
 
     var tex = renderer.getMaterial().getTexture();
@@ -125,15 +124,13 @@ RenderEngine.prototype.addRenderers = function (renderers){
 
       var texName = tex.getName();
 
-      // if the batch exists.
-      if((texName in this.textureBatches)){
-          this.textureBatches[texName].add(renderer);
-      }else {
+      // if the batch doesn't exist.
+      if( ! (texName in this.textureBatches))
           this.textureBatches[texName] = new SpriteBatch(renderer.getMaterial());
-          this.textureBatches[texName].add(renderer);
-      }
 
-    }else // if renderer has not a texture.
+      this.textureBatches[texName].add(renderer);
+
+    }else // if renderer hasn't a texture.
       this.noTextureBatch.add(renderer);
 
   }

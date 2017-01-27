@@ -5,10 +5,10 @@
 */
 var SpriteRenderer = function (){
   MeshRenderer.call(this);
-
-  this.setMesh(new RectangleMesh());
-
+  this.setMesh(SpriteRenderer.rectangleMesh); // All sprites share the same mesh.
 };
+
+SpriteRenderer.rectangleMesh = new RectangleMesh();
 
 SpriteRenderer.prototype = new MeshRenderer();
 SpriteRenderer.prototype.constructor = SpriteRenderer;
