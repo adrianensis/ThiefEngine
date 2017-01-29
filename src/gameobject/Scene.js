@@ -80,6 +80,21 @@ Scene.prototype.flush = function (){
   this.root.setChildren(this.root.getChildren().concat(this.newsRoot.getChildren()));
   this.newsRoot.setChildren([]);
   this.newObjects = false;
+  this.loaded = true;
+};
+
+//----------------------------------------------------------------------
+
+/**
+* un-flush
+*/
+Scene.prototype.reset = function (){
+  if(this.loaded){
+    this.newsRoot.setChildren(this.root.getChildren());
+    this.root.setChildren([]);
+  }
+  this.newObjects = true;
+  this.loaded = false;
 };
 
 //----------------------------------------------------------------------

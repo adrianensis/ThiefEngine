@@ -9,7 +9,7 @@ PlayerLogic.prototype.constructor = PlayerLogic;
 //----------------------------------------------------------------------
 
 PlayerLogic.prototype.start = function () {
-  this.v = 50;
+  this.v = 2;
 };
 
 //----------------------------------------------------------------------
@@ -22,7 +22,7 @@ PlayerLogic.prototype.update = function (){
   var body = this.gameObject.getComponent(RigidBody);
   var linear = body.getBox2dBody().GetLinearVelocity();
 
-  var dt = Time.deltaTime();
+  // var dt = Time.deltaTime();
 
 
   // var t = this.gameObject.getTransform();
@@ -36,7 +36,7 @@ PlayerLogic.prototype.update = function (){
 
     // t.translate(new Vector2(-this.v*Time.deltaTime(),0));
 
-    linear.x = -this.v*dt;
+    linear.x = -this.v;
     linear.y = 0;
 
 
@@ -47,7 +47,7 @@ PlayerLogic.prototype.update = function (){
 
     // t.translate(new Vector2(0,this.v*Time.deltaTime()));
 
-    linear.y = this.v*dt;
+    linear.y = this.v;
     linear.x = 0;
 
     this.gameObject.getComponent(SpriteRenderer).setAnimation("up");
@@ -57,7 +57,7 @@ PlayerLogic.prototype.update = function (){
 
     // t.translate(new Vector2(this.v*Time.deltaTime(),0));
 
-    linear.x = this.v*dt;
+    linear.x = this.v;
     linear.y = 0;
 
     this.gameObject.getComponent(SpriteRenderer).setAnimation("right");
@@ -67,7 +67,7 @@ PlayerLogic.prototype.update = function (){
 
     // t.translate(new Vector2(0,-this.v*Time.deltaTime()));
 
-    linear.y = -this.v*dt;
+    linear.y = -this.v;
     linear.x = 0;
 
     this.gameObject.getComponent(SpriteRenderer).setAnimation("down");

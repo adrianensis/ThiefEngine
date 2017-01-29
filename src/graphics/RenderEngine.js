@@ -8,6 +8,7 @@ var RenderEngine = function (){
 
   this.color = new Color(0,0,0,1);
   this.numLayers = 0;
+  this.binded = false;
 
   var canvas = document.getElementById("glcanvas");
 
@@ -27,7 +28,6 @@ var RenderEngine = function (){
   canvas.height = displayHeight;
 
   // ########################################
-
   try {
     // Try to grab the standard context. If it fails, fallback to experimental.
     gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
@@ -83,8 +83,21 @@ var RenderEngine = function (){
 */
 RenderEngine.prototype.clear = function (){
   this.textureBatches = {};
-  this.noTextureBatch = new SpriteBatch(new Material());
+  this.noTextureBatch = null;
   this.renderContext = null;
+
+
+};
+
+//----------------------------------------------------------------------
+
+/**
+* DESCRIPTION
+* @param {TYPE} NAME DESCRIPTION
+* @returns {TYPE} DESCRIPTION
+*/
+RenderEngine.prototype.isBinded = function (){
+  return this.binded;
 };
 
 //----------------------------------------------------------------------
@@ -111,7 +124,10 @@ RenderEngine.prototype.setClearColor = function (color){
 */
 RenderEngine.prototype.addRenderers = function (renderers){
 
+  this.binded = false;
+
   for (var renderer of renderers) {
+    
 
     this.numLayers = Math.max(this.numLayers,renderer.getLayer()); // Always check the max number of layers.
 
@@ -130,8 +146,13 @@ RenderEngine.prototype.addRenderers = function (renderers){
 
       this.textureBatches[texName].add(renderer);
 
-    }else // if renderer hasn't a texture.
+    }else{ // if renderer hasn't a texture.
+
+      if(this.noTextureBatch === null)
+        this.noTextureBatch = new SpriteBatch(renderer.getMaterial());
+
       this.noTextureBatch.add(renderer);
+    }
 
   }
 };
@@ -168,10 +189,12 @@ RenderEngine.prototype.update = function (){
   // RE-BUILD frustum
   this.renderContext.getCamera().getFrustum().build();
 
-  for (var i in this.textureBatches)
-    this.textureBatches[i].update(this.renderContext);
+  if(this.textureBatches !== null)
+    for (var i in this.textureBatches)
+      this.textureBatches[i].update(this.renderContext);
 
-  this.noTextureBatch.update(this.renderContext);
+  if(this.noTextureBatch !== null)
+    this.noTextureBatch.update(this.renderContext);
 
   DebugRenderer.update(this.renderContext);
 
@@ -184,10 +207,14 @@ RenderEngine.prototype.update = function (){
 */
 RenderEngine.prototype.bind = function (){
 
-  for (var i in this.textureBatches)
-    this.textureBatches[i].bind();
+  if(this.textureBatches !== null)
+    for (var i in this.textureBatches)
+      this.textureBatches[i].bind();
 
-  this.noTextureBatch.bind();
+  if(this.noTextureBatch !== null)
+    this.noTextureBatch.bind();
+
+  this.binded = true;
 };
 
 //----------------------------------------------------------------------
@@ -199,10 +226,20 @@ RenderEngine.prototype.render = function (){
 
   // TODO: culling ????
 
+
+
   for (var i = 0; i <= this.numLayers; i++) {
-    for (var j in this.textureBatches)
-      this.textureBatches[j].render(i);
-      this.noTextureBatch.render(i);
+
+    if(this.textureBatches !== null)
+      for (var j in this.textureBatches){
+
+        this.textureBatches[j].render(i);
+      }
+
+
+      if(this.noTextureBatch !== null)
+        this.noTextureBatch.render(i);
+
   }
 
   DebugRenderer.render();

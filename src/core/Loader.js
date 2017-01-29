@@ -28,8 +28,8 @@ Loader.hasImageRequests = false;
 */
 Loader.isDone = function(){
 
-    if( ! Loader.hasImageRequests)
-        return true;
+    // if( ! Loader.hasImageRequests)
+    //     return true;
 
     return Loader.done;
 };

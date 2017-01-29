@@ -3,6 +3,37 @@ var test = function () {
 Thief.init();
 Thief.createAndSetScene("test");
 
+// -----------------------------------------------------------------------------
+
+
+  // CAMERA
+
+  var canvas = document.getElementById("glcanvas");
+
+  var screenW = canvas.width;
+  var screenH = canvas.height;
+
+  var zoom = 5;
+  var aspect = (screenW/screenH);
+  var w = 1*aspect;
+  var h = 1;
+
+
+  var camBuilder = new CameraBuilder();
+
+  var cam =
+  camBuilder.create(new Vector3(0,0,15)).
+    setOrtho(w*zoom,h*zoom, -100,100).
+    addScript(new CameraLogic()).
+  end();
+
+  Thief.addGameObjectToScene(cam);
+  Thief.setCamera(cam);
+
+
+// -----------------------------------------------------------------------------
+
+
 var spriteBuilder = new SpriteBuilder();
 
 // -----------------------------------------------------------------------------
@@ -11,7 +42,7 @@ var spriteBuilder = new SpriteBuilder();
 * RANDOM TILED MAP - PERLIN NOISE
 */
 
-var tex = "res/pokemonTiles.png"; // collection of pokemon tiles, the texture atlas.
+var texture = "res/pokemonTiles.png"; // collection of pokemon tiles, the texture atlas.
 
 var perlin = new PerlinNoise(5,10); // perlin noise generator
 
@@ -33,7 +64,7 @@ for ( var i=-r; i<r; i++ ) {
         var pos = new Vector2(i,j);
 
         // initialize sprite builder
-        spriteBuilder.create(tex,pos,size,size).
+        spriteBuilder.create(texture,pos,size,size).
           setStatic(true);
 
         // classifies the sprite according to random value
@@ -58,7 +89,7 @@ for ( var i=-r; i<r; i++ ) {
 
         spriteBuilder.setTextureRegion(new Vector2(x,y),width,height); // select the region of the texture atlas.
 
-        // Thief.addGameObjectToScene(tile.end()); // add sprite
+        Thief.addGameObjectToScene(spriteBuilder.end()); // add sprite
 
     }
   }
@@ -69,7 +100,7 @@ for ( var i=-r; i<r; i++ ) {
 
 // -----------------------------------------------------------------------------
 
-
+Thief.createAndSetScene("test2");
 
   // BITMAP FONTS
   var font =
@@ -137,32 +168,6 @@ for ( var i=-r; i<r; i++ ) {
   end();
 
 
-// -----------------------------------------------------------------------------
-
-
-  // CAMERA
-
-  var canvas = document.getElementById("glcanvas");
-
-  var screenW = canvas.width;
-  var screenH = canvas.height;
-
-  var zoom = 5;
-  var aspect = (screenW/screenH);
-  var w = 1*aspect;
-  var h = 1;
-
-
-  var camBuilder = new CameraBuilder();
-
-  var cam =
-  camBuilder.create(new Vector3(0,0,15)).
-    setOrtho(w*zoom,h*zoom, -100,100).
-    addScript(new CameraLogic(player)).
-  end();
-
-  // player.addChild(cam);
-  // player.addChild(createSoilder(0,2, "sol0"));
 
 
 // -----------------------------------------------------------------------------

@@ -12,10 +12,10 @@
 <span class='line'>  5</span> */</span><span class="WHIT">
 <span class='line'>  6</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">SpriteRenderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>  7</span> </span><span class="WHIT">  </span><span class="NAME">MeshRenderer.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>  8</span> 
-<span class='line'>  9</span> </span><span class="WHIT">  </span><span class="NAME">this.setMesh</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">RectangleMesh</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="WHIT">  </span><span class="NAME">this.setMesh</span><span class="PUNC">(</span><span class="NAME">SpriteRenderer.rectangleMesh</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// All sprites share the same mesh.</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 10</span> 
-<span class='line'> 11</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="NAME">SpriteRenderer.rectangleMesh</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">RectangleMesh</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 12</span> 
 <span class='line'> 13</span> </span><span class="NAME">SpriteRenderer.prototype</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">MeshRenderer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 14</span> </span><span class="NAME">SpriteRenderer.prototype.constructor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SpriteRenderer</span><span class="PUNC">;</span><span class="WHIT">

@@ -1,7 +1,6 @@
-var CameraLogic = function (player) {
+var CameraLogic = function () {
     Script.call(this);
-    this.v = 5;
-    this.player = player;
+    this.foo = true;
 };
 
 CameraLogic.prototype = new Script();
@@ -15,44 +14,30 @@ CameraLogic.prototype.start = function () {
 CameraLogic.prototype.update = function (){
 
 
-    var t = this.gameObject.getTransform();
 
-    var newCamPos = this.player.getTransform().position.cpy();
-    newCamPos.z = t.getPosition().z;
+    if (Input.isKeyPressed(32)) {
+      // SPACE
+      if(this.foo)
+        Thief.setScene("test");
+      else
+        Thief.setScene("test2");
 
-    // t.setPosition(newCamPos);
+      this.foo = ! this.foo;
 
-    if (Input.getKey() === 37) {
+    }else if (Input.getKey() === 37) {
         // LEFT
-
-        // t.lookAt(new Vector3(-10,0,0));
-
-        // t.translate(new Vector2(-this.v*Time.deltaTime(),0));
 
     }
     else if (Input.getKey() === 39) {
         // RIGHT
 
-        // t.lookAt(new Vector3(10,0,0));
-
-        // t.translate(new Vector2(this.v*Time.deltaTime(),0));
-
    }else if (Input.getKey() === 38) {
         // UP
-
-        // t.lookAt(new Vector3(0,10,0));
-
-        // t.translate(new Vector2(0,this.v*Time.deltaTime()));
 
     }else if (Input.getKey() === 40) {
         // DOWN
 
-        // t.lookAt(new Vector3(0,-10,0));
-
-        // t.translate(new Vector2(0,-this.v*Time.deltaTime()));
-
     }
 
-    // t.lookAt(new Vector3(0,0,0));
 
 };

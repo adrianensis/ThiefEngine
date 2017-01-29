@@ -49,10 +49,14 @@ Engine.prototype.addScene = function (scene){
 */
 Engine.prototype.setCurrentScene = function (name){
 
-  if(this.currentScene !== null)
-    this.currentScene.setLoaded(false); // reset
+  if(this.currentScene === null)
+    this.currentScene=this.scenes[name];
+  else if(this.currentScene.getName() !== name){
+    this.currentScene.reset(); // reset old scene
+    this.currentScene=this.scenes[name];
+  }
 
-	this.currentScene=this.scenes[name];
+
 };
 
 //----------------------------------------------------------------------
@@ -139,8 +143,8 @@ Engine.prototype.updateScene = function(){
   var rigidBodies = root.getComponentsInChildren(RigidBody);
   var scripts = root.getComponentsInChildren(Script);
 
-  this.currentScene.setLoaded(true);
   this.currentScene.flush();
+
 
   this.renderEngine.addRenderers(renderers);
   this.renderEngine.setRenderContext(this.currentScene.getRenderContext());
@@ -148,6 +152,8 @@ Engine.prototype.updateScene = function(){
   this.physicsEngine.addBodies(rigidBodies);
 
   this.scriptEngine.addScripts(scripts);
+
+  // console.log("update");
 
 };
 
@@ -163,6 +169,10 @@ Engine.prototype.loadScene = function(){
   this.scriptEngine.clear();
 
   this.updateScene();
+
+  this.loaded = false;
+
+  // console.log("load");
 
 };
 
@@ -194,7 +204,6 @@ Engine.prototype.run = function () {
   var renderEngine = this.renderEngine;
   var physicsEngine = this.physicsEngine;
   var scriptEngine = this.scriptEngine;
-  var currentScene = this.currentScene;
 
   var engine = this;
 
@@ -208,19 +217,23 @@ Engine.prototype.run = function () {
 
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
 
-    if(! currentScene.isLoaded())
+    if(! engine.getCurrentScene().isLoaded())
       engine.loadScene();
 
-    if(currentScene.hasNewObjects())
+    if(engine.getCurrentScene().hasNewObjects())
       engine.updateScene();
 
-    if(Loader.isDone()){
+    // console.log(renderEngine.isBinded());
+    if(Loader.isDone() && !renderEngine.isBinded()){
       engine.loaded = true;
       renderEngine.bind();
-      Loader.reset();
+      // Loader.reset();
     }
 
+
+
     if(engine.loaded){
+
 
       scriptEngine.update();
 
@@ -237,7 +250,7 @@ Engine.prototype.run = function () {
       renderEngine.update();
       renderEngine.render();
 
-      currentScene.cleanTrash();
+      engine.getCurrentScene().cleanTrash();
 
     }
 

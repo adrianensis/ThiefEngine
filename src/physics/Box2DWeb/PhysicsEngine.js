@@ -1,13 +1,13 @@
-  b2Vec2 = Box2D.Common.Math.b2Vec2
-, b2BodyDef = Box2D.Dynamics.b2BodyDef
-, b2Body = Box2D.Dynamics.b2Body
-, b2FixtureDef = Box2D.Dynamics.b2FixtureDef
-, b2Fixture = Box2D.Dynamics.b2Fixture
-, b2World = Box2D.Dynamics.b2World
-, b2MassData = Box2D.Collision.Shapes.b2MassData
-, b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape
-, b2CircleShape = Box2D.Collision.Shapes.b2CircleShape
-, b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
+  b2Vec2 = Box2D.Common.Math.b2Vec2,
+ b2BodyDef = Box2D.Dynamics.b2BodyDef,
+ b2Body = Box2D.Dynamics.b2Body,
+ b2FixtureDef = Box2D.Dynamics.b2FixtureDef,
+ b2Fixture = Box2D.Dynamics.b2Fixture,
+ b2World = Box2D.Dynamics.b2World,
+ b2MassData = Box2D.Collision.Shapes.b2MassData,
+ b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape,
+ b2CircleShape = Box2D.Collision.Shapes.b2CircleShape,
+ b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
 b2Listener = Box2D.Dynamics.b2ContactListener;
 
 var PhysicsEngine = function (){
@@ -16,14 +16,9 @@ var PhysicsEngine = function (){
     this.fixtures = [];
 
 
+    this.listener = new b2Listener();
 
-    this.world = new b2World(
-          new b2Vec2(0,0)    //NO gravity
-       ,  false                 //allow sleep
-    );
-    var listener = new b2Listener();
-
-    listener.BeginContact = function(contact) {
+    this.listener.BeginContact = function(contact) {
 
         var gameObjectA = contact.GetFixtureA().GetBody().GetUserData();
         var gameObjectB = contact.GetFixtureB().GetBody().GetUserData();
@@ -38,7 +33,7 @@ var PhysicsEngine = function (){
           scriptB.onEnterCollision(gameObjectA,contact);
     };
 
-    listener.EndContact = function(contact) {
+    this.listener.EndContact = function(contact) {
 
         var gameObjectA = contact.GetFixtureA().GetBody().GetUserData();
         var gameObjectB = contact.GetFixtureB().GetBody().GetUserData();
@@ -53,8 +48,20 @@ var PhysicsEngine = function (){
           scriptB.onExitCollision(gameObjectA,contact);
     };
 
-    this.world.SetContactListener(listener);
+    this.init();
 };
+
+//----------------------------------------------------------------------
+
+PhysicsEngine.prototype.init = function (){
+  this.world = new b2World(
+        new b2Vec2(0,0),    //NO gravity
+        false                 //allow sleep
+  );
+
+  this.world.SetContactListener(this.listener);
+};
+
 
 //----------------------------------------------------------------------
 
@@ -93,6 +100,8 @@ PhysicsEngine.prototype.clear = function (){
   for (var i = 0; i < this.bodies.length; i++) {
     this.world.DestroyBody(this.bodies[i].getBox2dBody());
   }
+
+  this.init();
 };
 
 //----------------------------------------------------------------------
@@ -100,9 +109,9 @@ PhysicsEngine.prototype.clear = function (){
 PhysicsEngine.prototype.update = function (dt){
 
   this.world.Step(
-        dt   //frame-rate
-     ,  6       //velocity iterations
-     ,  4       //position iterations
+        dt,   //frame-rate
+        5,       //velocity iterations
+        3       //position iterations
   );
 
   for (var i = 0; i < this.bodies.length; i++) {
@@ -133,9 +142,8 @@ PhysicsEngine.prototype.update = function (dt){
   }
 
   for (var i = 0; i < this.destroyList.length; i++) {
-    var body = this.destroyList[i];
 
-    this.world.DestroyBody(body.getBox2dBody());
+    this.world.DestroyBody(this.destroyList[i].getBox2dBody());
   }
 
   this.world.ClearForces();
