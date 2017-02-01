@@ -1,3 +1,9 @@
+
+/**
+* @class
+* @extends {Component}
+* @classdesc This class represents a script.
+*/
 var Script = function (){
     Component.call(this);
 };
@@ -8,9 +14,7 @@ Script.prototype.constructor = Script;
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* This function runs when the engine starts at first time.
 */
 Script.prototype.start = function (){
   throw new Error("Abstract method!");
@@ -19,9 +23,7 @@ Script.prototype.start = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* This function runs each frame.
 */
 Script.prototype.update = function (){
   var children = this.getChildren();
@@ -33,9 +35,9 @@ Script.prototype.update = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* This function runs when the game element collides with other game element.
+* @param {GameObject} otherGameObject The other gameobject.
+* @param {b2Contact} contact The contact.
 */
 Script.prototype.onEnterCollision = function (otherGameObject, contact){
   throw new Error("Abstract method!");
@@ -44,9 +46,9 @@ Script.prototype.onEnterCollision = function (otherGameObject, contact){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* This function runs when the collision is finished.
+* @param {GameObject} otherGameObject The other gameobject.
+* @param {b2Contact} contact The contact.
 */
 Script.prototype.onExitCollision = function (otherGameObject, contact){
   throw new Error("Abstract method!");
@@ -55,9 +57,7 @@ Script.prototype.onExitCollision = function (otherGameObject, contact){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* This function runs when the game element is destroyed.
 */
 Script.prototype.onDestroy = function (){
   throw new Error("Abstract method!");
