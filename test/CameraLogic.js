@@ -17,12 +17,12 @@ CameraLogic.prototype.update = function (){
 
     if (Input.isKeyPressed(32)) {
       // SPACE
-      if(this.foo)
-        Thief.setScene("test");
-      else
-        Thief.setScene("test2");
-
-      this.foo = ! this.foo;
+      // if(this.foo)
+      //   Thief.setScene("test");
+      // else
+      //   Thief.setScene("test2");
+      //
+      // this.foo = ! this.foo;
 
     }else if (Input.getKey() === 37) {
         // LEFT

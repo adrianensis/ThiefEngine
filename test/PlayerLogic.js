@@ -31,6 +31,19 @@ PlayerLogic.prototype.update = function (){
   if (Input.isKeyPressed(32)) {
     // SPACE
 
+    var createSoilder = function(x,y, name){
+      // note that spriteBuilder is a global variable !
+      var spriteBuilder = new SpriteBuilder();
+      return spriteBuilder.create("res/soldier.png",new Vector2(x,y),1,1).
+        addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
+        setAnimation("right"). // set the default animation
+        setRigidBody(1,0,0). // set physics properties
+        setCollider(new AABBCollider(1,1, false)). // set a Box Collider
+      end();
+    };
+
+    Thief.addGameObjectToScene(createSoilder(-1,-1, "solx"));
+
   }else if (Input.isKeyPressed(37)) {
     // LEFT
 

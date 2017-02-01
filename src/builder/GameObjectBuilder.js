@@ -50,17 +50,6 @@ GameObjectBuilder.prototype.setStatic = function (bool){
  return this;
 };
 
-//----------------------------------------------------------------------
-
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
-GameObjectBuilder.prototype.setTransform = function (transform) {
-  obj.addComponent(transform);
-  return this;
-};
 
 //----------------------------------------------------------------------
 

@@ -25,7 +25,7 @@ RigidBody.prototype.adapt = function (world) {
 
 	this.world = world;
 
-	this.gameObject.getComponent(Collider).adapt(this.fixDef);
+	this.getCollider().adapt(this.fixDef);
 
 	if(this.isStatic())
 		this.bodyDef.type = b2Body.b2_staticBody;

@@ -171,8 +171,10 @@ GameObject.prototype.disable = function (){
 * @param {GameObject} child The child.
 */
 GameObject.prototype.addChild = function (child){
-  child.setParent(this);
-  this.children.push(child);
+  if(child !== null){
+    child.setParent(this);
+    this.children.push(child);
+  }
 };
 
 //----------------------------------------------------------------------
@@ -190,16 +192,20 @@ GameObject.prototype.addChild = function (child){
 */
 GameObject.prototype.addComponent = function (component){
 
-  // TODO: only allow one transform component. What if there are many?
-  if( (component instanceof Transform) && (this.transform === null)){
+  if(component !== null){
 
-    this.transform = component;
+    // TODO: only allow one transform component. What if there are many?
+    if( (component instanceof Transform) && (this.transform === null)){
 
-    component.setGameObject(this);
-    this.components.push(component);
-  }else {
-    component.setGameObject(this);
-    this.components.push(component);
+      this.transform = component;
+
+      component.setGameObject(this);
+      this.components.push(component);
+    }else {
+      component.setGameObject(this);
+      this.components.push(component);
+    }
+
   }
 
 };
