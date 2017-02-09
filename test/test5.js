@@ -73,14 +73,14 @@ for ( var i=-r; i<r; i++ ) {
 
         if(v > 0.1){
           // ROCK TILE
-          // tile's position within the texture: (0,40)
+          // position of the tile within the texture: (0,40)
           x = tileWidth*0 + pixelWidth;
           y = (tileHeight*40) + pixelHeight;
           width = tileWidth - pixelWidth;
           height = tileHeight - pixelHeight;
         }else{
           // GRASS TILE
-          // tile's position within the texture: (5,67)
+          // position of the tile within the texture: (5,67)
           x = tileWidth*5 + pixelWidth;
           y = (tileHeight*67) + pixelHeight;
           width = tileWidth - pixelWidth;

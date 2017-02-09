@@ -1,3 +1,11 @@
+/**
+* @class
+* @extends {Collider}
+* @classdesc  This collider has a rectangle shape. It is axis aligned.
+* @param {Number} width The width.
+* @param {Number} height The height.
+* @param {Boolean} isSensor True if the collider is a sensor.
+*/
 var AABBCollider = function (width, height, isSensor) {
     Collider.call(this, isSensor);
     this.width = width;

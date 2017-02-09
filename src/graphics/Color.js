@@ -26,7 +26,7 @@ Color.YELLOW = new Color(1.0, 1.0, 0.0, 1.0);
 //----------------------------------------------------------------------
 
 /**
-* Returns a random color.
+* Return a random color.
 * @returns {Color} The color.
 */
 Color.random = function () {
@@ -41,7 +41,7 @@ Color.random = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns an array representation of the color.
+* Return an array representation of the color.
 * @returns {Array} An array representation of the color.
 */
 Color.prototype.toArray = function(){

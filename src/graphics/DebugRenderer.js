@@ -14,7 +14,7 @@ DebugRenderer.list = [];
 //----------------------------------------------------------------------
 
 /**
-* Returns a list of renderers.
+* Return a list of renderers.
 * @returns {Array} The renderers.
 */
 DebugRenderer.getRenderers = function () {
@@ -44,7 +44,7 @@ DebugRenderer.init = function() {
 //----------------------------------------------------------------------
 
 /**
-* Sets the transformation matrix. If the matrix is null, the transformation
+* Set the transformation matrix. If the matrix is null, the transformation
 * matrix is setted to Identity.
 * @param {Matrix4} matrix The matrix.
 */
@@ -58,7 +58,7 @@ DebugRenderer.setTransformationMatrix = function (matrix) {
 //----------------------------------------------------------------------
 
 /**
-* Updates the debug renderer.
+* Update the debug renderer.
 * @param {RenderContext} renderContext The render context.
 */
 DebugRenderer.update = function (renderContext) {

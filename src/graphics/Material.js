@@ -13,7 +13,7 @@ var Material = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns a texture.
+* Return a texture.
 * @returns {Texture} The texture.
 */
 Material.prototype.getTexture = function (){
@@ -23,7 +23,7 @@ Material.prototype.getTexture = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the texture.
+* Set the texture.
 * @param {Texture} texture The new texture
 */
 Material.prototype.setTexture = function (texture){
@@ -33,7 +33,7 @@ Material.prototype.setTexture = function (texture){
 //----------------------------------------------------------------------
 
 /**
-* Returns a shader.
+* Return a shader.
 * @returns {Shader} The shader.
 */
 Material.prototype.getShader = function (){
@@ -43,7 +43,7 @@ Material.prototype.getShader = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the shader.
+* Set the shader.
 * @param {Shader} The new shader.
 */
 Material.prototype.setShader = function (shader){
@@ -53,7 +53,7 @@ Material.prototype.setShader = function (shader){
 //----------------------------------------------------------------------
 
 /**
-* Sets the color.
+* Set the color.
 * @param {Color} The new color.
 */
 Material.prototype.setColor = function (color){
@@ -63,7 +63,7 @@ Material.prototype.setColor = function (color){
 //----------------------------------------------------------------------
 
 /**
-* Returns a color.
+* Return a color.
 * @returns {Color} The color.
 */
 Material.prototype.getColor = function (){
@@ -101,7 +101,7 @@ Material.prototype.enable = function (){
 //----------------------------------------------------------------------
 
 /**
-* Disables the material.
+* Disable the material.
 */
 Material.prototype.disable = function (){
 
@@ -113,7 +113,7 @@ Material.prototype.disable = function (){
 //----------------------------------------------------------------------
 
 /**
-* Resets the material parameters for material animation.
+* Reset the material parameters for material animation.
 */
 Material.prototype.reset = function (){
     this.shader.addFloat(0.0, "animationX");

@@ -22,7 +22,7 @@ var RenderContext = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the camera.
+* Return the camera.
 * @returns {Camera} The camera
 */
 RenderContext.prototype.getCamera = function (){
@@ -32,7 +32,7 @@ RenderContext.prototype.getCamera = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the camera.
+* Set the camera.
 * @param {Camera} camera The camera.
 */
 RenderContext.prototype.setCamera = function (camera){

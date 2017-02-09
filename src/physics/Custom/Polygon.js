@@ -128,7 +128,7 @@ Polygon.prototype.testVertexEdge = function (vertices, otherCollider, contactMan
 
   var eps = Collider.depthEpsilon; // Error
 
-  var edges = otherCollider.getEdges(); // otherCollider's edges
+  var edges = otherCollider.getEdges(); // edges of the otherCollider
   var normals = otherCollider.getNormals(); // the normals of the other collider
 
   var midPointFlag = false;

@@ -10,7 +10,7 @@ var Texture = function (name,data){
 //----------------------------------------------------------------------
 
 /**
-* Returns the data of the texture.
+* Return the data of the texture.
 * @returns {Image} The data.
 */
 Texture.prototype.getData = function (){
@@ -20,7 +20,7 @@ Texture.prototype.getData = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the name of the texture.
+* Return the name of the texture.
 * @returns {String} The name.
 */
 Texture.prototype.getName = function (){
@@ -30,7 +30,7 @@ Texture.prototype.getName = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the width of the texture.
+* Return the width of the texture.
 * @returns {Number} The width.
 */
 Texture.prototype.getWidth = function (){
@@ -40,7 +40,7 @@ Texture.prototype.getWidth = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the height of the texture.
+* Return the height of the texture.
 * @returns {Number} The height.
 */
 Texture.prototype.getHeight = function (){

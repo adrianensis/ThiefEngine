@@ -24,7 +24,7 @@ var Engine = function (){
 // TODO: Singleton
 
 /**
-* Returns the current scene.
+* Return the current scene.
 * @returns {Scene} The current scene.
 */
 Engine.prototype.getCurrentScene = function (){
@@ -34,7 +34,7 @@ Engine.prototype.getCurrentScene = function (){
 //----------------------------------------------------------------------
 
 /**
-* Adds a new scene.
+* Add a new scene.
 * @param {Scene} scene The new scene.
 */
 Engine.prototype.addScene = function (scene){
@@ -44,8 +44,8 @@ Engine.prototype.addScene = function (scene){
 //----------------------------------------------------------------------
 
 /**
-* Sets the current scene as the scene named as 'name'.
-* @param {String} name The scene's name.
+* Set the current scene as the scene named as 'name'.
+* @param {String} name The name of the scene.
 */
 Engine.prototype.setCurrentScene = function (name){
 
@@ -62,7 +62,7 @@ Engine.prototype.setCurrentScene = function (name){
 //----------------------------------------------------------------------
 
 /**
-* Returns the scenes.
+* Return the scenes.
 * @returns {Array} The scenes.
 */
 Engine.prototype.getScenes = function (){
@@ -72,7 +72,7 @@ Engine.prototype.getScenes = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the clear color. WebGL will use this value to repaint the screen.
+* Set the clear color. WebGL will use this value to repaint the screen.
 * @param {Color} color The color.
 */
 Engine.prototype.setClearColor = function (color){
@@ -91,7 +91,7 @@ Engine.prototype.enablePhysics = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the gravity.
+* Set the gravity.
 * @param {Vector4} gravity The gravity.
 */
 Engine.prototype.setGravity = function (gravity){
@@ -101,7 +101,7 @@ Engine.prototype.setGravity = function (gravity){
 //----------------------------------------------------------------------
 
 /**
-* Disables the physics engine,
+* Disable the physics engine,
 */
 Engine.prototype.disablePhysics = function (){
   this.physicsEnabled = false;
@@ -110,7 +110,7 @@ Engine.prototype.disablePhysics = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the fps.
+* Set the fps.
 * @param {Number} fps The fps.
 */
 Engine.prototype.setFPS = function (fps){
@@ -133,7 +133,7 @@ Engine.prototype.init = function (){
 //----------------------------------------------------------------------
 
 /**
-* Updates the current scene.
+* Update the current scene.
 */
 Engine.prototype.updateScene = function(){
 
@@ -160,7 +160,7 @@ Engine.prototype.updateScene = function(){
 //----------------------------------------------------------------------
 
 /**
-* Loads the current scene.
+* Load the current scene.
 */
 Engine.prototype.loadScene = function(){
 

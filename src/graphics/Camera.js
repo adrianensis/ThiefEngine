@@ -19,7 +19,7 @@ Camera.prototype.constructor = Camera;
 //----------------------------------------------------------------------
 
 /**
-* Returns the frustum.
+* Return the frustum.
 * @returns {Frustum} The frustum.
 */
 Camera.prototype.getFrustum = function (){
@@ -29,7 +29,7 @@ Camera.prototype.getFrustum = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the projection matrix.
+* Set the projection matrix.
 * @param {Matrix4} projectionMatrix The projection matrix.
 */
 Camera.prototype.setProjection = function (projectionMatrix){
@@ -39,7 +39,7 @@ Camera.prototype.setProjection = function (projectionMatrix){
 //----------------------------------------------------------------------
 
 /**
-* Returns the projection matrix.
+* Return the projection matrix.
 * @returns {Matrix4} The projectionMatrix.
 */
 Camera.prototype.getProjectionMatrix = function (){
@@ -49,7 +49,7 @@ Camera.prototype.getProjectionMatrix = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the view matrix.
+* Return the view matrix.
 * @returns {Matrix4} The viewMatrix.
 */
 Camera.prototype.getViewMatrix = function (){

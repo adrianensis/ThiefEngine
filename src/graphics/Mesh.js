@@ -25,7 +25,7 @@ var Mesh = function (numVertices) {
 //----------------------------------------------------------------------
 
 /**
-* Adds a new vertex.
+* Add a new vertex.
 * @param {Vector3} vec The vertex.
 */
 Mesh.prototype.addVertex = function (vec) {
@@ -55,7 +55,7 @@ Mesh.prototype.addVertex = function (vec) {
 //----------------------------------------------------------------------
 
 /**
-* Adds a new normal.
+* Add a new normal.
 * @param {Vector3} vec The normal.
 */
 Mesh.prototype.addNormal = function (vec) {
@@ -68,7 +68,7 @@ Mesh.prototype.addNormal = function (vec) {
 //----------------------------------------------------------------------
 
 /**
-* Adds a new face. A face (triangle) is composed by three indices (integers).
+* Add a new face. A face (triangle) is composed by three indices (integers).
 * @param {Number} v1 The 1st index of the face.
 * @param {Number} v2 The 2nd index of the face.
 * @param {Number} v3 The 3rd index of the face.
@@ -82,7 +82,7 @@ Mesh.prototype.addFace = function (v1,v2,v3) {
 //----------------------------------------------------------------------
 
 /**
-* Adds a new coordinate texture.
+* Add a new coordinate texture.
 * @param {Number} u The u coordinate.
 * @param {Number} v The v coordinate.
 */
@@ -94,7 +94,7 @@ Mesh.prototype.addTexCoord = function (u,v) {
 //----------------------------------------------------------------------
 
 /**
-* Returns a vertex by index.
+* Return a vertex by index.
 * @param {Number} index The index of the vertex.
 * @returns {Vector3} The vertex.
 */
@@ -116,7 +116,7 @@ Mesh.prototype.getVertex = function (index) {
 //----------------------------------------------------------------------
 
 /**
-* Returns the number of vertices.
+* Return the number of vertices.
 * @returns {Number} The number of vertices.
 */
 Mesh.prototype.getNumVertices = function () {
@@ -126,7 +126,7 @@ Mesh.prototype.getNumVertices = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns the number of faces.
+* Return the number of faces.
 * @returns {Number} The number of faces.
 */
 Mesh.prototype.getNumFaces = function () {
@@ -136,7 +136,7 @@ Mesh.prototype.getNumFaces = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns the vertices data.
+* Return the vertices data.
 * @returns {Array} The vertices data.
 */
 Mesh.prototype.getVerticesData = function () {
@@ -146,7 +146,7 @@ Mesh.prototype.getVerticesData = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns the normals data.
+* Return the normals data.
 * @returns {Array} The normals data.
 */
 Mesh.prototype.getNormalsData = function () {
@@ -157,7 +157,7 @@ Mesh.prototype.getNormalsData = function () {
 
 
 /**
-* Returns the faces data.
+* Return the faces data.
 * @returns {Array} The faces data.
 */
 Mesh.prototype.getFacesData = function () {
@@ -167,7 +167,7 @@ Mesh.prototype.getFacesData = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns the coordinates texture data.
+* Return the coordinates texture data.
 * @returns {Array} The coordinates texture data.
 */
 Mesh.prototype.getTexCoordData = function () {
@@ -177,7 +177,7 @@ Mesh.prototype.getTexCoordData = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns a vector with the max value of width, height and depth.
+* Return a vector with the max value of width, height and depth.
 * @returns {Vector3} The max vector.
 */
 Mesh.prototype.getMax = function () {

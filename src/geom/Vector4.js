@@ -16,7 +16,7 @@ var Vector4 = function (x,y,z,w){
 //----------------------------------------------------------------------
 
 /**
-* Returns an array representation of the vector.
+* Return an array representation of the vector.
 * @returns {Array} An array representation of the vector.
 */
 Vector4.prototype.toArray = function (){
@@ -31,7 +31,7 @@ Vector4.prototype.toArray = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the vector from an array.
+* Set the vector from an array.
 * @param {Array} array The original array.
 * @returns {Vector4} this.
 */
@@ -47,7 +47,7 @@ Vector4.prototype.fromArray = function (array){
 //----------------------------------------------------------------------
 
 /**
-* Sets the vector from another vector.
+* Set the vector from another vector.
 * @param {Vector4} vec The original vector.
 * @returns {Vector4} this.
 */
@@ -63,7 +63,7 @@ Vector4.prototype.set = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Returns a copy of this vector.
+* Return a copy of this vector.
 * @returns {Vector4} The copy of this vector.
 */
 Vector4.prototype.cpy = function (){
@@ -73,7 +73,7 @@ Vector4.prototype.cpy = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the length of this vector.
+* Return the length of this vector.
 * @returns {Number} The length of this vector.
 */
 Vector4.prototype.len = function (){
@@ -87,7 +87,7 @@ Vector4.prototype.len = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the maximum v in this vector.
+* Return the maximum v in this vector.
 * @returns {Number} The maximum v in this vector.
 */
 Vector4.prototype.max = function (){
@@ -115,7 +115,7 @@ Vector4.prototype.min = function (){
 //----------------------------------------------------------------------
 
 /**
-* Adds a vector to this vector.
+* Add a vector to this vector.
 * @param {Vector4} vec The other vector.
 * @returns {Vector4} this.
 */
@@ -147,7 +147,7 @@ Vector4.prototype.sub = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Adds a scalar to all the components of this vector.
+* Add a scalar to all the components of this vector.
 * @param {Number} value The scalar value.
 * @returns {Vector4} this.
 */
@@ -243,7 +243,7 @@ Vector4.prototype.divScl = function (value){
 //----------------------------------------------------------------------
 
 /**
-* Returns the dot product between this vector and other vector.
+* Return the dot product between this vector and other vector.
 * @param {Vector4} vec The other vector.
 * @returns {Number} The dot product between this vector and other vector..
 */
@@ -287,7 +287,7 @@ Vector4.prototype.cross = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Returns the angle in degrees relative to other vector.
+* Return the angle in degrees relative to other vector.
 * @param {Vector4} vec The other vector.
 * @returns {Number} The angle in degrees relative to other vector.
 */
@@ -328,7 +328,7 @@ Vector4.prototype.nor = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the distance between this vector and other vector.
+* Return the distance between this vector and other vector.
 * @param {Vector4} vec The other vector.
 * @returns {Number} The distance between this vector and other vector.
 */

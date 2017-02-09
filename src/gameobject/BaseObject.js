@@ -12,7 +12,7 @@ BaseObject.lastId = 0;
 //----------------------------------------------------------------------
 
 /**
-* Returns the id of the object.
+* Return the id of the object.
 * @returns {Number} The id.
 */
 BaseObject.prototype.getId = function (){

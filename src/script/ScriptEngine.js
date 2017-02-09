@@ -1,3 +1,7 @@
+/**
+* @class
+* @classdesc This class manages all the scripts.
+*/
 var ScriptEngine = function (){
   this.scripts = [];
 };
@@ -5,9 +9,8 @@ var ScriptEngine = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the scritps to the engine.
+* @return {Array} The scripts.
 */
 ScriptEngine.prototype.getScripts = function (){
 	return this.scripts;
@@ -16,9 +19,8 @@ ScriptEngine.prototype.getScripts = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Add the scritps to the engine.
+* @param {Array} scripts The scripts.
 */
 ScriptEngine.prototype.addScripts = function (scripts){
   for (var i = 0; i < scripts.length; i++) {
@@ -30,9 +32,7 @@ ScriptEngine.prototype.addScripts = function (scripts){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Clear all the scripts.
 */
 ScriptEngine.prototype.clear = function (){
 	this.scripts = [];
@@ -41,9 +41,7 @@ ScriptEngine.prototype.clear = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Update all the scripts.
 */
 ScriptEngine.prototype.update = function (){
     for (script of this.scripts){

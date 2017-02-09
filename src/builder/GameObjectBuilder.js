@@ -1,9 +1,17 @@
+/**
+* @class
+* @classdesc This class is a game object builder.
+*/
 var GameObjectBuilder = function (){
   this.tmpObj = null;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Return an empty game object that just contains its Transform.
+* @returns {GameObject} The game object.
+*/
 GameObjectBuilder.empty = function () {
   var obj = new GameObject();
 
@@ -16,9 +24,8 @@ GameObjectBuilder.empty = function () {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Create an empty game object.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.begin = function () {
   this.tmpObj = GameObjectBuilder.empty();
@@ -28,9 +35,9 @@ GameObjectBuilder.prototype.begin = function () {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the name.
+* @param {String} name The name.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setName = function (name){
   this.tmpObj.setName(name);
@@ -41,12 +48,12 @@ GameObjectBuilder.prototype.setName = function (name){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set if is static.
+* @param {Boolean} isStatic True if is static.
+* @returns {GameObjectBuilder} this.
 */
-GameObjectBuilder.prototype.setStatic = function (bool){
- this.tmpObj.setStatic(bool);
+GameObjectBuilder.prototype.setStatic = function (isStatic){
+ this.tmpObj.setStatic(isStatic);
  return this;
 };
 
@@ -54,21 +61,21 @@ GameObjectBuilder.prototype.setStatic = function (bool){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the position.
+* @param {Vector2} position The position.
+* @returns {GameObjectBuilder} this.
 */
-GameObjectBuilder.prototype.setPosition = function (vec){
-  this.tmpObj.getTransform().setPosition(vec);
+GameObjectBuilder.prototype.setPosition = function (position){
+  this.tmpObj.getTransform().setPosition(position);
   return this;
 };
 
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the rotation.
+* @param {Vector2} vec The vector.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setRotation = function (vec){
   this.tmpObj.getTransform().setRotation(vec);
@@ -78,9 +85,9 @@ GameObjectBuilder.prototype.setRotation = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the scale.
+* @param {Vector2} vec The vector.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setScale = function (vec){
   this.tmpObj.getTransform().setScale(vec);
@@ -90,9 +97,11 @@ GameObjectBuilder.prototype.setScale = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the physic properties.
+* @param {Number} density The density.
+* @param {Number} friction The friction.
+* @param {Number} restitution The restitution.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setRigidBody = function (density, friction, restitution){
   var rigidBody = new RigidBody(density, friction, restitution);
@@ -103,9 +112,9 @@ GameObjectBuilder.prototype.setRigidBody = function (density, friction, restitut
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the collider.
+* @param {Collider} collider The collider.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setCollider = function (collider){
   this.tmpObj.addComponent(collider);
@@ -115,9 +124,9 @@ GameObjectBuilder.prototype.setCollider = function (collider){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the renderer.
+* @param {MeshRenderer} renderer The renderer.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setRenderer = function (renderer) {
   this.tmpObj.addComponent(renderer);
@@ -127,9 +136,9 @@ GameObjectBuilder.prototype.setRenderer = function (renderer) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the mesh.
+* @param {Mesh} mesh The mesh.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setMesh = function (mesh) {
   this.tmpObj.getComponent(MeshRenderer).setMesh(mesh);
@@ -139,9 +148,9 @@ GameObjectBuilder.prototype.setMesh = function (mesh) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the layer.
+* @param {Number} layer The layer.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setLayer = function (layer) {
   this.tmpObj.getComponent(MeshRenderer).setLayer(layer);
@@ -151,9 +160,9 @@ GameObjectBuilder.prototype.setLayer = function (layer) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the material.
+* @param {Material} material The material.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setMaterial = function (material) {
   this.tmpObj.getComponent(MeshRenderer).setMaterial(material);
@@ -163,9 +172,9 @@ GameObjectBuilder.prototype.setMaterial = function (material) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the color.
+* @param {Color} color The color.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setColor = function (color) {
   this.tmpObj.getComponent(MeshRenderer).getMaterial().setColor(color);
@@ -175,9 +184,9 @@ GameObjectBuilder.prototype.setColor = function (color) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the alpha color.
+* @param {Color} color The color.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setAlphaColor = function (color) {
   this.tmpObj.getComponent(MeshRenderer).setAlphaColor(color);
@@ -187,9 +196,11 @@ GameObjectBuilder.prototype.setAlphaColor = function (color) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the texture region.
+* @param {Vector2} texCoord The texCoord.
+* @param {Number} width The width.
+* @param {Number} height The height.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setTextureRegion = function (texCoord, width, height) {
   this.tmpObj.getComponent(MeshRenderer).setRegion(texCoord, width, height);
@@ -199,9 +210,16 @@ GameObjectBuilder.prototype.setTextureRegion = function (texCoord, width, height
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Add an animation.
+* @param {String} name The name.
+* @param {Number} frameCount The frameCount.
+* @param {Number} horizontal The horizontal.
+* @param {Number} reverse The reverse.
+* @param {Vector2} startPosition The startPosition.
+* @param {Number} width The width.
+* @param {Number} height The height.
+* @param {Number} speed The speed.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.addAnimation = function (name, frameCount, horizontal, reverse, startPosition, width, height, speed) {
 
@@ -215,9 +233,9 @@ GameObjectBuilder.prototype.addAnimation = function (name, frameCount, horizonta
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the name.
+* @param {String} name The name.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.setAnimation = function (name) {
 
@@ -228,9 +246,9 @@ GameObjectBuilder.prototype.setAnimation = function (name) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the script.
+* @param {Script} script The script.
+* @returns {GameObjectBuilder} this.
 */
 GameObjectBuilder.prototype.addScript = function (script) {
   this.tmpObj.addComponent(script);
@@ -240,9 +258,8 @@ GameObjectBuilder.prototype.addScript = function (script) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the game object.
+* @returns {GameObject} The game object.
 */
 GameObjectBuilder.prototype.end = function () {
   return this.tmpObj;

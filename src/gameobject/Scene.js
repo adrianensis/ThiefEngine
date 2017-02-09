@@ -24,7 +24,7 @@ var Scene = function (name){
 //----------------------------------------------------------------------
 
 /**
-* Returns the name of the scene.
+* Return the name of the scene.
 * @returns {String} The name.
 */
 Scene.prototype.getName = function (){
@@ -34,7 +34,7 @@ Scene.prototype.getName = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the scene as loaded.
+* Set the scene as loaded.
 * @param {Boolean} bool The boolean.
 */
 Scene.prototype.setLoaded = function (bool){
@@ -44,7 +44,7 @@ Scene.prototype.setLoaded = function (bool){
 //----------------------------------------------------------------------
 
 /**
-* Returns true if the scene is loaded.
+* Return true if the scene is loaded.
 * @returns {Boolean} True if the scene is loaded.
 */
 Scene.prototype.isLoaded = function (){
@@ -54,7 +54,7 @@ Scene.prototype.isLoaded = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the root of the scene,
+* Return the root of the scene,
 * @returns {GameObject} The root.
 */
 Scene.prototype.getRoot = function (){
@@ -64,7 +64,7 @@ Scene.prototype.getRoot = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the root that contains the new game objects added.
+* Return the root that contains the new game objects added.
 * @returns {GameObject} The news-root.
 */
 Scene.prototype.getNewsRoot = function (){
@@ -74,7 +74,7 @@ Scene.prototype.getNewsRoot = function (){
 //----------------------------------------------------------------------
 
 /**
-* Adds all the new game objects to the main root. Clears the news-root
+* Add all the new game objects to the main root. Clears the news-root
 */
 Scene.prototype.flush = function (){
   this.root.setChildren(this.root.getChildren().concat(this.newsRoot.getChildren()));
@@ -100,7 +100,7 @@ Scene.prototype.reset = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns true if the scene has new game objects.
+* Return true if the scene has new game objects.
 * @returns {Boolean} True if the scene has new game objects.
 */
 Scene.prototype.hasNewObjects = function (){
@@ -110,7 +110,7 @@ Scene.prototype.hasNewObjects = function (){
 //----------------------------------------------------------------------
 
 /**
-* Adds a game object.
+* Add a game object.
 * @param {GameObject} obj The game object.
 */
 Scene.prototype.addObject = function (obj){
@@ -125,7 +125,7 @@ Scene.prototype.addObject = function (obj){
 //----------------------------------------------------------------------
 
 /**
-* Deletes a game object.
+* Delete a game object.
 * @param {GameObject} obj The game object.
 */
 Scene.prototype.deleteObject = function (obj){
@@ -157,7 +157,7 @@ Scene.prototype.cleanTrash = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the render context.
+* Return the render context.
 * @returns {RenderContext} The render context.
 */
 Scene.prototype.getRenderContext = function (){
@@ -167,7 +167,7 @@ Scene.prototype.getRenderContext = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the render context.
+* Set the render context.
 * @param {RenderContext} renderContext The render context.
 */
 Scene.prototype.setRenderContext = function (renderContext){
@@ -177,7 +177,7 @@ Scene.prototype.setRenderContext = function (renderContext){
 //----------------------------------------------------------------------
 
 /**
-* Returns the camera.
+* Return the camera.
 * @returns {Camera} The camera.
 */
 Scene.prototype.getCamera = function (){
@@ -187,7 +187,7 @@ Scene.prototype.getCamera = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the camera.
+* Set the camera.
 * @param {Camera} camera The camera.
 */
 Scene.prototype.setCamera = function (camera){

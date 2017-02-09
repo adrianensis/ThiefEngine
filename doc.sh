@@ -8,4 +8,6 @@
  #   jsdoc "src/$x" -d doc # test
  # done
 
-jsdoc src/core src/graphics src/geom src/script src/gameobject -d=doc # test
+# jsdoc src/core src/graphics src/geom src/script src/gameobject src/random -d=doc # test
+./min.sh
+jsdoc thief.js -d doc

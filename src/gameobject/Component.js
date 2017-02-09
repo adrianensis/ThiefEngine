@@ -16,7 +16,7 @@ Component.prototype.constructor = Component;
 //----------------------------------------------------------------------
 
 /**
-* Returns the game object.
+* Return the game object.
 * @returns {GameObject} The game object.
 */
 Component.prototype.getGameObject = function (){
@@ -26,7 +26,7 @@ Component.prototype.getGameObject = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the game object.
+* Set the game object.
 * @param {GameObject} gameObject The Game object.
 */
 Component.prototype.setGameObject = function (gameObject){
@@ -45,7 +45,7 @@ Component.prototype.enable = function (){
 //----------------------------------------------------------------------
 
 /**
-* Disables the component.
+* Disable the component.
 */
 Component.prototype.disable = function (){
 	this.enabled=false;
@@ -54,7 +54,7 @@ Component.prototype.disable = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns true if component is enabled.
+* Return true if component is enabled.
 * @returns {Boolean} True if component is enabled.
 */
 Component.prototype.isEnabled = function (){
@@ -64,9 +64,9 @@ Component.prototype.isEnabled = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the component's parent. The componet's parent is the component ,with the same class of
-* this component, in the game object's parent.
-* @returns {Component} The component's parent.
+* Return the parent of this component. The parent of this component is the component ,with the same class of
+* this component, in the parent of the game object.
+* @returns {Component} The parent of this component.
 */
 Component.prototype.getParent = function(){
     var parent = this.gameObject.getParent();
@@ -81,9 +81,9 @@ Component.prototype.getParent = function(){
 //----------------------------------------------------------------------
 
 /**
-* Returns the component's children. Returns all the components, with the same class of this component,
-* in the game component's children.
-* @returns {Component} The component's children.
+* Return the children of the component. Return all the components, with the same class of this component,
+* in the children of the game component.
+* @returns {Component} The children of the component.
 */
 Component.prototype.getChildren = function (){
     return this.gameObject.getComponentsInChildren(this.constructor);
@@ -102,7 +102,7 @@ Component.prototype.destroy = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns true if the component is destroyed.
+* Return true if the component is destroyed.
 * @returns {Boolean} True if the component is destroyed.
 */
 Component.prototype.isDestroyed = function (){

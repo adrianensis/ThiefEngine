@@ -30,9 +30,8 @@ MeshRenderer.prototype.constructor = MeshRenderer;
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the layer where the mesh is.
+* @returns {Number} The layer.
 */
 MeshRenderer.prototype.getLayer = function (){
 	return this.layer;
@@ -41,9 +40,8 @@ MeshRenderer.prototype.getLayer = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the layer of the mesh.
+* @param {Number} layer The layer.
 */
 MeshRenderer.prototype.setLayer = function (layer){
 	if(layer < 0)
@@ -55,9 +53,8 @@ MeshRenderer.prototype.setLayer = function (layer){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the mesh.
+* @returns {Mesh} The mesh.
 */
 MeshRenderer.prototype.getMesh = function (){
 	return this.mesh;
@@ -66,9 +63,8 @@ MeshRenderer.prototype.getMesh = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the mesh.
+* @param {Mesh} mesh The mesh.
 */
 MeshRenderer.prototype.setMesh = function (mesh){
 	this.mesh=mesh;
@@ -77,9 +73,8 @@ MeshRenderer.prototype.setMesh = function (mesh){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the material.
+* @returns {Material} The material.
 */
 MeshRenderer.prototype.getMaterial = function (){
 	return this.material;
@@ -88,9 +83,8 @@ MeshRenderer.prototype.getMaterial = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the material.
+* @param {Material} material The material.
 */
 MeshRenderer.prototype.setMaterial = function (material){
 	this.material=material;
@@ -99,9 +93,8 @@ MeshRenderer.prototype.setMaterial = function (material){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the radius.
+* @returns {Number} The radius.
 */
 MeshRenderer.prototype.getRadius = function () {
 
@@ -120,9 +113,8 @@ MeshRenderer.prototype.getRadius = function () {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the radius.
+* @returns {Number} The radius.
 */
 MeshRenderer.prototype.getAlphaColor = function (){
 	return this.alphaColor;
@@ -131,9 +123,8 @@ MeshRenderer.prototype.getAlphaColor = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the alpha color.
+* @param {Color} color The alpha color.
 */
 MeshRenderer.prototype.setAlphaColor = function (color){
 	this.alphaColor = color;
@@ -142,9 +133,10 @@ MeshRenderer.prototype.setAlphaColor = function (color){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Selects a region of the texture.
+* @param {Vector2} pos The position (in texture coordinates).
+* @param {Number} width The width of the region.
+* @param {Number} height The height of the region.
 */
 MeshRenderer.prototype.setRegion = function (pos, width, height){
   this.regionPosition = pos;
@@ -155,9 +147,8 @@ MeshRenderer.prototype.setRegion = function (pos, width, height){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the position of the region.
+* @returns {TYPE} The position.
 */
 MeshRenderer.prototype.getRegionPosition = function (){
 	return this.regionPosition;
@@ -166,9 +157,8 @@ MeshRenderer.prototype.getRegionPosition = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the width of the region.
+* @returns {TYPE} The width.
 */
 MeshRenderer.prototype.getRegionWidth = function (){
 	return this.regionWidth;
@@ -177,9 +167,8 @@ MeshRenderer.prototype.getRegionWidth = function (){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Return the height of the region.
+* @returns {TYPE} The height.
 */
 MeshRenderer.prototype.getRegionHeight = function (){
 	return this.regionHeight;
@@ -189,7 +178,7 @@ MeshRenderer.prototype.getRegionHeight = function (){
 
 
 /**
-* Sets the animation, by name.
+* Set the animation, by name.
 * @param {String} name The name.
 */
 MeshRenderer.prototype.setAnimation = function (name){
@@ -199,7 +188,7 @@ MeshRenderer.prototype.setAnimation = function (name){
 //----------------------------------------------------------------------
 
 /**
-* Adds an animation, by name.
+* Add an animation, by name.
 * @param {String} name The name.
 * @param {Animation} animation The animation.
 */
@@ -211,9 +200,8 @@ MeshRenderer.prototype.addAnimation = function (name, animation){
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Update de material with information about the region, the alphacolor and the animation.
+* @param {Material} material The material.
 */
 MeshRenderer.prototype.updateMaterial = function (material){
   if(material.getTexture() !== null){

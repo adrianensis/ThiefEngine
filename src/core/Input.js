@@ -107,7 +107,7 @@ Input.cursorPos = new Vector2(0,0);
 //----------------------------------------------------------------------
 
 /**
-* Returns the key wich is being pressed.
+* Return the key wich is being pressed.
 * @returns {Number} The key.
 */
 Input.getKey = function (){
@@ -117,7 +117,7 @@ Input.getKey = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the key wich is being pressed.
+* Return the key wich is being pressed.
 * @returns {Number} The key.
 */
 Input.isKeyPressed = function (key){
@@ -136,7 +136,7 @@ Input.isKeyPressed = function (key){
 //----------------------------------------------------------------------
 
 /**
-* Returns the button wich is being pressed.
+* Return the button wich is being pressed.
 * @returns {Number} The button.
 */
 Input.getButton = function (){
@@ -146,7 +146,7 @@ Input.getButton = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns cursor position.
+* Return cursor position.
 * @returns {Vector4} The cursor position.
 */
 Input.getCursorPosition = function (){

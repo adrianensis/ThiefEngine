@@ -23,7 +23,7 @@ SpriteBatch.binded = false;
 //----------------------------------------------------------------------
 
 /**
-* Adds a sprite renderer.
+* Add a sprite renderer.
 * @param {SpriteRenderer} renderer The sprite renderer.
 */
 SpriteBatch.prototype.add = function (renderer){
@@ -111,7 +111,7 @@ SpriteBatch.prototype.bind = function (){
 //----------------------------------------------------------------------
 
 /**
-* Updates the batch.
+* Update the batch.
 * @param {renderContext} renderContext The render context.
 */
 SpriteBatch.prototype.update = function (renderContext){

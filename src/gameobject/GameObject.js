@@ -21,9 +21,9 @@ GameObject.prototype.constructor = GameObject;
 //----------------------------------------------------------------------
 
 /**
-* Returns the game object's transform. This function is more useful than getComponent(Transform)
+* Return the transform of the game object. This function is more useful than getComponent(Transform)
 * because this function avoid the search of the transform component in the components list.
-* @returns {Transform} The game object's transform.
+* @returns {Transform} The transform of the game object.
 */
 GameObject.prototype.getTransform = function (){
 	return this.transform;
@@ -32,8 +32,8 @@ GameObject.prototype.getTransform = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the game object's name.
-* @returns {String} The game object's name.
+* Return the name of the game object.
+* @returns {String} The name of the game object.
 */
 GameObject.prototype.getName = function (){
 	return this.name;
@@ -42,8 +42,8 @@ GameObject.prototype.getName = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the game object's name.
-* @param {String} name The game object's name.
+* Set the name of the game object.
+* @param {String} name The name of the game object.
 */
 GameObject.prototype.setName = function (name){
 	this.name=name;
@@ -51,8 +51,8 @@ GameObject.prototype.setName = function (name){
 //----------------------------------------------------------------------
 
 /**
-* Returns the game object's parent.
-* @returns {GameObject} The game object's parent.
+* Return the parent of the game object.
+* @returns {GameObject} The parent of the game object.
 */
 GameObject.prototype.getParent = function (){
 	return this.parent;
@@ -61,8 +61,8 @@ GameObject.prototype.getParent = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the game object's parent.
-* @param {GameObject} parent The game object's parent.
+* Set the parent of the game object.
+* @param {GameObject} parent The parent of the game object.
 */
 GameObject.prototype.setParent = function (parent){
 	this.parent=parent;
@@ -71,7 +71,7 @@ GameObject.prototype.setParent = function (parent){
 //----------------------------------------------------------------------
 
 /**
-* Sets the game object as static.
+* Set the game object as static.
 * @param {Boolean} bool The boolean value.
 */
 GameObject.prototype.setStatic = function (bool){
@@ -81,7 +81,7 @@ GameObject.prototype.setStatic = function (bool){
 //----------------------------------------------------------------------
 
 /**
-* Returns true if the game object is static.
+* Return true if the game object is static.
 * @returns {Boolean True if the game object is static.
 */
 GameObject.prototype.isStatic = function (){
@@ -91,7 +91,7 @@ GameObject.prototype.isStatic = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the scene where the game object is.
+* Return the scene where the game object is.
 * @returns {Scene} The scene where the game object is.
 */
 GameObject.prototype.getScene = function (){
@@ -101,7 +101,7 @@ GameObject.prototype.getScene = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the scene where the game object is.
+* Set the scene where the game object is.
 * @param {Scene} scene The scene where the game object is.
 */
 GameObject.prototype.setScene = function (scene){
@@ -111,8 +111,8 @@ GameObject.prototype.setScene = function (scene){
 //----------------------------------------------------------------------
 
 /**
-* Returns the game object's children.
-* @returns {Array} The game object's children.
+* Return the children of the game object.
+* @returns {Array} The children of the game object.
 */
 GameObject.prototype.getChildren = function (){
 	return this.children;
@@ -121,8 +121,8 @@ GameObject.prototype.getChildren = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the game object's children.
-* @param {Array} children The game object's children.
+* Set the children of the game object.
+* @param {Array} children The children of the game object.
 */
 GameObject.prototype.setChildren = function (children){
     for (var child of children) {
@@ -135,8 +135,8 @@ GameObject.prototype.setChildren = function (children){
 //----------------------------------------------------------------------
 
 /**
-* Returns the game object's components.
-* @returns {Array} The game object's components.
+* Return the components of the game object.
+* @returns {Array} The components of the game object.
 */
 GameObject.prototype.getComponents = function (){
 	return this.components;
@@ -156,7 +156,7 @@ GameObject.prototype.enable = function (){
 //----------------------------------------------------------------------
 
 /**
-* Disables all the components.
+* Disable all the components.
 */
 GameObject.prototype.disable = function (){
   for (var component of this.components) {
@@ -167,7 +167,7 @@ GameObject.prototype.disable = function (){
 //----------------------------------------------------------------------
 
 /**
-* Adds a child and sets this game object as its parent.
+* Add a child and sets this game object as its parent.
 * @param {GameObject} child The child.
 */
 GameObject.prototype.addChild = function (child){
@@ -187,7 +187,7 @@ GameObject.prototype.addChild = function (child){
 //----------------------------------------------------------------------
 
 /**
-* Adds a component.
+* Add a component.
 * @param {Component} component The component.
 */
 GameObject.prototype.addComponent = function (component){
@@ -213,7 +213,7 @@ GameObject.prototype.addComponent = function (component){
 //----------------------------------------------------------------------
 
 /**
-* Returns all the components in this game object and in children.
+* Return all the components in this game object and in children.
 * @param {function} componentClass The component class.
 * @returns {Array} The components.
 */
@@ -239,7 +239,7 @@ GameObject.prototype.getAllComponents = function (componentClass){
 //----------------------------------------------------------------------
 
 /**
-* Returns one component in this game object.
+* Return one component in this game object.
 * @param {function} componentClass The component class.
 * @returns {Component} The components.
 */
@@ -258,7 +258,7 @@ GameObject.prototype.getComponent = function (componentClass){
 //----------------------------------------------------------------------
 
 /**
-* Returns all the components in children.
+* Return all the components in children.
 * @param {function} componentClass The component class.
 * @returns {Array} The components.
 */
@@ -275,7 +275,7 @@ GameObject.prototype.getComponentsInChildren = function (componentClass){
 //----------------------------------------------------------------------
 
 /**
-* Destroys the game object's children.
+* Destroys the children of the game object.
 */
 GameObject.prototype.destroyChildren = function (){
   for (var child of this.children)
@@ -286,7 +286,7 @@ GameObject.prototype.destroyChildren = function (){
 //----------------------------------------------------------------------
 
 /**
-* Destroys the game object's component.
+* Destroys the components of the game object.
 */
 GameObject.prototype.destroyAllComponents = function (){
   for (var component of this.components)

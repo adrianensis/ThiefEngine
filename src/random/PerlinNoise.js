@@ -1,3 +1,9 @@
+/**
+* @class
+* @classdesc This class provides seedable random.
+* @param {Number} seed The seed.
+* @param {Number} n The number of gradients.
+*/
 var PerlinNoise = function(n,seed){
 
     this.random = new Random(seed);
@@ -60,11 +66,12 @@ var PerlinNoise = function(n,seed){
 
 //----------------------------------------------------------------------
 
-PerlinNoise.prototype.getGradient = function( point ){
+
+PerlinNoise.prototype.getGradient = function( x,y ){
     // TODO: use & or mod % ????
 
-    var index = point.y  & (this.n - 1);
-    index = ( point.x + this.permutation[ index ] ) & (this.n - 1);
+    var index = y  & (this.n - 1);
+    index = ( x + this.permutation[ index ] ) & (this.n - 1);
 
     return this.gradients[ index ];
 };
@@ -77,7 +84,7 @@ PerlinNoise.prototype.lerp = function(a, b, t) {
 
 //----------------------------------------------------------------------
 
-// Computes the dot product of the distance and gradient vectors.
+// Compute the dot product of the distance and gradient vectors.
 PerlinNoise.prototype.dotGridGradient = function(ix, iy, x, y) {
 
   // Compute the distance vector
@@ -91,6 +98,12 @@ PerlinNoise.prototype.dotGridGradient = function(ix, iy, x, y) {
 
 //----------------------------------------------------------------------
 
+/**
+* Return a random number.
+* @param {Number} x The x coordinate.
+* @param {Number} y The y coordinate.
+* @returns {Number} The randon number.
+*/
 PerlinNoise.prototype.generate = function(x, y){
 
   x += this.random.seededRandom(); // in [0,1] range

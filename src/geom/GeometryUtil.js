@@ -9,7 +9,7 @@ var GeometryUtil = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns if the rectangle contains the point.
+* Return if the rectangle contains the point.
 * @param {Vector4} leftTopVertex The leftTopVertex of the rectangle.
 * @param {Number} width The width of the rectangle.
 * @param {Number} height The height of the rectangle.
@@ -23,7 +23,7 @@ GeometryUtil.testRectanglePoint = function(leftTopVertex,width,height,point, eps
 
 //----------------------------------------------------------------------
 /**
-* Returns if the spheres are colliding.
+* Return if the spheres are colliding.
 * @param {Vector4} centerA The center of the A sphere.
 * @param {Vector4} radiusA The radius of the A sphere.
 * @param {Number} centerB The center of the B sphere.
@@ -38,7 +38,7 @@ GeometryUtil.testSphereSphere = function(centerA, centerB, radiusA, radiusB){
 //----------------------------------------------------------------------
 
 /**
-* Returns the middle point.
+* Return the middle point.
 * @param {Vector4} a The a point.
 * @param {Vector4} b The b point.
 * @returns {Vector4} The middle point.
@@ -50,7 +50,7 @@ GeometryUtil.midPoint = function(a,b){
 //----------------------------------------------------------------------
 
 /**
-* Returns the closest point in a segment to the point p.
+* Return the closest point in a segment to the point p.
 * @param {Vector4} p The p point.
 * @param {Vector4} a The a point of the segment.
 * @param {Vector4} b The b point of the segment.
@@ -92,7 +92,7 @@ GeometryUtil.closestPointInSegment = function (p,a,b){
 //----------------------------------------------------------------------
 
 /**
-* Returns the squared distance between a point and a segment.
+* Return the squared distance between a point and a segment.
 * @param {Vector4} p The p point.
 * @param {Vector4} a The a point of the segment.
 * @param {Vector4} b The b point of the segment.
@@ -112,7 +112,7 @@ GeometryUtil.sqDistanceToSegment = function (p,a,b){
 //----------------------------------------------------------------------
 
 /**
-* Returns the distance between a point and a segment.
+* Return the distance between a point and a segment.
 * @param {Vector4} p The p point.
 * @param {Vector4} a The a point of the segment.
 * @param {Vector4} b The b point of the segment.
@@ -125,7 +125,7 @@ GeometryUtil.distanceToSegment = function (p,a,b){
 //----------------------------------------------------------------------
 
 /**
-* Returns the closest point in a sphere to the point p.
+* Return the closest point in a sphere to the point p.
 * @param {Vector4} p The p point.
 * @param {Vector4} center The center of the sphere.
 * @param {Number} b The radius of the sphere.

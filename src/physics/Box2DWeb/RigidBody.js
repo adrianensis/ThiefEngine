@@ -1,3 +1,11 @@
+/**
+* @class
+* @classdesc This component provides physics characteristics to a game object.
+* @extends {Component}
+* @param {Number} density The density.
+* @param {Number} friction The friction.
+* @param {Number} restitution The restitution.
+*/
 var RigidBody = function (density, friction, restitution){
 	Component.call(this);
 
@@ -20,6 +28,8 @@ RigidBody.prototype = new Component();
 RigidBody.prototype.constructor = RigidBody;
 
 //----------------------------------------------------------------------
+
+// Adapt the rigid body to the world and the shape of the collider.
 
 RigidBody.prototype.adapt = function (world) {
 
@@ -50,24 +60,51 @@ RigidBody.prototype.adapt = function (world) {
 
 //----------------------------------------------------------------------
 
+/**
+* Return the Box2D Body.
+* @return {b2Body} The body.
+*/
 RigidBody.prototype.getBox2dBody = function () {
 	return this.body;
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Return the collider.
+* @return {Collider} The collider.
+*/
 RigidBody.prototype.getCollider = function () {
 	return this.gameObject.getComponent(Collider);
 };
 
 //----------------------------------------------------------------------
 
+
+/**
+* Return the collider.
+* @return {Collider} The collider.
+*/
+RigidBody.prototype.getCollider = function () {
+	return this.gameObject.getComponent(Collider);
+};
+
+//----------------------------------------------------------------------
+
+/**
+* Return if the game object is static.
+* @return {Boolean} True if the game object is static.
+*/
 RigidBody.prototype.isStatic = function () {
 	return this.gameObject.isStatic();
 };
 
 //----------------------------------------------------------------------
 
+/**
+* Disable this rigid body.
+* @override
+*/
 RigidBody.prototype.disable = function () {
 	Component.prototype.disable.call(this);
 	for(var i=0; i<this.body.GetFixtureList().length;i++){
@@ -78,6 +115,10 @@ RigidBody.prototype.disable = function () {
 
 //----------------------------------------------------------------------
 
+/**
+* Enable this rigid body.
+* @override
+*/
 RigidBody.prototype.enable = function () {
 	Component.prototype.enable.call(this);
 	for(var i=0; i<this.body.GetFixtureList().length;i++){

@@ -23,7 +23,7 @@ Loader.hasImageRequests = false;
 //----------------------------------------------------------------------
 
 /**
-* Returns if all loads have finished.
+* Return if all loads have finished.
 * @returns {Boolean} If all loads have finished.
 */
 Loader.isDone = function(){
@@ -37,7 +37,7 @@ Loader.isDone = function(){
 //----------------------------------------------------------------------
 
 /**
-* Resets the loader.
+* Reset the loader.
 */
 Loader.reset = function(){
   Loader.done = false;
@@ -46,7 +46,7 @@ Loader.reset = function(){
 //----------------------------------------------------------------------
 
 /**
-* Loads the image in async mode.
+* Load the image in async mode.
 * NOTE: Do not worry about the 'async' word.
 * The engine will wait until all the images are loaded.
 * @param {String} path The path.
@@ -82,7 +82,7 @@ Loader.loadImageFile = function (path){
 //----------------------------------------------------------------------
 
 /**
-* Loads the texture in async mode.
+* Load the texture in async mode.
 * NOTE: Do not worry about the 'async' word.
 * The engine will wait until all the images are loaded.
 * @param {String} path The path.

@@ -30,7 +30,7 @@ Transform.prototype.constructor = Transform;
 //----------------------------------------------------------------------
 
 /**
-* Returns true if the game object is static.
+* Return true if the game object is static.
 * @returns {Boolean} True if the game object is static.
 */
 Transform.prototype.isStatic = function () {
@@ -40,7 +40,7 @@ Transform.prototype.isStatic = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns true if the game object is dirty.
+* Return true if the game object is dirty.
 * @returns {Boolean} True if the game object is dirty.
 */
 Transform.prototype.isDirty = function () {
@@ -99,7 +99,7 @@ Transform.prototype.initMatrix = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the model matrix.
+* Return the model matrix.
 * @returns {Matrix4} The model matrix.
 */
 Transform.prototype.getMatrix = function (){
@@ -152,7 +152,7 @@ Transform.prototype.generateMatrix = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the model matrix.
+* Set the model matrix.
 * @param {Matrix4} matrix The model matrix.
 */
 Transform.prototype.setMatrix = function(matrix){
@@ -164,7 +164,7 @@ Transform.prototype.setMatrix = function(matrix){
 //----------------------------------------------------------------------
 
 /**
-* Sets the Position.
+* Set the Position.
 * @param {Vector3} vec The Position.
 */
 Transform.prototype.setPosition = function (vec){
@@ -180,7 +180,7 @@ Transform.prototype.setPosition = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Sets the Rotation.
+* Set the Rotation.
 * @param {Vector3} vec The Rotation.
 */
 Transform.prototype.setRotation = function (vec){
@@ -194,7 +194,7 @@ Transform.prototype.setRotation = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Sets the Scale.
+* Set the Scale.
 * @param {Vector3} vec The Scale.
 */
 Transform.prototype.setScale = function (vec){
@@ -208,7 +208,7 @@ Transform.prototype.setScale = function (vec){
 //----------------------------------------------------------------------
 
 /**
-* Returns the Position.
+* Return the Position.
 * @returns {Vector3} The Position.
 */
 Transform.prototype.getPosition = function (){
@@ -228,7 +228,7 @@ Transform.prototype.getPosition = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the Rotation.
+* Return the Rotation.
 * @returns {Vector3} The Rotation.
 */
 Transform.prototype.getRotation = function (){
@@ -238,7 +238,7 @@ Transform.prototype.getRotation = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the Scale.
+* Return the Scale.
 * @returns {Vector3} The Scale.
 */
 Transform.prototype.getScale = function (){

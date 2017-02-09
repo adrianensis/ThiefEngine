@@ -11,7 +11,7 @@ var AnimationFrame = function () {
 //----------------------------------------------------------------------
 
 /**
-* Sets the animation frame.
+* Set the animation frame.
 * @param {Vector2} position The position of the frame.
 * @param {Number} width The width of the frame.
 * @param {Number} height The height of the frame.
@@ -25,7 +25,7 @@ AnimationFrame.prototype.set = function (position, width, height) {
 //----------------------------------------------------------------------
 
 /**
-* Returns the position.
+* Return the position.
 * @returns {Vector2} The position of the frame.
 */
 AnimationFrame.prototype.getPosition = function (){
@@ -35,7 +35,7 @@ AnimationFrame.prototype.getPosition = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the width.
+* Return the width.
 * @returns {Number} The width of the frame.
 */
 AnimationFrame.prototype.getWidth = function (){
@@ -45,7 +45,7 @@ AnimationFrame.prototype.getWidth = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the height.
+* Return the height.
 * @returns {Number} The height of the frame.
 */
 AnimationFrame.prototype.getHeight = function (){

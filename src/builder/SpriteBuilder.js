@@ -1,3 +1,8 @@
+/**
+* @class
+* @classdesc This class is a sprite builder.
+* @extends {GameObjectBuilder}
+*/
 var SpriteBuilder = function (){
   GameObjectBuilder.call(this);
 };
@@ -7,11 +12,7 @@ SpriteBuilder.prototype.constructor = SpriteBuilder;
 
 //----------------------------------------------------------------------
 
-/**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
-*/
+
 SpriteBuilder.prototype.begin = function () {
   GameObjectBuilder.prototype.begin.call(this);
 
@@ -27,9 +28,9 @@ SpriteBuilder.prototype.begin = function () {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the texture.
+* @param {String} textureName The texture.
+* @returns {SpriteBuilder} this.
 */
 SpriteBuilder.prototype.setTexture = function (textureName) {
 
@@ -45,9 +46,9 @@ SpriteBuilder.prototype.setTexture = function (textureName) {
 
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Set the size of the sprite.
+* @param {Number} size The size.
+* @returns {SpriteBuilder} this.
 */
 SpriteBuilder.prototype.setSize = function (size) {
   this.setScale(new Vector2(size,size));
@@ -57,9 +58,12 @@ SpriteBuilder.prototype.setSize = function (size) {
 //----------------------------------------------------------------------
 
 /**
-* DESCRIPTION
-* @param {TYPE} NAME DESCRIPTION
-* @returns {TYPE} DESCRIPTION
+* Create a sprite.
+* @param {String} textureName The texture.
+* @param {Vector2} pos The position.
+* @param {Number} width The width.
+* @param {Number} height The height.
+* @returns {SpriteBuilder} this.
 */
 SpriteBuilder.prototype.create = function (textureName,pos,width,height) {
 

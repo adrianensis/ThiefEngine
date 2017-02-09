@@ -14,13 +14,13 @@ var Animation = function () {
 
 /**
 * Creates an animation.
-* @param {Number} frameCount The animation's number of frames.
+* @param {Number} frameCount The number of frames of the animation.
 * @param {Boolean} horizontal True if horizontal (left to right), False if vertical (down to up).
 * @param {Boolean} reverse True to use the reverse direction.
 * @param {Vector2} startPosition The start position (bottom-left corner of the frame) in texture coordinates (see OpenGL texture coordinates).
 * @param {Number} width The frame width.
 * @param {Number} height The frame height.
-* @param {Number} speed The animation's speed.
+* @param {Number} speed The speed of the animation.
 * @returns {Animation} The animation.
 */
 Animation.create = function (frameCount, horizontal, reverse, startPosition, width, height, speed) {
@@ -76,8 +76,8 @@ Animation.create = function (frameCount, horizontal, reverse, startPosition, wid
 //----------------------------------------------------------------------
 
 /**
-* Sets the animation's speed.
-* @param {Number} speed The animation's speed.
+* Set the speed of the animation.
+* @param {Number} speed The speed of the animation.
 */
 Animation.prototype.setSpeed = function (speed) {
     this.speed = speed;
@@ -86,7 +86,7 @@ Animation.prototype.setSpeed = function (speed) {
 //----------------------------------------------------------------------
 
 /**
-* Adds a frame to the animation.
+* Add a frame to the animation.
 * @param {AnimationFrame} frame The frame.
 */
 Animation.prototype.addFrame = function (frame) {
@@ -96,7 +96,7 @@ Animation.prototype.addFrame = function (frame) {
 //----------------------------------------------------------------------
 
 /**
-* Returns the number of frames.
+* Return the number of frames.
 * @returns {Number} The number of frames.
 */
 Animation.prototype.getNumberOfFrames = function () {
@@ -106,7 +106,7 @@ Animation.prototype.getNumberOfFrames = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns the current frame number.
+* Return the current frame number.
 * @returns {Number} The current frame number.
 */
 Animation.prototype.getCurrentFrameNumber = function () {
@@ -116,7 +116,7 @@ Animation.prototype.getCurrentFrameNumber = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns the next frame.
+* Return the next frame.
 * @returns {AnimationFrame} The next frame.
 */
 Animation.prototype.getNextFrame = function () {

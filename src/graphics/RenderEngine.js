@@ -2,7 +2,7 @@ gl = null;
 
 /**
 * @class
-* @classdesc This class manage the graphics of the application.
+* @classdesc This class manages the graphics of the application.
 */
 var RenderEngine = function (){
 
@@ -119,7 +119,7 @@ RenderEngine.prototype.setClearColor = function (color){
 //----------------------------------------------------------------------
 
 /**
-* Adds a list of renderers.
+* Add a list of renderers.
 * @param {Array} renderers The renderers.
 */
 RenderEngine.prototype.addRenderers = function (renderers){
@@ -127,7 +127,7 @@ RenderEngine.prototype.addRenderers = function (renderers){
   this.binded = false;
 
   for (var renderer of renderers) {
-    
+
 
     this.numLayers = Math.max(this.numLayers,renderer.getLayer()); // Always check the max number of layers.
 
@@ -162,7 +162,7 @@ RenderEngine.prototype.addRenderers = function (renderers){
 //----------------------------------------------------------------------
 
 /**
-* Returns the render context.
+* Return the render context.
 * @returns {renderContext} The render context.
 */
 RenderEngine.prototype.getRenderContext = function (){
@@ -172,7 +172,7 @@ RenderEngine.prototype.getRenderContext = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the render context.
+* Set the render context.
 * @param {renderContext} renderContext The render context.
 */
 RenderEngine.prototype.setRenderContext = function (renderContext){
@@ -182,7 +182,7 @@ RenderEngine.prototype.setRenderContext = function (renderContext){
 //----------------------------------------------------------------------
 
 /**
-* Updates the render engine.
+* Update the render engine.
 */
 RenderEngine.prototype.update = function (){
 

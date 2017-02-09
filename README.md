@@ -9,7 +9,7 @@
 
 ## About this project
 
->This Game Engine is developed as Degree's Final Project and it is written in Javascript, WebGL and GLSL. The engine is written from scratch (I'm not crazy, please trust me).
+>This Game Engine is developed as end-of-degree and it is written in Javascript, WebGL and GLSL. The engine is written from scratch (I'm not crazy, please trust me).
 
 >The goal of this project is to serve as Portfolio, proving that I really have certain game programming related knowledge.
 

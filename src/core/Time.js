@@ -54,7 +54,7 @@ Time.now = function () {
 //----------------------------------------------------------------------
 
 /**
-* Returns the delta time.
+* Return the delta time.
 * @returns {Number} The delta time.
 */
 Time.deltaTime = function () {

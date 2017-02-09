@@ -137,7 +137,7 @@ CircleCollider.prototype.testVertexEdge = function (vertices, otherCollider, con
 
     }else if(otherCollider instanceof AABBCollider){
 
-      var edges = otherCollider.getEdges(); // otherCollider's edges
+      var edges = otherCollider.getEdges(); // edges of the otherCollider
       var normals = otherCollider.getNormals(); // the normals of this collider
 
       // vertex - edge

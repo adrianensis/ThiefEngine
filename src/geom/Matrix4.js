@@ -44,7 +44,7 @@ var Matrix4 = function (row0,row1,row2,row3){
 //----------------------------------------------------------------------
 
 /**
-* Returns a copy of the matrix.
+* Return a copy of the matrix.
 * @returns {Matrix4} The copy.
 */
 Matrix4.prototype.cpy = function (){
@@ -56,7 +56,7 @@ Matrix4.prototype.cpy = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns an array that contains the matrix data.
+* Return an array that contains the matrix data.
 * @returns {Array} An array that contains the matrix data.
 */
 Matrix4.prototype.getData = function (){
@@ -66,7 +66,7 @@ Matrix4.prototype.getData = function (){
 //----------------------------------------------------------------------
 
 /**
-* Sets the internal data array.
+* Set the internal data array.
 * @param {Array} data The data array.
 */
 Matrix4.prototype.setData = function (data){
@@ -76,7 +76,7 @@ Matrix4.prototype.setData = function (data){
 //----------------------------------------------------------------------
 
 /**
-* Returns an element of the matrix.
+* Return an element of the matrix.
 * @param {Number} row The row.
 * @param {Number} col The col.
 * @returns {Number} An element of the matrix.
@@ -88,7 +88,7 @@ Matrix4.prototype.get = function (row,col){
 //----------------------------------------------------------------------
 
 /**
-* Sets an element of the matrix.
+* Set an element of the matrix.
 * @param {Number} row The row.
 * @param {Number} col The col.
 * @param {Number} value The value of the element.
@@ -121,7 +121,7 @@ Matrix4.prototype.setRows = function (row0,row1,row2,row3){
 //----------------------------------------------------------------------
 
 /**
-* Returns the transposed matrix.
+* Return the transposed matrix.
 * @returns {Matrix4} The transposed matrix.
 */
 Matrix4.prototype.transpose = function () {

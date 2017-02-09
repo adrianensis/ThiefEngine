@@ -1,3 +1,10 @@
+/**
+* @class
+* @extends {Collider}
+* @classdesc  This collider has a circle shape.
+* @param {Number} radius The radius.
+* @param {Boolean} isSensor True if the collider is a sensor.
+*/
 var CircleCollider = function (radius, isSensor) {
     Collider.call(this, isSensor);
     this.radius = radius;

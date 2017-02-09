@@ -112,7 +112,7 @@ Shader.fsDebug=
 //----------------------------------------------------------------------
 
 /**
-* Returns true if the shader is compiled.
+* Return true if the shader is compiled.
 * @returns {Boolean} True if the shader is compiled.
 */
 Shader.prototype.isCompiled = function (){
@@ -122,7 +122,7 @@ Shader.prototype.isCompiled = function (){
 //----------------------------------------------------------------------
 
 /**
-* Returns the program id.
+* Return the program id.
 * @returns {Number} The program id.
 */
 Shader.prototype.getProgramid = function (){
@@ -132,7 +132,7 @@ Shader.prototype.getProgramid = function (){
 //----------------------------------------------------------------------
 
 /**
-* Adds a vertex shader.
+* Add a vertex shader.
 * @param {String} sourceText The source.
 */
 Shader.prototype.addVertexShader = function (sourceText){
@@ -146,7 +146,7 @@ Shader.prototype.addVertexShader = function (sourceText){
 //----------------------------------------------------------------------
 
 /**
-* Adds a fragment shader.
+* Add a fragment shader.
 * @param {String} sourceText The source.
 */
 Shader.prototype.addFragmentShader = function (sourceText){
@@ -160,7 +160,7 @@ Shader.prototype.addFragmentShader = function (sourceText){
 //----------------------------------------------------------------------
 
 /**
-* Adds an attribute. Binds an attribute to a location.
+* Add an attribute. Binds an attribute to a location.
 * @param {Number} location The location of the attribute.
 * @param {String} name The name of the attribute.
 */
@@ -275,7 +275,7 @@ Shader.prototype.enable = function (){
 //----------------------------------------------------------------------
 
 /**
-* Disables the shader.
+* Disable the shader.
 */
 Shader.prototype.disable = function (){
   gl.useProgram(null);
