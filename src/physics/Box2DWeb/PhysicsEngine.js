@@ -1,3 +1,6 @@
+// var Box2D = {};
+// using(Box2D, "b2.+");
+
   b2Vec2 = Box2D.Common.Math.b2Vec2,
  b2BodyDef = Box2D.Dynamics.b2BodyDef,
  b2Body = Box2D.Dynamics.b2Body,
@@ -9,6 +12,8 @@
  b2CircleShape = Box2D.Collision.Shapes.b2CircleShape,
  b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
 b2Listener = Box2D.Dynamics.b2ContactListener;
+// b2Listener = Box2D.b2ContactListener;
+// console.log(Box2D);
 
 var PhysicsEngine = function (){
     this.bodies = [];
@@ -23,14 +28,20 @@ var PhysicsEngine = function (){
         var gameObjectA = contact.GetFixtureA().GetBody().GetUserData();
         var gameObjectB = contact.GetFixtureB().GetBody().GetUserData();
 
-        var scriptA = gameObjectA.getComponent(Script);
-        var scriptB = gameObjectB.getComponent(Script);
+        var bodyA = gameObjectA.getComponent(RigidBody);
+        var bodyB = gameObjectB.getComponent(RigidBody);
 
-        if(scriptA !== null && (! scriptA.isDestroyed()) && scriptA.isEnabled())
-          scriptA.onEnterCollision(gameObjectB,contact);
+        if(((! bodyA.isDestroyed()) && bodyA.isEnabled()) && ((! bodyB.isDestroyed()) && bodyB.isEnabled())){
 
-        if(scriptB !== null && (! scriptB.isDestroyed()) && scriptB.isEnabled())
-          scriptB.onEnterCollision(gameObjectA,contact);
+          var scriptA = gameObjectA.getComponent(Script);
+          var scriptB = gameObjectB.getComponent(Script);
+
+          if(scriptA !== null && (! scriptA.isDestroyed()) && scriptA.isEnabled())
+            scriptA.onEnterCollision(gameObjectB,contact);
+
+          if(scriptB !== null && (! scriptB.isDestroyed()) && scriptB.isEnabled())
+            scriptB.onEnterCollision(gameObjectA,contact);
+        }
     };
 
     this.listener.EndContact = function(contact) {
@@ -38,14 +49,20 @@ var PhysicsEngine = function (){
         var gameObjectA = contact.GetFixtureA().GetBody().GetUserData();
         var gameObjectB = contact.GetFixtureB().GetBody().GetUserData();
 
-        var scriptA = gameObjectA.getComponent(Script);
-        var scriptB = gameObjectB.getComponent(Script);
+        var bodyA = gameObjectA.getComponent(RigidBody);
+        var bodyB = gameObjectB.getComponent(RigidBody);
 
-        if(scriptA !== null && (! scriptA.isDestroyed()) && scriptA.isEnabled())
-          scriptA.onExitCollision(gameObjectB,contact);
+        if(((! bodyA.isDestroyed()) && bodyA.isEnabled()) && ((! bodyB.isDestroyed()) && bodyB.isEnabled())){
 
-        if(scriptB !== null && (! scriptB.isDestroyed()) && scriptB.isEnabled())
-          scriptB.onExitCollision(gameObjectA,contact);
+          var scriptA = gameObjectA.getComponent(Script);
+          var scriptB = gameObjectB.getComponent(Script);
+
+          if(scriptA !== null && (! scriptA.isDestroyed()) && scriptA.isEnabled())
+            scriptA.onExitCollision(gameObjectB,contact);
+
+          if(scriptB !== null && (! scriptB.isDestroyed()) && scriptB.isEnabled())
+            scriptB.onExitCollision(gameObjectA,contact);
+        }
     };
 
     this.init();
@@ -108,11 +125,15 @@ PhysicsEngine.prototype.clear = function (){
 
 PhysicsEngine.prototype.update = function (dt){
 
+
+
   this.world.Step(
         dt,   //frame-rate
-        5,       //velocity iterations
+        8,       //velocity iterations
         3       //position iterations
   );
+
+  var newList = [];
 
   for (var i = 0; i < this.bodies.length; i++) {
 
@@ -129,10 +150,14 @@ PhysicsEngine.prototype.update = function (dt){
       body.gameObject.getTransform().setPosition(new Vector2(x,y));
       body.gameObject.getTransform().setRotation(new Vector3(0,0,angle));
 
+      newList.push(body);
 
+      var name = body.getGameObject().getId();
+      // console.log("update " + name);
 
-    }else if(body.isDestroyed())
+    }else if(body.isDestroyed()){
       this.destroyList.push(body);
+    }
 
     // if(body.isStatic()){
     //   body.getBox2dBody().SetAngle(0);
@@ -141,12 +166,21 @@ PhysicsEngine.prototype.update = function (dt){
 
   }
 
-  for (var i = 0; i < this.destroyList.length; i++) {
-
-    this.world.DestroyBody(this.destroyList[i].getBox2dBody());
-  }
+  this.bodies = newList;
 
   this.world.ClearForces();
+
+  for (var i = 0; i < this.destroyList.length; i++){
+    var name = this.destroyList[i].getGameObject().getId();
+    // console.log("delete " + name);
+
+    var box2dBody = this.destroyList[i].getBox2dBody();
+    // var box2dFixture = this.destroyList[i].getBox2dFixture();
+    // box2dBody.DestroyFixture(box2dFixture);
+    this.world.DestroyBody(box2dBody);
+    this.destroyList[i].body = null;
+  }
+
   this.destroyList = [];
 
 

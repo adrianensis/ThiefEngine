@@ -82,7 +82,7 @@ Thief/Thief.js
 
 #list="core geom graphics physics gameobject script" #../test/test5.js"
 
-rm "thief.min.js" 2> /dev/null
+rm "thief.js" 2> /dev/null
 
 for i in $list
 do

@@ -240,8 +240,9 @@ Engine.prototype.run = function () {
       while(dt > step){
         dt = dt - step;
 
-        if(engine.physicsEnabled)
+        if(engine.physicsEnabled){
           physicsEngine.update(step);
+        }
       }
 
       Time.delta = dt*1000;

@@ -96,7 +96,7 @@ PlayerLogic.prototype.update = function (){
 PlayerLogic.prototype.onEnterCollision = function (otherGameObject, contact){
   // console.log("onEnterCollision");
 
-  // otherGameObject.destroy();
+  otherGameObject.destroy();
 };
 
 //----------------------------------------------------------------------
