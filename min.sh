@@ -41,6 +41,7 @@ gameobject/BaseObject.js
 gameobject/GameObject.js
 gameobject/Component.js
 
+physics/Matter/Matterjs
 physics/Box2DWeb/Box2d.min.js
 physics/Box2DWeb/PhysicsEngine.js
 physics/Box2DWeb/RigidBody.js

@@ -175,9 +175,9 @@ Thief.createAndSetScene("test2");
   Thief.addGameObjectToScene(player);
 
   Thief.addGameObjectToScene(createSoilder(2,-1.5, "sol1"));
-  Thief.addGameObjectToScene(createSoilder(3.1,-1.3, "sol2"));
-  // Thief.addGameObjectToScene(createSoilder(4.2,-1.2, "sol3"));
-  // Thief.addGameObjectToScene(createSoilder(5.3,-1.1, "sol4"));
+  Thief.addGameObjectToScene(createSoilder(3.1,-1.5, "sol2"));
+  Thief.addGameObjectToScene(createSoilder(4.2,-1.2, "sol3"));
+  Thief.addGameObjectToScene(createSoilder(5.3,-1.1, "sol4"));
   // Thief.addGameObjectToScene(snorlax);
   // Thief.addGameObjectToScene(font);
 

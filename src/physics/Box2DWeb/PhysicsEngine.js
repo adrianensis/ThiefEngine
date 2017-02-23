@@ -12,8 +12,17 @@
  b2CircleShape = Box2D.Collision.Shapes.b2CircleShape,
  b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
 b2Listener = Box2D.Dynamics.b2ContactListener;
-// b2Listener = Box2D.b2ContactListener;
+// b2Listener = b2ContactListener;
 // console.log(Box2D);
+
+// var Box2D = {};
+// pattern = new RegExp("b2.+");
+//
+// for (var name in this) {
+//   if (name.match(pattern)) {
+//       console.log(this[name]);
+//   }
+// }
 
 var PhysicsEngine = function (){
     this.bodies = [];
@@ -129,7 +138,7 @@ PhysicsEngine.prototype.update = function (dt){
 
   this.world.Step(
         dt,   //frame-rate
-        8,       //velocity iterations
+        6,       //velocity iterations
         3       //position iterations
   );
 
