@@ -161,17 +161,9 @@ PhysicsEngine.prototype.update = function (dt){
 
       newList.push(body);
 
-      var name = body.getGameObject().getId();
-      // console.log("update " + name);
-
     }else if(body.isDestroyed()){
       this.destroyList.push(body);
     }
-
-    // if(body.isStatic()){
-    //   body.getBox2dBody().SetAngle(0);
-    //   body.getBox2dBody().SetSpin(0);
-    // }
 
   }
 
@@ -180,13 +172,10 @@ PhysicsEngine.prototype.update = function (dt){
   this.world.ClearForces();
 
   for (var i = 0; i < this.destroyList.length; i++){
-    var name = this.destroyList[i].getGameObject().getId();
-    // console.log("delete " + name);
-
+    
     var box2dBody = this.destroyList[i].getBox2dBody();
-    // var box2dFixture = this.destroyList[i].getBox2dFixture();
-    // box2dBody.DestroyFixture(box2dFixture);
-    this.world.DestroyBody(box2dBody);
+
+    box2dBody.GetWorld().DestroyBody(box2dBody);
     this.destroyList[i].body = null;
   }
 

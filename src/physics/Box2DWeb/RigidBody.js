@@ -108,10 +108,10 @@ RigidBody.prototype.isStatic = function () {
 */
 RigidBody.prototype.disable = function () {
 	Component.prototype.disable.call(this);
-	for(var i=0; i<this.body.GetFixtureList().length;i++){
-      this.body.GetFixtureList().get(i).setSensor(true);
-  }
-	this.body.SetActive(false); //freeze
+	// for(var i=0; i<this.body.GetFixtureList().length;i++){
+  //     this.body.GetFixtureList().get(i).setSensor(true);
+  // }
+	// this.body.SetActive(false); //freeze
 };
 
 //----------------------------------------------------------------------
@@ -122,10 +122,10 @@ RigidBody.prototype.disable = function () {
 */
 RigidBody.prototype.enable = function () {
 	Component.prototype.enable.call(this);
-	for(var i=0; i<this.body.GetFixtureList().length;i++){
-      this.body.GetFixtureList().get(i).setSensor(true);
-  }
-	this.body.SetActive(true); //unfreeze
+	// for(var i=0; i<this.body.GetFixtureList().length;i++){
+  //     this.body.GetFixtureList().get(i).setSensor(true);
+  // }
+	// this.body.SetActive(true); //unfreeze
 };
 
 //----------------------------------------------------------------------

@@ -16,6 +16,7 @@
 # physics/Custom/AABBCollider.js
 # physics/Custom/CircleCollider.js
 
+
 list="
 geom/Vector4.js
 geom/Vector3.js
@@ -41,15 +42,12 @@ gameobject/BaseObject.js
 gameobject/GameObject.js
 gameobject/Component.js
 
-physics/Matter/Matterjs
 physics/Box2DWeb/Box2d.min.js
 physics/Box2DWeb/PhysicsEngine.js
 physics/Box2DWeb/RigidBody.js
 physics/Box2DWeb/Collider.js
 physics/Box2DWeb/AABBCollider.js
 physics/Box2DWeb/CircleCollider.js
-
-
 
 gameobject/Scene.js
 gameobject/Transform.js

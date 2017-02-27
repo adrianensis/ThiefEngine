@@ -4876,13 +4876,9 @@ Box2D.postDefs = [];
       }
    }
    b2DynamicTreeBroadPhase.prototype.TestOverlap = function (proxyA, proxyB) {
-      if(proxyA === null || proxyB === false)
-      	return false;
-      else{
-      	var aabbA = this.m_tree.GetFatAABB(proxyA);
-      	var aabbB = this.m_tree.GetFatAABB(proxyB);
-      	return aabbA.TestOverlap(aabbB);
-      }
+      var aabbA = this.m_tree.GetFatAABB(proxyA);
+      var aabbB = this.m_tree.GetFatAABB(proxyB);
+      return aabbA.TestOverlap(aabbB);
    }
    b2DynamicTreeBroadPhase.prototype.GetUserData = function (proxy) {
       return this.m_tree.GetUserData(proxy);
@@ -8359,17 +8355,14 @@ Box2D.postDefs = [];
          }
          var proxyA = fixtureA.m_proxy;
          var proxyB = fixtureB.m_proxy;
-         //if(proxyA !== null && proxyB !== null ){
-                 var overlap = this.m_broadPhase.TestOverlap(proxyA, proxyB);
-		 if (overlap == false) {
-		    cNuke = c;
-		    c = cNuke.GetNext();
-		    this.Destroy(cNuke);
-		    continue;
-		 }
-		 c.Update(this.m_contactListener);
-         //}
-         
+         var overlap = this.m_broadPhase.TestOverlap(proxyA, proxyB);
+         if (overlap == false) {
+            cNuke = c;
+            c = cNuke.GetNext();
+            this.Destroy(cNuke);
+            continue;
+         }
+         c.Update(this.m_contactListener);
          c = c.GetNext();
       }
    }
@@ -10051,20 +10044,16 @@ Box2D.postDefs = [];
          contact.m_fixtureA.m_body.SetAwake(true);
          contact.m_fixtureB.m_body.SetAwake(true);
       }
-      
-      if(contact.m_fixtureA.m_shape !== null && contact.m_fixtureB.m_shape !== null){
-      
-	      var type1 = parseInt(contact.m_fixtureA.GetType());
-	      var type2 = parseInt(contact.m_fixtureB.GetType());
-	      var reg = this.m_registers[type1][type2];
-	      if (true) {
-		 reg.poolCount++;
-		 contact.m_next = reg.pool;
-		 reg.pool = contact;
-	      }
-	      var destroyFcn = reg.destroyFcn;
-	      destroyFcn(contact, this.m_allocator);
+      var type1 = parseInt(contact.m_fixtureA.GetType());
+      var type2 = parseInt(contact.m_fixtureB.GetType());
+      var reg = this.m_registers[type1][type2];
+      if (true) {
+         reg.poolCount++;
+         contact.m_next = reg.pool;
+         reg.pool = contact;
       }
+      var destroyFcn = reg.destroyFcn;
+      destroyFcn(contact, this.m_allocator);
    }
    b2ContactRegister.b2ContactRegister = function () {};
    b2ContactResult.b2ContactResult = function () {
@@ -14179,17 +14168,9 @@ PhysicsEngine.prototype.update = function (dt){
 
       newList.push(body);
 
-      var name = body.getGameObject().getId();
-      // console.log("update " + name);
-
     }else if(body.isDestroyed()){
       this.destroyList.push(body);
     }
-
-    // if(body.isStatic()){
-    //   body.getBox2dBody().SetAngle(0);
-    //   body.getBox2dBody().SetSpin(0);
-    // }
 
   }
 
@@ -14198,13 +14179,10 @@ PhysicsEngine.prototype.update = function (dt){
   this.world.ClearForces();
 
   for (var i = 0; i < this.destroyList.length; i++){
-    var name = this.destroyList[i].getGameObject().getId();
-    // console.log("delete " + name);
-
+    
     var box2dBody = this.destroyList[i].getBox2dBody();
-    // var box2dFixture = this.destroyList[i].getBox2dFixture();
-    // box2dBody.DestroyFixture(box2dFixture);
-    this.world.DestroyBody(box2dBody);
+
+    box2dBody.GetWorld().DestroyBody(box2dBody);
     this.destroyList[i].body = null;
   }
 
@@ -14325,10 +14303,10 @@ RigidBody.prototype.isStatic = function () {
 */
 RigidBody.prototype.disable = function () {
 	Component.prototype.disable.call(this);
-	for(var i=0; i<this.body.GetFixtureList().length;i++){
-      this.body.GetFixtureList().get(i).setSensor(true);
-  }
-	this.body.SetActive(false); //freeze
+	// for(var i=0; i<this.body.GetFixtureList().length;i++){
+  //     this.body.GetFixtureList().get(i).setSensor(true);
+  // }
+	// this.body.SetActive(false); //freeze
 };
 
 //----------------------------------------------------------------------
@@ -14339,10 +14317,10 @@ RigidBody.prototype.disable = function () {
 */
 RigidBody.prototype.enable = function () {
 	Component.prototype.enable.call(this);
-	for(var i=0; i<this.body.GetFixtureList().length;i++){
-      this.body.GetFixtureList().get(i).setSensor(true);
-  }
-	this.body.SetActive(true); //unfreeze
+	// for(var i=0; i<this.body.GetFixtureList().length;i++){
+  //     this.body.GetFixtureList().get(i).setSensor(true);
+  // }
+	// this.body.SetActive(true); //unfreeze
 };
 
 //----------------------------------------------------------------------
