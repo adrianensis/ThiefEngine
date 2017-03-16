@@ -47,7 +47,7 @@ Collider2D.prototype.test = function (otherCollider) {
 
 	var result = false;
 
-	if(otherCollider instanceof AABBCollider)
+	if(otherCollider instanceof BoxCollider)
 		result = this.testRectangle(otherCollider,0);
 	else if(otherCollider instanceof CircleCollider)
 		result = this.testCircle(otherCollider,0);
@@ -64,7 +64,7 @@ Collider2D.prototype.testEpsilon = function (otherCollider,eps) {
 
 	var result = false;
 
-	if(otherCollider instanceof AABBCollider)
+	if(otherCollider instanceof BoxCollider)
 		result = this.testRectangle(otherCollider,eps);
 	else if(otherCollider instanceof CircleCollider)
 		result = this.testCircle(otherCollider,eps);

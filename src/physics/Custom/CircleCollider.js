@@ -135,7 +135,7 @@ CircleCollider.prototype.testVertexEdge = function (vertices, otherCollider, con
       maxDistance = d;
       normal = closest.cpy().sub(vertex).nor();
 
-    }else if(otherCollider instanceof AABBCollider){
+    }else if(otherCollider instanceof BoxCollider){
 
       var edges = otherCollider.getEdges(); // edges of the otherCollider
       var normals = otherCollider.getNormals(); // the normals of this collider

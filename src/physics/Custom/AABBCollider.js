@@ -1,13 +1,13 @@
-var AABBCollider = function (width, height) {
+var BoxCollider = function (width, height) {
   Polygon.call(this, width, height);
 };
 
-AABBCollider.prototype = new Polygon();
-AABBCollider.prototype.constructor = AABBCollider;
+BoxCollider.prototype = new Polygon();
+BoxCollider.prototype.constructor = BoxCollider;
 
 //----------------------------------------------------------------------
 
-AABBCollider.prototype.getVertices = function () {
+BoxCollider.prototype.getVertices = function () {
   return this.getBoundingBox(); // here I don't return this.vertices, instead I return the boundig box
 };
 
@@ -17,14 +17,14 @@ AABBCollider.prototype.getVertices = function () {
 
 //----------------------------------------------------------------------
 
-AABBCollider.prototype.getRadius = function () {
+BoxCollider.prototype.getRadius = function () {
 	// diagonal
   return Math.sqrt(( this.width * this.width ) + (  this.height * this.height )) / 2.0;
 };
 
 //----------------------------------------------------------------------
 
-AABBCollider.prototype.getNormals = function () {
+BoxCollider.prototype.getNormals = function () {
   var normals = [];
   var center = this.getCenter();
 
@@ -45,7 +45,7 @@ AABBCollider.prototype.getNormals = function () {
 
 //----------------------------------------------------------------------
 
-AABBCollider.prototype.testPoint = function (vec) {
+BoxCollider.prototype.testPoint = function (vec) {
 
   this.getBoundingBox();
 
@@ -59,13 +59,13 @@ AABBCollider.prototype.testPoint = function (vec) {
 
 //----------------------------------------------------------------------
 
-AABBCollider.prototype.testCircle = function (otherCollider,eps) {
+BoxCollider.prototype.testCircle = function (otherCollider,eps) {
 	throw new Error("Abstract method!");
 };
 
 //----------------------------------------------------------------------
 
-AABBCollider.prototype.testRectangle = function (otherCollider,eps) {
+BoxCollider.prototype.testRectangle = function (otherCollider,eps) {
 
   this.getBoundingBox();
 

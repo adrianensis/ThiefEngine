@@ -38,7 +38,7 @@ PlayerLogic.prototype.update = function (){
         addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
         setAnimation("right"). // set the default animation
         setRigidBody(1,0,0). // set physics properties
-        setCollider(new AABBCollider(1,1, false)). // set a Box Collider
+        setCollider(new BoxCollider(1,1, false)). // set a Box Collider
       end();
     };
 

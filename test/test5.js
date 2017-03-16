@@ -120,7 +120,7 @@ Thief.createAndSetScene("test2");
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
     setRigidBody(0,0,0). // set physics properties
-    setCollider(new AABBCollider(1,1, false)). // set a Box Collider
+    setCollider(new BoxCollider(1,1, false)). // set a Box Collider
   end();
 
 
@@ -136,7 +136,7 @@ Thief.createAndSetScene("test2");
     addAnimation("right", 4, true, false, new Vector2(0,0.25), 1/4, 1/4, 6). // add RIGHT animation
     setAnimation("down"). // set the default animation
     setRigidBody(1,0,0). // set physics properties
-    // setCollider(new AABBCollider(1,1, false)). // set a Box Collider
+    // setCollider(new BoxCollider(1,1, false)). // set a Box Collider
     setCollider(new CircleCollider(0.5,false)). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
   end();
@@ -152,7 +152,7 @@ Thief.createAndSetScene("test2");
       addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
       setAnimation("right"). // set the default animation
       setRigidBody(1,0,0). // set physics properties
-      setCollider(new AABBCollider(1,1, false)). // set a Box Collider
+      setCollider(new BoxCollider(1,1, false)). // set a Box Collider
     end();
   };
 

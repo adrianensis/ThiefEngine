@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: PerspectiveCamera</title>
+    <title>JSDoc: Class: BoxCollider</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: PerspectiveCamera</h1>
+    <h1 class="page-title">Class: BoxCollider</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2>PerspectiveCamera</h2>
+        <h2>BoxCollider</h2>
         
-            <div class="class-description">This class represents an Perspective Projection camera.</div>
+            <div class="class-description">This collider has a rectangle shape. It is axis aligned.</div>
         
     
 </header>
@@ -44,7 +44,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="PerspectiveCamera"><span class="type-signature"></span>new PerspectiveCamera<span class="signature">(near, far, aspect, fov)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="BoxCollider"><span class="type-signature"></span>new BoxCollider<span class="signature">(width, height, isSensor)</span><span class="type-signature"></span></h4>
 
     
 
@@ -83,7 +83,7 @@
 
         <tr>
             
-                <td class="name"><code>near</code></td>
+                <td class="name"><code>width</code></td>
             
 
             <td class="type">
@@ -99,14 +99,14 @@
 
             
 
-            <td class="description last">The distance of the near plane.</td>
+            <td class="description last">The width.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>far</code></td>
+                <td class="name"><code>height</code></td>
             
 
             <td class="type">
@@ -122,20 +122,20 @@
 
             
 
-            <td class="description last">The distance of the far plane.</td>
+            <td class="description last">The height.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>aspect</code></td>
+                <td class="name"><code>isSensor</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -145,30 +145,7 @@
 
             
 
-            <td class="description last">The aspect ratio.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fov</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The Field of View, in degrees.</td>
+            <td class="description last">True if the collider is a sensor.</td>
         </tr>
 
     
@@ -209,7 +186,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="thief.js.html">thief.js</a>, <a href="thief.js.html#line5077">line 5077</a>
+        <a href="thief.js.html">thief.js</a>, <a href="thief.js.html#line3945">line 3945</a>
     </li></ul></dd>
     
 
@@ -245,7 +222,7 @@
 
 
     <ul>
-        <li><a href="Camera.html">Camera</a></li>
+        <li><a href="Collider.html">Collider</a></li>
     </ul>
 
 
@@ -640,115 +617,6 @@ in the children of the game component.
 
     
 
-    <h4 class="name" id="getFrustum"><span class="type-signature"></span>getFrustum<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Frustum.html">Frustum</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Return the frustum.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Camera.html#getFrustum">Camera#getFrustum</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="thief.js.html">thief.js</a>, <a href="thief.js.html#line4990">line 4990</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The frustum.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Frustum.html">Frustum</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
     <h4 class="name" id="getGameObject"><span class="type-signature"></span>getGameObject<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="GameObject.html">GameObject</a>}</span></h4>
 
     
@@ -1077,224 +945,6 @@ this component, in the parent of the game object.
 
     
 
-    <h4 class="name" id="getProjectionMatrix"><span class="type-signature"></span>getProjectionMatrix<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Matrix4.html">Matrix4</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Return the projection matrix.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Camera.html#getProjectionMatrix">Camera#getProjectionMatrix</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="thief.js.html">thief.js</a>, <a href="thief.js.html#line5010">line 5010</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The projectionMatrix.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Matrix4.html">Matrix4</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getViewMatrix"><span class="type-signature"></span>getViewMatrix<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Matrix4.html">Matrix4</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Return the view matrix.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Camera.html#getViewMatrix">Camera#getViewMatrix</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="thief.js.html">thief.js</a>, <a href="thief.js.html#line5020">line 5020</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The viewMatrix.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Matrix4.html">Matrix4</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
     <h4 class="name" id="isDestroyed"><span class="type-signature"></span>isDestroyed<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
 
     
@@ -1513,6 +1163,115 @@ this component, in the parent of the game object.
 
     
 
+    <h4 class="name" id="isSensor"><span class="type-signature"></span>isSensor<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Return if collider is a sensor.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collider.html#isSensor">Collider#isSensor</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="thief.js.html">thief.js</a>, <a href="thief.js.html#line3926">line 3926</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    True if collider is a sensor.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="setGameObject"><span class="type-signature"></span>setGameObject<span class="signature">(gameObject)</span><span class="type-signature"></span></h4>
 
     
@@ -1619,142 +1378,6 @@ this component, in the parent of the game object.
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="thief.js.html">thief.js</a>, <a href="thief.js.html#line3061">line 3061</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setProjection"><span class="type-signature"></span>setProjection<span class="signature">(projectionMatrix)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Set the projection matrix.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>projectionMatrix</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Matrix4.html">Matrix4</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The projection matrix.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Camera.html#setProjection">Camera#setProjection</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="thief.js.html">thief.js</a>, <a href="thief.js.html#line5000">line 5000</a>
     </li></ul></dd>
     
 

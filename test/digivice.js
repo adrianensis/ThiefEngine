@@ -25,14 +25,14 @@ var test = function () {
   //   addAnimation("left", 4, true, false, new Vector2(0,0.5), 1/4, 1/4, 6). // add LEFT animation
   //   addAnimation("right", 4, true, false, new Vector2(0,0.25), 1/4, 1/4, 6). // add RIGHT animation
   //   setAnimation("down"). // set the default animation
-  //   setCollider(AABBCollider). // set a Box Collider
+  //   setCollider(BoxCollider). // set a Box Collider
   //   addScript(new PlayerLogic()). // add a Logic Script
   // end();
   //
   // Thief.spriteBuilder.begin("test/res/soldier.png", new Vector2(0,2), 1, true). // create a basic sprite
   //   addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
   //   setAnimation("right"). // set the default animation
-  //   setCollider(AABBCollider). // set a Box Collider
+  //   setCollider(BoxCollider). // set a Box Collider
   // end();
 
   var zoom = 2;
