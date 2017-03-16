@@ -26,10 +26,7 @@ Script.prototype.start = function (){
 * This function runs each frame.
 */
 Script.prototype.update = function (){
-  var children = this.getChildren();
-	for (var i = 0; i < children.length; i++) {
-	   children[i].update();
-	}
+  throw new Error("Abstract method!");
 };
 
 //----------------------------------------------------------------------
