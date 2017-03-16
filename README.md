@@ -3,6 +3,12 @@
 <!-- ![logo](thief-logo.png) -->
 <img src ="thief-logo.png" width="640px" />
 
+
+## About the author
+
+See my personal portfolio →
+[https://adrianecom.github.io/portfolio/](https://adrianecom.github.io/portfolio/)
+
 ## Status
 
 :construction: Working on it :construction: :goberserk:
@@ -41,7 +47,3 @@
 
 You can test the engine opening the `test/index.hmtl` file in your browser.
 
-## About the author
-
-See my personal portfolio →
-[https://adrianecom.github.io/portfolio/](https://adrianecom.github.io/portfolio/)
