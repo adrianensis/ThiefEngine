@@ -3628,14 +3628,19 @@ var PhysicsEngine = function (){
 
         if(((! bodyA.isDestroyed()) && bodyA.isEnabled()) && ((! bodyB.isDestroyed()) && bodyB.isEnabled())){
 
-          var scriptA = gameObjectA.getComponent(Script);
-          var scriptB = gameObjectB.getComponent(Script);
+          var listA = gameObjectA.getAllComponents(Script);
+          var listB = gameObjectB.getAllComponents(Script);
 
-          if(scriptA !== null && (! scriptA.isDestroyed()) && scriptA.isEnabled())
-            scriptA.onEnterCollision(gameObjectB,contact);
+          for (script of listA) {
+            if(script !== null && (! script.isDestroyed()) && script.isEnabled())
+              script.onEnterCollision(gameObjectB,contact);
+          }
 
-          if(scriptB !== null && (! scriptB.isDestroyed()) && scriptB.isEnabled())
-            scriptB.onEnterCollision(gameObjectA,contact);
+          for (script of listB) {
+            if(script !== null && (! script.isDestroyed()) && script.isEnabled())
+              script.onEnterCollision(gameObjectA,contact);
+          }
+
         }
     };
 
@@ -3649,14 +3654,18 @@ var PhysicsEngine = function (){
 
         if(((! bodyA.isDestroyed()) && bodyA.isEnabled()) && ((! bodyB.isDestroyed()) && bodyB.isEnabled())){
 
-          var scriptA = gameObjectA.getComponent(Script);
-          var scriptB = gameObjectB.getComponent(Script);
+          var listA = gameObjectA.getAllComponents(Script);
+          var listB = gameObjectB.getAllComponents(Script);
 
-          if(scriptA !== null && (! scriptA.isDestroyed()) && scriptA.isEnabled())
-            scriptA.onExitCollision(gameObjectB,contact);
+          for (script of listA) {
+            if(script !== null && (! script.isDestroyed()) && script.isEnabled())
+              script.onExitCollision(gameObjectB,contact);
+          }
 
-          if(scriptB !== null && (! scriptB.isDestroyed()) && scriptB.isEnabled())
-            scriptB.onExitCollision(gameObjectA,contact);
+          for (script of listB) {
+            if(script !== null && (! script.isDestroyed()) && script.isEnabled())
+              script.onExitCollision(gameObjectA,contact);
+          }
         }
     };
 
@@ -3758,7 +3767,7 @@ PhysicsEngine.prototype.update = function (dt){
   this.world.ClearForces();
 
   for (var i = 0; i < this.destroyList.length; i++){
-    
+
     var box2dBody = this.destroyList[i].getBox2dBody();
 
     box2dBody.GetWorld().DestroyBody(box2dBody);
