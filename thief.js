@@ -2414,7 +2414,7 @@ var RenderEngine = function (){
     gl.cullFace(gl.BACK);
 
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-    // gl.enable(gl.BLEND);
+    gl.enable(gl.BLEND);
 
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);      // Clear the color and the depth buffer.
   }
@@ -5677,7 +5677,7 @@ Input.getButton = function (){
 
 /**
 * Return cursor position.
-* @returns {Vector4} The cursor position.
+* @returns {Vector2} The cursor position.
 */
 Input.getCursorPosition = function (){
 

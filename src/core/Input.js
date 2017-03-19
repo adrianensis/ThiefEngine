@@ -147,7 +147,7 @@ Input.getButton = function (){
 
 /**
 * Return cursor position.
-* @returns {Vector4} The cursor position.
+* @returns {Vector2} The cursor position.
 */
 Input.getCursorPosition = function (){
 
