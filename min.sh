@@ -18,6 +18,8 @@
 
 
 list="
+core/Canvas.js
+
 geom/Vector4.js
 geom/Vector3.js
 geom/Vector2.js

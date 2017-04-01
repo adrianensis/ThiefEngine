@@ -10,7 +10,7 @@ var RenderEngine = function (){
   this.numLayers = 0;
   this.binded = false;
 
-  var canvas = document.getElementById("glcanvas");
+  var canvas = Canvas.get();
 
   // ########################################
   // PATCH

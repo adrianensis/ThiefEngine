@@ -3,9 +3,7 @@ var PhysicsEngine = function (){
 
   // TODO refactor
 
-  // var canvas = document.getElementById("glcanvas");
-  // alert("Width: "+canvas.width/64 + " Height: " + canvas.height/64);
-  // this.tree = new QuadTree(canvas.width/64,canvas.height/64);
+  
   this.tree = new QuadTree(100,100);
   this.contactManager = new ContactManager();
 

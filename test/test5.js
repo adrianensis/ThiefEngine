@@ -8,7 +8,7 @@ Thief.createAndSetScene("test");
 
   // CAMERA
 
-  var canvas = document.getElementById("glcanvas");
+  var canvas = Canvas.get();
 
   var screenW = canvas.width;
   var screenH = canvas.height;

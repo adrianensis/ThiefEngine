@@ -49,7 +49,7 @@ var Input = function (){
 
     var onMouseMove = function(event){
 
-      var canvas = document.getElementById("glcanvas");
+      var canvas = Canvas.get();
 
 
         Input.cursorPos.x = event.clientX;
@@ -65,8 +65,6 @@ var Input = function (){
 
     var onMouseDown = function(event){
 
-        // Input.cursorPos.x = event.clientX;
-        // Input.cursorPos.y = event.clientY;
         Input.button = event.button;
 
         // event.preventDefault();
@@ -75,8 +73,6 @@ var Input = function (){
 
     var onMouseUp = function(event){
 
-        // Input.cursorPos.x = event.clientX;
-        // Input.cursorPos.y = event.clientY;
         Input.button = -1;
 
         // event.preventDefault();
@@ -86,7 +82,7 @@ var Input = function (){
     document.addEventListener("keydown", onKeyDown,false);
     document.addEventListener("keyup", onKeyUp,false);
 
-    var canvas = document.getElementById("glcanvas");
+    var canvas = Canvas.get();
     canvas.addEventListener("mousedown", onMouseDown,false);
     canvas.addEventListener("mouseup", onMouseUp,false);
     canvas.addEventListener("mousemove", onMouseMove,false);
