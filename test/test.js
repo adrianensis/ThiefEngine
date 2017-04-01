@@ -71,11 +71,28 @@ for ( var i=-r; i<r; i++ ) {
 
         var x,y,width,height;
 
-        if(v > 0.1){
+        v = Math.abs(v);
+
+        if(v < 0.1){
           // ROCK TILE
           // position of the tile within the texture: (0,40)
           x = tileWidth*0 + pixelWidth;
           y = (tileHeight*40) + pixelHeight;
+          width = tileWidth - pixelWidth;
+          height = tileHeight - pixelHeight;
+
+        }else if(v >= 0.1 && v < 0.3){
+          // WATER TILE
+          // position of the tile within the texture: (40,67)
+          x = tileWidth*40 + pixelWidth;
+          y = (tileHeight*67) + pixelHeight;
+          width = tileWidth - pixelWidth;
+          height = tileHeight - pixelHeight;
+        }else if(v >= 0.3 && v < 0.5){
+          // FLOWER TILE
+          // position of the tile within the texture: (5,67)
+          x = tileWidth*4 + pixelWidth;
+          y = (tileHeight*68) + pixelHeight;
           width = tileWidth - pixelWidth;
           height = tileHeight - pixelHeight;
         }else{
@@ -100,7 +117,7 @@ for ( var i=-r; i<r; i++ ) {
 
 // -----------------------------------------------------------------------------
 
-Thief.createAndSetScene("test2");
+// Thief.createAndSetScene("test2");
 
   // BITMAP FONTS
   var font =
@@ -116,7 +133,7 @@ Thief.createAndSetScene("test2");
 
   // SNORLAX
   var snorlax =
-  spriteBuilder.create("res/snorlax.bmp",new Vector2(0,-2),1,1).
+  spriteBuilder.create("res/snorlax.bmp",new Vector2(0,-1.7),1,1).
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
     setRigidBody(0,0,0). // set physics properties
@@ -149,6 +166,7 @@ Thief.createAndSetScene("test2");
   var createSoilder = function(x,y, name){
     // note that spriteBuilder is a global variable !
     return spriteBuilder.create("res/soldier.png",new Vector2(x,y),1,1).
+      setName(name).
       addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
       setAnimation("right"). // set the default animation
       setRigidBody(1,0,0). // set physics properties
@@ -174,15 +192,15 @@ Thief.createAndSetScene("test2");
 
   Thief.addGameObjectToScene(player);
 
-  Thief.addGameObjectToScene(createSoilder(2,-1.5, "sol1"));
-  Thief.addGameObjectToScene(createSoilder(3.1,-1.5, "sol2"));
-  Thief.addGameObjectToScene(createSoilder(4.2,-1.2, "sol3"));
-  Thief.addGameObjectToScene(createSoilder(5.3,-1.1, "sol4"));
+  // Thief.addGameObjectToScene(createSoilder(2,-1.5, "soilder"));
+  // Thief.addGameObjectToScene(createSoilder(3.1,-1.5, "soilder"));
+  // Thief.addGameObjectToScene(createSoilder(4.2,-1.2, "soilder"));
+  // Thief.addGameObjectToScene(createSoilder(5.3,-1.1, "soilder"));
   // Thief.addGameObjectToScene(snorlax);
   // Thief.addGameObjectToScene(font);
 
-  Thief.addGameObjectToScene(cam);
-  Thief.setCamera(cam);
+  // Thief.addGameObjectToScene(cam);
+  // Thief.setCamera(cam);
 
   // Thief.setGravity(new Vector2(0,-3));
 

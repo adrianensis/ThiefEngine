@@ -35,6 +35,7 @@ PlayerLogic.prototype.update = function (){
       // note that spriteBuilder is a global variable !
       var spriteBuilder = new SpriteBuilder();
       return spriteBuilder.create("res/soldier.png",new Vector2(x,y),1,1).
+        setName(name).
         addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
         setAnimation("right"). // set the default animation
         setRigidBody(1,0,0). // set physics properties
@@ -42,7 +43,7 @@ PlayerLogic.prototype.update = function (){
       end();
     };
 
-    Thief.addGameObjectToScene(createSoilder(-1,-1, "solx"));
+    Thief.addGameObjectToScene(createSoilder(-1,-1, "soilder"));
 
   }else if (Input.isKeyPressed(37)) {
     // LEFT
@@ -95,8 +96,8 @@ PlayerLogic.prototype.update = function (){
 
 PlayerLogic.prototype.onEnterCollision = function (otherGameObject, contact){
   // console.log("onEnterCollision");
-
-  otherGameObject.destroy();
+  if(otherGameObject.getName() === "soilder")
+    otherGameObject.destroy();
 };
 
 //----------------------------------------------------------------------
