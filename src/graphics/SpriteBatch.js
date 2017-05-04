@@ -29,8 +29,16 @@ SpriteBatch.binded = false;
 SpriteBatch.prototype.add = function (renderer){
 
   // stored by id
-  if( ! (renderer.getId() in this.renderers))
-    this.renderers[renderer.getId()] = renderer;
+  // if( ! (renderer.getId() in this.renderers))
+  //   this.renderers[renderer.getId()] = renderer;
+
+  // sort by layer
+  var layer = renderer.getLayer();
+
+  if(!this.renderers[layer])
+    this.renderers[layer] = [];
+
+  this.renderers[layer].push(renderer);
 };
 
 //----------------------------------------------------------------------
@@ -147,11 +155,11 @@ SpriteBatch.prototype.render = function (layer){
 
   var cam = this.renderContext.getCamera();
 
-  for (var key in this.renderers) {
+  for (var i = 0; i < this.renderers[layer].length; i++) {
 
-    var renderer = this.renderers[key];
+    var renderer = this.renderers[layer][i];
 
-    if(renderer.getLayer() === layer && renderer.isEnabled() && !renderer.isDestroyed()){
+    if(/*renderer.getLayer() === layer && */ renderer.isEnabled() && !renderer.isDestroyed()){
 
       var isInFrustum = cam.getFrustum().testSphere(renderer.getGameObject().getTransform().getPosition(), renderer.getRadius());
 
@@ -162,7 +170,7 @@ SpriteBatch.prototype.render = function (layer){
         gl.bindBuffer(gl.ARRAY_BUFFER, this.vboColor);
 
       	var color = [];
-      	for (var i = 0; i < SpriteBatch.mesh.getVerticesData().length/4; i++) {
+      	for (var j = 0; j < SpriteBatch.mesh.getVerticesData().length/4; j++) {
       	   color = color.concat(renderer.getMaterial().getColor().toArray());
       	}
       	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(color), gl.STATIC_DRAW);
