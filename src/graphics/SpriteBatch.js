@@ -76,9 +76,6 @@ SpriteBatch.prototype.bind = function (){
     gl.vertexAttribPointer(1, 2, gl.FLOAT, false, 0, 0);
 
 
-
-
-
     // NORMALS
     gl.enableVertexAttribArray(3);
     SpriteBatch.vboNormal = gl.createBuffer();
@@ -95,10 +92,6 @@ SpriteBatch.prototype.bind = function (){
     // Finised setting up VAO
     vao_ext.bindVertexArrayOES(null);
 
-    // var children = this.getChildren();
-    // for (var i = 0; i < children.length; i++) {
-    // 	children[i].bind();
-    // }
 
     }
 
@@ -106,13 +99,6 @@ SpriteBatch.prototype.bind = function (){
   // COLOR
   gl.enableVertexAttribArray(2);
   this.vboColor = gl.createBuffer();
-  // gl.bindBuffer(gl.ARRAY_BUFFER, this.vboColor);
-  // var color = [];
-  // for (var i = 0; i < SpriteBatch.mesh.getVerticesData().length/4; i++) {
-  // 	color = color.concat(this.material.color.getVector().toArray(());
-  // }
-  // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(color), gl.STATIC_DRAW); // TODO DYNAMIC
-  // gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 0, 0);
 
 };
 
@@ -148,8 +134,7 @@ SpriteBatch.prototype.render = function (layer){
 
   gl.enableVertexAttribArray(0);
 
-  // if(SpriteBatch.mesh.hasTexture())
-    gl.enableVertexAttribArray(1);
+  gl.enableVertexAttribArray(1);
 
   gl.enableVertexAttribArray(3);
 
@@ -169,10 +154,11 @@ SpriteBatch.prototype.render = function (layer){
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.vboColor);
 
+        // create color buffer
       	var color = [];
-      	for (var j = 0; j < SpriteBatch.mesh.getVerticesData().length/4; j++) {
+      	for (var j = 0; j < SpriteBatch.mesh.getVerticesData().length/4; j++)
       	   color = color.concat(renderer.getMaterial().getColor().toArray());
-      	}
+
       	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(color), gl.STATIC_DRAW);
       	gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 0, 0);
 
