@@ -4270,7 +4270,7 @@ Transform.prototype.generateLocalSpaceMatrix = function (){
 	if(this.rotation.z !== 0)
 		this.rotationMatrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
 
-	this.matrix = Matrix4.mulMM(Matrix4.mulMM(this.scaleMatrix, this.translationMatrix),this.rotationMatrix);
+	this.matrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.mulMM(this.scaleMatrix, this.translationMatrix));
 
 
 

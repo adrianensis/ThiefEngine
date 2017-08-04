@@ -86,7 +86,7 @@ Transform.prototype.initMatrix = function (){
 	var parent = this.getParent();
 
 	if(parent !== null)
-		this.matrix = Matrix4.mulMM(this.matrix,parent.getMatrix());
+		this.matrix = Matrix4.mulMM(parent.getMatrix(), this.matrix);
 
 	var children = this.getChildren();
 
