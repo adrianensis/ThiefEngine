@@ -195,12 +195,6 @@ Engine.prototype.run = function () {
             };
   })();
 
-  // window.requestAnimFrame = (function(){
-  //   return function( callback ){
-  //             window.setTimeout(callback, step*1000);
-  //           };
-  // })();
-
   var renderEngine = this.renderEngine;
   var physicsEngine = this.physicsEngine;
   var scriptEngine = this.scriptEngine;
@@ -212,10 +206,8 @@ Engine.prototype.run = function () {
   var main = function () {
 
     Time.tick();
-    // dt = dt + Math.min(step,Time.deltaTime());
-    dt = dt + Time.deltaTime();
 
-    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+    dt = dt + Time.deltaTime();
 
     if(! engine.getCurrentScene().isLoaded())
       engine.loadScene();
@@ -223,17 +215,12 @@ Engine.prototype.run = function () {
     if(engine.getCurrentScene().hasNewObjects())
       engine.updateScene();
 
-    // console.log(renderEngine.isBinded());
     if(Loader.isDone() && !renderEngine.isBinded()){
       engine.loaded = true;
       renderEngine.bind();
-      // Loader.reset();
     }
 
-
-
     if(engine.loaded){
-
 
       scriptEngine.update();
 

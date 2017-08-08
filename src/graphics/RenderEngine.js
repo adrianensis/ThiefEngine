@@ -224,9 +224,7 @@ RenderEngine.prototype.bind = function (){
 */
 RenderEngine.prototype.render = function (){
 
-  // TODO: culling ????
-
-
+  gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
 
   for (var i = 0; i <= this.numLayers; i++) {
 
@@ -235,7 +233,6 @@ RenderEngine.prototype.render = function (){
 
         this.textureBatches[j].render(i);
       }
-
 
       if(this.noTextureBatch !== null)
         this.noTextureBatch.render(i);

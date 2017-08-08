@@ -2576,7 +2576,7 @@ RenderEngine.prototype.bind = function (){
 RenderEngine.prototype.render = function (){
 
   // TODO: culling ????
-
+  gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
 
 
   for (var i = 0; i <= this.numLayers; i++) {
@@ -4270,7 +4270,7 @@ Transform.prototype.generateLocalSpaceMatrix = function (){
 	if(this.rotation.z !== 0)
 		this.rotationMatrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
 
-	this.matrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.mulMM(this.scaleMatrix, this.translationMatrix));
+	this.matrix = Matrix4.mulMM(Matrix4.mulMM(this.scaleMatrix, this.translationMatrix),this.rotationMatrix);
 
 
 
@@ -4288,7 +4288,7 @@ Transform.prototype.initMatrix = function (){
 	var parent = this.getParent();
 
 	if(parent !== null)
-		this.matrix = Matrix4.mulMM(this.matrix,parent.getMatrix());
+		this.matrix = Matrix4.mulMM(parent.getMatrix(), this.matrix);
 
 	var children = this.getChildren();
 
@@ -5360,12 +5360,6 @@ Engine.prototype.run = function () {
             };
   })();
 
-  // window.requestAnimFrame = (function(){
-  //   return function( callback ){
-  //             window.setTimeout(callback, step*1000);
-  //           };
-  // })();
-
   var renderEngine = this.renderEngine;
   var physicsEngine = this.physicsEngine;
   var scriptEngine = this.scriptEngine;
@@ -5377,10 +5371,8 @@ Engine.prototype.run = function () {
   var main = function () {
 
     Time.tick();
-    // dt = dt + Math.min(step,Time.deltaTime());
-    dt = dt + Time.deltaTime();
 
-    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+    dt = dt + Time.deltaTime();
 
     if(! engine.getCurrentScene().isLoaded())
       engine.loadScene();
@@ -5388,17 +5380,12 @@ Engine.prototype.run = function () {
     if(engine.getCurrentScene().hasNewObjects())
       engine.updateScene();
 
-    // console.log(renderEngine.isBinded());
     if(Loader.isDone() && !renderEngine.isBinded()){
       engine.loaded = true;
       renderEngine.bind();
-      // Loader.reset();
     }
 
-
-
     if(engine.loaded){
-
 
       scriptEngine.update();
 
