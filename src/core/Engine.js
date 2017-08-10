@@ -201,13 +201,13 @@ Engine.prototype.run = function () {
 
   var engine = this;
 
-  var dt = 0;
+  var accumulator = 0;
 
   var main = function () {
 
     Time.tick();
 
-    dt = dt + Time.deltaTime();
+    accumulator += Time.deltaTime();
 
     if(! engine.getCurrentScene().isLoaded())
       engine.loadScene();
@@ -224,16 +224,13 @@ Engine.prototype.run = function () {
 
       scriptEngine.update();
 
-      while(dt > step){
-        dt = dt - step;
+      while(accumulator >= step){
+        accumulator -= step;
 
         if(engine.physicsEnabled){
           physicsEngine.update(step);
         }
       }
-
-      Time.delta = dt*1000;
-      Time.deltaInSeconds = dt;
 
       renderEngine.update();
       renderEngine.render();

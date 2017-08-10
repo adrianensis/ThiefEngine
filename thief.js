@@ -2575,9 +2575,7 @@ RenderEngine.prototype.bind = function (){
 */
 RenderEngine.prototype.render = function (){
 
-  // TODO: culling ????
   gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
-
 
   for (var i = 0; i <= this.numLayers; i++) {
 
@@ -2586,7 +2584,6 @@ RenderEngine.prototype.render = function (){
 
         this.textureBatches[j].render(i);
       }
-
 
       if(this.noTextureBatch !== null)
         this.noTextureBatch.render(i);
@@ -5366,13 +5363,13 @@ Engine.prototype.run = function () {
 
   var engine = this;
 
-  var dt = 0;
+  var accumulator = 0;
 
   var main = function () {
 
     Time.tick();
 
-    dt = dt + Time.deltaTime();
+    accumulator += Time.deltaTime();
 
     if(! engine.getCurrentScene().isLoaded())
       engine.loadScene();
@@ -5389,16 +5386,16 @@ Engine.prototype.run = function () {
 
       scriptEngine.update();
 
-      while(dt > step){
-        dt = dt - step;
+      while(accumulator >= step){
+        accumulator -= step;
 
         if(engine.physicsEnabled){
           physicsEngine.update(step);
         }
       }
 
-      Time.delta = dt*1000;
-      Time.deltaInSeconds = dt;
+      //Time.delta = dt*1000;
+      //Time.deltaInSeconds = dt;
 
       renderEngine.update();
       renderEngine.render();

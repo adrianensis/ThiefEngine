@@ -56,11 +56,6 @@ for ( var i=-r; i<r; i++ ) {
 
         var v = perlin.generate(i,j); // generate random value
 
-        var tileWidth = 1/88; // width in pixels of a tile
-        var tileHeight = 1/69; // height in pixels of a tile
-        var pixelWidth = 1/1408; // 1408 is the texture width
-        var pixelHeight = 1/1104; // 1104 is the texture height
-
         var pos = new Vector2(i,j);
 
         // initialize sprite builder
@@ -76,32 +71,32 @@ for ( var i=-r; i<r; i++ ) {
         if(v < 0.1){
           // ROCK TILE
           // position of the tile within the texture: (0,40)
-          x = tileWidth*0 + pixelWidth;
-          y = (tileHeight*40) + pixelHeight;
-          width = tileWidth - pixelWidth;
-          height = tileHeight - pixelHeight;
+          x = tileWidth*0;
+          y = (tileHeight*40);
+          width = tileWidth;
+          height = tileHeight;
 
         }else if(v >= 0.1 && v < 0.3){
           // WATER TILE
           // position of the tile within the texture: (40,67)
-          x = tileWidth*40 + pixelWidth;
-          y = (tileHeight*67) + pixelHeight;
-          width = tileWidth - pixelWidth;
-          height = tileHeight - pixelHeight;
+          x = tileWidth*40;
+          y = (tileHeight*67);
+          width = tileWidth;
+          height = tileHeight;
         }else if(v >= 0.3 && v < 0.5){
           // FLOWER TILE
           // position of the tile within the texture: (5,67)
-          x = tileWidth*4 + pixelWidth;
-          y = (tileHeight*68) + pixelHeight;
-          width = tileWidth - pixelWidth;
-          height = tileHeight - pixelHeight;
+          x = tileWidth*4;
+          y = (tileHeight*68);
+          width = tileWidth;
+          height = tileHeight;
         }else{
           // GRASS TILE
           // position of the tile within the texture: (5,67)
-          x = tileWidth*5 + pixelWidth;
-          y = (tileHeight*67) + pixelHeight;
-          width = tileWidth - pixelWidth;
-          height = tileHeight - pixelHeight;
+          x = tileWidth*5;
+          y = (tileHeight*67);
+          width = tileWidth;
+          height = tileHeight;
         }
 
         spriteBuilder.setTextureRegion(new Vector2(x,y),width,height); // select the region of the texture atlas.
