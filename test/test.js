@@ -56,6 +56,9 @@ for ( var i=-r; i<r; i++ ) {
 
         var v = perlin.generate(i,j); // generate random value
 
+        var tileWidth = 1/88; // width in pixels of a tile
+        var tileHeight = 1/69; // height in pixels of a tile
+
         var pos = new Vector2(i,j);
 
         // initialize sprite builder
