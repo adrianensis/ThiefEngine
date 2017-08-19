@@ -46,13 +46,13 @@ var texture = "res/pokemonTiles.png"; // collection of pokemon tiles, the textur
 
 var perlin = new PerlinNoise(5,10); // perlin noise generator
 
-var resolution = 20; // number of tiles on x and y axes
-var r = resolution/2;
+var resolution = 10; // number of tiles on x and y axes
 var size = 1; // size of each tile
+var n = size * resolution/2;
 
 // this loop create the tiled map
-for ( var i=-r; i<r; i++ ) {
-    for ( var j=-r; j<r; j++ ) {
+for ( var i=0; i<n; i+= size ) {
+    for ( var j=0; j<n; j+= size ) {
 
         var v = perlin.generate(i,j); // generate random value
 
@@ -144,7 +144,7 @@ for ( var i=-r; i<r; i++ ) {
 
   // PLAYER
   var player =
-  spriteBuilder.create("res/pok-char.png",new Vector2(0,0),1,1).
+  spriteBuilder.create("res/pok-char.png",new Vector2(-2,-2),0.5,0.5).
     addAnimation("up", 4, true, false, new Vector2(0,0), 1/4, 1/4, 6). // add UP animation
     addAnimation("down", 4, true, false, new Vector2(0,0.75), 1/4, 1/4, 6). // add DOWN animation
     addAnimation("left", 4, true, false, new Vector2(0,0.5), 1/4, 1/4, 6). // add LEFT animation
@@ -152,7 +152,7 @@ for ( var i=-r; i<r; i++ ) {
     setAnimation("down"). // set the default animation
     setRigidBody(1,0,0). // set physics properties
     // setCollider(new BoxCollider(1,1, false)). // set a Box Collider
-    setCollider(new CircleCollider(0.5,false)). // set a Box Collider
+    setCollider(new CircleCollider(0.25,false)). // set a Box Collider
     addScript(new PlayerLogic()). // add a Logic Script
   end();
 
@@ -161,14 +161,14 @@ for ( var i=-r; i<r; i++ ) {
 
 
   // SOILDER
-  var createSoilder = function(x,y, name){
+  var createSoilder = function(x,y, size, name){
     // note that spriteBuilder is a global variable !
-    return spriteBuilder.create("res/soldier.png",new Vector2(x,y),1,1).
+    return spriteBuilder.create("res/soldier.png",new Vector2(x,y),size,size).
       setName(name).
       addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
       setAnimation("right"). // set the default animation
       setRigidBody(1,0,0). // set physics properties
-      setCollider(new BoxCollider(1,1, false)). // set a Box Collider
+      setCollider(new BoxCollider(size,size, false)). // set a Box Collider
     end();
   };
 
@@ -189,6 +189,14 @@ for ( var i=-r; i<r; i++ ) {
 // -----------------------------------------------------------------------------
 
   Thief.addGameObjectToScene(player);
+
+  var size = 0.5;
+  var n = 30;
+  var nn = n*size;
+
+  for ( var i=0; i<nn; i+=size) {
+    	Thief.addGameObjectToScene(createSoilder(i+1,0, size, "soilder"));
+  }
 
   // Thief.addGameObjectToScene(createSoilder(2,-1.5, "soilder"));
   // Thief.addGameObjectToScene(createSoilder(3.1,-1.5, "soilder"));

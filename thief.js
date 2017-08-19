@@ -4267,7 +4267,7 @@ Transform.prototype.generateLocalSpaceMatrix = function (){
 	if(this.rotation.z !== 0)
 		this.rotationMatrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.rotation(new Vector3(0, 0, this.rotation.z)));
 
-	this.matrix = Matrix4.mulMM(Matrix4.mulMM(this.scaleMatrix, this.translationMatrix),this.rotationMatrix);
+	this.matrix = Matrix4.mulMM(this.rotationMatrix, Matrix4.mulMM(this.translationMatrix, this.scaleMatrix));
 
 
 
@@ -4417,7 +4417,7 @@ Transform.prototype.getPosition = function (){
 
 		this.position.w = 1;
 
-		var worldPos = Matrix4.mulMV(Matrix4.mulMM(this.translationMatrix,Matrix4.mulMM(parent.translationMatrix,parent.rotationMatrix)),this.position);
+		var worldPos = Matrix4.mulMV(this.translationMatrix, Matrix4.mulMM(Matrix4.mulMM(parent.translationMatrix,parent.rotationMatrix)),this.position);
 		return worldPos;
 	}
 
@@ -5393,9 +5393,6 @@ Engine.prototype.run = function () {
           physicsEngine.update(step);
         }
       }
-
-      //Time.delta = dt*1000;
-      //Time.deltaInSeconds = dt;
 
       renderEngine.update();
       renderEngine.render();

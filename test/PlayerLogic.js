@@ -31,19 +31,20 @@ PlayerLogic.prototype.update = function (){
   if (Input.isKeyPressed(32)) {
     // SPACE
 
-    var createSoilder = function(x,y, name){
+
+    var createSoilder = function(x,y, size, name){
       // note that spriteBuilder is a global variable !
       var spriteBuilder = new SpriteBuilder();
-      return spriteBuilder.create("res/soldier.png",new Vector2(x,y),1,1).
+      return spriteBuilder.create("res/soldier.png",new Vector2(x,y),size,size).
         setName(name).
         addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
         setAnimation("right"). // set the default animation
         setRigidBody(1,0,0). // set physics properties
-        setCollider(new BoxCollider(1,1, false)). // set a Box Collider
+        setCollider(new BoxCollider(size,size, false)). // set a Box Collider
       end();
     };
 
-    Thief.addGameObjectToScene(createSoilder(-1,-1, "soilder"));
+    Thief.addGameObjectToScene(createSoilder(-1,-1, 0.5, "soilder"));
 
   }else if (Input.isKeyPressed(37)) {
     // LEFT
