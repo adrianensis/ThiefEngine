@@ -23,6 +23,7 @@ GameLogic.prototype.start = function () {
   this.spriteBuilder = new SpriteBuilder();
   this.lastTime = Time.now();
 
+
   this.createCamera();
   this.createGame();
 };
@@ -52,6 +53,8 @@ GameLogic.prototype.createCamera = function(){
 }
 
 GameLogic.prototype.createGame = function(){
+
+  createMap(this.spriteBuilder);
 
   for (var i = 0; i < this.MAX_LIFES; i++) {
     this.lifes.push(this.createHeart(-5+(i*1.5),4));
