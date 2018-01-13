@@ -1,6 +1,7 @@
 var PlayerLogic = function () {
     Script.call(this);
     this.v = 0;
+    this.coins = 0;
 };
 
 PlayerLogic.prototype = new Script();
@@ -10,77 +11,42 @@ PlayerLogic.prototype.constructor = PlayerLogic;
 
 PlayerLogic.prototype.start = function () {
   this.v = 2;
+  this.coins = 0;
 };
 
 //----------------------------------------------------------------------
 
 PlayerLogic.prototype.update = function (){
 
-  var start = new Vector3(0,0,0);
-  var end = new Vector3(1,0,0);
-
   var body = this.gameObject.getComponent(RigidBody);
   var linear = body.getBox2dBody().GetLinearVelocity();
 
-  // var dt = Time.deltaTime();
-
-
-  // var t = this.gameObject.getTransform();
-
-
-  if (Input.isKeyPressed(32)) {
-    // SPACE
-
-
-    var createSoilder = function(x,y, size, name){
-      // note that spriteBuilder is a global variable !
-      var spriteBuilder = new SpriteBuilder();
-      return spriteBuilder.create("res/soldier.png",new Vector2(x,y),size,size).
-        setName(name).
-        addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
-        setAnimation("right"). // set the default animation
-        setRigidBody(1,0,0). // set physics properties
-        setCollider(new BoxCollider(size,size, false)). // set a Box Collider
-      end();
-    };
-
-    Thief.addGameObjectToScene(createSoilder(-1,-1, 0.5, "soilder"));
-
-  }else if (Input.isKeyPressed(37)) {
-    // LEFT
-
-    // t.translate(new Vector2(-this.v*Time.deltaTime(),0));
+if (Input.isKeyPressed(37) || Input.isKeyPressed(65)) {
+    // LEFT ARROW or A
 
     linear.x = -this.v;
     linear.y = 0;
 
-
     this.gameObject.getComponent(SpriteRenderer).setAnimation("left");
 
-  }else if (Input.isKeyPressed(38)) {
-    // UP
-
-    // t.translate(new Vector2(0,this.v*Time.deltaTime()));
+  }else if (Input.isKeyPressed(38) || Input.isKeyPressed(87)) {
+    // UP ARROW or W
 
     linear.y = this.v;
     linear.x = 0;
 
     this.gameObject.getComponent(SpriteRenderer).setAnimation("up");
 
-  }else if (Input.isKeyPressed(39)) {
-    // RIGHT
-
-    // t.translate(new Vector2(this.v*Time.deltaTime(),0));
+  }else if (Input.isKeyPressed(39) || Input.isKeyPressed(68)) {
+    // RIGHT ARROW or D
 
     linear.x = this.v;
     linear.y = 0;
 
     this.gameObject.getComponent(SpriteRenderer).setAnimation("right");
 
- }else if (Input.isKeyPressed(40)) {
-    // DOWN
-
-    // t.translate(new Vector2(0,-this.v*Time.deltaTime()));
+ }else if (Input.isKeyPressed(40) || Input.isKeyPressed(83)) {
+    // DOWN ARROW or S
 
     linear.y = -this.v;
     linear.x = 0;
@@ -89,7 +55,8 @@ PlayerLogic.prototype.update = function (){
 
   }else{
 
-
+    linear.y = 0;
+    linear.x = 0;
   }
 };
 
@@ -97,8 +64,12 @@ PlayerLogic.prototype.update = function (){
 
 PlayerLogic.prototype.onEnterCollision = function (otherGameObject, contact){
   // console.log("onEnterCollision");
-  if(otherGameObject.getName() === "soilder")
+  if(otherGameObject.getName() === "body"){
+    this.gameObject.destroy();
+  }else if(otherGameObject.getName() === "coin"){
     otherGameObject.destroy();
+    this.coins++;
+  }
 };
 
 //----------------------------------------------------------------------

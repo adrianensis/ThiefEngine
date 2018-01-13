@@ -123,9 +123,6 @@ Transform.prototype.generateMatrix = function (){
 			this.generateLocalSpaceMatrix();
 			this.matrix = Matrix4.mulMM(parent.getMatrix(),this.matrix);
 
-			// console.log(this.position.cpy().add(parent.position));
-			// console.log(this.position);
-
 		// Else, generate only local matrix
 		}else if(this.dirty)
 			this.generateLocalSpaceMatrix();
@@ -136,16 +133,13 @@ Transform.prototype.generateMatrix = function (){
 		c.generateMatrix();
 	}
 
-
-
 	this.dirty = false; // clear dirty flag
 
-
-	var pos = this.getPosition();
+	// var pos = this.getPosition();
 
 	// DebugRenderer.drawLine(pos,this.right.cpy().add(pos),Color.RED);
-  // DebugRenderer.drawLine(pos,this.up.cpy().add(pos),Color.BLUE);
-  // DebugRenderer.drawLine(pos,this.forward.cpy().add(pos),Color.GREEN);
+	// DebugRenderer.drawLine(pos,this.up.cpy().add(pos),Color.BLUE);
+	// DebugRenderer.drawLine(pos,this.forward.cpy().add(pos),Color.GREEN);
 
 };
 

@@ -82,7 +82,7 @@ GameObject.prototype.setStatic = function (bool){
 
 /**
 * Return true if the game object is static.
-* @returns {Boolean True if the game object is static.
+* @returns Boolean True if the game object is static.
 */
 GameObject.prototype.isStatic = function (){
 	return this.static;
