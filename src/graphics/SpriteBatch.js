@@ -128,6 +128,10 @@ SpriteBatch.prototype.update = function (renderContext){
 */
 SpriteBatch.prototype.render = function (layer){
 
+  // PATCH: if layer is empty, create empty array
+  if( ! this.renderers[layer])
+    this.renderers[layer] = [];
+
   this.material.enable();
 
   vao_ext.bindVertexArrayOES(SpriteBatch.vao);

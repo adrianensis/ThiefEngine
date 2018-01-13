@@ -8,7 +8,7 @@ var createMap = function (spriteBuilder) {
 
   var perlin = new PerlinNoise(5,10); // perlin noise generator
 
-  var resolution = 20; // number of tiles on x and y axes
+  var resolution = 30; // number of tiles on x and y axes
   var size = 1; // size of each tile
   var n = size * resolution/2;
 
@@ -41,13 +41,17 @@ var createMap = function (spriteBuilder) {
             width = tileWidth;
             height = tileHeight;
 
-          }else if(v >= 0.1 && v < 0.3){
-            // WATER TILE
-            // position of the tile within the texture: (40,67)
-            x = tileWidth*40;
-            y = (tileHeight*67);
-            width = tileWidth;
-            height = tileHeight;
+
+            spriteBuilder.setRigidBody(0,0,0).
+            setCollider(new CircleCollider(size/2,false)); // set a Cricle Collider
+
+          // }else if(v >= 0.1 && v < 0.3){
+          //   // WATER TILE
+          //   // position of the tile within the texture: (40,67)
+          //   x = tileWidth*40;
+          //   y = (tileHeight*67);
+          //   width = tileWidth;
+          //   height = tileHeight;
           }else if(v >= 0.3 && v < 0.5){
             // FLOWER TILE
             // position of the tile within the texture: (5,67)

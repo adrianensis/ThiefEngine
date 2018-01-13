@@ -69,6 +69,8 @@ PlayerLogic.prototype.onEnterCollision = function (otherGameObject, contact){
   }else if(otherGameObject.getName() === "coin"){
     otherGameObject.destroy();
     this.coins++;
+    var a = new Audio("res/coin.mp3");
+    a.play();
   }
 };
 

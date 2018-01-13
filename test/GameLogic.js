@@ -2,11 +2,12 @@ var GameLogic = function () {
     Script.call(this);
     this.spriteBuilder;
     this.snake = [];
-    this.INIT_LENGTH = 0;
-    this.MAX_LENGTH = 15;
+    this.INIT_LENGTH = 1;
+    this.MAX_LENGTH = 16;
+    this.MAX_LIFES = 3;
     this.lastTime = 0;
     this.index = 0;
-    this.lifes = 3;
+    this.lifes = [];
 };
 
 GameLogic.prototype = new Script();
@@ -14,14 +15,19 @@ GameLogic.prototype.constructor = GameLogic;
 
 GameLogic.prototype.start = function () {
 
+  this.song = new Audio("res/opening.mp3");
+  this.song.loop = true;
 
-  alert("TEST #1 - SNAKE\nEarn coins to obtain more followers up to 14 followers. If you collide with a follower, you'll lose a life. You have 3 lifes.");
+  alert("TEST #1 - SNAKE\nEarn coins to obtain more followers up to 15 followers. If you collide with a follower, you'll lose a life. You have 3 lifes.");
 
   this.spriteBuilder = new SpriteBuilder();
   this.lastTime = Time.now();
 
+  this.createCamera();
   this.createGame();
+};
 
+GameLogic.prototype.createCamera = function(){
   // CAMERA
 
   var canvas = Canvas.get();
@@ -43,29 +49,29 @@ GameLogic.prototype.start = function () {
 
   Thief.addGameObjectToScene(cam);
   Thief.setCamera(cam);
-
-};
+}
 
 GameLogic.prototype.createGame = function(){
+
+  for (var i = 0; i < this.MAX_LIFES; i++) {
+    this.lifes.push(this.createHeart(-5+(i*1.5),4));
+  }
+
   this.createSnake();
 
   var perlin = new PerlinNoise(56,78); // perlin noise generator
 
-  for (var i = 0; i < 10; i++) {
-
-  }
-
   var n = 10;
 
-  for ( var i=0; i<n; i++ ) {
-    for ( var j=0; j<n; j++ ) {
-      this.createCoin(perlin.generate(i,j)*10, perlin.generate(j,i)*10);
+  for ( var i=-n; i<n; i++ ) {
+    for ( var j=-n; j<n; j++ ) {
+      this.createCoin(perlin.generate(i,j)*40, perlin.generate(j,i)*40);
     }
   }
 
   for ( var i=-n; i<n; i++ ) {
     for ( var j=-n; j<n; j++ ) {
-      if(Math.abs(perlin.generate(i,j)) <= 0.015)
+      if(Math.abs(perlin.generate(i,j)) <= 0.01)
         this.createSnorlax(i,j);
     }
   }
@@ -76,11 +82,38 @@ GameLogic.prototype.createCoin = function(x,y){
   var obj =
   this.spriteBuilder.create("res/coin.png",new Vector2(x,y),size,size).
     setName("coin").
-    setRigidBody(1,0,0). // set physics properties
     addAnimation("right", 10, true, true, new Vector2(0,0), 1/10, 1, 14). // add RIGHT animation
     setAnimation("right"). // set the default animation
-    //setCollider(new BoxCollider(size,size, true)). // set a Box Collider, setted as sensor
-    setCollider(new CircleCollider(size/2,true)). // set a Cricle Collider
+    setRigidBody(1,0,0). // set physics properties
+    setCollider(new CircleCollider(size,true)). // set a Cricle Collider
+  end();
+
+  Thief.addGameObjectToScene(obj);
+
+  return obj;
+};
+
+GameLogic.prototype.createHeart = function(x,y){
+  var size = 0.8;
+  var obj =
+  this.spriteBuilder.create("res/heart.png",new Vector2(x,y),size,size).
+    setName("heart").
+    setLayer(1).
+  end();
+
+  Thief.addGameObjectToScene(obj);
+
+  return obj;
+};
+
+GameLogic.prototype.createZZZ = function(x,y){
+  var size = 0.8;
+  var obj =
+  this.spriteBuilder.create("res/zzz.png",new Vector2(x,y),size,size).
+    setName("zzz").
+    addAnimation("right", 4, true, false, new Vector2(0,0), 1/4, 1, 2). // add RIGHT animation
+    setAnimation("right"). // set the default animation
+    setLayer(1).
   end();
 
   Thief.addGameObjectToScene(obj);
@@ -89,14 +122,16 @@ GameLogic.prototype.createCoin = function(x,y){
 };
 
 GameLogic.prototype.createSnorlax = function(x,y){
+
+  this.createZZZ(x+1.3, y+0.8);
+
   var obj =
   this.spriteBuilder.create("res/snorlax.bmp",new Vector2(x,y),2,2).
     setStatic(true).
     setAlphaColor(new Color(1,0,1,1)).
     setRigidBody(0,0,0). // set physics properties
     // setCollider(new BoxCollider(2,2, false)). // set a Box Collider
-    setCollider(new CircleCollider(1,false)). // set a Cricle Collider
-
+    setCollider(new CircleCollider(0.8,false)). // set a Cricle Collider
   end();
 
   Thief.addGameObjectToScene(obj);
@@ -107,9 +142,9 @@ GameLogic.prototype.createSnorlax = function(x,y){
 GameLogic.prototype.createBody = function(x,y){
   var size = 1;
   var obj =
-  this.spriteBuilder.create("res/soldier.png",new Vector2(x,y),size,size).
+  this.spriteBuilder.create("res/pikachu.png",new Vector2(x,y),size,size).
     setName("body").
-    addAnimation("right", 12, true, true, new Vector2(0,0), 1/12, 1, 14). // add RIGHT animation
+    addAnimation("right", 3, true, false, new Vector2(0,0), 1/3, 1/4, 14). // add RIGHT animation
     setAnimation("right"). // set the default animation
     setRigidBody(1,0,0). // set physics properties
     //setCollider(new BoxCollider(size,size, true)). // set a Box Collider, setted as sensor
@@ -142,10 +177,12 @@ GameLogic.prototype.createHead = function(x,y){
 };
 
 GameLogic.prototype.createSnake = function(){
+  this.song.currentTime = 0;
+  this.song.play();
 
   this.snake[0] = this.createHead(0,4);
 
-  for (var i = 1; i < this.INIT_LENGTH; i++) {
+  for (var i = 1; i <= this.INIT_LENGTH; i++) {
     this.snake[i] = this.createBody(-i,4);
   }
 };
@@ -166,6 +203,8 @@ GameLogic.prototype.moveSnake = function(){
   var targetBody = this.snake[this.index].getComponent(RigidBody).getBox2dBody(); //.GetLinearVelocity();
 
   if(this.index + 1 < this.snake.length){
+
+    // STEERING - SEEK (each part follows the previous one)
 
     var seekerBody = this.snake[this.index+1].getComponent(RigidBody).getBox2dBody(); //.GetLinearVelocity();
 
@@ -204,30 +243,36 @@ GameLogic.prototype.getCoins = function(){
 
 GameLogic.prototype.update = function (){
 
-  if(!this.isDead()){
+  if(this.lifes.length > 0){
+    if(!this.isDead()){
 
-    this.moveSnake();
+      this.moveSnake();
 
-    if (Input.isKeyPressed(32)) {
-      // SPACE
+      if (Input.isKeyPressed(32)) {
+        // SPACE
 
-    }else if (Input.isKeyPressed(13)) {
-      // ENTER
+      }else if (Input.isKeyPressed(13)) {
+        // ENTER
 
-    }
-
-    if(this.snake.length < this.MAX_LENGTH && this.getCoins() > this.snake.length-1){
-      var lastPosition = this.snake[this.snake.length-1].getComponent(RigidBody).getBox2dBody().GetPosition();
-      this.snake.push(this.createBody(lastPosition.x,lastPosition.y+3));
-      this.index = 0;
-    }
-
-  }else{
-      if(this.lifes > 0){
-        this.destroySnake();
-        this.createSnake();
-        this.lifes--;
       }
+
+      if(this.snake.length < this.MAX_LENGTH && this.getCoins() > this.snake.length-1){
+        var lastPosition = this.snake[this.snake.length-1].getComponent(RigidBody).getBox2dBody().GetPosition();
+        this.snake.push(this.createBody(lastPosition.x,lastPosition.y+3));
+        this.index = 0;
+      }
+
+    }else{
+        this.destroySnake();
+
+        if(this.lifes.length > 1)
+          this.createSnake();
+        else
+          alert("GAME OVER. Press F5 to restart.")
+
+        this.lifes[this.lifes.length-1].destroy();
+        this.lifes.splice(-1,1); // remove last
+    }
   }
 
 };
