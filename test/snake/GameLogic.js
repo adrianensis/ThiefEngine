@@ -251,14 +251,6 @@ GameLogic.prototype.update = function (){
 
       this.moveSnake();
 
-      if (Input.isKeyPressed(32)) {
-        // SPACE
-
-      }else if (Input.isKeyPressed(13)) {
-        // ENTER
-
-      }
-
       if(this.snake.length < this.MAX_LENGTH && this.getCoins() > this.snake.length-1){
         var lastPosition = this.snake[this.snake.length-1].getComponent(RigidBody).getBox2dBody().GetPosition();
         this.snake.push(this.createBody(lastPosition.x,lastPosition.y+3));

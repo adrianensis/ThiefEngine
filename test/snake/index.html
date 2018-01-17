@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title> Test </title>
+
+        <style>
+            html,body{
+                width: 100%;
+                height: 99.7%;
+                margin: 0;
+                padding: 0;
+            }
+
+            #glcanvas{
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+
+        <!--include-->
+
+        <script src="../../thief.js"></script>
+
+        <script src="PlayerLogic.js"></script>
+        <script src="GameLogic.js"></script>
+        <script src="Map.js"></script>
+        <script src="Game.js"></script>
+
+    </head>
+    <body onload="snake();">
+        <canvas id="glcanvas">
+        </canvas>
+    </body>
+</html>
