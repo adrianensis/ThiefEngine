@@ -191,7 +191,7 @@ Shader.prototype.addMatrixArray = function (matrixArray,name){
   matrixLocation = gl.getUniformLocation(this.programID, name);
 
   var raw = [];
-  for (var m of matrixArray) {
+  for (var matrix of matrixArray) {
       raw = raw.concat(matrix.getData());
   }
 

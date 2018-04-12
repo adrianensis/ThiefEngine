@@ -37,7 +37,7 @@ var Input = function (){
           var key = Input.stack[i];
 
           if(key !== event.keyCode)
-            newStack.push();
+            newStack.push(key);
 
         }
 
